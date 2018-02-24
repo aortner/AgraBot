@@ -798,6 +798,7 @@ namespace AgraBot
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
                     FileSaveContour();
+                    FileSaveRecPath();
 
                     //NMEA log file
                     if (isLogNMEA) FileSaveNMEA();

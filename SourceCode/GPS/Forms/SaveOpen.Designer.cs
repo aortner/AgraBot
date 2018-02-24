@@ -151,7 +151,6 @@ namespace AgraBot
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
                     writer.WriteLine("Empty," + "10");
-
                 }
 
                 //little show to say saved and where
@@ -1037,50 +1036,50 @@ namespace AgraBot
             }
 
 
-            //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(4000, "Missing Recorded Path File", "But Field is Loaded");
-                form.Show();
-            }
+            ////Either exit or update running save
+            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
+            //if (!File.Exists(fileAndDirectory))
+            //{
+            //    var form = new FormTimedMessage(4000, "Missing Recorded Path File", "But Field is Loaded");
+            //    form.Show();
+            //}
 
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        int numPoints = int.Parse(line);
-                        recPath.recList.Clear();
+            //else
+            //{
+            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
+            //    {
+            //        try
+            //        {
+            //            //read header
+            //            line = reader.ReadLine();
+            //            line = reader.ReadLine();
+            //            int numPoints = int.Parse(line);
+            //            recPath.recList.Clear();
 
-                        while (!reader.EndOfStream)
-                        {
-                            for (int v = 0; v < numPoints; v++)
-                            {
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-                                CRecPathPt point = new CRecPathPt(
-                                    double.Parse(words[0], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture),
-                                    double.Parse(words[2], CultureInfo.InvariantCulture),
-                                    double.Parse(words[3], CultureInfo.InvariantCulture));
-                                recPath.recList.Add(point);
-                            }
-                        }
-                    }
+            //            while (!reader.EndOfStream)
+            //            {
+            //                for (int v = 0; v < numPoints; v++)
+            //                {
+            //                    line = reader.ReadLine();
+            //                    string[] words = line.Split(',');
+            //                    CRecPathPt point = new CRecPathPt(
+            //                        double.Parse(words[0], CultureInfo.InvariantCulture),
+            //                        double.Parse(words[1], CultureInfo.InvariantCulture),
+            //                        double.Parse(words[2], CultureInfo.InvariantCulture),
+            //                        double.Parse(words[3], CultureInfo.InvariantCulture));
+            //                    recPath.recList.Add(point);
+            //                }
+            //            }
+            //        }
 
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
-                        form.Show();
-                        WriteErrorLog("Load Recorded Path" + e.ToString());
-                    }
-                }
-            }
+            //        catch (Exception e)
+            //        {
+            //            var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
+            //            form.Show();
+            //            WriteErrorLog("Load Recorded Path" + e.ToString());
+            //        }
+            //    }
+            //}
 
 
 
@@ -1300,10 +1299,10 @@ namespace AgraBot
             { Directory.CreateDirectory(directoryName); }
 
             //write out the file
-            using (StreamWriter writer = new StreamWriter(dirField + "RecPath.Txt"))
+            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt"),true))
             {
                 writer.WriteLine("$RecPath");
-                writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
+                //writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
                 if (recPath.recList.Count > 0)
                 {
                     for (int j = 0; j < recPath.recList.Count; j++)
@@ -1312,6 +1311,9 @@ namespace AgraBot
                             Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
                             Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
                             Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture));
+
+                    //clear out the list
+                    recPath.recList.Clear();
                 }
             }
         }

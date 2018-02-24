@@ -354,6 +354,7 @@ namespace AgraBot
         {
             isYouTurnShapeDisplayed = true;
 
+            //create a dubins instance
             CDubins dubYouTurnPath = new CDubins();
             CDubins.turningRadius = mf.vehicle.minTurningRadius;
 
@@ -400,14 +401,14 @@ namespace AgraBot
                 head -= Math.PI;
                 if (isTurnRight)
                 {
-                    goal.easting = rEastYT - Math.Cos(head) * turnOffset * rowSkipsWidth;
-                    goal.northing = rNorthYT - Math.Sin(head) * turnOffset * rowSkipsWidth;
+                    goal.easting = rEastYT - Math.Cos(-head) * turnOffset * rowSkipsWidth;
+                    goal.northing = rNorthYT - Math.Sin(-head) * turnOffset * rowSkipsWidth;
                     goal.heading = head;
                 }
                 else
                 {
-                    goal.easting = rEastYT + Math.Cos(head) * turnOffset * rowSkipsWidth;
-                    goal.northing = rNorthYT + Math.Sin(head) * turnOffset * rowSkipsWidth;
+                    goal.easting = rEastYT + Math.Cos(-head) * turnOffset * rowSkipsWidth;
+                    goal.northing = rNorthYT + Math.Sin(-head) * turnOffset * rowSkipsWidth;
                     goal.heading = head;
                 }
 

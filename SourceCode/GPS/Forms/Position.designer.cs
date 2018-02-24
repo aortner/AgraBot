@@ -613,9 +613,10 @@ namespace AgraBot
             }
 
 #endregion
-                //used to increase triangle count when going around corners, less on straight
-                //pick the slow moving side edge of tool
-                double metersPerSec = pn.speed * 0.277777777;
+
+            //used to increase triangle count when going around corners, less on straight
+            //pick the slow moving side edge of tool
+            double metersPerSec = pn.speed * 0.277777777;
 
             //whichever is less
             if (vehicle.toolFarLeftSpeed < vehicle.toolFarRightSpeed)
@@ -637,7 +638,7 @@ namespace AgraBot
             cosSectionHeading = Math.Cos(-toolPos.heading);
         }
 
-        //perimter and boundary point generation
+        //perimeter and boundary point generation
         private void AddBoundaryAndPerimiterPoint()
         {
             //save the north & east as previous
@@ -693,14 +694,14 @@ namespace AgraBot
         private void AddSectionContourPathPoints()
         {
             //if (recPath.isBtnOn & recPath.isRecordOn)
-            //{
-            //    //keep minimum speed of 1.0
-            //    double speed = pn.speed;
-            //    if (pn.speed < 1.0) speed = 1.0;
+            {
+                //keep minimum speed of 1.0
+                double speed = pn.speed;
+                if (pn.speed < 1.0) speed = 1.0;
 
-            //    CRecPathPt pt = new CRecPathPt(pn.fix.easting, pn.fix.northing, fixHeading, pn.speed);
-            //    recPath.recList.Add(pt);
-            //}
+                CRecPathPt pt = new CRecPathPt(pn.fix.easting, pn.fix.northing, fixHeading, pn.speed);
+                recPath.recList.Add(pt);
+            }
 
             //save the north & east as previous
             prevSectionPos.northing = pn.fix.northing;
