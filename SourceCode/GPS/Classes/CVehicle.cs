@@ -230,8 +230,6 @@ namespace AgraBot
             gl.Color(0.95f, 0.90f, 0.0f);
             gl.PointSize(4.0f);
             gl.Begin(OpenGL.GL_POINTS);
-            if (mf.isAreaOnRight) gl.Vertex(2.0, -antennaPivot, 0);
-            else gl.Vertex(-2.0, -antennaPivot, 0);
 
             //antenna
             gl.Color(0.0f, 0.98f, 0.0f);

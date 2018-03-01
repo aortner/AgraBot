@@ -51,9 +51,6 @@ namespace AgraBot
         //Everything is so wonky at the start
         int startCounter = 0;
 
-        //individual points for the flags in a list
-        List<CFlag> flagPts = new List<CFlag>();
-
         //tally counters for display
         public double totalSquareMeters = 0, totalUserSquareMeters = 0, userSquareMetersAlarm = 0;
 
@@ -66,7 +63,6 @@ namespace AgraBot
         //youturn
         double distPivot = -2;
         public double distTool;
-        double distanceToStartAutoTurn;  
         
         //the value to fill in you turn progress bar
         public int youTurnProgressBar = 0;
@@ -237,7 +233,7 @@ namespace AgraBot
                 stepFixPts[(totalFixSteps - 1)].heading = 0;
 
                 //grab sentences for logging
-                if (isLogNMEA)  { if (ct.isContourOn)  { pn.logNMEASentence.Append(recvSentenceSettings); } }
+                //if (isLogNMEA)  { if (ct.isContourOn)  { pn.logNMEASentence.Append(recvSentenceSettings); } }
 
                 //To prevent drawing high numbers of triangles, determine and test before drawing vertex
                 sectionTriggerDistance = glm.Distance(pn.fix, prevSectionPos);
@@ -271,39 +267,13 @@ namespace AgraBot
 
             guidanceLineDistanceOff = 32000;    //preset the values
 
-            //do the distance from line calculations for contour and AB
-            if (ct.isContourBtnOn) ct.DistanceFromContourLine();
-            if (ABLine.isABLineSet && !ct.isContourBtnOn)
-            {
-                ABLine.GetCurrentABLine();
-                if (yt.isRecordingCustomYouTurn)
-                {
-                    //save reference of first point
-                    if (yt.youFileList.Count == 0)
-                    {
-                        vec2 start = new vec2(pn.fix.easting, pn.fix.northing);
-                        yt.youFileList.Add(start);
-                    }
-                    else
-                    {
-                        //keep adding points
-                        vec2 point = new vec2(pn.fix.easting - yt.youFileList[0].easting, pn.fix.northing - yt.youFileList[0].northing);
-                        yt.youFileList.Add(point);
-                    }
-                }
-            }
-
-            // autosteer at full speed of updates
-            if (!isAutoSteerBtnOn) //32020 means auto steer is off
-            {
-                guidanceLineDistanceOff = 32020;
-            }
+            //if the whole path driving driving process is green
+            if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
 
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
             {
-
-                //fill up0 the auto steer array with new values
+                //fill up the auto steer array with new values
                 mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0);
 
                 mc.autoSteerData[mc.sdDistanceHi] = (byte)(guidanceLineDistanceOff >> 8);
@@ -331,110 +301,6 @@ namespace AgraBot
                 //out serial to autosteer module  //indivdual classes load the distance and heading deltas 
                 AutoSteerDataOutToPort();
             }
-            #endregion
-
-            #region relayRatecontrol
-            //do the relayRateControl
-            if (rc.isRateControlOn)
-            {
-                rc.CalculateRateLitersPerMinute();
-                mc.relayRateData[mc.rdRateSetPointHi] = (byte)((Int16)(rc.rateSetPoint * 100.0) >> 8);
-                mc.relayRateData[mc.rdRateSetPointLo] = (byte)(rc.rateSetPoint * 100.0);
-
-                mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                //relay byte is built in SerialComm function BuildRelayByte()
-                //youturn control byte is built in SerialComm BuildYouTurnByte()
-            }
-            else
-            {
-                mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
-                mc.relayRateData[mc.rdRateSetPointHi] = (byte)0;
-                mc.relayRateData[mc.rdSpeedXFour] = (byte)(pn.speed * 4.0);
-                //relay byte is built in SerialComm.cs - function BuildRelayByte()
-                //youturn control byte is built in SerialComm BuildYouTurnByte()
-            }
-
-            //send out the port
-            RateRelayOutToPort(mc.relayRateData, AgraBot.CModuleComm.numRelayRateDataItems);
-
-            #endregion
-
-            #region Youturn
-
-            //do the auto youturn logic if everything is on.
-            if (hl.isSet && yt.isYouTurnBtnOn && isAutoSteerBtnOn)
-            {
-                //figure out where we are
-                yt.isInBoundz = boundz.IsPointInsideBoundary(toolPos);
-                yt.isInWorkArea = hl.IsPointInsideHeadland(toolPos);
-
-                //Are we in the headland?
-                if (!yt.isInWorkArea && yt.isInBoundz) yt.isInHeadland = true;
-                else yt.isInHeadland = false;
-
-                //are we in boundary? Then calc a distance
-                if (yt.isInBoundz)
-                {
-                    hl.FindClosestHeadlandPoint(pivotAxlePos);
-                    if ((int)hl.closestHeadlandPt.easting != -1)
-                    {
-                        distPivot = glm.Distance(pivotAxlePos, hl.closestHeadlandPt);
-                    }
-                    else distPivot = -2;
-                }
-                else distPivot = -2;
-
-                //trigger the "its ready to generate a youturn when 25m away" but don't make it just yet
-                if (distPivot < 25.0 && distPivot > 22 && !yt.isYouTurnTriggered && yt.isInWorkArea)
-                {
-                    //begin the whole process, all conditions are met
-                    yt.YouTurnTrigger();
-                }
-
-                //Do the sequencing of functions around the turn.
-                if (yt.isSequenceTriggered)
-                {
-                    yt.DoSequenceEvent();
-                }
-
-                distanceToStartAutoTurn = -1;
-
-                //start counting down - this is not run if shape is drawn
-                if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
-                {
-                    //if we are too much off track - 5 degrees 500 mm, pointing wrong way, kill the turn
-                    if ((Math.Abs(guidanceLineSteerAngle) > 500) && (Math.Abs(ABLine.distanceFromCurrentLine) > 500))
-                    {
-                        yt.ResetYouTurnAndSequenceEvents();
-                    }
-                    else
-
-                    {
-                        //how far have we gone since youturn request was triggered
-                        distanceToStartAutoTurn = glm.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
-                        
-                        //youTurnProgressBar = (int)(distanceToStartAutoTurn / (45 + yt.youTurnStartOffset) * 100);                 
-
-                        if (distanceToStartAutoTurn > (25 + yt.youTurnStartOffset))
-                        {
-                            //keep from running this again since youturn is plotted now
-                            yt.isYouTurnTriggerPointSet = false;
-                            youTurnProgressBar = 0;
-                            yt.isLastYouTurnRight = yt.isYouTurnRight;
-                            yt.BuildYouTurnListToRight(yt.isYouTurnRight);
-                        }
-                    }
-                }
-            }
-
-            else //make sure youturn and sequence is off - we are not in normal turn here
-            {
-                if(yt.isYouTurnTriggered | yt.isSequenceTriggered)
-                {
-                    yt.ResetYouTurnAndSequenceEvents();
-                }
-            }
-
             #endregion
 
             //calculate lookahead at full speed, no sentence misses
@@ -664,29 +530,6 @@ namespace AgraBot
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
                     boundz.ptList.Add(point);
                 }
-
-            }
-
-            //build the polygon to calculate area
-            if (periArea.isBtnPerimeterOn)
-            {
-                if (isAreaOnRight)
-                {
-                    //Right side
-                    vec2 point = new vec2(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
-                        sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing);
-                    periArea.periPtList.Add(point);
-                }
-
-                    //draw on left side
-                else
-                {
-                    //Right side
-                    vec2 point = new vec2(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
-                        sinSectionHeading * (section[0].positionLeft) + toolPos.northing);
-                    periArea.periPtList.Add(point);
-                }
-
             }
         }
 
@@ -694,14 +537,14 @@ namespace AgraBot
         private void AddSectionContourPathPoints()
         {
             //if (recPath.isBtnOn & recPath.isRecordOn)
-            {
-                //keep minimum speed of 1.0
-                double speed = pn.speed;
-                if (pn.speed < 1.0) speed = 1.0;
+            //{
+            //    //keep minimum speed of 1.0
+            //    double speed = pn.speed;
+            //    if (pn.speed < 1.0) speed = 1.0;
 
-                CRecPathPt pt = new CRecPathPt(pn.fix.easting, pn.fix.northing, fixHeading, pn.speed);
-                recPath.recList.Add(pt);
-            }
+            //    CRecPathPt pt = new CRecPathPt(pn.fix.easting, pn.fix.northing, fixHeading, pn.speed);
+            //    recPath.recList.Add(pt);
+            //}
 
             //save the north & east as previous
             prevSectionPos.northing = pn.fix.northing;
@@ -719,21 +562,6 @@ namespace AgraBot
                     sectionCounter++;
                 }
             }
-
-            //Contour Base Track.... At least One section on, turn on if not
-            if (sectionCounter != 0)
-            {
-                //keep the line going, everything is on for recording path
-                if (ct.isContourOn) ct.AddPoint();
-                else { ct.StartContourLine(); ct.AddPoint(); }
-            }
-
-            //All sections OFF so if on, turn off
-            else { if (ct.isContourOn) { ct.StopContourLine(); } }
-
-            //Build contour line if close enough to a patch
-            if (ct.isContourBtnOn) ct.BuildContourGuidanceLine(pn.fix.easting, pn.fix.northing);
-
         }
        
         //calculate the extreme tool left, right velocities, each section lookahead, and whether or not its going backwards

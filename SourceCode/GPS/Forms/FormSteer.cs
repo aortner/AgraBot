@@ -70,12 +70,12 @@ namespace AgraBot
             else
             {
                 //free drive mode
-                mf.mc.autoSteerData[mf.mc.sdSteerAngleHi] = (byte)((driveFreeSteerAngle * 10) >> 8);
-                mf.mc.autoSteerData[mf.mc.sdSteerAngleLo] = (byte)(driveFreeSteerAngle * 10);
+                mf.mc.autoSteerData[mf.mc.sdSteerAngleHi] = (byte)((driveFreeSteerAngle * 100) >> 8);
+                mf.mc.autoSteerData[mf.mc.sdSteerAngleLo] = (byte)(driveFreeSteerAngle * 100);
 
                 tboxSerialFromAutoSteer.Text = mf.mc.serialRecvAutoSteerStr;
                 tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelay] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
-                                        + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle*10;
+                                        + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + driveFreeSteerAngle*100;
             }
 
             DrawChart();
@@ -283,40 +283,6 @@ namespace AgraBot
         }
 
         //FREE DRIVE SECTION
-        private void btnSteerWizard_Click(object sender, EventArgs e)
-        {
-            if (mf.isJobStarted)
-            {
-                var form = new FormTimedMessage(3000, gStr.gsFieldIsOpen, gStr.gsCloseFieldFirst);
-                form.Show();
-                return;
-            }
-
-            WindowState = FormWindowState.Minimized;
-            Hide();
-
-            using (var form = new FormWizardSteer(mf))
-            {
-                var result = form.ShowDialog();
-                if (result == DialogResult.OK)
-                {
-                    btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-                    btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-                    mf.AutoSteerSettingsOutToPort();
-                }
-                else
-                {
-                    btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-                    btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-                    mf.AutoSteerSettingsOutToPort();
-                }
-            }
-
-            //restore the autosteer window
-            Show();
-            WindowState = FormWindowState.Normal;
-        }
-
         private void tbarFreeDriveAngle_ValueChanged(object sender, EventArgs e)
         {
             driveFreeSteerAngle = (Int16)tbarFreeDriveAngle.Value;

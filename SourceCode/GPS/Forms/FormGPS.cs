@@ -33,9 +33,6 @@ namespace AgraBot
         //current fields and field directory
         public string fieldsDirectory, currentFieldDirectory;
 
-        //ABLines directory
-        public string ablinesDirectory;
-
         //colors for sections and field background
         private byte redSections, grnSections, bluSections;
 
@@ -47,19 +44,13 @@ namespace AgraBot
         //polygon mode for section drawing
         private bool isDrawPolygons;
 
-        //Flag stuff
-        public byte flagColor = 0;
-
-        private bool leftMouseDownOnOpenGL = false; //mousedown event in opengl window
-        private int flagNumberPicked = 0;
-
         //Is it in 2D or 3D, metric or imperial, display lightbar, display grid etc
         public bool isIn3D = true, isMetric = true, isLightbarOn = true, isGridOn, isSideGuideLines = true;
 
         public bool isPureDisplayOn = true, isSkyOn = true, isBigAltitudeOn = false;
 
         //bool for whether or not a job is active
-        public bool isJobStarted = false, isAreaOnRight = true, isAutoSteerBtnOn;
+        public bool isJobStarted;
 
         //master Manual and Auto, 3 states possible
         public enum btnStates { Off, Auto, On }
@@ -107,31 +98,6 @@ namespace AgraBot
         public CSection[] section = new CSection[MAXSECTIONS];
 
         /// <summary>
-        /// AB Line object
-        /// </summary>
-        public CABLine ABLine;
-
-        /// <summary>
-        /// Contour Mode Instance
-        /// </summary>
-        public CContour ct;
-
-        /// <summary>
-        /// ABCurve instance
-        /// </summary>
-        public CABCurve curve;
-
-        /// <summary>
-        /// Auto Headland YouTurn
-        /// </summary>
-        public CYouTurn yt;
-
-        /// <summary>
-        /// Rate control Object
-        /// </summary>
-        public CRate rc;
-
-        /// <summary>
         /// Our vehicle including the tool
         /// </summary>
         public CVehicle vehicle;
@@ -142,19 +108,9 @@ namespace AgraBot
         public CModuleComm mc;
 
         /// <summary>
-        /// perimeter object for area calc
-        /// </summary>
-        public CPerimeter periArea;
-
-        /// <summary>
         /// The outer boundary of the field
         /// </summary>
         public CBoundary boundz;
-
-        /// <summary>
-        /// The headland created
-        /// </summary>
-        public CHeadland hl;
 
         /// <summary>
         /// The entry and exit sequences, functions, actions
@@ -186,11 +142,6 @@ namespace AgraBot
         /// </summary>
         public CRecordedPath recPath;
 
-        /// <summary>
-        /// Generate dubins paths
-        /// </summary>
-        //public CDubins dubPath;
-
         #endregion // Class Props and instances
 
         // Constructor, Initializes a new instance of the "FormGPS" class.
@@ -219,32 +170,11 @@ namespace AgraBot
             //our NMEA parser
             pn = new CNMEA(this);
 
-            //create the ABLine instance
-            ABLine = new CABLine(gl, this);
-
-            //new instance of contour mode
-            ct = new CContour(gl, this);
-
-            //new instance of contour mode
-            curve = new CABCurve(gl, this);
-
-            //new instance of auto headland turn
-            yt = new CYouTurn(gl, glBack, this);
-
             //module communication
             mc = new CModuleComm(this);
 
-            //perimeter list object
-            periArea = new CPerimeter(gl);
-
             //boundary object
             boundz = new CBoundary(gl, glBack, this);
-
-            //headland object
-            hl = new CHeadland(gl, this);
-
-            //rate object
-            rc = new CRate(this);
 
             //headland entry/exit sequences
             seq = new CSequence(this);
@@ -274,10 +204,6 @@ namespace AgraBot
         //Initialize items before the form Loads or is visible
         private void FormGPS_Load(object sender, EventArgs e)
         {
-            //tooltips of controls
-            ToolTip ToolTip1 = new ToolTip();
-            ToolTip1.SetToolTip(btnABLine, "Set and configure\n an ABLine");
-
             if (Settings.Default.setF_workingDirectory == "Default")
                 baseDirectory = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\AgraBot\\";
             else baseDirectory = Settings.Default.setF_workingDirectory + "\\AgraBot\\";
@@ -314,11 +240,6 @@ namespace AgraBot
             fixUpdateHz = Properties.Settings.Default.setPort_NMEAHz;
             fixUpdateTime = 1 / (double)fixUpdateHz;
 
-            //get the abLines directory, if not exist, create
-            ablinesDirectory = baseDirectory + "ABLines\\";
-            dir = Path.GetDirectoryName(fieldsDirectory);
-            if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir)) { Directory.CreateDirectory(dir); }
-
             //set baud and port from last time run
             baudRateGPS = Settings.Default.setPort_baudRate;
             portNameGPS = Settings.Default.setPort_portNameGPS;
@@ -343,7 +264,7 @@ namespace AgraBot
             SectionCalcWidths();
 
             //start udp server
-            //StartUDPServer();
+            StartUDPServer();
 
             //set the correct zoom and grid
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
@@ -377,10 +298,6 @@ namespace AgraBot
             //don't draw the back opengl to GDI - it still works tho
             openGLControlBack.Visible = false;
 
-            //clear the flags
-            flagPts.Clear();
-            btnFlag.Enabled = false;
-
             //workswitch stuff
             mc.isWorkSwitchEnabled = Settings.Default.setF_IsWorkSwitchEnabled;
             mc.isWorkSwitchActiveLow = Settings.Default.setF_IsWorkSwitchActiveLow;
@@ -392,10 +309,6 @@ namespace AgraBot
 
             //space between points while recording a boundary
             boundaryTriggerDistance = Settings.Default.setF_boundaryTriggerDistance;
-
-            //load the last used auto turn shape
-            string fileAndDir = @".\YouTurnShapes\" + Properties.Settings.Default.setAS_youTurnShape;
-            yt.LoadYouTurnShapeFromFile(fileAndDir);
 
             //sim.latitude = Settings.Default.setSim_lastLat;
             //sim.longitude = Settings.Default.setSim_lastLong;
@@ -527,36 +440,6 @@ namespace AgraBot
             return texture[0];
         }// Load Bitmaps And Convert To Textures
 
-        private void btnRecPathOnOff_Click(object sender, EventArgs e)
-        {
-            //recPath.isBtnOn = !recPath.isBtnOn;
-            //if (recPath.isBtnOn)
-            //{
-            //    btnRecPathOnOff.Text = "On";
-            //    recPath.isRecordOn = false;
-            //    btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
-            //}
-            //else
-            //{
-            //    btnRecPathOnOff.Text = "Off";
-            //    recPath.isRecordOn = false;
-            //    btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
-            //}
-        }
-
-        private void btnRecPathPauseRecord_Click(object sender, EventArgs e)
-        {
-            //recPath.isRecordOn = !recPath.isRecordOn;
-            //if (recPath.isRecordOn)
-            //{
-            //    btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
-            //}
-            //else
-            //{
-            //    btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
-            //}
-        }
-
         //start the UDP server
         private void StartUDPServer()
         {
@@ -601,28 +484,28 @@ namespace AgraBot
             }
         }
 
-        private void btnDeleteRecordedPath_Click(object sender, EventArgs e)
+        //function to do a button click on AutoSection.
+        //public void ClickAutoBtn()
+        //{
+        //    btnSectionOffAutoOn.PerformClick();
+        //}
+
+        private void btnDrivePath_Click(object sender, EventArgs e)
         {
-            recPath.recList.Clear();
+            //already running?
+            if (recPath.isDrivingRecordedPath) return;
+
+            //start the recorded path driving process
+            if (!recPath.StartDrivingRecordedPath())
+            {
+                //Cancel the recPath - something went seriously wrong
+                recPath.StopDrivingRecordedPath();
+            }
         }
 
-        private void btnFollowOnOff_Click(object sender, EventArgs e)
+        private void btnStopDrivingPath_Click(object sender, EventArgs e)
         {
-            //recPath.isBtnFollowOn = !recPath.isBtnFollowOn;
-            //if (recPath.isBtnFollowOn)
-            //{
-            //    btnFollowOnOff.Text = "Follow On";
-            //    //recPath.RestartToBeginningOfPath();
-            //}
-            //else
-            //{
-            //    btnFollowOnOff.Text = "Follow Off";
-            //}
-        }
-
-        private void btnDubins_Click(object sender, EventArgs e)
-        {
-            //recPath.StartDriving();
+            recPath.StopDrivingRecordedPath();
         }
 
         //dialog for requesting user to save or cancel
@@ -740,16 +623,6 @@ namespace AgraBot
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-            btnABLine.Enabled = true;
-            btnABCurve.Enabled = true;
-            btnContour.Enabled = true;
-            btnAutoSteer.Enabled = true;
-            ABLine.abHeading = 0.00;
-
-            btnRightYouTurn.Enabled = false;
-            btnLeftYouTurn.Enabled = false;
-            btnFlag.Enabled = true;
-
             LineUpManualBtns();
 
             //update the menu
@@ -760,11 +633,6 @@ namespace AgraBot
         public void JobClose()
         {
             //rate control buttons
-            if (rc.isRateControlOn)
-                btnRate.PerformClick();
-
-            rc.ShutdownRateControl();  //double dam sure its off
-
             //turn auto button off
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
@@ -806,32 +674,6 @@ namespace AgraBot
                 section[j].triangleList?.Clear();
             }
 
-            //clear out the contour Lists
-            ct.ResetContour();
-
-            //clear the flags
-            flagPts.Clear();
-            btnFlag.Enabled = false;
-
-            //reset the buttons
-            btnABLine.Enabled = false;
-            btnABCurve.Enabled = true;
-            btnContour.Enabled = false;
-            btnAutoSteer.Enabled = false;
-            isAutoSteerBtnOn = false;
-
-            ct.isContourBtnOn = false;
-            ct.isContourOn = false;
-
-            //change images to reflect on off
-            btnABLine.Image = Properties.Resources.ABLineOff;
-            btnRightYouTurn.Visible = false;
-            btnLeftYouTurn.Visible = false;
-            btnSwapDirection.Visible = false;
-
-            btnContour.Image = Properties.Resources.ContourOff;
-            btnAutoSteer.Image = Properties.Resources.AutoSteerOff;
-
             //fix ManualOffOnAuto buttons
             btnManualOffOn.Enabled = false;
             manualBtnState = btnStates.Off;
@@ -842,39 +684,17 @@ namespace AgraBot
             autoBtnState = btnStates.Off;
             btnSectionOffAutoOn.Image = Properties.Resources.SectionMasterOff;
 
-            //reset all the ABLine stuff
-            ABLine.ResetABLine();
-
             //reset acre and distance counters
             totalSquareMeters = 0;
 
             //reset boundary
             boundz.ResetBoundary();
 
-            //reset headland
-            hl.ResetHeadland();
-
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsStartNewField;
-
-            //turn off top level buttons
-            btnRightYouTurn.Enabled = false;
-            btnLeftYouTurn.Enabled = false;
-
-            //auto YouTurn shutdown
-            yt.isYouTurnBtnOn = false;
-            yt.ResetYouTurnAndSequenceEvents();
-            youTurnProgressBar = 0;
-
-            //turn off youturn...
-            btnEnableAutoYouTurn.Enabled = false;
-            yt.isYouTurnBtnOn = false;
-            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-
-            ////turn off path record
-            //recPath.isBtnOn = false;
-            //btnRecPathOnOff.Text = "Off";
-            //recPath.recList.Clear();
+            
+            //clear out the rec path list
+            recPath.recList.Clear();
 
             //reset all Port Module values
             mc.ResetAllModuleCommValues();
@@ -974,129 +794,6 @@ namespace AgraBot
             }
         }
 
-        //called by you turn class to set control byte, click auto man buttons
-        public void DoYouTurnSequenceEvent(int function, int action)
-        {
-            switch (function)
-            {
-                case 0: //should not be here - it means no function at all
-                    TimedMessageBox(2000, "ID 0 ??????", "YouTurn fucked up");
-                    break;
-
-                case 1: //Manual button
-                    if (action == 0) //turn auto off
-                    {
-                        if (manualBtnState != btnStates.Off)
-                        {
-                            btnManualOffOn.PerformClick();
-                        }
-                    }
-                    else
-                    {
-                        if (manualBtnState != btnStates.On)
-                        {
-                            btnManualOffOn.PerformClick();
-                        }
-                    }
-                    break;
-
-                case 2: //Auto Button
-                    if (action == 0) //turn auto off
-                    {
-                        if (autoBtnState != btnStates.Off)
-                        {
-                            btnSectionOffAutoOn.PerformClick();
-                        }
-                    }
-                    else
-                    {
-                        if (autoBtnState != btnStates.Auto)
-                        {
-                            btnSectionOffAutoOn.PerformClick();
-                        }
-                    }
-                    break;
-
-                case 3: //Relay 1
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, yt.pos3, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111110;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, yt.pos3, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000001;
-                    }
-                    break;
-
-                case 4: //Relay 2
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, yt.pos4, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111101;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, yt.pos4, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000010;
-                    }
-                    break;
-
-                case 5: //Relay 3
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, yt.pos5, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111011;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, yt.pos5, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000100;
-                    }
-                    break;
-
-                case 6: //Relay 4
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, yt.pos6, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11110111;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, yt.pos6, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00001000;
-                    }
-                    break;
-
-                case 7: //Relay 5
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, yt.pos7, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11101111;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, yt.pos7, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00010000;
-                    }
-                    break;
-
-                case 8: //Relay 6
-                    if (action == 0)
-                    {
-                        TimedMessageBox(1000, yt.pos8, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11011111;
-                    }
-                    else
-                    {
-                        TimedMessageBox(1000, yt.pos8, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00100000;
-                    }
-                    break;
-            }
-        }
-
         //take the distance from object and convert to camera data
         private void SetZoom()
         {
@@ -1132,9 +829,6 @@ namespace AgraBot
         //All the files that need to be saved when closing field or app
         private void FileSaveEverythingBeforeClosingField()
         {
-            //turn off contour line if on
-            if (ct.isContourOn) ct.StopContourLine();
-
             //turn off all the sections
             for (int j = 0; j < vehicle.numOfSections + 1; j++)
             {
@@ -1143,30 +837,10 @@ namespace AgraBot
                 section[j].sectionOffRequest = false;
             }
 
-            FileSaveHeadlandYouTurn();
             FileSaveOuterBoundary();
             FileSaveSections();
-            FileSaveContour();
-            FileSaveFlagsKML();
-            FileSaveRecPath();
-
             JobClose();
             Text = "AgraBot";
-        }
-
-        //function called by menu items to delete a selected flag
-        private void DeleteSelectedFlag()
-        {
-            //delete selected flag and set selected to none
-            flagPts.RemoveAt(flagNumberPicked - 1);
-            flagNumberPicked = 0;
-
-            // re-sort the id's based on how many flags left
-            int flagCnt = flagPts.Count;
-            if (flagCnt > 0)
-            {
-                for (int i = 0; i < flagCnt; i++) flagPts[i].ID = i + 1;
-            }
         }
 
         //an error log called by all try catches

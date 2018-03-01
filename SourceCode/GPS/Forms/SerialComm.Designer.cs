@@ -266,10 +266,8 @@ namespace AgraBot
             //fill in the holes
             //int.TryParse(words[0], out mc);
             int.TryParse(words[0], out mc.incomingInt);
-            rc.rateActual = (double)mc.incomingInt*0.01;
 
             int.TryParse(words[1], out mc.incomingInt);
-            rc.volumeActual = mc.incomingInt;
 
             //int.TryParse(words[2], out mc.);
         }
@@ -397,12 +395,8 @@ namespace AgraBot
                 catch (Exception ex)
                 {
                     WriteErrorLog("GPS Data Recv" + ex.ToString());
-
-                    //MessageBox.Show(ex.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "ComPort Failure!");
                 }
-
             }
-
         }
 
         public void SerialPortOpenGPS()
@@ -421,9 +415,6 @@ namespace AgraBot
             try { sp.Open(); }
             catch (Exception)
             {
-                //MessageBox.Show(exc.Message + "\n\r" + "\n\r" + "Go to Settings -> COM Ports to Fix", "No Serial Port Active");
-                //WriteErrorLog("Open GPS Port " + e.ToString());
-
                 //update port status labels
                 stripPortGPS.Text = " * * ";
                 stripPortGPS.ForeColor = Color.Red;

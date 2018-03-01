@@ -13,7 +13,6 @@ namespace AgraBot
 
         double fovy = 45;
         double camDistanceFactor = -2;
-        int mouseX = 0, mouseY = 0;
 
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[80001];
@@ -138,68 +137,22 @@ namespace AgraBot
                 gl.PolygonMode(OpenGL.GL_FRONT, OpenGL.GL_FILL);
                 gl.Color(1, 1, 1);
 
-                //draw contour line if button on 
-                if (ct.isContourBtnOn) ct.DrawContourLine();
+                ////draw contour line if button on 
+                //if (ct.isContourBtnOn) ct.DrawContourLine();
 
-                // draw the current and reference AB Lines
-                else { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines(); }
+                //// draw the current and reference AB Lines
+                //else { if (ABLine.isABLineSet | ABLine.isABLineBeingSet) ABLine.DrawABLines(); }
 
-                //recPath.DrawRecordedLine();
-                //recPath.DrawDubins();
-
-                //draw the flags if there are some
-                int flagCnt = flagPts.Count;
-                if (flagCnt > 0)
-                {
-                    for (int f = 0; f < flagCnt; f++)
-                    {
-                        gl.PointSize(8.0f);
-                        gl.Begin(OpenGL.GL_POINTS);
-                        if (flagPts[f].color == 0) gl.Color((byte)255, (byte)0, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 1) gl.Color((byte)0, (byte)255, (byte)flagPts[f].ID);
-                        if (flagPts[f].color == 2) gl.Color((byte)255, (byte)255, (byte)flagPts[f].ID);
-                        gl.Vertex(flagPts[f].easting, flagPts[f].northing, 0);
-                        gl.End();
-                    }
-
-                    if (flagNumberPicked != 0)
-                    {
-                        ////draw the box around flag
-                        gl.LineWidth(4);
-                        gl.Color(0.980f, 0.0f, 0.980f);
-                        gl.Begin(OpenGL.GL_LINE_STRIP);
-
-                        double offSet = (camera.zoomValue * camera.zoomValue * 0.01);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting - offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing - offSet, 0);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting + offSet, flagPts[flagNumberPicked - 1].northing, 0);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing + offSet, 0);
-
-                        gl.End();
-
-                        //draw the flag with a black dot inside
-                        gl.PointSize(4.0f);
-                        gl.Color(0, 0, 0);
-                        gl.Begin(OpenGL.GL_POINTS);
-                        gl.Vertex(flagPts[flagNumberPicked - 1].easting, flagPts[flagNumberPicked - 1].northing, 0);
-                        gl.End();
-                    }
-                }
-
-                //draw the perimter line, returns if no line to draw
-                periArea.DrawPerimeterLine();
+                recPath.DrawRecordedLine();
+                recPath.DrawDubins();
 
                 //draw the boundary
                 boundz.DrawBoundaryLine();
 
-                //draw the Headland line
-                hl.DrawHeadlandLine();
-
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Head: " + saveCounter.ToString("N1"));
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Tool: " + distTool.ToString("N1"));
-                //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
+                gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "auto: " + recPath.trig.ToString());
+                gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Nort: " + recPath.north.ToString("N1"));
+                gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Pivot: " + pivotAxlePos.northing.ToString("N1"));
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Fixed: " + Convert.ToString(Math.Round(glm.toDegrees(gyroCorrected), 2)));
@@ -257,85 +210,72 @@ namespace AgraBot
                 }
 
                 //LightBar if AB Line is set and turned on or contour
-                if (isLightbarOn)
-                {
-                    if (ct.isContourBtnOn)
-                    {
-                        string dist;
-                        txtDistanceOffABLine.Visible = true;
-                        //lblDelta.Visible = true;
-                        if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
+                //if (isLightbarOn)
+                //{
+                //    if (ct.isContourBtnOn)
+                //    {
+                //        string dist;
+                //        txtDistanceOffABLine.Visible = true;
+                //        //lblDelta.Visible = true;
+                //        if (ct.distanceFromCurrentLine == 32000) ct.distanceFromCurrentLine = 0;
 
-                        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine * 0.1);
-                        if ((ct.distanceFromCurrentLine) < 0.0)
-                        {
-                            txtDistanceOffABLine.ForeColor = Color.Green;
-                            if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
-                            else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                            txtDistanceOffABLine.Text = dist;
-                        }
+                //        DrawLightBar(openGLControl.Width, openGLControl.Height, ct.distanceFromCurrentLine * 0.1);
+                //        if ((ct.distanceFromCurrentLine) < 0.0)
+                //        {
+                //            txtDistanceOffABLine.ForeColor = Color.Green;
+                //            if (isMetric) dist = ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1)) + " ->";
+                //            else dist = ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                //            txtDistanceOffABLine.Text = dist;
+                //        }
 
-                        else
-                        {
-                            txtDistanceOffABLine.ForeColor = Color.Red;
-                            if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
-                            else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
-                            txtDistanceOffABLine.Text = dist;
-                        }
+                //        else
+                //        {
+                //            txtDistanceOffABLine.ForeColor = Color.Red;
+                //            if (isMetric) dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine * 0.1));
+                //            else dist = "<- " + ((int)Math.Abs(ct.distanceFromCurrentLine / 2.54 * 0.1));
+                //            txtDistanceOffABLine.Text = dist;
+                //        }
+                //    }
 
-                        //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
-                        //else lblDelta.ForeColor = Color.Green;
+                //    else
+                //    {
+                //        if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
+                //        {
+                //            string dist;
 
-                        if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                        else btnAutoSteer.Text = "Y";
-                    }
+                //            txtDistanceOffABLine.Visible = true;
+                //            //lblDelta.Visible = true;
+                //            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine * 0.1);
+                //            if ((ABLine.distanceFromCurrentLine) < 0.0)
+                //            {
+                //                // --->
+                //                txtDistanceOffABLine.ForeColor = Color.Green;
+                //                if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
+                //                else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
+                //                txtDistanceOffABLine.Text = dist;
+                //            }
 
-                    else
-                    {
-                        if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
-                        {
-                            string dist;
+                //            else
+                //            {
+                //                // <----
+                //                txtDistanceOffABLine.ForeColor = Color.Red;
+                //                if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
+                //                else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
+                //                txtDistanceOffABLine.Text = dist;
+                //            }
+                //        }
+                //    }
 
-                            txtDistanceOffABLine.Visible = true;
-                            //lblDelta.Visible = true;
-                            DrawLightBar(openGLControl.Width, openGLControl.Height, ABLine.distanceFromCurrentLine * 0.1);
-                            if ((ABLine.distanceFromCurrentLine) < 0.0)
-                            {
-                                // --->
-                                txtDistanceOffABLine.ForeColor = Color.Green;
-                                if (isMetric) dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1)) + " ->";
-                                else dist = ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1)) + " ->";
-                                txtDistanceOffABLine.Text = dist;
-                            }
-
-                            else
-                            {
-                                // <----
-                                txtDistanceOffABLine.ForeColor = Color.Red;
-                                if (isMetric) dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine * 0.1));
-                                else dist = "<- " + ((int)Math.Abs(ABLine.distanceFromCurrentLine / 2.54 * 0.1));
-                                txtDistanceOffABLine.Text = dist;
-                            }
-
-                            //if (guidanceLineHeadingDelta < 0) lblDelta.ForeColor = Color.Red;
-                            //else lblDelta.ForeColor = Color.Green;
-                            if (guidanceLineDistanceOff == 32020 | guidanceLineDistanceOff == 32000) btnAutoSteer.Text = "-";
-                            else btnAutoSteer.Text = "Y";
-                        }
-                    }
-
-                    //AB line is not set so turn off numbers
-                    if (!ABLine.isABLineSet & !ABLine.isABLineBeingSet & !ct.isContourBtnOn)
-                    {
-                        txtDistanceOffABLine.Visible = false;
-                        btnAutoSteer.Text = "-";
-                    }
-                }
-                else
-                {
-                    txtDistanceOffABLine.Visible = false;
-                    btnAutoSteer.Text = "-";
-                }
+                //    //AB line is not set so turn off numbers
+                //    if (!ABLine.isABLineSet & !ABLine.isABLineBeingSet & !ct.isContourBtnOn)
+                //    {
+                //        txtDistanceOffABLine.Visible = false;
+                //    }
+                //}
+                //else
+                //{
+                //    txtDistanceOffABLine.Visible = false;
+                //}
 
                 gl.Flush();//finish openGL commands
                 gl.PopMatrix();//  Pop the modelview.
@@ -348,27 +288,6 @@ namespace AgraBot
                 //reset point size
                 gl.PointSize(1.0f);
                 gl.Flush();
-
-                if (leftMouseDownOnOpenGL)
-                {
-                    leftMouseDownOnOpenGL = false;
-                    byte[] data1 = new byte[192];
-
-                    //scan the center of click and a set of square points around
-                    gl.ReadPixels(mouseX - 4, mouseY - 4, 8, 8, OpenGL.GL_RGB, OpenGL.GL_UNSIGNED_BYTE, data1);
-
-                    //made it here so no flag found
-                    flagNumberPicked = 0;
-
-                    for (int ctr = 0; ctr < 192; ctr += 3)
-                    {
-                        if (data1[ctr] == 255 | data1[ctr + 1] == 255)
-                        {
-                            flagNumberPicked = data1[ctr + 2];
-                            break;
-                        }
-                    }
-                }
 
                 //draw the section control window off screen buffer
                 openGLControlBack.DoRender();
@@ -797,8 +716,7 @@ namespace AgraBot
                 {
                     //auto save the field patches, contours accumulated so far
                     FileSaveSections();
-                    FileSaveContour();
-                    FileSaveRecPath();
+                    //FileSaveContour();
 
                     //NMEA log file
                     if (isLogNMEA) FileSaveNMEA();
@@ -1152,29 +1070,6 @@ namespace AgraBot
                 }
             } //end of section patches
 
-            //draw the ABLine
-            if (ABLine.isABLineSet | ABLine.isABLineBeingSet)
-            {
-                //Draw reference AB line
-                gl.LineWidth(1);
-                gl.Enable(OpenGL.GL_LINE_STIPPLE);
-                gl.LineStipple(1, 0x00F0);
-
-                gl.Begin(OpenGL.GL_LINES);
-                gl.Color(0.9f, 0.5f, 0.7f);
-                gl.Vertex(ABLine.refABLineP1.easting, ABLine.refABLineP1.northing, 0);
-                gl.Vertex(ABLine.refABLineP2.easting, ABLine.refABLineP2.northing, 0);
-                gl.End();
-                gl.Disable(OpenGL.GL_LINE_STIPPLE);
-
-                //raw current AB Line
-                gl.Begin(OpenGL.GL_LINES);
-                gl.Color(0.9f, 0.0f, 0.0f);
-                gl.Vertex(ABLine.currentABLineP1.easting, ABLine.currentABLineP1.northing, 0.0);
-                gl.Vertex(ABLine.currentABLineP2.easting, ABLine.currentABLineP2.northing, 0.0);
-                gl.End();
-            }
-
                 ////draw the perimeter line so far
             int ptCount = boundz.ptList.Count;
             if (ptCount > 0)
@@ -1190,20 +1085,6 @@ namespace AgraBot
                 gl.Vertex(boundz.ptList[ptCount - 1].easting, boundz.ptList[ptCount - 1].northing, 0);
                 gl.Vertex(boundz.ptList[0].easting, boundz.ptList[0].northing, 0);
                 gl.End();
-            }
-
-            ////draw the headland line
-            if (hl.isSet)
-            {
-                int pts = hl.ptList.Count;
-                if (pts > 0)
-                {
-                    gl.PointSize(4);
-                    gl.Color(0.9298f, 0.9572f, 0.260f);
-                    gl.Begin(OpenGL.GL_POINTS);
-                    for (int h = 0; h < pts; h++) gl.Vertex(hl.ptList[h].easting, hl.ptList[h].northing, 0);
-                    gl.End();
-                }
             }
 
             gl.PointSize(8.0f);

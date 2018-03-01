@@ -79,7 +79,6 @@
             this.btnMaxIntegralPlus = new System.Windows.Forms.Button();
             this.btnCountsPerDegreeMinus = new System.Windows.Forms.Button();
             this.btnCountsPerDegreePlus = new System.Windows.Forms.Button();
-            this.btnSteerWizard = new System.Windows.Forms.Button();
             this.tbarFreeDriveAngle = new System.Windows.Forms.TrackBar();
             this.btnFreeDriveZero = new System.Windows.Forms.Button();
             this.btnFreeDrive = new System.Windows.Forms.Button();
@@ -659,18 +658,6 @@
             this.btnCountsPerDegreePlus.UseVisualStyleBackColor = true;
             this.btnCountsPerDegreePlus.Click += new System.EventHandler(this.btnCountsPerDegreePlus_Click);
             // 
-            // btnSteerWizard
-            // 
-            this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerWizard.Location = new System.Drawing.Point(628, 75);
-            this.btnSteerWizard.Name = "btnSteerWizard";
-            this.btnSteerWizard.Size = new System.Drawing.Size(78, 77);
-            this.btnSteerWizard.TabIndex = 220;
-            this.btnSteerWizard.Text = "Steer Wizard";
-            this.btnSteerWizard.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSteerWizard.UseVisualStyleBackColor = true;
-            this.btnSteerWizard.Click += new System.EventHandler(this.btnSteerWizard_Click);
-            // 
             // tbarFreeDriveAngle
             // 
             this.tbarFreeDriveAngle.Location = new System.Drawing.Point(267, 358);
@@ -746,7 +733,6 @@
             this.Controls.Add(this.btnFreeDrive);
             this.Controls.Add(this.btnFreeDriveZero);
             this.Controls.Add(this.tbarFreeDriveAngle);
-            this.Controls.Add(this.btnSteerWizard);
             this.Controls.Add(this.btnCountsPerDegreeMinus);
             this.Controls.Add(this.btnCountsPerDegreePlus);
             this.Controls.Add(this.label17);
@@ -856,7 +842,6 @@
         private System.Windows.Forms.Button btnMaxIntegralPlus;
         private System.Windows.Forms.Button btnCountsPerDegreeMinus;
         private System.Windows.Forms.Button btnCountsPerDegreePlus;
-        private System.Windows.Forms.Button btnSteerWizard;
         private System.Windows.Forms.TrackBar tbarFreeDriveAngle;
         private System.Windows.Forms.Button btnFreeDriveZero;
         private System.Windows.Forms.Button btnFreeDrive;

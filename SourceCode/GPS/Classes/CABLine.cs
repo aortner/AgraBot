@@ -203,9 +203,6 @@ namespace AgraBot
             //z2-z1
             dy = currentABLineP2.northing - currentABLineP1.northing;
 
-            //save a copy of dx,dy in youTurn
-            mf.yt.dxAB = dx; mf.yt.dyAB = dy;
-
             //how far from current AB Line is fix
             distanceFromCurrentLine = ((dy * pivotAxlePosAB.easting) - (dx * pivotAxlePosAB.northing) + (currentABLineP2.easting
                         * currentABLineP1.northing) - (currentABLineP2.northing * currentABLineP1.easting))
@@ -298,22 +295,6 @@ namespace AgraBot
             //mf.guidanceLineHeadingDelta = (Int16)((Math.Atan2(Math.Sin(temp - mf.fixHeading), Math.Cos(temp - mf.fixHeading))) * 10000);
             mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
             mf.guidanceLineSteerAngle = (Int16)(steerAngleAB * 100);
-
-            if (mf.yt.isYouTurnShapeDisplayed)
-            {
-                //do the pure pursuit from youTurn
-                mf.yt.DistanceFromYouTurnLine();
-
-                //now substitute what it thinks are AB line values with auto turn values
-                steerAngleAB = mf.yt.steerAngleYT;
-                distanceFromCurrentLine = mf.yt.distanceFromCurrentLine;
-
-                goalPointAB = mf.yt.goalPointYT;
-                radiusPointAB.easting = mf.yt.radiusPointYT.easting;
-                radiusPointAB.northing = mf.yt.radiusPointYT.northing;
-                ppRadiusAB = mf.yt.ppRadiusYT;
-                //angVel
-            }
         }
 
         public void DrawABLines()
@@ -448,40 +429,6 @@ namespace AgraBot
                     //gl.Vertex(mf.at.turnRadiusPt.easting, mf.at.turnRadiusPt.northing, 0.0);
                     gl.End();
                     gl.PointSize(1.0f);
-                }
-
-                if (mf.yt.isYouTurnShapeDisplayed)
-                {
-                    gl.Color(0.95f, 0.95f, 0.25f);
-                    gl.LineWidth(2);
-                    int ptCount = mf.yt.ytList.Count;
-                    if (ptCount > 0)
-                    {
-                        gl.Begin(OpenGL.GL_LINE_STRIP);
-                        for (int i = 0; i < ptCount; i++)
-                        {
-                            gl.Vertex(mf.yt.ytList[i].easting, mf.yt.ytList[i].northing, 0);
-                        }
-                        gl.End();
-                    }
-
-                    gl.Color(0.95f, 0.05f, 0.05f);
-                }
-
-                if (mf.yt.isRecordingCustomYouTurn)
-                {
-                    gl.Color(0.05f, 0.05f, 0.95f);
-                    gl.PointSize(4.0f);
-                    int ptCount = mf.yt.youFileList.Count;
-                    if (ptCount > 1)
-                    {
-                        gl.Begin(OpenGL.GL_POINTS);
-                        for (int i = 1; i < ptCount; i++)
-                        {
-                            gl.Vertex(mf.yt.youFileList[i].easting + mf.yt.youFileList[0].easting, mf.yt.youFileList[i].northing + mf.yt.youFileList[0].northing, 0);
-                        }
-                        gl.End();
-                    }
                 }
 
                 gl.PointSize(1.0f);

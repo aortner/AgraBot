@@ -10,56 +10,22 @@ namespace AgraBot
         public double northing { get; set; }
         public double heading { get; set; }
         public double speed { get; set; }
-        public int toolHeight { get; set; }
+        public bool autoBtnState { get; set; }
 
         //constructor
-        public CRecPathPt(double _easting, double _northing, double _heading, double _speed, int _toolHeight = 100)
+        public CRecPathPt(double _easting, double _northing, double _heading, double _speed,
+                            bool _autoBtnState)
         {
             easting = _easting;
             northing = _northing;
             heading = _heading;
             speed = _speed;
-            toolHeight = _toolHeight;
+            autoBtnState = _autoBtnState;
         }
     }
 
     public class CRecordedPath
     {
-        //pointers to mainform controls
-        private readonly OpenGL gl;
-
-        private readonly FormGPS mf;
-
-        public int lastPointFound = -1, currentPositonIndex;
-
-        //generated reference line
-        public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
-
-        public double distanceFromRefLine, distanceFromCurrentLine, refLineSide = 1.0;
-        private int A, B;
-        public double abFixHeadingDelta, segmentHeading;
-        public bool isABSameAsFixHeading = true, isOnRightSideCurrentLine = true;
-
-        //pure pursuit values
-        public vec3 pivotAxlePosRP = new vec3(0, 0, 0);
-
-        public vec2 goalPointRP = new vec2(0, 0);
-        public vec2 radiusPointRP = new vec2(0, 0);
-        public double steerAngleRP, rEastRP, rNorthRP, ppRadiusRP;
-
-        //the recorded path from driving around
-        public List<CRecPathPt> recList = new List<CRecPathPt>();
-
-        //the dubins path to get there
-        public List<CRecPathPt> dubList = new List<CRecPathPt>();
-
-        //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
-        public List<vec3> dubinsList = new List<vec3>();
-
-        public bool isBtnOn, isRecordOn, isBtnFollowOn, isStarting, isEndOfTheRecLine;
-
-        public bool isFollowingDubinsPath, isFollowingRecPath;
-
         //constructor
         public CRecordedPath(OpenGL _gl, FormGPS _f)
         {
@@ -67,91 +33,183 @@ namespace AgraBot
             mf = _f;
         }
 
-        public bool StartDriving()
+        //pointers to mainform controls
+        private readonly OpenGL gl;
+
+        private readonly FormGPS mf;
+
+        //the recorded path from driving around
+        public List<CRecPathPt> recList = new List<CRecPathPt>();
+
+        public int recListCount;
+
+        //the dubins path to get there
+        public List<CRecPathPt> dubList = new List<CRecPathPt>();
+
+        public int dubListCount;
+
+        //list of vec3 points of Dubins shortest path between 2 points - To be converted to RecPt
+        public List<vec3> dubinsList = new List<vec3>();
+
+        //generated reference line
+        public vec2 refPoint1 = new vec2(1, 1), refPoint2 = new vec2(2, 2);
+
+        public double distanceFromRefLine, distanceFromCurrentLine, refLineSide = 1.0;
+        private int A, B, C;
+        public double abFixHeadingDelta, segmentHeading;
+        public bool isABSameAsFixHeading = true, isOnRightSideCurrentLine = true;
+
+        public int lastPointFound = -1, currentPositonIndex;
+
+        //pure pursuit values
+        public vec3 pivotAxlePosRP = new vec3(0, 0, 0);
+
+        public vec3 homePos = new vec3();
+        public vec2 goalPointRP = new vec2(0, 0);
+        public vec2 radiusPointRP = new vec2(0, 0);
+        public double steerAngleRP, rEastRP, rNorthRP, ppRadiusRP;
+
+        public bool isBtnFollowOn, isEndOfTheRecLine;
+        public bool isDrivingRecordedPath, isFollowingDubinsToPath, isFollowingRecPath, isFollowingDubinsHome;
+
+        public bool StartDrivingRecordedPath()
         {
             CDubins.turningRadius = mf.vehicle.minTurningRadius;
             //create the dubins path based on start and goal to start of recorded path
-            if (recList.Count > 0) GetDubinsPath();
-            else return false;
+
+            recListCount = recList.Count;
+            if (recListCount < 5) return false;
+
+            //the goal is the first point of path, the start is the current position
+            vec3 goal = new vec3(recList[0].easting, recList[0].northing, recList[0].heading);
+
+            //save a copy of where we started.
+            homePos = mf.pivotAxlePos;
+
+            //get the dubins for approach to recorded path
+            GetDubinsPath(goal);
+            dubListCount = dubList.Count;
 
             //has a valid dubins path been created?
-            if (dubList.Count == 0) return false;
+            if (dubListCount == 0) return false;
 
-            //set all the flags
-            isStarting = true;
+            //technically all good if we get here so set all the flags
+            isFollowingDubinsHome = false;
             isFollowingRecPath = false;
-            isFollowingDubinsPath = true;
+            isFollowingDubinsToPath = true;
             isEndOfTheRecLine = false;
             currentPositonIndex = 0;
-            mf.sim.stepDistance = 5/17.86;
+            isDrivingRecordedPath = true;
+
+            //set a speed of 5 kmh
+            mf.sim.stepDistance = 5 / 17.86;
             return true;
         }
 
+        public bool trig;
+        public double north;
+
         public void UpdatePosition()
         {
-            if (isFollowingDubinsPath)
+            if (isFollowingDubinsToPath)
             {
                 pivotAxlePosRP = mf.pivotAxlePos;
 
-                int ptCount = dubList.Count;
-                if (ptCount > 4)
-                {
-                    FindGoalPointDubinsPath(ptCount);
-                    PurePursuit();
-                }
+                FindGoalPointDubinsPath(dubListCount);
+                PurePursuit();
 
                 //check if close to recorded path
                 double distSqr = glm.DistanceSquared(pivotAxlePosRP.northing, pivotAxlePosRP.easting, recList[0].northing, recList[0].easting);
                 if (distSqr < 1)
                 {
                     isFollowingRecPath = true;
-                    isFollowingDubinsPath = false;
+                    isFollowingDubinsToPath = false;
                     dubList.Clear();
                     dubinsList.Clear();
                 }
             }
 
-            if (isFollowingRecPath && isBtnFollowOn)
+            if (isFollowingRecPath)
             {
                 pivotAxlePosRP = mf.pivotAxlePos;
 
-                int ptCount = recList.Count;
-                if (ptCount > 0)
-                {
-                    FindGoalPointRecPath(ptCount);
-                    PurePursuit();
+                FindGoalPointRecPath(recListCount);
+                PurePursuit();
 
-                    //if end of the line then stop
-                    if (!isEndOfTheRecLine) mf.sim.stepDistance = recList[A].speed / 17.86;
-                    else mf.sim.stepDistance = 0;
+                //if end of the line then stop
+                if (!isEndOfTheRecLine)
+                {
+                    mf.sim.stepDistance = recList[C].speed / 17.86;
+                    north = recList[C].northing;
+
+                    //section control - only if different click the button
+                    bool autoBtn = (mf.autoBtnState == FormGPS.btnStates.Auto);
+                    trig = autoBtn;
+                    if (autoBtn != recList[C].autoBtnState) mf.btnSectionOffAutoOn.PerformClick();
+
                 }
                 else
                 {
+                    //create the dubins path based on start and goal to start of recorded path
+                    GetDubinsPath(homePos);
+                    dubListCount = dubList.Count;
+
+                    //its too small
+                    if (dubListCount < 2)
+                    {
+                        StopDrivingRecordedPath();
+                    }
+
                     //set all the flags
-                    isStarting = true;
+                    isFollowingDubinsHome = true;
                     isFollowingRecPath = false;
-                    isFollowingDubinsPath = true;
+                    isFollowingDubinsToPath = false;
                     isEndOfTheRecLine = false;
-                    currentPositonIndex = 0;
-                    mf.sim.stepDistance = 5 / 17.86;
+                }
+
+            }
+
+            if (isFollowingDubinsHome)
+            {
+                mf.sim.stepDistance = 5 / 17.86;
+                pivotAxlePosRP = mf.pivotAxlePos;
+
+                FindGoalPointDubinsPath(dubListCount);
+                PurePursuit();
+
+                //check if close to home position
+                double distSqr = glm.DistanceSquared(pivotAxlePosRP.easting, pivotAxlePosRP.northing, homePos.easting, homePos.northing);
+                if (distSqr < 3)
+                {
+                    StopDrivingRecordedPath();
                 }
             }
         }
 
-        private void GetDubinsPath()
+        public void StopDrivingRecordedPath()
+        {
+            isFollowingDubinsHome = false;
+            isFollowingRecPath = false;
+            isFollowingDubinsToPath = false;
+            dubList.Clear();
+            dubinsList.Clear();
+            mf.sim.stepDistance = 0;
+            isDrivingRecordedPath = false;
+        }
+
+        private void GetDubinsPath(vec3 goal)
         {
             CDubins dubPath = new CDubins();
 
             //get the dubins path vec3 point coordinates of turn
             dubinsList.Clear();
-            vec3 goal = new vec3(recList[0].easting, recList[0].northing, recList[0].heading);
             dubinsList = dubPath.GenerateDubins(mf.pivotAxlePos, goal);
 
             //transfer point list to recPath class point style
             dubList.Clear();
             for (int i = 0; i < dubinsList.Count; i++)
             {
-                CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 5.0);
+                CRecPathPt pt = new CRecPathPt(dubinsList[i].easting, dubinsList[i].northing, dubinsList[i].heading, 5.0, false);
                 dubList.Add(pt);
             }
         }
@@ -203,8 +261,8 @@ namespace AgraBot
                 distanceFromCurrentLine *= -1.0;
             }
 
-            //mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
-            //mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
+            mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+            mf.guidanceLineSteerAngle = (Int16)(steerAngleRP * 100);
         }
 
         private vec2 FindGoalPointRecPath(int ptCount)
@@ -228,6 +286,9 @@ namespace AgraBot
                 }
             }
 
+            //Save the closest point
+            C = A;
+
             //next point is the next in list
             B = A + 1;
             if (B == ptCount)
@@ -236,7 +297,7 @@ namespace AgraBot
                 A--;
                 B--;
                 isEndOfTheRecLine = true;
-            }               
+            }
 
             //save current position
             currentPositonIndex = A;
@@ -356,6 +417,8 @@ namespace AgraBot
                 }
             }
 
+            //save the closest point
+            C = A;
             //next point is the next in list
             B = A + 1;
             if (B == ptCount) { A--; B--; }                //don't go past the end of the list - "end of the line" trigger

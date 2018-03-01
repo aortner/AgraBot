@@ -8,14 +8,11 @@ using System.Drawing;
 
 namespace AgraBot
 {
-    
+
     public partial class FormGPS
     {
         //list of the list of patch data individual triangles for field sections
         public List<List<vec2>> patchSaveList = new List<List<vec2>>();
-
-        //list of the list of patch data individual triangles for contour tracking
-        public List<List<vec3>> contourSaveList = new List<List<vec3>>();
 
         //function that save vehicle and section settings
         public void FileSaveVehicle()
@@ -59,7 +56,7 @@ namespace AgraBot
                     writer.WriteLine("Wheelbase," + Properties.Vehicle.Default.setVehicle_wheelbase.ToString(CultureInfo.InvariantCulture));
 
                     writer.WriteLine("IsPivotBehindAntenna," + Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine("IsSteerAxleAhead," + Properties.Vehicle.Default.setVehicle_isSteerAxleAhead.ToString(CultureInfo.InvariantCulture)); 
+                    writer.WriteLine("IsSteerAxleAhead," + Properties.Vehicle.Default.setVehicle_isSteerAxleAhead.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsToolBehindPivot," + Properties.Vehicle.Default.setVehicle_isToolBehindPivot.ToString(CultureInfo.InvariantCulture));
                     writer.WriteLine("IsToolTrailing," + Properties.Vehicle.Default.setVehicle_isToolTrailing.ToString(CultureInfo.InvariantCulture));
 
@@ -314,7 +311,7 @@ namespace AgraBot
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_minApplied = int.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
-                        Properties.Vehicle.Default.setVehicle_minTurningRadius= double.Parse(words[1], CultureInfo.InvariantCulture);
+                        Properties.Vehicle.Default.setVehicle_minTurningRadius = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.set_youUseDubins = bool.Parse(words[1]);
 
@@ -346,12 +343,12 @@ namespace AgraBot
                         Properties.Settings.Default.setAS_minSteerPWM = byte.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_maxIntegral = byte.Parse(words[1], CultureInfo.InvariantCulture);
-                        line = reader.ReadLine();words = line.Split(',');
+                        line = reader.ReadLine(); words = line.Split(',');
                         Properties.Settings.Default.setAS_countsPerDegree = byte.Parse(words[1], CultureInfo.InvariantCulture);
 
                         line = reader.ReadLine();
                         line = reader.ReadLine();
-                        
+
                         line = reader.ReadLine(); words = line.Split(',');
                         Properties.Vehicle.Default.setVehicle_lookAhead = double.Parse(words[1], CultureInfo.InvariantCulture);
                         line = reader.ReadLine(); words = line.Split(',');
@@ -419,7 +416,6 @@ namespace AgraBot
                         vehicle.toolTurnOffDelay = Properties.Vehicle.Default.setVehicle_turnOffDelay;
                         vehicle.wheelbase = Properties.Vehicle.Default.setVehicle_wheelbase;
                         vehicle.minTurningRadius = Properties.Vehicle.Default.setVehicle_minTurningRadius;
-                        yt.isUsingDubinsTurn = Properties.Vehicle.Default.set_youUseDubins;
 
                         vehicle.isToolTrailing = Properties.Vehicle.Default.setVehicle_isToolTrailing;
                         vehicle.isPivotBehindAntenna = Properties.Vehicle.Default.setVehicle_isPivotBehindAntenna;
@@ -480,8 +476,6 @@ namespace AgraBot
 
                         isSideGuideLines = Properties.Settings.Default.setMenu_isSideGuideLines;
                         sideGuideLines.Checked = isSideGuideLines;
-
-                        isAreaOnRight = Properties.Settings.Default.setMenu_isAreaRight;
 
                         redSections = Properties.Settings.Default.setF_SectionColorR;
                         grnSections = Properties.Settings.Default.setF_SectionColorG;
@@ -710,225 +704,130 @@ namespace AgraBot
                 }
             }
 
-                    // Contour points ----------------------------------------------------------------------------
+            //// Contour points ----------------------------------------------------------------------------
 
-                    fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(4000, "Missing Contour File", "But Field is Loaded");
-                form.Show();
-                //return;
-            }
-            
-            //Points in Patch followed by easting, heading, northing, altitude
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
+            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Contour.txt";
+            //if (!File.Exists(fileAndDirectory))
+            //{
+            //    var form = new FormTimedMessage(4000, "Missing Contour File", "But Field is Loaded");
+            //    form.Show();
+            //    //return;
+            //}
 
-                        while (!reader.EndOfStream)
-                        {
-                            //read how many vertices in the following patch
-                            line = reader.ReadLine();
-                            int verts = int.Parse(line);
+            ////Points in Patch followed by easting, heading, northing, altitude
+            //else
+            //{
+            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
+            //    {
+            //        try
+            //        {
+            //            //read header
+            //            line = reader.ReadLine();
 
-                            vec3 vecFix = new vec3(0, 0, 0);
+            //            while (!reader.EndOfStream)
+            //            {
+            //                //read how many vertices in the following patch
+            //                line = reader.ReadLine();
+            //                int verts = int.Parse(line);
 
-                            ct.ptList = new List<vec3>();
-                            ct.stripList.Add(ct.ptList);
+            //                vec3 vecFix = new vec3(0, 0, 0);
 
-                            for (int v = 0; v < verts; v++)
-                            {
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-                                vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                vecFix.northing = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                vecFix.heading = double.Parse(words[1], CultureInfo.InvariantCulture);
+            //                ct.ptList = new List<vec3>();
+            //                ct.stripList.Add(ct.ptList);
 
-                                ct.ptList.Add(vecFix);
-                            }
-                        }
-                    }
-                    catch (Exception e)
-                    {
-                        WriteErrorLog("Loading Contour file" + e.ToString());
+            //                for (int v = 0; v < verts; v++)
+            //                {
+            //                    line = reader.ReadLine();
+            //                    string[] words = line.Split(',');
+            //                    vecFix.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+            //                    vecFix.northing = double.Parse(words[2], CultureInfo.InvariantCulture);
+            //                    vecFix.heading = double.Parse(words[1], CultureInfo.InvariantCulture);
 
-                        var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
-                        form.Show();
-                    }
-                }
-            }
+            //                    ct.ptList.Add(vecFix);
+            //                }
+            //            }
+            //        }
+            //        catch (Exception e)
+            //        {
+            //            WriteErrorLog("Loading Contour file" + e.ToString());
+
+            //            var form = new FormTimedMessage(4000, "Contour File is Corrupt", "But Field is Loaded");
+            //            form.Show();
+            //        }
+            //    }
+            //}
+
+            //// ABLine -------------------------------------------------------------------------------------------------
+
+            ////Either exit or update running save
+            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\ABLine.txt";
+            //if (!File.Exists(fileAndDirectory))
+            //{
+            //    var form = new FormTimedMessage(4000, "Missing ABLine File", "But Field is Loaded");
+            //    form.Show();
+            //}
+
+            //else
+            //{
+            //    using (StreamReader reader = new StreamReader(fileAndDirectory))
+            //    {
+            //        try
+            //        {
+            //            //read header
+            //            line = reader.ReadLine();
+
+            //            line = reader.ReadLine();
+            //            bool isAB = bool.Parse(line);
+
+            //            if (isAB)
+            //            {
+            //                //Heading  , ,refPoint2x,z                    
+            //                line = reader.ReadLine();
+            //                ABLine.abHeading = double.Parse(line, CultureInfo.InvariantCulture);
+
+            //                //refPoint1x,z
+            //                line = reader.ReadLine();
+            //                string[] words = line.Split(',');
+            //                ABLine.refPoint1.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+            //                ABLine.refPoint1.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+            //                //refPoint2x,z
+            //                line = reader.ReadLine();
+            //                words = line.Split(',');
+            //                ABLine.refPoint2.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
+            //                ABLine.refPoint2.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
+
+            //                //Tramline
+            //                line = reader.ReadLine();
+            //                words = line.Split(',');
+            //                ABLine.tramPassEvery = int.Parse(words[0]);
+            //                ABLine.passBasedOn = int.Parse(words[1]);
+
+            //                ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 10000.0;
+            //                ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 10000.0;
+
+            //                ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 10000.0;
+            //                ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 10000.0;
+
+            //                ABLine.isABLineSet = true;
+            //            }
+            //        }
+
+            //        catch (Exception e)
+            //        {
+            //            var form = new FormTimedMessage(4000, "AB Line File is Corrupt", "But Field is Loaded");
+            //            form.Show();
+            //            WriteErrorLog("Load AB Line" + e.ToString());
+
+            //        }
+            //    }
+            //}
 
 
-            // Flags -------------------------------------------------------------------------------------------------
+            // Boundary  -------------------------------------------------------------------------------------------------
 
             //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Flags.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(4000, "Missing Flags File", "But Field is Loaded");
-                form.Show();
-            }
-
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
-
-                        line = reader.ReadLine();
-                        int points = int.Parse(line);
-
-                        if (points > 0)
-                        {
-                            double lat;
-                            double longi;
-                            double east;
-                            double nort;
-                            int color, ID;
-
-                            for (int v = 0; v < points; v++)
-                            {
-
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-
-                                lat = double.Parse(words[0], CultureInfo.InvariantCulture);
-                                longi = double.Parse(words[1], CultureInfo.InvariantCulture);
-                                east = double.Parse(words[2], CultureInfo.InvariantCulture);
-                                nort = double.Parse(words[3], CultureInfo.InvariantCulture);
-                                color = int.Parse(words[4]);
-                                ID = int.Parse(words[5]);
-
-                                CFlag flagPt = new CFlag(lat, longi, east, nort, color, ID);
-                                flagPts.Add(flagPt);
-                            }
-
-                        }
-                    }
-
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(4000, "Flag File is Corrupt", "But Field is Loaded");
-                        form.Show();
-                        WriteErrorLog("FieldOpen, Loading Flags, Corrupt Flag File" + e.ToString());
-                    }
-                }
-            }
-
-
-            // ABLine -------------------------------------------------------------------------------------------------
-
-            //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\ABLine.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(4000, "Missing ABLine File", "But Field is Loaded");
-                form.Show();
-            }
-
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
-
-                        line = reader.ReadLine();
-                        bool isAB = bool.Parse(line);
-
-                        if (isAB)
-                        {
-                            //set gui image button on
-                            btnABLine.Image = global::AgraBot.Properties.Resources.ABLineOn;
-                            btnRightYouTurn.Visible = true;
-                            btnLeftYouTurn.Visible = true;
-                            btnSwapDirection.Visible = true;
-
-
-                            //Heading  , ,refPoint2x,z                    
-                            line = reader.ReadLine();
-                            ABLine.abHeading = double.Parse(line, CultureInfo.InvariantCulture);
-
-                            //refPoint1x,z
-                            line = reader.ReadLine();
-                            string[] words = line.Split(',');
-                            ABLine.refPoint1.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                            ABLine.refPoint1.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            //refPoint2x,z
-                            line = reader.ReadLine();
-                            words = line.Split(',');
-                            ABLine.refPoint2.easting = double.Parse(words[0], CultureInfo.InvariantCulture);
-                            ABLine.refPoint2.northing = double.Parse(words[1], CultureInfo.InvariantCulture);
-
-                            //Tramline
-                            line = reader.ReadLine();
-                            words = line.Split(',');
-                            ABLine.tramPassEvery = int.Parse(words[0]);
-                            ABLine.passBasedOn = int.Parse(words[1]);
-
-                            ABLine.refABLineP1.easting = ABLine.refPoint1.easting - Math.Sin(ABLine.abHeading) * 10000.0;
-                            ABLine.refABLineP1.northing = ABLine.refPoint1.northing - Math.Cos(ABLine.abHeading) * 10000.0;
-
-                            ABLine.refABLineP2.easting = ABLine.refPoint1.easting + Math.Sin(ABLine.abHeading) * 10000.0;
-                            ABLine.refABLineP2.northing = ABLine.refPoint1.northing + Math.Cos(ABLine.abHeading) * 10000.0;
-
-                            ABLine.isABLineSet = true;
-
-                            btnRightYouTurn.Enabled = true;
-                            btnLeftYouTurn.Enabled = true;
-                            btnRightYouTurn.Visible = true;
-                            btnLeftYouTurn.Visible = true;
-                            btnSwapDirection.Visible = true;
-
-                            //auto YouTurn shutdown
-                            yt.isYouTurnBtnOn = false;
-                            yt.ResetYouTurnAndSequenceEvents();
-                            youTurnProgressBar = 0;
-
-                            //turn off youturn...
-                            btnEnableAutoYouTurn.Enabled = true;
-                            btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-                        }
-
-                        //if ABLine isn't set, turn off the YouTurn
-                        else
-                        {
-                            btnRightYouTurn.Enabled = false;
-                            btnLeftYouTurn.Enabled = false;
-                            btnRightYouTurn.Visible = false;
-                            btnLeftYouTurn.Visible = false;
-                            btnSwapDirection.Visible = false;
-                            btnEnableAutoYouTurn.Enabled = false;
-                            yt.isYouTurnBtnOn = false;
-                        }
-                    }
-
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(4000, "AB Line File is Corrupt", "But Field is Loaded");
-                        form.Show();
-                        WriteErrorLog("Load AB Line" + e.ToString());
-
-                    }
-                }
-            }
-
-
-                // Boundary  -------------------------------------------------------------------------------------------------
-
-                //Either exit or update running save
-                fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Boundary.txt";
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Boundary.txt";
             if (!File.Exists(fileAndDirectory))
             {
                 var form = new FormTimedMessage(4000, "Missing Boundary File", "But Field is Loaded");
@@ -980,67 +879,13 @@ namespace AgraBot
             }
 
 
-            // Headland  -------------------------------------------------------------------------------------------------
-
-            //Either exit or update running save
-            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
-            if (!File.Exists(fileAndDirectory))
-            {
-                var form = new FormTimedMessage(4000, "Missing Headland File", "But Field is Loaded");
-                form.Show();
-            }
-
-            else
-            {
-                using (StreamReader reader = new StreamReader(fileAndDirectory))
-                {
-                    try
-                    {
-                        //read header
-                        line = reader.ReadLine();
-                        line = reader.ReadLine();
-                        int numPoints = int.Parse(line);
-
-                        if (numPoints > 0)
-                        {
-                            hl.ptList.Clear();
-
-                            //load the line
-                            for (int i = 0; i < numPoints; i++)
-                            {
-                                line = reader.ReadLine();
-                                string[] words = line.Split(',');
-                                vec3 vecPt = new vec3(
-                                    double.Parse(words[0], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture),
-                                    double.Parse(words[1], CultureInfo.InvariantCulture));
-                                hl.ptList.Add(vecPt);
-                            }
-
-                            hl.PreCalcHeadlandLines();
-
-                            //quick double check to make sure its a valid loop
-                            double area = hl.CalculateHeadlandArea();
-                            if (area > 0) hl.isSet = true;
-                            else hl.isSet = false;
-                        }
-                    }
-
-                    catch (Exception e)
-                    {
-                        var form = new FormTimedMessage(4000, "Headland File is Corrupt", "But Field is Loaded");
-                        form.Show();
-                        WriteErrorLog("Load Headland Loop" + e.ToString());
-                    }
-                }
-            }
-
+            //// Headland  -------------------------------------------------------------------------------------------------
 
             ////Either exit or update running save
-            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
+            //fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\Headland.txt";
             //if (!File.Exists(fileAndDirectory))
             //{
-            //    var form = new FormTimedMessage(4000, "Missing Recorded Path File", "But Field is Loaded");
+            //    var form = new FormTimedMessage(4000, "Missing Headland File", "But Field is Loaded");
             //    form.Show();
             //}
 
@@ -1054,38 +899,83 @@ namespace AgraBot
             //            line = reader.ReadLine();
             //            line = reader.ReadLine();
             //            int numPoints = int.Parse(line);
-            //            recPath.recList.Clear();
 
-            //            while (!reader.EndOfStream)
+            //            if (numPoints > 0)
             //            {
-            //                for (int v = 0; v < numPoints; v++)
+            //                hl.ptList.Clear();
+
+            //                //load the line
+            //                for (int i = 0; i < numPoints; i++)
             //                {
             //                    line = reader.ReadLine();
             //                    string[] words = line.Split(',');
-            //                    CRecPathPt point = new CRecPathPt(
+            //                    vec3 vecPt = new vec3(
             //                        double.Parse(words[0], CultureInfo.InvariantCulture),
             //                        double.Parse(words[1], CultureInfo.InvariantCulture),
-            //                        double.Parse(words[2], CultureInfo.InvariantCulture),
-            //                        double.Parse(words[3], CultureInfo.InvariantCulture));
-            //                    recPath.recList.Add(point);
+            //                        double.Parse(words[1], CultureInfo.InvariantCulture));
+            //                    hl.ptList.Add(vecPt);
             //                }
+
+            //                hl.PreCalcHeadlandLines();
+
+            //                //quick double check to make sure its a valid loop
+            //                double area = hl.CalculateHeadlandArea();
+            //                if (area > 0) hl.isSet = true;
+            //                else hl.isSet = false;
             //            }
             //        }
 
             //        catch (Exception e)
             //        {
-            //            var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
+            //            var form = new FormTimedMessage(4000, "Headland File is Corrupt", "But Field is Loaded");
             //            form.Show();
-            //            WriteErrorLog("Load Recorded Path" + e.ToString());
+            //            WriteErrorLog("Load Headland Loop" + e.ToString());
             //        }
             //    }
             //}
 
 
+            //Either exit or update running save
+            fileAndDirectory = fieldsDirectory + currentFieldDirectory + "\\RecPath.txt";
+            if (File.Exists(fileAndDirectory))
+            {
+                using (StreamReader reader = new StreamReader(fileAndDirectory))
+                {
+                    try
+                    {
+                        //read header
+                        line = reader.ReadLine();
+                        line = reader.ReadLine();
+                        int numPoints = int.Parse(line);
+                        recPath.recList.Clear();
 
+                        while (!reader.EndOfStream)
+                        {
+                            for (int v = 0; v < numPoints; v++)
+                            {
+                                line = reader.ReadLine();
+                                string[] words = line.Split(',');
+                                CRecPathPt point = new CRecPathPt(
+                                    double.Parse(words[0], CultureInfo.InvariantCulture),
+                                    double.Parse(words[1], CultureInfo.InvariantCulture),
+                                    double.Parse(words[2], CultureInfo.InvariantCulture),
+                                    double.Parse(words[3], CultureInfo.InvariantCulture),
+                                    bool.Parse(words[4]));
 
+                                //add the point
+                                recPath.recList.Add(point);
+                            }
+                        }
+                    }
 
-
+                    catch (Exception e)
+                    {
+                        var form = new FormTimedMessage(4000, "Recorded Path File is Corrupt", "But Field is Loaded");
+                        form.Show();
+                        WriteErrorLog("Load Recorded Path" + e.ToString());
+                    }
+                }
+            }
         }//end of open file
 
         //creates the field file when starting new field
@@ -1124,8 +1014,8 @@ namespace AgraBot
 
                 //write out the easting and northing Offsets
                 writer.WriteLine("$Offsets");
-                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," + 
-                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," + 
+                writer.WriteLine(pn.utmEast.ToString(CultureInfo.InvariantCulture) + "," +
+                    pn.utmNorth.ToString(CultureInfo.InvariantCulture) + "," +
                     pn.zone.ToString(CultureInfo.InvariantCulture));
             }
         }
@@ -1146,8 +1036,8 @@ namespace AgraBot
                         writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
 
                         for (int i = 0; i < count2; i++)
-                            writer.WriteLine((Math.Round(triList[i].easting,4)).ToString(CultureInfo.InvariantCulture) +
-                                "," + (Math.Round(triList[i].northing,4)).ToString(CultureInfo.InvariantCulture));
+                            writer.WriteLine((Math.Round(triList[i].easting, 4)).ToString(CultureInfo.InvariantCulture) +
+                                "," + (Math.Round(triList[i].northing, 4)).ToString(CultureInfo.InvariantCulture));
                     }
                 }
 
@@ -1180,29 +1070,29 @@ namespace AgraBot
             }
         }
 
-        //Create contour file
-        public void FileCreateRecPath()
-        {
-            //$Sections
-            //10 - points in this patch
-            //10.1728031317344,0.723157039771303 -easting, northing
+        ////Create contour file
+        //public void FileCreateRecPath()
+        //{
+        //    //$Sections
+        //    //10 - points in this patch
+        //    //10.1728031317344,0.723157039771303 -easting, northing
 
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
 
-            string myFileName = "RecPath.txt";
+        //    string myFileName = "RecPath.txt";
 
-            //write out the file
-            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
-            {
-                //write paths # of sections
-                writer.WriteLine("$RecPath");
-            }
-        }
+        //    //write out the file
+        //    using (StreamWriter writer = new StreamWriter(dirField + myFileName))
+        //    {
+        //        //write paths # of sections
+        //        writer.WriteLine("$RecPath");
+        //    }
+        //}
 
         //Create contour file
         public void FileCreateContour()
@@ -1226,42 +1116,42 @@ namespace AgraBot
             }
         }
 
-        //save the contour points which include elevation values
-        public void FileSaveContour()
-        {
-            //1  - points in patch
-            //64.697,0.168,-21.654,0 - east, heading, north, altitude
+        ////save the contour points which include elevation values
+        //public void FileSaveContour()
+        //{
+        //    //1  - points in patch
+        //    //64.697,0.168,-21.654,0 - east, heading, north, altitude
 
-            //make sure there is something to save
-            if (contourSaveList.Count() > 0)
-            {
-                //Append the current list to the field file
-                using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Contour.txt"), true))
-                {
+        //    //make sure there is something to save
+        //    if (contourSaveList.Count() > 0)
+        //    {
+        //        //Append the current list to the field file
+        //        using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\Contour.txt"), true))
+        //        {
 
-                    //for every new chunk of patch in the whole section
-                    foreach (var triList in contourSaveList)
-                    {
-                        int count2 = triList.Count;
+        //            //for every new chunk of patch in the whole section
+        //            foreach (var triList in contourSaveList)
+        //            {
+        //                int count2 = triList.Count;
 
-                        writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
+        //                writer.WriteLine(count2.ToString(CultureInfo.InvariantCulture));
 
-                        for (int i = 0; i < count2; i++)
-                        {
-                            writer.WriteLine(Math.Round((triList[i].easting), 4).ToString(CultureInfo.InvariantCulture) + "," +
-                                Math.Round(triList[i].northing, 4).ToString(CultureInfo.InvariantCulture)+ "," +
-                                Math.Round(triList[i].heading, 4).ToString(CultureInfo.InvariantCulture));
-                        }
-                    }
-                }
+        //                for (int i = 0; i < count2; i++)
+        //                {
+        //                    writer.WriteLine(Math.Round((triList[i].easting), 4).ToString(CultureInfo.InvariantCulture) + "," +
+        //                        Math.Round(triList[i].northing, 4).ToString(CultureInfo.InvariantCulture) + "," +
+        //                        Math.Round(triList[i].heading, 4).ToString(CultureInfo.InvariantCulture));
+        //                }
+        //            }
+        //        }
 
-                contourSaveList.Clear();
+        //        contourSaveList.Clear();
 
-            }
+        //    }
 
-            //set saving flag off
-            isSavingFile = false;
-        }
+        //    //set saving flag off
+        //    isSavingFile = false;
+        //}
 
         //save the boundary
         public void FileSaveOuterBoundary()
@@ -1288,293 +1178,85 @@ namespace AgraBot
             }
         }
 
-        //save the boundary
-        public void FileSaveRecPath()
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        ////save the boundary
+        //public void FileSaveRecPath()
+        //{
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
 
-            //write out the file
-            using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt"),true))
-            {
-                writer.WriteLine("$RecPath");
-                //writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
-                if (recPath.recList.Count > 0)
-                {
-                    for (int j = 0; j < recPath.recList.Count; j++)
-                        writer.WriteLine(
-                            Math.Round(recPath.recList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
-                            Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture));
+        //    //write out the file
+        //    using (StreamWriter writer = new StreamWriter((dirField + "RecPath.Txt"), true))
+        //    {
+        //        writer.WriteLine("$RecPath");
+        //        //writer.WriteLine(recPath.recList.Count.ToString(CultureInfo.InvariantCulture));
+        //        if (recPath.recList.Count > 0)
+        //        {
+        //            for (int j = 0; j < recPath.recList.Count; j++)
+        //                writer.WriteLine(
+        //                    Math.Round(recPath.recList[j].easting, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                    Math.Round(recPath.recList[j].northing, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                    Math.Round(recPath.recList[j].heading, 3).ToString(CultureInfo.InvariantCulture) + "," +
+        //                    Math.Round(recPath.recList[j].speed, 1).ToString(CultureInfo.InvariantCulture));
 
-                    //clear out the list
-                    recPath.recList.Clear();
-                }
-            }
-        }
+        //            //clear out the list
+        //            recPath.recList.Clear();
+        //        }
+        //    }
+        //}
 
-        //save the headland
-        public void FileSaveHeadlandYouTurn()
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        ////save all the flag markers
+        //public void FileSaveABLine()
+        //{
+        //    //Saturday, February 11, 2017  -->  7:26:52 AM
 
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
+        //    //get the directory and make sure it exists, create if not
+        //    string dirField = fieldsDirectory + currentFieldDirectory + "\\";
 
-            //write out the file
-            using (StreamWriter writer = new StreamWriter(dirField + "Headland.Txt"))
-            {
-                writer.WriteLine("$Headland");
-                writer.WriteLine(hl.ptList.Count.ToString(CultureInfo.InvariantCulture));
-                if (hl.ptList.Count > 0)
-                {
-                    for (int j = 0; j < hl.ptList.Count; j++)
-                        writer.WriteLine(hl.ptList[j].easting.ToString(CultureInfo.InvariantCulture) + "," +
-                                         hl.ptList[j].northing.ToString(CultureInfo.InvariantCulture) + "," +
-                                         hl.ptList[j].heading.ToString(CultureInfo.InvariantCulture));
-                }
-            }
-        }
+        //    string directoryName = Path.GetDirectoryName(dirField);
+        //    if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
+        //    { Directory.CreateDirectory(directoryName); }
 
-        //save all the flag markers
-        public void FileSaveFlags()
-        {
-            //Saturday, February 11, 2017  -->  7:26:52 AM
-            //$FlagsDir
-            //Bob_Feb11
-            //$Offsets
-            //533172,5927719,12 - offset easting, northing, zone
+        //    //use Streamwriter to create and overwrite existing ABLine file
+        //    using (StreamWriter writer = new StreamWriter(dirField + "ABLine.txt"))
+        //    {
+        //        try
+        //        {
+        //            //write out the ABLine
+        //            writer.WriteLine("$ABLine");
 
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
+        //            //true or false if ABLine is set
+        //            if (ABLine.isABLineSet) writer.WriteLine(true);
+        //            else writer.WriteLine(false);
 
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
+        //            writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPoint1.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint1.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.refPoint2.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint2.northing.ToString(CultureInfo.InvariantCulture));
+        //            writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
+        //        }
 
-            //use Streamwriter to create and overwrite existing flag file
-            using (StreamWriter writer = new StreamWriter(dirField + "Flags.txt"))
-            {
-                try
-                {
-                    writer.WriteLine("$Flags");
+        //        catch (Exception e)
+        //        {
+        //            Console.WriteLine(e.Message + "\n Cannot write to file.");
+        //            WriteErrorLog("Saving AB Line" + e.ToString());
 
-                    int count2 = flagPts.Count;
-                    writer.WriteLine(count2);
+        //            return;
+        //        }
 
-                    for (int i = 0; i < count2; i++)
-                    {
-                        writer.WriteLine(
-                            flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].easting.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].northing.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].color.ToString(CultureInfo.InvariantCulture) + "," +
-                            flagPts[i].ID.ToString(CultureInfo.InvariantCulture));
-                    }
-                }
-
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message + "\n Cannot write to file.");
-                    WriteErrorLog("Saving Flags" + e.ToString());
-                    return;
-                }
-            }
-        }
-
-        //save all the flag markers
-        public void FileSaveABLine()
-        {
-            //Saturday, February 11, 2017  -->  7:26:52 AM
-
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            //use Streamwriter to create and overwrite existing ABLine file
-            using (StreamWriter writer = new StreamWriter(dirField + "ABLine.txt"))
-            {
-                try
-                {
-                    //write out the ABLine
-                    writer.WriteLine("$ABLine");
-
-                    //true or false if ABLine is set
-                    if (ABLine.isABLineSet) writer.WriteLine(true);
-                    else writer.WriteLine(false);
-
-                    writer.WriteLine(ABLine.abHeading.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(ABLine.refPoint1.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint1.northing.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(ABLine.refPoint2.easting.ToString(CultureInfo.InvariantCulture) + "," + ABLine.refPoint2.northing.ToString(CultureInfo.InvariantCulture));
-                    writer.WriteLine(ABLine.tramPassEvery.ToString(CultureInfo.InvariantCulture) + "," + ABLine.passBasedOn.ToString(CultureInfo.InvariantCulture));
-                }
-
-                catch (Exception e)
-                {
-                    Console.WriteLine(e.Message + "\n Cannot write to file.");
-                    WriteErrorLog("Saving AB Line" + e.ToString());
-
-                    return;
-                }
-
-            }
-        }
+        //    }
+        //}
 
         //save nmea sentences
         public void FileSaveNMEA()
         {
-            using (StreamWriter writer =  new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\NMEA_log.txt"), true))
+            using (StreamWriter writer = new StreamWriter((fieldsDirectory + currentFieldDirectory + "\\NMEA_log.txt"), true))
             {
                 writer.Write(pn.logNMEASentence.ToString());
             }
             pn.logNMEASentence.Clear();
-        }
-
-        //generate KML file from flags
-        public void FileSaveFlagsKML()
-        {
-
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            string myFileName;
-            myFileName = "Flags.kml";
-
-            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
-            {
-
-                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
-
-                int count2 = flagPts.Count;
-
-                writer.WriteLine(@"<Document>");
-
-                for (int i = 0; i < count2; i++)
-                {
-                    writer.WriteLine(@"  <Placemark>                                  ");
-                    writer.WriteLine(@"<Style> <IconStyle>");
-                    if (flagPts[i].color == 0)  //red - xbgr
-                        writer.WriteLine(@"<color>ff4400ff</color>");
-                    if (flagPts[i].color == 1)  //grn - xbgr
-                        writer.WriteLine(@"<color>ff44ff00</color>");
-                    if (flagPts[i].color == 2)  //yel - xbgr
-                        writer.WriteLine(@"<color>ff44ffff</color>");
-
-                    writer.WriteLine(@"</IconStyle> </Style>");
-                    writer.WriteLine(@" <name> " + (i+1) + @"</name>");
-                    writer.WriteLine(@"<Point><coordinates> " +
-                                    flagPts[i].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[i].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
-                                    @"</coordinates> </Point> ");
-                writer.WriteLine(@"  </Placemark>                                 ");
-                       
-                }
-
-                writer.WriteLine(@"</Document>");
-
-                writer.WriteLine(@"</kml>                                         ");
-
-
-            
-            }
-
-        }
-
-        //generate KML file from flag
-        public void FileSaveSingleFlagKML(int flagNumber)
-        {
-
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            string myFileName;
-            myFileName = "Flag.kml";
-
-            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
-            {
-
-                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
-
-                int count2 = flagPts.Count;
-
-                writer.WriteLine(@"<Document>");
-
-                    writer.WriteLine(@"  <Placemark>                                  ");
-                    writer.WriteLine(@"<Style> <IconStyle>");
-                    if (flagPts[flagNumber - 1].color == 0)  //red - xbgr
-                        writer.WriteLine(@"<color>ff4400ff</color>");
-                    if (flagPts[flagNumber - 1].color == 1)  //grn - xbgr
-                        writer.WriteLine(@"<color>ff44ff00</color>");
-                    if (flagPts[flagNumber - 1].color == 2)  //yel - xbgr
-                        writer.WriteLine(@"<color>ff44ffff</color>");
-                    writer.WriteLine(@"</IconStyle> </Style>");
-                    writer.WriteLine(@" <name> " + flagNumber.ToString(CultureInfo.InvariantCulture) + @"</name>");
-                    writer.WriteLine(@"<Point><coordinates> " +
-                                    flagPts[flagNumber-1].longitude.ToString(CultureInfo.InvariantCulture) + "," + flagPts[flagNumber-1].latitude.ToString(CultureInfo.InvariantCulture) + ",0" +
-                                    @"</coordinates> </Point> ");
-                    writer.WriteLine(@"  </Placemark>                                 ");
-                writer.WriteLine(@"</Document>");
-                writer.WriteLine(@"</kml>                                         ");
-
-            }
-        }
-
-        //generate KML file from flag
-        public void FileMakeCurrentKML(double lat, double lon)
-        {
-            //get the directory and make sure it exists, create if not
-            string dirField = fieldsDirectory + currentFieldDirectory + "\\";
-
-            string directoryName = Path.GetDirectoryName(dirField);
-            if ((directoryName.Length > 0) && (!Directory.Exists(directoryName)))
-            { Directory.CreateDirectory(directoryName); }
-
-            string myFileName;
-            myFileName = "CurrentPosition.kml";
-
-            using (StreamWriter writer = new StreamWriter(dirField + myFileName))
-            {
-
-                writer.WriteLine(@"<?xml version=""1.0"" encoding=""UTF-8""?>     ");
-                writer.WriteLine(@"<kml xmlns=""http://www.opengis.net/kml/2.2""> ");
-
-                int count2 = flagPts.Count;
-
-                writer.WriteLine(@"<Document>");
-
-                writer.WriteLine(@"  <Placemark>                                  ");
-                writer.WriteLine(@"<Style> <IconStyle>");
-                writer.WriteLine(@"<color>ff4400ff</color>");
-                writer.WriteLine(@"</IconStyle> </Style>");
-                writer.WriteLine(@" <name> Your Current Position </name>");
-                writer.WriteLine(@"<Point><coordinates> " +
-                                lon.ToString(CultureInfo.InvariantCulture) + "," + lat.ToString(CultureInfo.InvariantCulture) + ",0" +
-                                @"</coordinates> </Point> ");
-                writer.WriteLine(@"  </Placemark>                                 ");
-                writer.WriteLine(@"</Document>");
-                writer.WriteLine(@"</kml>                                         ");
-
-            }
         }
     }
 }

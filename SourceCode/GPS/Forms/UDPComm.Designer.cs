@@ -537,12 +537,6 @@ namespace AgraBot
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.A))
-            {
-                btnAutoSteer.PerformClick();
-                return true;    // indicate that you handled this keystroke
-            }
-
             if (keyData == (Keys.D))
             {
                 btnSectionOffAutoOn.PerformClick();

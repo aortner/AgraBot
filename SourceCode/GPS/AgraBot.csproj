@@ -100,24 +100,16 @@
     <Compile Include="Classes\CDubins.cs" />
     <Compile Include="Classes\CAHRS.cs" />
     <Compile Include="Classes\CAutoSteer.cs" />
-    <Compile Include="Classes\CABCurve.cs" />
-    <Compile Include="Classes\CHeadland.cs" />
-    <Compile Include="Classes\CRate.cs" />
     <Compile Include="Classes\CRecordedPath.cs" />
     <Compile Include="Classes\CSim.cs" />
-    <Compile Include="Classes\CYouTurn.cs" />
     <Compile Include="Classes\CBoundary.cs" />
-    <Compile Include="Classes\CFlag.cs" />
     <Compile Include="Classes\CABLine.cs" />
     <Compile Include="Classes\CCamera.cs" />
     <Compile Include="Classes\CContour.cs" />
     <Compile Include="Classes\CModuleComm.cs" />
     <Compile Include="Classes\CNMEA.cs" />
-    <Compile Include="Classes\CPerimeter.cs" />
     <Compile Include="Classes\CSection.cs" />
-    <Compile Include="Classes\CPointData.cs" />
     <Compile Include="Classes\CVehicle.cs" />
-    <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
     <Compile Include="Forms\FormDisplaySettings.cs">
@@ -125,18 +117,6 @@
     </Compile>
     <Compile Include="Forms\FormDisplaySettings.Designer.cs">
       <DependentUpon>FormDisplaySettings.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormABCurve.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormABCurve.Designer.cs">
-      <DependentUpon>FormABCurve.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormHeadland.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormHeadland.Designer.cs">
-      <DependentUpon>FormHeadland.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormBoundary.cs">
       <SubType>Form</SubType>
@@ -168,12 +148,6 @@
     <Compile Include="Forms\FormJob.Designer.cs">
       <DependentUpon>FormJob.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormRate.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormRate.Designer.cs">
-      <DependentUpon>FormRate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormSaveOrNot.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -198,18 +172,6 @@
     <Compile Include="Forms\FormWebCam.Designer.cs">
       <DependentUpon>FormWebCam.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormWizardSteer.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormWizardSteer.Designer.cs">
-      <DependentUpon>FormWizardSteer.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormYouTurnRecord.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormYouTurnRecord.Designer.cs">
-      <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\GUI.Designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
@@ -217,12 +179,6 @@
     <Compile Include="Forms\Position.designer.cs">
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\FormYouTurn.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormYouTurn.Designer.cs">
-      <DependentUpon>FormYouTurn.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\FormUDP.cs">
       <SubType>Form</SubType>
@@ -281,12 +237,6 @@
       <SubType>Form</SubType>
       <DependentUpon>FormGPS.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\FormABLine.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\FormABLine.Designer.cs">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\FormGPSData.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -330,104 +280,6 @@
     <EmbeddedResource Include="Forms\FormDisplaySettings.resx">
       <DependentUpon>FormDisplaySettings.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABCurve.resx">
-      <DependentUpon>FormABCurve.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.de.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.es.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.fr.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.it.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.nl.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.ru.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.de.resx">
-      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.es.resx">
-      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.fr.resx">
-      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.it.resx">
-      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.nl.resx">
-      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormBoundaryPlayer.ru.resx">
-      <DependentUpon>FormBoundaryPlayer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCommSet.de.resx">
-      <DependentUpon>FormCommSet.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCommSet.es.resx">
-      <DependentUpon>FormCommSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCommSet.fr.resx">
-      <DependentUpon>FormCommSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCommSet.it.resx">
-      <DependentUpon>FormCommSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCommSet.nl.resx">
-      <DependentUpon>FormCommSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormCommSet.ru.resx">
-      <DependentUpon>FormCommSet.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.de.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.es.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.fr.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.it.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.nl.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormFieldDir.ru.resx">
-      <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.de.resx">
-      <DependentUpon>FormGPS.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.es.resx">
-      <DependentUpon>FormGPS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.fr.resx">
-      <DependentUpon>FormGPS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.it.resx">
-      <DependentUpon>FormGPS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.nl.resx">
-      <DependentUpon>FormGPS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormGPS.ru.resx">
-      <DependentUpon>FormGPS.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormHeadland.resx">
-      <DependentUpon>FormHeadland.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormBoundary.resx">
       <DependentUpon>FormBoundary.cs</DependentUpon>
     </EmbeddedResource>
@@ -436,10 +288,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormFieldDir.resx">
       <DependentUpon>FormFieldDir.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormABLine.resx">
-      <DependentUpon>FormABLine.cs</DependentUpon>
-      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormCommSet.resx">
       <DependentUpon>FormCommSet.cs</DependentUpon>
@@ -473,9 +321,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormJob.ru.resx">
       <DependentUpon>FormJob.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormRate.resx">
-      <DependentUpon>FormRate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSaveOrNot.de.resx">
       <DependentUpon>FormSaveOrNot.cs</DependentUpon>
@@ -546,15 +391,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormWebCam.resx">
       <DependentUpon>FormWebCam.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormWizardSteer.resx">
-      <DependentUpon>FormWizardSteer.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormYouTurnRecord.resx">
-      <DependentUpon>FormYouTurnRecord.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Forms\FormYouTurn.resx">
-      <DependentUpon>FormYouTurn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormUDP.resx">
       <DependentUpon>FormUDP.cs</DependentUpon>

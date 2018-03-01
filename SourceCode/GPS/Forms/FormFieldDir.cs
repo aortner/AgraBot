@@ -129,10 +129,9 @@ namespace AgraBot
                         //create the field file header info
                         mf.FileCreateField();
                         mf.FileCreateSections();
-                        mf.FileCreateRecPath();
+                        //mf.FileCreateRecPath();
                         mf.FileCreateContour();
-                        mf.FileSaveFlags();
-                        mf.FileSaveABLine();
+                        //mf.FileSaveABLine();
                     }
                 }
                 catch (Exception ex)

@@ -166,7 +166,7 @@ namespace AgraBot
         private void btnOpenGoogleEarth_Click(object sender, EventArgs e)
         {
             //save new copy of kml with selected flag and view in GoogleEarth
-            mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
+            //mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
 
             //Process.Start(@"C:\Program Files (x86)\Google\Google Earth\client\googleearth", workingDirectory + currentFieldDirectory + "\\Flags.KML");
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");

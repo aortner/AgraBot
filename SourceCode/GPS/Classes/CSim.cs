@@ -31,7 +31,7 @@ namespace AgraBot
         public double latitude = 53.0;
         public double longitude = -111.0;
         private double latDeg, latMinu, longDeg, longMinu, latNMEA, longNMEA;
-        public double speed = 0.6, headingTrue, stepDistance = 0.5, steerAngle;
+        public double speed = 0.6, headingTrue, stepDistance = 0.15, steerAngle;
         public double steerAngleScrollBar = 0;
         private double degrees;
 
@@ -48,7 +48,7 @@ namespace AgraBot
         public void DoSimTick(double _st)
         {
             steerAngle = _st;
-            double temp = (stepDistance * Math.Tan(steerAngle * 0.02045329252) / 3.3);
+            double temp = (stepDistance * Math.Tan(steerAngle * 0.03345329252) / 3.3);
             headingTrue += temp;
             if (headingTrue > (2.0 * Math.PI)) headingTrue -= (2.0 * Math.PI);
             if (headingTrue < (0)) headingTrue += (2.0 * Math.PI);
@@ -68,7 +68,7 @@ namespace AgraBot
             //BuildOGI();
             BuildGGA();
             BuildVTG();
-            BuildHDT();
+            //BuildHDT();
 
             //send garbage for testing
             //sbSendText.Append("$\r\n,4,4,,,,,,*\\\\\\\\\\\\\\\\\\");
@@ -78,7 +78,7 @@ namespace AgraBot
 
             sbSendText.Append(sbGGA.ToString());
             sbSendText.Append(sbVTG.ToString());
-            sbSendText.Append(sbHDT.ToString());
+            //sbSendText.Append(sbHDT.ToString());
 
             //sbSendText.Append(sbOGI.ToString());
             mf.pn.rawBuffer += sbSendText.ToString();

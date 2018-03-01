@@ -121,7 +121,7 @@ namespace AgraBot
                 ptList.Add(point);
 
                 //add the point list to the save list for appending to contour file
-                mf.contourSaveList.Add(ptList);
+                //mf.contourSaveList.Add(ptList);
             }
 
             //delete ptList
