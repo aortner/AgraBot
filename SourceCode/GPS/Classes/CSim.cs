@@ -28,7 +28,7 @@ namespace AgraBot
         private readonly char EW = 'W';
         private readonly char NS = 'N';
 
-        public double latitude = 53.0;
+        public double latitude = 53.1;
         public double longitude = -111.0;
         private double latDeg, latMinu, longDeg, longMinu, latNMEA, longNMEA;
         public double speed = 0.6, headingTrue, stepDistance = 0.15, steerAngle;

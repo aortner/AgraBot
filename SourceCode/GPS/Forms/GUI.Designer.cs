@@ -1168,7 +1168,7 @@ namespace AgraBot
         }
         private void btnResetSim_Click(object sender, EventArgs e)
         {
-            sim.latitude = 53.0;
+            sim.latitude = 53.1;
             sim.longitude = -111.0;
             sim.headingTrue = 0;
             sim.steerAngle = 0;

@@ -113,6 +113,7 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.tboxFromUDP = new System.Windows.Forms.TextBox();
             this.lblEmlidPitch = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.lblSats = new System.Windows.Forms.Label();
@@ -146,10 +147,6 @@
             this.btnFileExplorer = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
             this.autoPage4 = new System.Windows.Forms.TabPage();
-            this.btnFollowOnOff = new System.Windows.Forms.Button();
-            this.btnDeleteRecordedPath = new System.Windows.Forms.Button();
-            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
-            this.btnRecPathOnOff = new System.Windows.Forms.Button();
             this.btnDrivePath = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
@@ -178,7 +175,6 @@
             this.btnSection2Man = new System.Windows.Forms.Button();
             this.btnSection1Man = new System.Windows.Forms.Button();
             this.btnStopDrivingPath = new System.Windows.Forms.Button();
-            this.tboxFromUDP = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControl)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.openGLControlBack)).BeginInit();
             this.menuStrip1.SuspendLayout();
@@ -188,7 +184,6 @@
             this.DataPage.SuspendLayout();
             this.zoomPage2.SuspendLayout();
             this.configPage1.SuspendLayout();
-            this.autoPage4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).BeginInit();
             this.panelSimControls.SuspendLayout();
@@ -870,6 +865,13 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
+            // tboxFromUDP
+            // 
+            resources.ApplyResources(this.tboxFromUDP, "tboxFromUDP");
+            this.tboxFromUDP.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.tboxFromUDP.Name = "tboxFromUDP";
+            this.tboxFromUDP.ReadOnly = true;
+            // 
             // lblEmlidPitch
             // 
             resources.ApplyResources(this.lblEmlidPitch, "lblEmlidPitch");
@@ -1065,43 +1067,9 @@
             // 
             // autoPage4
             // 
-            this.autoPage4.Controls.Add(this.btnFollowOnOff);
-            this.autoPage4.Controls.Add(this.btnDeleteRecordedPath);
-            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
-            this.autoPage4.Controls.Add(this.btnRecPathOnOff);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
             this.autoPage4.UseVisualStyleBackColor = true;
-            // 
-            // btnFollowOnOff
-            // 
-            this.btnFollowOnOff.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnFollowOnOff, "btnFollowOnOff");
-            this.btnFollowOnOff.Name = "btnFollowOnOff";
-            this.btnFollowOnOff.UseVisualStyleBackColor = false;
-            // 
-            // btnDeleteRecordedPath
-            // 
-            this.btnDeleteRecordedPath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDeleteRecordedPath, "btnDeleteRecordedPath");
-            this.btnDeleteRecordedPath.Image = global::AgraBot.Properties.Resources.Cancel64;
-            this.btnDeleteRecordedPath.Name = "btnDeleteRecordedPath";
-            this.btnDeleteRecordedPath.UseVisualStyleBackColor = false;
-            // 
-            // btnRecPathPauseRecord
-            // 
-            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
-            this.btnRecPathPauseRecord.Image = global::AgraBot.Properties.Resources.boundaryPause;
-            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
-            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
-            // 
-            // btnRecPathOnOff
-            // 
-            this.btnRecPathOnOff.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRecPathOnOff, "btnRecPathOnOff");
-            this.btnRecPathOnOff.Name = "btnRecPathOnOff";
-            this.btnRecPathOnOff.UseVisualStyleBackColor = false;
             // 
             // btnDrivePath
             // 
@@ -1334,13 +1302,6 @@
             this.btnStopDrivingPath.UseVisualStyleBackColor = false;
             this.btnStopDrivingPath.Click += new System.EventHandler(this.btnStopDrivingPath_Click);
             // 
-            // tboxFromUDP
-            // 
-            resources.ApplyResources(this.tboxFromUDP, "tboxFromUDP");
-            this.tboxFromUDP.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.tboxFromUDP.Name = "tboxFromUDP";
-            this.tboxFromUDP.ReadOnly = true;
-            // 
             // FormGPS
             // 
             resources.ApplyResources(this, "$this");
@@ -1392,7 +1353,6 @@
             this.zoomPage2.ResumeLayout(false);
             this.zoomPage2.PerformLayout();
             this.configPage1.ResumeLayout(false);
-            this.autoPage4.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).EndInit();
             this.panelSimControls.ResumeLayout(false);
@@ -1546,10 +1506,6 @@
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.Button btnDeleteAllData;
         private System.Windows.Forms.ToolStripMenuItem toolstripDisplayConfig;
-        private System.Windows.Forms.Button btnRecPathOnOff;
-        private System.Windows.Forms.Button btnRecPathPauseRecord;
-        private System.Windows.Forms.Button btnDeleteRecordedPath;
-        private System.Windows.Forms.Button btnFollowOnOff;
         private System.Windows.Forms.Button btnDrivePath;
         public System.Windows.Forms.Button btnStopDrivingPath;
         private System.Windows.Forms.TextBox tboxFromUDP;

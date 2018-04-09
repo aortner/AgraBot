@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Net;
 using System.Net.Sockets;
@@ -40,7 +38,7 @@ namespace AgraBot
 
                     if (byteData.Length != 0)
 
-                        // Send packet to the zero
+                        // Send packet
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
                 catch (Exception e)
@@ -71,7 +69,7 @@ namespace AgraBot
             try
             {
                 // Initialise the IPEndPoint for the client
-                EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
+                EndPoint epSender = new IPEndPoint(IPAddress.Any, 9998);
             
                 // Receive all data
                 int msgLen = recvSocket.EndReceiveFrom(asyncResult, ref epSender);
@@ -90,18 +88,17 @@ namespace AgraBot
             catch (Exception e)
             {
                 WriteErrorLog("UDP Recv data " + e.ToString());
-
                 MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         
         private void UpdateRecvMessage(string recvd)
         {
-            recvSentenceSettings = recvd;
-            pn.rawBuffer += recvd;
+            //recvSentenceSettings = recvd;
+            //pn.rawBuffer += recvd;
             //textBox1.Text = pn.rawBuffer;
             //textBox1.Text = recvd;
+            tboxFromUDP.Text = DateTime.Now.ToLocalTime() + "\r\n" + recvd;
         }
 
         #region Gesture
@@ -225,6 +222,8 @@ namespace AgraBot
 
         // size of GESTUREINFO structure
         private int _gestureInfoSize;
+
+        public IPEndPoint EpAutoSteer { get => epAutoSteer; set => epAutoSteer = value; }
 
         [SecurityPermission(SecurityAction.Demand)]
         private void SetupStructSizes()

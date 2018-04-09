@@ -449,25 +449,23 @@ namespace AgraBot
                 updateRecvMessageDelegate = UpdateRecvMessage;
 
                 // Initialise the socket
-                sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
                 recvSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
-                // Initialise the IPEndPoint for the server and listen on port 9999
-                IPEndPoint recv = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.setIP_thisPort);
+                // Initialise the IPEndPoint and listen on port 9999 - changed to 8888
+                //IPEndPoint recv = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.setIP_thisPort);
+                IPEndPoint recv = new IPEndPoint(IPAddress.Any, Properties.Settings.Default.setIP_autoSteerPort);
 
                 // Associate the socket with this IP address and port
                 recvSocket.Bind(recv);
 
-                // Initialise the send socket
-                sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                //// Initialise the IPEndPoint for the server to send on port 9998
+                //sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+                //IPEndPoint server = new IPEndPoint(IPAddress.Any, 8887);
+                //sendSocket.Bind(server);
 
-                // Initialise the IPEndPoint for the server to send on port 9998
-                IPEndPoint server = new IPEndPoint(IPAddress.Any, 9998);
-                sendSocket.Bind(server);
-
-                //IP address and port of Auto Steer server
-                IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
-                epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
+                ////IP address and port of Auto Steer server
+                //IPAddress epIP = IPAddress.Parse(Properties.Settings.Default.setIP_autoSteerIP);
+                //epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
 
                 // Initialise the IPEndPoint for the client - async listner client only!
                 EndPoint client = new IPEndPoint(IPAddress.Any, 0);
@@ -483,12 +481,6 @@ namespace AgraBot
                 MessageBox.Show("Load Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        //function to do a button click on AutoSection.
-        //public void ClickAutoBtn()
-        //{
-        //    btnSectionOffAutoOn.PerformClick();
-        //}
 
         private void btnDrivePath_Click(object sender, EventArgs e)
         {
