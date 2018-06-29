@@ -1,6 +1,0 @@
-UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
-Object name: 'FormGPS'.
-   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
-   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
-   at AgraBot.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgraBot\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 86 - 2018-03-18 10:15:06 AM
-

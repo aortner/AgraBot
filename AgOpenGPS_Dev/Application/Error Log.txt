@@ -1,0 +1,238 @@
+Opening Steer PortSystem.IO.IOException: The port 'COM4' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 134 - 5/14/2018 1:09:13 AM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM4' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 134 - 5/30/2018 11:17:52 PM
+
+Load Headland LoopSystem.FormatException: Input string was not in a correct format.
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1018 - 6/7/2018 6:52:28 PM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/10/2018 10:50:46 PM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/10/2018 11:11:42 PM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/10/2018 11:36:33 PM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/11/2018 12:08:42 AM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/11/2018 8:21:41 PM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/11/2018 9:17:29 PM
+
+Load Recorded PathSystem.ArgumentNullException: Value cannot be null.
+Parameter name: String
+   at System.Number.StringToNumber(String str, NumberStyles options, NumberBuffer& number, NumberFormatInfo info, Boolean parseDecimal)
+   at System.Number.ParseInt32(String s, NumberStyles style, NumberFormatInfo info)
+   at System.Int32.Parse(String s)
+   at AgOpenGPS.FormGPS.FileOpenField(String _openType) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SaveOpen.Designer.cs:line 1070 - 6/12/2018 11:37:55 PM
+
+Out Data to Steering Port System.UnauthorizedAccessException: Access to the port 'COM5' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndWrite(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Write(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialPort.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at AgOpenGPS.FormGPS.AutoSteerDataOutToPort() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 76 - 6/16/2018 12:36:37 PM
+
+Opening Steer PortSystem.UnauthorizedAccessException: Access to the port 'COM4' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 159 - 6/16/2018 12:54:35 PM
+
+GPS Data RecvSystem.InvalidOperationException: The port is closed.
+   at System.IO.Ports.SerialPort.ReadExisting()
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 444 - 6/16/2018 1:59:31 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM5' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 159 - 6/17/2018 11:48:48 PM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108 - 6/18/2018 12:42:14 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108 - 6/18/2018 12:59:15 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108 - 6/18/2018 12:59:15 AM
+
+UDP ServerSystem.Net.Sockets.SocketException (0x80004005): Only one usage of each socket address (protocol/network address/port) is normally permitted
+   at System.Net.Sockets.Socket.DoBind(EndPoint endPointSnapshot, SocketAddress socketAddress)
+   at System.Net.Sockets.Socket.Bind(EndPoint localEP)
+   at AgOpenGPS.FormGPS.StartUDPServer() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\FormGPS.cs:line 543 - 6/18/2018 1:10:23 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 90
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 90 - 6/18/2018 1:15:08 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108 - 6/18/2018 1:15:08 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 90
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 90 - 6/18/2018 1:17:14 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 108 - 6/18/2018 1:17:14 AM
+
+GPS Data RecvSystem.IO.IOException: The I/O operation has been aborted because of either a thread exit or an application request.
+
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.InternalResources.WinIOError()
+   at System.IO.Ports.SerialStream.get_BytesToRead()
+   at System.IO.Ports.SerialPort.get_BytesToRead()
+   at System.IO.Ports.SerialPort.ReadExisting()
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 454 - 6/22/2018 1:38:02 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM5' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 169 - 6/23/2018 11:04:24 AM
+
+UDP Recv data System.ObjectDisposedException: Cannot access a disposed object.
+Object name: 'FormGPS'.
+   at System.Windows.Forms.Control.MarshaledInvoke(Control caller, Delegate method, Object[] args, Boolean synchronous)
+   at System.Windows.Forms.Control.Invoke(Delegate method, Object[] args)
+   at AgOpenGPS.FormGPS.ReceiveData(IAsyncResult asyncResult) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 106 - 6/23/2018 1:38:58 PM
+
+GPS Data RecvSystem.IO.IOException: The I/O operation has been aborted because of either a thread exit or an application request.
+
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.InternalResources.WinIOError()
+   at System.IO.Ports.SerialStream.get_BytesToRead()
+   at System.IO.Ports.SerialPort.get_BytesToRead()
+   at System.IO.Ports.SerialPort.ReadExisting()
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 6/23/2018 7:54:27 PM
+
+Out Data to Steering Port System.UnauthorizedAccessException: Access to the port 'COM5' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndWrite(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Write(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialPort.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at AgOpenGPS.FormGPS.AutoSteerDataOutToPort() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 94 - 6/23/2018 7:54:31 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM5' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 177 - 6/24/2018 6:51:42 AM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM5' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 177 - 6/24/2018 7:02:56 PM
+
+Out Data to Steering Port System.UnauthorizedAccessException: Access to the port 'COM7' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndWrite(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Write(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialPort.Write(Byte[] buffer, Int32 offset, Int32 count)
+   at AgOpenGPS.FormGPS.AutoSteerDataOutToPort() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 94 - 6/24/2018 8:03:45 PM
+
+AutoSteer RecvSystem.UnauthorizedAccessException: Access to the port 'COM7' is denied.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream.EndRead(IAsyncResult asyncResult)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count, Int32 timeout)
+   at System.IO.Ports.SerialStream.Read(Byte[] array, Int32 offset, Int32 count)
+   at System.IO.Ports.SerialPort.InternalRead(Char[] buffer, Int32 offset, Int32 count, Int32 timeout, Boolean countMultiByteCharsAsOne)
+   at System.IO.Ports.SerialPort.ReadTo(String value)
+   at System.IO.Ports.SerialPort.ReadLine()
+   at AgOpenGPS.FormGPS.sp_DataReceivedAutoSteer(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 155 - 6/24/2018 8:03:45 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM7' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 177 - 6/24/2018 8:42:03 PM
+
+GPS Data RecvSystem.InvalidOperationException: The port is closed.
+   at System.IO.Ports.SerialPort.ReadExisting()
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 6/24/2018 9:57:57 PM
+
+GPS Data RecvSystem.IO.IOException: The I/O operation has been aborted because of either a thread exit or an application request.
+
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.InternalResources.WinIOError()
+   at System.IO.Ports.SerialStream.get_BytesToRead()
+   at System.IO.Ports.SerialPort.get_BytesToRead()
+   at System.IO.Ports.SerialPort.ReadExisting()
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 6/25/2018 11:40:25 PM
+
+GPS Data RecvSystem.InvalidOperationException: The port is closed.
+   at System.IO.Ports.SerialPort.ReadExisting()
+   at AgOpenGPS.FormGPS.sp_DataReceived(Object sender, SerialDataReceivedEventArgs e) in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 462 - 6/26/2018 3:19:58 PM
+
+Opening Steer PortSystem.IO.IOException: The port 'COM8' does not exist.
+   at System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   at System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   at System.IO.Ports.SerialPort.Open()
+   at AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\Think\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:line 177 - 6/26/2018 10:02:22 PM
+
