@@ -67,7 +67,7 @@ namespace AgOpenGPS
             headlandLineToolWidths = (double)nudWidths.Value;
             Properties.Vehicle.Default.set_youToolWidths = (double)nudWidths.Value;
             Properties.Vehicle.Default.Save();
-            mf.hl.BuildHeadland((double)nudWidths.Value);
+            //mf.hl.BuildHeadland((double)nudWidths.Value);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -90,7 +90,7 @@ namespace AgOpenGPS
         private void nudHeadlandIncludeAngle_ValueChanged(object sender, EventArgs e)
         {
             mf.hl.includeAngle = ((double)nudHeadlandIncludeAngle.Value / 100) * glm.PIBy2;
-            mf.hl.FixHeadlandList();
+            //mf.hl.FixHeadlandList();
             //Enable the save ok button
             btnOK.Enabled = true;
         }
@@ -98,7 +98,7 @@ namespace AgOpenGPS
         private void btnStartDrawingHeadland_Click(object sender, EventArgs e)
         {
             //clear the headland point list
-            mf.hl.headLineList.Clear();
+            //mf.hl.hlLine.Clear();
             isDrawingHeadland = true;
 
             btnStartDrawingHeadland.Enabled = false;
@@ -113,30 +113,30 @@ namespace AgOpenGPS
 
         private void btnDeleteLastPoint_Click(object sender, EventArgs e)
         {
-            int ptCnt = mf.hl.headLineList.Count;
-            if (ptCnt > 0)
-            {
-                mf.hl.headLineList.RemoveAt(ptCnt - 1);
-            }
+            //int ptCnt = mf.hl.hlLine.Count;
+            //if (ptCnt > 0)
+            //{
+            //    mf.hl.hlLine.RemoveAt(ptCnt - 1);
+            //}
         }
 
         private void btnDoneDrawingHeadland_Click(object sender, EventArgs e)
         {
             isDrawingHeadland = false;
 
-            if (mf.hl.headLineList.Count > 3)
-            {
-                mf.hl.FixHeadlandList();
+            //if (mf.hl.hlLine.Count > 3)
+            //{
+            //    mf.hl.FixHeadlandList();
 
-                //pre calculate all the constants and multiples
-                mf.hl.PreCalcHeadlandLines();
+            //    //pre calculate all the constants and multiples
+            //    mf.hl.PreCalcHeadlandLines();
 
-            }
-            else
-            {
-                mf.hl.headLineList.Clear();
-                mf.hl.isSet = false;
-            }
+            //}
+            //else
+            //{
+            //    mf.hl.hlLine.Clear();
+            //    mf.hl.isSet = false;
+            //}
 
             btnStartDrawingHeadland.Enabled = true;
             btnDeleteLastPoint.Enabled = false;
@@ -146,12 +146,6 @@ namespace AgOpenGPS
             btnCancel.Enabled = true;
             nudWidths.Enabled = true;
             nudHeadlandIncludeAngle.Enabled = true;
-
-        }
-
-        private void cboxStayInBounds_CheckedChanged(object sender, EventArgs e)
-        {
-            mf.genPath.isStayInBounds = !mf.genPath.isStayInBounds;
         }
 
         private void openGLHead_MouseDown(object sender, MouseEventArgs e)
@@ -162,7 +156,7 @@ namespace AgOpenGPS
 
             //Convert to Origin in the center of window, 800 pixels
             fixPt.X = pt.X - 480;
-            fixPt.Y = ((960 - pt.Y) - 480);
+            fixPt.Y = (960 - pt.Y - 480);
             vec3 plotPt = new vec3
             {
                 //convert screen coordinates to field coordinates
@@ -174,16 +168,16 @@ namespace AgOpenGPS
             plotPt.easting += fieldCenterX;
             plotPt.northing += fieldCenterY;
 
-            if (isDrawingHeadland)
-            {
-                //make sure point is in boundary
-                if (mf.boundz.IsPointInsideBoundary(plotPt)) mf.hl.headLineList.Add(plotPt);
-                else mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the boundary!");
-            }
+            //if (isDrawingHeadland)
+            //{
+            //    //make sure point is in boundary
+            //    if (mf.boundz.IsPointInsideBoundary(plotPt)) mf.hl.hlLine.Add(plotPt);
+            //    else mf.TimedMessageBox(2000, "Outside of boundary", "Click inside the boundary!");
+            //}
 
             if (isDrawingStart)
             {
-                if (mf.boundz.IsPointInsideBoundary(plotPt))
+                if (mf.bndArr[mf.bnd.boundarySelected].IsPointInsideBoundary(plotPt))
                 {
                     mf.genPath.startInfieldPoint.easting = plotPt.easting;
                     mf.genPath.startInfieldPoint.northing = plotPt.northing;
@@ -198,7 +192,7 @@ namespace AgOpenGPS
 
             if (isDrawingHeading)
             {
-                if (mf.boundz.IsPointInsideBoundary(plotPt))
+                if (mf.bndArr[mf.bnd.boundarySelected].IsPointInsideBoundary(plotPt))
                 {
                     doneDrawingPtAndDirection = false;
                     mf.genPath.headingInfieldPoint.easting = plotPt.easting;
@@ -386,18 +380,18 @@ namespace AgOpenGPS
             ////draw the outside boundary
             glh.LineWidth(2);
 
-            int ptCount = mf.boundz.ptList.Count;
+            int ptCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
             if (ptCount > 0)
             {
                 glh.Color(0.98f, 0.2f, 0.90f);
                 glh.Begin(OpenGL.GL_LINE_STRIP);
-                for (int h = 0; h < ptCount; h++) glh.Vertex(mf.boundz.ptList[h].easting, mf.boundz.ptList[h].northing, 0);
+                for (int h = 0; h < ptCount; h++) glh.Vertex(mf.bndArr[mf.bnd.boundarySelected].bndLine[h].easting, mf.bndArr[mf.bnd.boundarySelected].bndLine[h].northing, 0);
 
                 //the "close the loop" line
                 //glh.LineWidth(4);
                 glh.Color(0.0f, 0.990f, 0.0f);
-                glh.Vertex(mf.boundz.ptList[ptCount - 1].easting, mf.boundz.ptList[ptCount - 1].northing, 0);
-                glh.Vertex(mf.boundz.ptList[0].easting, mf.boundz.ptList[0].northing, 0);
+                glh.Vertex(mf.bndArr[mf.bnd.boundarySelected].bndLine[ptCount - 1].easting, mf.bndArr[mf.bnd.boundarySelected].bndLine[ptCount - 1].northing, 0);
+                glh.Vertex(mf.bndArr[mf.bnd.boundarySelected].bndLine[0].easting, mf.bndArr[mf.bnd.boundarySelected].bndLine[0].northing, 0);
                 glh.End();
 
                 glh.Begin(OpenGL.GL_LINE_STRIP);
@@ -408,13 +402,20 @@ namespace AgOpenGPS
             }
 
             ////draw the headland line
-            ptCount = mf.hl.headLineList.Count;
-            if (ptCount > 0)
+            for (int i = 0; i < FormGPS.MAXHEADS; i++)
             {
-                glh.Color(0.009038f, 0.9892f, 0.10f);
-                glh.Begin(OpenGL.GL_POINTS);
-                for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hl.headLineList[h].easting, mf.hl.headLineList[h].northing, 0);
-                glh.End();
+                if (mf.hlArr[i].isSet)
+                {
+                    ptCount = mf.hlArr[i].hlLine.Count;
+                    glh.PointSize(4.0f);
+                    if (ptCount > 0)
+                    {
+                        glh.Color(0.009038f, 0.9892f, 0.10f);
+                        glh.Begin(OpenGL.GL_POINTS);
+                        for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hlArr[i].hlLine[h].easting, mf.hlArr[i].hlLine[h].northing, 0);
+                        glh.End();
+                    }
+                }
             }
 
             ////draw the guide helper line
@@ -431,21 +432,21 @@ namespace AgOpenGPS
             if (isDrawingHeadland)
             {
                 ////draw the headland line so far
-                ptCount = mf.hl.headLineList.Count;
-                if (ptCount > 0)
-                {
-                    glh.Color(0.08f, 0.9892f, 0.2710f);
-                    glh.Begin(OpenGL.GL_LINE_STRIP);
-                    for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hl.headLineList[h].easting, mf.hl.headLineList[h].northing, 0);
-                    glh.End();
+                //ptCount = mf.hl.hlLine.Count;
+                //if (ptCount > 0)
+                //{
+                //    glh.Color(0.08f, 0.9892f, 0.2710f);
+                //    glh.Begin(OpenGL.GL_LINE_STRIP);
+                //    for (int h = 0; h < ptCount; h++) glh.Vertex(mf.hl.hlLine[h].easting, mf.hl.hlLine[h].northing, 0);
+                //    glh.End();
 
-                    glh.Color(0.978f, 0.392f, 0.10f);
-                    //the "close the loop" line
-                    glh.Begin(OpenGL.GL_LINE_STRIP);
-                    glh.Vertex(mf.hl.headLineList[ptCount - 1].easting, mf.hl.headLineList[ptCount - 1].northing, 0);
-                    glh.Vertex(mf.hl.headLineList[0].easting, mf.hl.headLineList[0].northing, 0);
-                    glh.End();
-                }
+                //    glh.Color(0.978f, 0.392f, 0.10f);
+                //    //the "close the loop" line
+                //    glh.Begin(OpenGL.GL_LINE_STRIP);
+                //    glh.Vertex(mf.hl.hlLine[ptCount - 1].easting, mf.hl.hlLine[ptCount - 1].northing, 0);
+                //    glh.Vertex(mf.hl.hlLine[0].easting, mf.hl.hlLine[0].northing, 0);
+                //    glh.End();
+                //}
             }
 
             //draw the ABLine
@@ -521,13 +522,13 @@ namespace AgOpenGPS
                 }
 
                 //min max of the boundary
-                int bndCnt = mf.boundz.ptList.Count;
+                int bndCnt = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
                 if (bndCnt > 0)
                 {
                     for (int i = 0; i < bndCnt; i++)
                     {
-                        double x = mf.boundz.ptList[i].easting;
-                        double y = mf.boundz.ptList[i].northing;
+                        double x = mf.bndArr[mf.bnd.boundarySelected].bndLine[i].easting;
+                        double y = mf.bndArr[mf.bnd.boundarySelected].bndLine[i].northing;
 
                         //also tally the max/min of field x and z
                         if (minFieldX > x) minFieldX = x;
@@ -547,8 +548,8 @@ namespace AgOpenGPS
                     double dist = Math.Abs(minFieldX - maxFieldX);
                     double dist2 = Math.Abs(minFieldY - maxFieldY);
 
-                    if (dist > dist2) maxFieldDistance = (dist);
-                    else maxFieldDistance = (dist2);
+                    if (dist > dist2) maxFieldDistance = dist;
+                    else maxFieldDistance = dist2;
 
                     if (maxFieldDistance < 100) maxFieldDistance = 100;
                     if (maxFieldDistance > 19900) maxFieldDistance = 19900;

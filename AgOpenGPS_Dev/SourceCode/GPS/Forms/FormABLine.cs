@@ -51,6 +51,7 @@ namespace AgOpenGPS
                 mf.ABLine.tramPassEvery = 0;
                 mf.ABLine.passBasedOn = 0;
             }
+
             //make sure at least a blank AB Line file exists
             string dirABLines = mf.ablinesDirectory;
             string directoryName = Path.GetDirectoryName(dirABLines).ToString(CultureInfo.InvariantCulture);

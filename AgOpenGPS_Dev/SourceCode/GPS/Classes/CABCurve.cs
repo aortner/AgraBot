@@ -16,7 +16,7 @@ namespace AgOpenGPS
 
         private int closestRefIndex = 0;
         public double distanceFromCurrentLine;
-        public bool isABSameAsFixHeading = true;
+        public bool isABSameAsVehicleHeading = true;
         public bool isOnRightSideCurrentLine = true;
 
         public double howManyPathsAway;
@@ -271,12 +271,12 @@ namespace AgOpenGPS
                 distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
                 // ** Pure pursuit ** - calc point on ABLine closest to current position
-                double U = (((pivot.easting - curList[A].easting) * (dx))
-                            + ((pivot.northing - curList[A].northing) * (dz)))
+                double U = (((pivot.easting - curList[A].easting) * dx)
+                            + ((pivot.northing - curList[A].northing) * dz))
                             / ((dx * dx) + (dz * dz));
 
-                rEastCu = curList[A].easting + (U * (dx));
-                rNorthCu = curList[A].northing + (U * (dz));
+                rEastCu = curList[A].easting + (U * dx);
+                rNorthCu = curList[A].northing + (U * dz);
 
                 double minx, maxx, miny, maxy;
 
@@ -286,7 +286,7 @@ namespace AgOpenGPS
                 miny = Math.Min(curList[A].easting, curList[B].easting);
                 maxy = Math.Max(curList[A].easting, curList[B].easting);
 
-                isValid = (rNorthCu >= minx && rNorthCu <= maxx) && (rEastCu >= miny && rEastCu <= maxy);
+                isValid = rNorthCu >= minx && rNorthCu <= maxx && (rEastCu >= miny && rEastCu <= maxy);
 
                 if (!isValid)
                 {
@@ -311,7 +311,7 @@ namespace AgOpenGPS
                 if (!isSameWay)
                 {
                     //counting down
-                    isABSameAsFixHeading = false;
+                    isABSameAsVehicleHeading = false;
                     distSoFar = glm.Distance(curList[A], rEastCu, rNorthCu);
                     //Is this segment long enough to contain the full lookahead distance?
                     if (distSoFar > goalPointDistance)
@@ -345,7 +345,7 @@ namespace AgOpenGPS
                 else
                 {
                     //counting up
-                    isABSameAsFixHeading = true;
+                    isABSameAsVehicleHeading = true;
                     distSoFar = glm.Distance(curList[B], rEastCu, rNorthCu);
 
                     //Is this segment long enough to contain the full lookahead distance?
@@ -422,7 +422,7 @@ namespace AgOpenGPS
                 //distance is negative if on left, positive if on right
                 //if you're going the opposite direction left is right and right is left
                 //double temp;
-                if (isABSameAsFixHeading)
+                if (isABSameAsVehicleHeading)
                 {
                     //temp = (abHeading);
                     if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
@@ -508,10 +508,7 @@ namespace AgOpenGPS
             miny = Math.Min(pt1.easting, pt2.easting);
             maxy = Math.Max(pt1.easting, pt2.easting);
 
-            isValid = (r.northing >= minx && r.northing <= maxx) && (r.easting >= miny && r.easting <= maxy);
-
-            //return isValid ? r : new vec2();
-            return isValid;
+            return isValid = r.northing >= minx && r.northing <= maxx && (r.easting >= miny && r.easting <= maxy);
         }
 
         //add extensons
@@ -596,7 +593,7 @@ namespace AgOpenGPS
                         if (ppRadiusCu < 100 && ppRadiusCu > -100 && mf.isPureDisplayOn)
                         {
                             gl.Color(0.95f, 0.30f, 0.950f);
-                            double theta = glm.twoPI / (numSegments);
+                            double theta = glm.twoPI / numSegments;
                             double c = Math.Cos(theta);//precalculate the sine and cosine
                             double s = Math.Sin(theta);
                             double x = ppRadiusCu;//we start at angle = 0

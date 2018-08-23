@@ -820,7 +820,7 @@ namespace AgOpenGPS
                 btnEnableAutoYouTurn.Enabled = false;
                 yt.isYouTurnBtnOn = false;
                 btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-                yt.ResetYouTurnAndSequenceEvents();
+                yt.ResetYouTurn();
 
                 //kill the ABLine
                 ABLine.DeleteAB();
@@ -885,7 +885,7 @@ namespace AgOpenGPS
 
                     //auto YouTurn shutdown
                     yt.isYouTurnBtnOn = false;
-                    yt.ResetYouTurnAndSequenceEvents();
+                    yt.ResetYouTurn();
                     youTurnProgressBar = 0;
 
                     //turn off youturn...
@@ -1315,8 +1315,7 @@ namespace AgOpenGPS
                 //is it turning left already?
                 if (!yt.isYouTurnRight)
                 {
-                    yt.ResetYouTurnAndSequenceEvents();
-                    distanceToStartAutoTurn = -1;
+                    yt.ResetYouTurn();
                     AutoYouTurnButtonsReset();
                     youTurnProgressBar = 0;
                 }
@@ -1330,8 +1329,7 @@ namespace AgOpenGPS
             {
                 if (yt.isYouTurnShapeDisplayed)
                 {
-                    yt.ResetYouTurnAndSequenceEvents();
-                    distanceToStartAutoTurn = -1;
+                    yt.ResetYouTurn();
                     AutoYouTurnButtonsReset();
                 }
                 else
@@ -1350,8 +1348,7 @@ namespace AgOpenGPS
                 //is it turning right already?
                 if (yt.isYouTurnRight)
                 {
-                    yt.ResetYouTurnAndSequenceEvents();
-                    distanceToStartAutoTurn = -1;
+                    yt.ResetYouTurn();
                     youTurnProgressBar = 0;
                     AutoYouTurnButtonsReset();
                 }
@@ -1366,8 +1363,7 @@ namespace AgOpenGPS
             {
                 if (yt.isYouTurnShapeDisplayed)
                 {
-                    yt.ResetYouTurnAndSequenceEvents();
-                    distanceToStartAutoTurn = -1;
+                    yt.ResetYouTurn();
                     AutoYouTurnButtonsReset();
                 }
                 else
@@ -1387,9 +1383,9 @@ namespace AgOpenGPS
                 //yt.isDew2Set = false;
                 //yt.isDew4Set = false;
                 yt.dew4Index = 0;
-                yt.ResetYouTurnAndSequenceEvents();
-                mc.autoSteerData[mc.sdYouTurnByte] = 0;
-                mc.relayRateData[mc.rdYouTurnControlByte] = 0;
+                yt.ResetYouTurn();
+                //mc.autoSteerData[mc.sdX] = 0;
+                mc.machineControlData[mc.cnYouTurn] = 0;
 
                 btnEnableAutoYouTurn.Image = Properties.Resources.Youturn80;
             }
@@ -1402,9 +1398,9 @@ namespace AgOpenGPS
                 //yt.isDew2Set = false;
                 //yt.isDew4Set = false;
                 yt.dew4Index = 0;
-                yt.ResetYouTurnAndSequenceEvents();
-                mc.autoSteerData[mc.sdYouTurnByte] = 0;
-                mc.relayRateData[mc.rdYouTurnControlByte] = 0;
+                yt.ResetYouTurn();
+                //mc.autoSteerData[mc.sdX] = 0;
+                mc.machineControlData[mc.cnYouTurn] = 0;
             }
         }
         public void AutoYouTurnButtonsRightTurn()
@@ -1412,16 +1408,16 @@ namespace AgOpenGPS
             btnRightYouTurn.BackColor = Color.Yellow;
             btnRightYouTurn.Height = 110;
             btnRightYouTurn.Width = 110;
-            btnLeftYouTurn.Height = 72;
-            btnLeftYouTurn.Width = 72;
+            btnLeftYouTurn.Height = 90;
+            btnLeftYouTurn.Width = 96;
             btnLeftYouTurn.Text = "";
             btnLeftYouTurn.BackColor = Color.LightSteelBlue;
         }
         public void AutoYouTurnButtonsLeftTurn()
         {
             btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnRightYouTurn.Height = 72;
-            btnRightYouTurn.Width = 72;
+            btnRightYouTurn.Height = 90;
+            btnRightYouTurn.Width = 96;
             btnRightYouTurn.Text = "";
             btnLeftYouTurn.Height = 110;
             btnLeftYouTurn.Width = 110;
@@ -1431,10 +1427,10 @@ namespace AgOpenGPS
         {
             btnLeftYouTurn.BackColor = Color.LightSteelBlue;
             btnRightYouTurn.BackColor = Color.LightSteelBlue;
-            btnLeftYouTurn.Height = 72;
-            btnLeftYouTurn.Width = 72;
-            btnRightYouTurn.Height = 72;
-            btnRightYouTurn.Width = 72;
+            btnLeftYouTurn.Height = 90;
+            btnLeftYouTurn.Width = 96;
+            btnRightYouTurn.Height = 90;
+            btnRightYouTurn.Width = 96;
             btnLeftYouTurn.Text = "";
             btnRightYouTurn.Text = "";
 
@@ -1460,7 +1456,7 @@ namespace AgOpenGPS
 
             //auto YouTurn disabled
             yt.isYouTurnBtnOn = false;
-            yt.ResetYouTurnAndSequenceEvents();
+            yt.ResetYouTurn();
 
             //turn off youturn...
             btnEnableAutoYouTurn.Enabled = true;
@@ -1477,7 +1473,7 @@ namespace AgOpenGPS
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;
             btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
-            yt.ResetYouTurnAndSequenceEvents();
+            yt.ResetYouTurn();
         }
 
         private void btnFlagsGoogleEarth_Click(object sender, EventArgs e)
@@ -1518,7 +1514,6 @@ namespace AgOpenGPS
                 {
                     FileCreateContour();
                     FileCreateSections();
-                    FileCreateRecPath();
 
                     if (rcd.isRateControlOn)
                         btnDualRate.PerformClick();
@@ -2119,10 +2114,10 @@ namespace AgOpenGPS
         }
         private void toolstripHeadland_Click(object sender, EventArgs e)
         {
-            if (boundz.isSet && (ABLine.isABLineSet | curve.isCurveSet))
+            if (bndArr[0].isSet && (ABLine.isABLineSet | curve.isCurveSet))
             {
                 //field too small
-                if (boundz.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+                if (bndArr[0].bndLine.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
                 using (var form = new FormHeadland(this))
                 {
                     var result = form.ShowDialog();
@@ -2167,8 +2162,10 @@ namespace AgOpenGPS
             //if a GPS is connected disable sim
             if (!sp.IsOpen)
             {
-                if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle / 100.0);
-                else if (genPath.isDrivingGenLine | genPath.isDrivingHome) sim.DoSimTick(guidanceLineSteerAngle / 100.0);
+                if (isAutoSteerBtnOn && (guidanceLineDistanceOff != 32000)) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+                else if (genPath.isDrivingGenLine | genPath.isDrivingHome) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+                else if (recPath.isDrivingRecordedPath) sim.DoSimTick(guidanceLineSteerAngle * 0.01);
+
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }
@@ -2356,14 +2353,14 @@ namespace AgOpenGPS
             }
         }
 
-        public string DistPivotM { get { return ((int)(distPivot)) + " m"; } }
-        public string DistPivotFt { get { return ((int)(glm.m2ft * distPivot)) + " ft"; } }
+        public string DistPivotM { get { return ((int)(distPivot - yt.turnDistance)) + " m"; } }
+        public string DistPivotFt { get { return (((int)(glm.m2ft * (distPivot-yt.turnDistance))) + " ft"); } }
 
         public Texture ParticleTexture { get; set; }
 
         #endregion properties 
 
-        //Timer triggers at 20 msec, 50 hz, and is THE clock of the whole program//
+        //Timer triggers at 50 msec, 20 hz, and is THE clock of the whole program//
         private void tmrWatchdog_tick(object sender, EventArgs e)
         {
             //go see if data ready for draw and position updates
@@ -2372,7 +2369,7 @@ namespace AgOpenGPS
             if (fiveSecondCounter++ > 100) { fiveSecondCounter = 0; }
 
             //every half of a second update all status
-            if (statusUpdateCounter > 6)
+            if (statusUpdateCounter > 3)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -2386,7 +2383,7 @@ namespace AgOpenGPS
                     {
                         lblAltitude.Text = Altitude;
                         ////boundary and headland
-                        lblBoundaryArea.Text = boundz.areaHectare;
+                        lblBoundaryArea.Text = bndArr[0].areaHectare;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(distPivot)) + " m";
                         else lblHeadlandDistanceAway.Text = "***";
                         if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
@@ -2397,7 +2394,7 @@ namespace AgOpenGPS
                     {
                         lblAltitude.Text = AltitudeFeet;
                         ////Boundary
-                        lblBoundaryArea.Text = boundz.areaAcre;
+                        lblBoundaryArea.Text = bndArr[0].areaAcre;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
                         else lblHeadlandDistanceAway.Text = "***";
                         if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotFt;
@@ -2417,7 +2414,7 @@ namespace AgOpenGPS
 
                     txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
-                                            + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.autoSteerData[mc.sdYouTurnByte];
+                                            + ", " + guidanceLineDistanceOff + ", " + guidanceLineSteerAngle + ", " + mc.machineControlData[mc.cnYouTurn];
 
 
                     //up in the menu a few pieces of info
@@ -2470,10 +2467,10 @@ namespace AgOpenGPS
 
                     btnContour.Text = XTE; //cross track error
 
-                    if (yt.isSequenceTriggered) 
+                    if (bndArr[0].isSet) 
                     {
-                        if (btnLeftYouTurn.Height == 110) btnLeftYouTurn.Text = DistPivotM;
-                        if (btnRightYouTurn.Height == 110) btnRightYouTurn.Text = DistPivotM;
+                        if (yt.isYouTurnRight) btnLeftYouTurn.Text = DistPivotM;
+                        else btnRightYouTurn.Text = DistPivotM;
                     }
                 }
                 else  //Imperial Measurements
@@ -2505,20 +2502,21 @@ namespace AgOpenGPS
                         + "," + mc.relayRateData[5] + "," + mc.relayRateData[6] + "," + mc.relayRateData[7] + "," + mc.relayRateData[8] //setpoint hi lo left and right
                     + "," + mc.relayRateData[9];
 
-                    if (yt.isSequenceTriggered)
+                    if (bndArr[0].isSet)
                     {
-                        if (btnLeftYouTurn.Height == 110) btnLeftYouTurn.Text = DistPivotFt;
-                        if (btnRightYouTurn.Height == 110) btnRightYouTurn.Text = DistPivotFt;
+                        if (yt.isYouTurnRight) btnLeftYouTurn.Text = DistPivotFt;
+                        else btnRightYouTurn.Text = DistPivotFt;
                     }
                 }
 
                 //not Metric/Standard units sensitive
-                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime)+ "\r\n" + Convert.ToString(mc.relayRateData[mc.rdYouTurnControlByte], 2).PadLeft(8, '0');
+                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime)+ "\r\n" + Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
                 lblHeading.Text = Heading;
                 lblHeading2.Text = lblHeading.Text;
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
-                lblLidarDistance.Text = (mc.lidarDistance*0.01).ToString();
+                lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
+                tboxRecvUDP.Text = mc.recvUDPSentence;
 
                 //statusbar flash red undefined headland
                 if (distPivot == -3333 && statusStrip1.BackColor == SystemColors.ScrollBar || distPivot != -3333 && statusStrip1.BackColor == Color.Tomato)

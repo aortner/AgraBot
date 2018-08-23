@@ -8,7 +8,7 @@ namespace AgOpenGPS
         public double abHeading;
         public double abFixHeadingDelta;
 
-        public bool isABSameAsFixHeading = true;
+        public bool isABSameAsVehicleHeading = true;
         public bool isOnRightSideCurrentLine = true;
 
         public double refLineSide = 1.0;
@@ -173,7 +173,7 @@ namespace AgOpenGPS
             vec2 point1;
 
             //depending which way you are going, the offset can be either side
-            if (isABSameAsFixHeading)
+            if (isABSameAsVehicleHeading)
             {
                 point1 = new vec2((Math.Cos(-abHeading) * ((widthMinusOverlap * howManyPathsAway * refLineSide) - toolOffset)) + refPoint1.easting,
                 (Math.Sin(-abHeading) * ((widthMinusOverlap * howManyPathsAway * refLineSide) - toolOffset)) + refPoint1.northing);
@@ -216,8 +216,8 @@ namespace AgOpenGPS
             if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
 
             // ** Pure pursuit ** - calc point on ABLine closest to current position
-            double U = (((pivot.easting - currentABLineP1.easting) * (dx))
-                        + ((pivot.northing - currentABLineP1.northing) * (dy)))
+            double U = (((pivot.easting - currentABLineP1.easting) * dx)
+                        + ((pivot.northing - currentABLineP1.northing) * dy))
                         / ((dx * dx) + (dy * dy));
 
             //point on AB line closest to pivot axle point
@@ -230,13 +230,13 @@ namespace AgOpenGPS
 
             if (abFixHeadingDelta >= glm.PIBy2)
             {
-                isABSameAsFixHeading = false;
+                isABSameAsVehicleHeading = false;
                 goalPointAB.easting = rEastAB - (Math.Sin(abHeading) * goalPointDistance);
                 goalPointAB.northing = rNorthAB - (Math.Cos(abHeading) * goalPointDistance);
             }
             else
             {
-                isABSameAsFixHeading = true;
+                isABSameAsVehicleHeading = true;
                 goalPointAB.easting = rEastAB + (Math.Sin(abHeading) * goalPointDistance);
                 goalPointAB.northing = rNorthAB + (Math.Cos(abHeading) * goalPointDistance);
             }
@@ -278,7 +278,7 @@ namespace AgOpenGPS
             }
 
             //distance is negative if on left, positive if on right
-            if (isABSameAsFixHeading)
+            if (isABSameAsVehicleHeading)
             {
                 if (!isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
             }
@@ -369,7 +369,7 @@ namespace AgOpenGPS
                     double cosHeading = Math.Cos(-abHeading);
                     double sinHeading = Math.Sin(-abHeading);
 
-                    if (isABSameAsFixHeading)
+                    if (isABSameAsVehicleHeading)
                     {
                         gl.Vertex((cosHeading * (toolWidth + toolOffset)) + currentABLineP1.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP1.northing, 0);
                         gl.Vertex((cosHeading * (toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (toolWidth + toolOffset)) + currentABLineP2.northing, 0);
@@ -377,8 +377,8 @@ namespace AgOpenGPS
                         gl.Vertex((cosHeading * (-toolWidth + toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth + toolOffset)) + currentABLineP2.northing, 0);
 
                         toolWidth *= 2;
-                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP1.easting, (sinHeading * (toolWidth)) + currentABLineP1.northing, 0);
-                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP2.easting, (sinHeading * (toolWidth)) + currentABLineP2.northing, 0);
+                        gl.Vertex((cosHeading * toolWidth) + currentABLineP1.easting, (sinHeading * toolWidth) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * toolWidth) + currentABLineP2.easting, (sinHeading * toolWidth) + currentABLineP2.northing, 0);
                         gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
                         gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
                     }
@@ -390,8 +390,8 @@ namespace AgOpenGPS
                         gl.Vertex((cosHeading * (-toolWidth - toolOffset)) + currentABLineP2.easting, (sinHeading * (-toolWidth - toolOffset)) + currentABLineP2.northing, 0);
 
                         toolWidth *= 2;
-                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP1.easting, (sinHeading * (toolWidth)) + currentABLineP1.northing, 0);
-                        gl.Vertex((cosHeading * (toolWidth)) + currentABLineP2.easting, (sinHeading * (toolWidth)) + currentABLineP2.northing, 0);
+                        gl.Vertex((cosHeading * toolWidth) + currentABLineP1.easting, (sinHeading * toolWidth) + currentABLineP1.northing, 0);
+                        gl.Vertex((cosHeading * toolWidth) + currentABLineP2.easting, (sinHeading * toolWidth) + currentABLineP2.northing, 0);
                         gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP1.easting, (sinHeading * (-toolWidth)) + currentABLineP1.northing, 0);
                         gl.Vertex((cosHeading * (-toolWidth)) + currentABLineP2.easting, (sinHeading * (-toolWidth)) + currentABLineP2.northing, 0);
                     }

@@ -14,28 +14,145 @@ namespace AgOpenGPS
             InitializeComponent();
         }
 
-        private void FormBoundary_Load(object sender, EventArgs e)
+        private void UpdateChart()
         {
-            btnLeftRight.Image = mf.boundz.isDrawRightSide ? Properties.Resources.BoundaryRight
-                            : Properties.Resources.BoundaryLeft;
-            btnLeftRight.Enabled = false;
-
-            if (mf.boundz.isSet)
+            if (mf.isMetric)
             {
-                btnOuter.Enabled = false;
-                btnLoadBoundaryFromGE.Enabled = false;
-                btnOpenGoogleEarth.Enabled = false;
-                btnSerialOK.Enabled = false;
-                btnDelete.Enabled = true;
+                //outer metric
+                lvLines.Items[0].SubItems[2].Text = "NA";
+                if (mf.bndArr[0].isSet) lvLines.Items[0].SubItems[1].Text = Math.Round(mf.bndArr[0].area * 0.0001, 2) + " Ha";
+                else lvLines.Items[0].SubItems[1].Text = "*";
+
+                //inner metric
+                for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                {
+                    if (mf.bndArr[i].isSet)
+                    {
+                        lvLines.Items[i].SubItems[2].Text = mf.bndArr[i].isDriveThru.ToString();
+                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bndArr[i].area * 0.0001, 2) + " Ha";
+                    }
+                    else
+                    {
+                        lvLines.Items[i].SubItems[2].Text = "-";
+                        lvLines.Items[i].SubItems[1].Text = "*";
+                    }
+                }
             }
             else
             {
-                btnOuter.Enabled = true;
-                btnLoadBoundaryFromGE.Enabled = true;
-                btnOpenGoogleEarth.Enabled = true;
-                btnSerialOK.Enabled = false;
-                btnDelete.Enabled = false;
+                //outer
+                lvLines.Items[0].SubItems[2].Text = "NA";
+                if (mf.bndArr[0].isSet) lvLines.Items[0].SubItems[1].Text = Math.Round(mf.bndArr[0].area * 0.000247105, 2) + " Ac";
+                else lvLines.Items[0].SubItems[1].Text = "*";
+
+                //inner
+                for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+                {
+                    if (mf.bndArr[i].isSet)
+                    {
+                        lvLines.Items[i].SubItems[2].Text = mf.bndArr[i].isDriveThru.ToString();
+                        lvLines.Items[i].SubItems[1].Text = Math.Round(mf.bndArr[i].area * 0.000247105, 2) + " Ac";
+                    }
+                    else
+                    {
+                        lvLines.Items[i].SubItems[2].Text = "-";
+                        lvLines.Items[i].SubItems[1].Text = "*";
+                    }
+                }
             }
+        }
+
+        private void FormBoundary_Load(object sender, EventArgs e)
+        {
+            btnLeftRight.Image = Properties.Resources.BoundaryRight;
+            btnLeftRight.Enabled = false;
+            btnOuter.Enabled = false;
+            btnLoadBoundaryFromGE.Enabled = false;
+            btnOpenGoogleEarth.Enabled = false;
+            btnGo.Enabled = false;
+            btnDelete.Enabled = false;
+            cboxDriveThru.Visible = false;
+            label2.Visible = false;
+
+            //create a 6 row by 3 column ListView
+            ListViewItem itm;
+            const string line = "Outer,False,0.0";
+            string[] words = line.Split(',');
+            itm = new ListViewItem(words);
+            lvLines.Items.Add(itm);
+            for (int i = 1; i < FormGPS.MAXBOUNDARIES; i++)
+            {
+                words[0] = "Inner " + i.ToString();
+                itm = new ListViewItem(words);
+                lvLines.Items.Add(itm);
+            }
+
+            //update the list view with real data
+            UpdateChart();
+        }
+
+        private void cboxSelectBoundary_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.bnd.boundarySelected = cboxSelectBoundary.SelectedIndex;
+
+            if (mf.bnd.boundarySelected == 0)
+            {
+                if (mf.bndArr[0].isSet)
+                {
+                    btnOuter.Enabled = false;
+                    btnLoadBoundaryFromGE.Enabled = false;
+                    btnOpenGoogleEarth.Enabled = false;
+                    btnGo.Enabled = false;
+                    btnDelete.Enabled = true;
+                }
+                else
+                {
+                    btnOuter.Enabled = true;
+                    btnLoadBoundaryFromGE.Enabled = true;
+                    btnOpenGoogleEarth.Enabled = true;
+                    btnGo.Enabled = false;
+                    btnDelete.Enabled = false;
+                    cboxSelectBoundary.Enabled = false;
+                }
+            }
+            //must be an inner selected
+            else if (mf.bndArr[0].isSet)
+            {
+                if (mf.bndArr[mf.bnd.boundarySelected].isSet)
+                {
+                    btnOuter.Enabled = false;
+                    btnLoadBoundaryFromGE.Enabled = false;
+                    btnOpenGoogleEarth.Enabled = false;
+                    btnGo.Enabled = false;
+                    btnDelete.Enabled = true;
+                }
+                else
+                {
+                    cboxSelectBoundary.Enabled = false;
+                    cboxDriveThru.Visible = true;
+                    label2.Visible = true;
+                    btnDelete.Enabled = false;
+                }
+            }
+            else
+            {
+                mf.TimedMessageBox(1000, "No Outer Boundary", "Create Outer Boundary First");
+            }
+
+            UpdateChart();
+        }
+
+        private void cboxDriveThru_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mf.bndArr[mf.bnd.boundarySelected].isDriveThru = cboxDriveThru.SelectedIndex != 0;
+            cboxDriveThru.Visible = false;
+            label2.Visible = false;
+            btnOuter.Enabled = true;
+            btnLoadBoundaryFromGE.Enabled = true;
+            btnOpenGoogleEarth.Enabled = true;
+            btnGo.Enabled = false;
+            btnDelete.Enabled = false;
+            UpdateChart();
         }
 
         private void btnOuter_Click(object sender, EventArgs e)
@@ -44,35 +161,38 @@ namespace AgOpenGPS
             btnLoadBoundaryFromGE.Enabled = false;
             btnOpenGoogleEarth.Enabled = false;
             btnOuter.Enabled = false;
-            btnSerialOK.Enabled = true;
-            mf.boundz.ResetBoundary();
+            btnGo.Enabled = true;
+
+            UpdateChart();
         }
 
         private void btnSerialCancel_Click(object sender, EventArgs e)
         {
-            mf.boundz.isOkToAddPoints = false;
+            mf.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = false;
         }
 
         private void btnLeftRight_Click(object sender, EventArgs e)
         {
-            mf.boundz.isDrawRightSide = !mf.boundz.isDrawRightSide;
+            mf.bndArr[mf.bnd.boundarySelected].isDrawRightSide = !mf.bndArr[mf.bnd.boundarySelected].isDrawRightSide;
 
-            btnLeftRight.Image = mf.boundz.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            btnLeftRight.Image = mf.bndArr[mf.bnd.boundarySelected].isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
         {
             btnLeftRight.Enabled = false;
-            btnOuter.Enabled = true;
-            btnLoadBoundaryFromGE.Enabled = true;
-            btnOpenGoogleEarth.Enabled = true;
-            btnSerialOK.Enabled = false;
+            btnOuter.Enabled = false;
+            btnLoadBoundaryFromGE.Enabled = false;
+            btnOpenGoogleEarth.Enabled = false;
+            btnGo.Enabled = false;
             btnDelete.Enabled = false;
-
-            mf.boundz.ResetBoundary();
-            mf.FileSaveOuterBoundary();
-
-            btnLeftRight.Image = mf.boundz.isDrawRightSide ? Properties.Resources.BoundaryRight : Properties.Resources.BoundaryLeft;
+            cboxSelectBoundary.Enabled = true;
+            {
+                mf.bndArr[mf.bnd.boundarySelected].ResetBoundary();
+                mf.FileSaveBoundary();
+            }
+            btnLeftRight.Image = Properties.Resources.BoundaryRight;
+            UpdateChart();
         }
 
         private double easting, northing, latK, lonK;
@@ -120,64 +240,67 @@ namespace AgOpenGPS
                             if (numberSets.Length > 2)
                             {
                                 //reset boundary
-                                mf.boundz.ResetBoundary();
+                                mf.bndArr[mf.bnd.boundarySelected].ResetBoundary();
                                 foreach (var item in numberSets)
                                 {
                                     string[] fix = item.Split(',');
                                     double.TryParse(fix[0], NumberStyles.Float, CultureInfo.InvariantCulture, out lonK);
                                     double.TryParse(fix[1], NumberStyles.Float, CultureInfo.InvariantCulture, out latK);
                                     DecDeg2UTM(latK, lonK);
-                                    vec3 bndPt = new vec3(easting, northing, 0);
-                                    mf.boundz.ptList.Add(bndPt);
+                                    CBndPt bndPt = new CBndPt(easting, northing, 0);
+                                    mf.bndArr[mf.bnd.boundarySelected].bndLine.Add(bndPt);
                                 }
 
-                                //fix the points if there are gaps bigger then 
+                                //fix the points if there are gaps bigger then
+                                mf.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
+                                mf.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected);
 
-                                //make sure distance isn't too small between points on headland
-                                int headCount = mf.boundz.ptList.Count;
-                                //double spacing = mf.vehicle.toolWidth * 0.25;
-                                double spacing = 3.0;
-                                double distance;
-                                for (int i = 0; i < headCount - 1; i++)
-                                {
-                                    distance = glm.Distance(mf.boundz.ptList[i], mf.boundz.ptList[i + 1]);
-                                    if (distance < spacing)
-                                    {
-                                        mf.boundz.ptList.RemoveAt(i + 1);
-                                        headCount = mf.boundz.ptList.Count;
-                                        i = 0;
-                                    }
-                                }
+                                ////make sure distance isn't too small between points on headland
+                                //int headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
+                                ////double spacing = mf.vehicle.toolWidth * 0.25;
+                                //const double spacing = 3.0;
+                                //double distance;
+                                //for (int i = 0; i < headCount - 1; i++)
+                                //{
+                                //    distance = glm.Distance(mf.bndArr[mf.bnd.boundarySelected].bndLine[i], mf.bndArr[mf.bnd.boundarySelected].bndLine[i + 1]);
+                                //    if (distance < spacing)
+                                //    {
+                                //        mf.bndArr[mf.bnd.boundarySelected].bndLine.RemoveAt(i + 1);
+                                //        headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
+                                //        i = 0;
+                                //    }
+                                //}
 
-                                //make sure distance isn't too big between points on headland
-                                vec3 point;
-                                headCount = mf.boundz.ptList.Count;
-                                for (int i = 0; i < headCount; i++)
-                                {
-                                    int j = i + 1;
-                                    if (j == headCount) j = 0;
-                                    distance = glm.Distance(mf.boundz.ptList[i], mf.boundz.ptList[j]);
-                                    if (distance > (spacing * 1.333))
-                                    {
-                                        point.easting = (mf.boundz.ptList[i].easting + mf.boundz.ptList[j].easting) / 2.0;
-                                        point.northing = (mf.boundz.ptList[i].northing + mf.boundz.ptList[j].northing) / 2.0;
-                                        point.heading = mf.boundz.ptList[i].heading;
+                                ////make sure distance isn't too big between points on headland
+                                //headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
+                                //for (int i = 0; i < headCount; i++)
+                                //{
+                                //    int j = i + 1;
+                                //    if (j == headCount) j = 0;
+                                //    distance = glm.Distance(mf.bndArr[mf.bnd.boundarySelected].bndLine[i], mf.bndArr[mf.bnd.boundarySelected].bndLine[j]);
+                                //    if (distance > (spacing * 1.333))
+                                //    {
+                                //        CBndPt point = new CBndPt((mf.bndArr[mf.bnd.boundarySelected].bndLine[i].easting + mf.bndArr[mf.bnd.boundarySelected].bndLine[j].easting) / 2.0,
+                                //        (mf.bndArr[mf.bnd.boundarySelected].bndLine[i].northing + mf.bndArr[mf.bnd.boundarySelected].bndLine[j].northing) / 2.0,
+                                //         mf.bndArr[mf.bnd.boundarySelected].bndLine[i].heading);
 
-                                        mf.boundz.ptList.Insert(j, point);
-                                        headCount = mf.boundz.ptList.Count;
-                                        i = 0;
-                                    }
-                                }
+                                //        mf.bndArr[mf.bnd.boundarySelected].bndLine.Insert(j, point);
+                                //        headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
+                                //        i = 0;
+                                //    }
+                                //}
 
-
-                                //Google earth doesn't have headings so need to calc them
-                                mf.boundz.CalculateHeadings();
+                                ////Google earth doesn't have headings so need to calc them
+                                //mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryHeadings();
 
                                 //boundary area, pre calcs etc
-                                mf.boundz.CalculateBoundaryArea();
-                                mf.boundz.PreCalcBoundaryLines();
-                                mf.boundz.isSet = true;
-                                mf.FileSaveOuterBoundary();
+                                mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
+                                mf.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
+                                mf.bndArr[mf.bnd.boundarySelected].isSet = true;
+                                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+                                {
+                                    mf.FileSaveBoundary();
+                                }
                                 Close();
                             }
                             else

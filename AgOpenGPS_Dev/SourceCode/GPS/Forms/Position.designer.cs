@@ -67,7 +67,6 @@ namespace AgOpenGPS
         //youturn
         public double distPivot = -2222;
         public double distTool = -2222;
-        double distanceToStartAutoTurn;  
         
         //the value to fill in you turn progress bar
         public int youTurnProgressBar = 0;
@@ -119,7 +118,7 @@ namespace AgOpenGPS
                 if (!isGPSPositionInitialized)  mc.ResetAllModuleCommValues();
             }
 
-            //Update the port connecition counter - is reset every time new sentence is valid and ready
+            //Update the port connection counter - is reset every time new sentence is valid and ready
             recvCounter++;
         }
 
@@ -127,9 +126,7 @@ namespace AgOpenGPS
         public double eastingAfterRoll;
         public double rollUsed;
         double offset = 0;
-        public double headlandDistanceDelta = 0;
-        private double headlandAngleOffPerpendicular;
-    
+        public double headlandDistanceDelta = 0, boundaryDistanceDelta = 0;
 
         private void UpdateFixPosition()
         {
@@ -332,6 +329,9 @@ namespace AgOpenGPS
 
             if (genPath.isDrivingGenLine | genPath.isBtnDriveGenPathOn) genPath.UpdatePosition();
 
+            //if the whole path driving driving process is green
+            if (recPath.isDrivingRecordedPath) recPath.UpdatePosition();
+
             // If Drive button enabled be normal, or just fool the autosteer and fill values
             if (!ast.isInFreeDriveMode)
             {
@@ -340,8 +340,9 @@ namespace AgOpenGPS
                     guidanceLineSteerAngle = (Int16)(guidanceLineSteerAngle + (pn.nRoll * ((double)mc.autoSteerSettings[mc.ssKd]) * 4.166666));
                 }
 
-                //fill up0 the auto steer array with new values
+                //fill up0 the appropriate arrays with new values
                 mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0);
+                mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 mc.autoSteerData[mc.sdDistanceHi] = (byte)(guidanceLineDistanceOff >> 8);
                 mc.autoSteerData[mc.sdDistanceLo] = (byte)guidanceLineDistanceOff;
@@ -357,6 +358,7 @@ namespace AgOpenGPS
             {
                 //fill up the auto steer array with free drive values
                 mc.autoSteerData[mc.sdSpeed] = (byte)(pn.speed * 4.0 + 8);
+                mc.machineControlData[mc.cnSpeed] = mc.autoSteerData[mc.sdSpeed];
 
                 //make steer module think everything is normal
                 mc.autoSteerData[mc.sdDistanceHi] = (byte)(0);
@@ -434,81 +436,262 @@ namespace AgOpenGPS
             #region Youturn
 
             distPivot = -2222;
+
             //do the auto youturn logic if everything is on.
-            if (hl.isSet && yt.isYouTurnBtnOn && isAutoSteerBtnOn)
+            if (bndArr[0].isSet)
             {
-                //figure out where we are
-                //yt.isInBoundz = boundz.IsPointInsideBoundary(toolPos);
-                yt.isInWorkArea = hl.IsPointInsideHeadland(toolPos);
-
-                //Are we in the headland?
-                if (!yt.isInWorkArea) yt.isInHeadland = true;
-                else yt.isInHeadland = false;
-
-                double headAB;
-                if (ABLine.isABLineSet)
+                if (yt.isYouTurnBtnOn && isAutoSteerBtnOn)
                 {
-                    headAB = ABLine.abHeading;
-                    if (!ABLine.isABSameAsFixHeading)
-                        headAB += Math.PI;
+                    double headAB;
+                    if (ABLine.isABLineSet)
+                    {
+                        headAB = ABLine.abHeading;
+                        if (!ABLine.isABSameAsVehicleHeading)
+                            headAB += Math.PI;
+                    }
+                    else
+                    {
+                        headAB = curve.refHeading;
+                        if (!curve.isABSameAsVehicleHeading)
+                            headAB += Math.PI;
+                    }
+
+                    //how far are we from any boundary
+                    bnd.FindClosestBoundaryPoint(pivotAxlePos, headAB);
+
+                    //or did we lose the boundary - we are on the highway cuz we left the outer boundary
+                    if ((int)bnd.closestBoundaryPt.easting != -20000)
+                    {
+                        distPivot = glm.Distance(pivotAxlePos, bnd.closestBoundaryPt);
+
+                        //no closer then 1/2 tool width from boundary - or we crash into the trees.
+                        //distPivot -= (0.5 * vehicle.toolWidth);
+                    }
+                    else distPivot = -3333;
+
+
+
+                    //if the closest is not drive thru
+                    if (!bndArr[bnd.closestBoundaryNum].isDriveThru)
+                    {
+                        //delta between pivot heading and boundary closest point heading
+                        yt.boundaryAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(bnd.closestBoundaryPt.heading - pivotAxlePos.heading) - Math.PI);
+                        yt.boundaryAngleOffPerpendicular -= glm.PIBy2;
+
+                        //for calculating innner circles of turn
+                        yt.tangencyAngle = (glm.PIBy2 - Math.Abs(yt.boundaryAngleOffPerpendicular)) * 0.5;
+
+                        //baseline away from boundary to start calculations
+                        double toolTurnWidth = vehicle.toolWidth * yt.skips;
+                        yt.turnDistance = ((vehicle.toolWidth * 0.5) / Math.Cos(yt.boundaryAngleOffPerpendicular)*1.5);
+                        
+                        //distance from boundary for trigger added in youturn form.
+                        yt.turnDistance += (yt.triggerDistanceOffset / Math.Cos(yt.boundaryAngleOffPerpendicular));
+                        yt.ping = yt.turnDistance;
+
+
+                        if (vehicle.minTurningRadius * 2.0 < toolTurnWidth)
+                        {
+                            if (yt.boundaryAngleOffPerpendicular < 0)
+                            {
+                                //which is actually left
+                                if (yt.isYouTurnRight)
+                                {
+                                    yt.turnDistance += (vehicle.minTurningRadius * Math.Tan(yt.tangencyAngle));//short
+                                }
+                                else
+                                {
+                                    yt.turnDistance += (vehicle.minTurningRadius / Math.Tan(yt.tangencyAngle)); //long
+                                }
+                            }
+                            else
+                            {
+                                //which is actually left
+                                if (yt.isYouTurnRight)
+                                {
+                                    yt.turnDistance += (vehicle.minTurningRadius / Math.Tan(yt.tangencyAngle)); //long
+                                }
+                                else
+                                {
+                                    yt.turnDistance += (vehicle.minTurningRadius * Math.Tan(yt.tangencyAngle)); //short
+                                }
+                            }
+                        }
+
+                        //turn Radius is wider then equipment width so ohmega turn - fucking pain
+                        else
+                        {
+                            //determine depth of the ohmega shape
+                            double cosAngleOffPerp = Math.Cos(yt.boundaryAngleOffPerpendicular);
+
+                            if (yt.boundaryAngleOffPerpendicular < 0)
+                            {
+                                //which is actually left
+                                if (yt.isYouTurnRight)
+                                {
+                                    //add the distance from AB Line to outer loop of ohmega
+                                    double eqFactor = (vehicle.minTurningRadius / (toolTurnWidth * 0.5) * 1.25);
+                                    if (eqFactor > 2.5) eqFactor = 2.5;
+                                    if (eqFactor < 1.5) eqFactor = 1.5;
+                                    eqFactor *= vehicle.minTurningRadius;
+                                    yt.turnDistance += eqFactor + ((2*vehicle.minTurningRadius - toolTurnWidth) * (1 - cosAngleOffPerp));//obtuse
+                                }
+                                else
+                                {
+                                    double eqFactor = (vehicle.minTurningRadius / (toolTurnWidth * 0.5) * 1.5);
+                                    if (eqFactor > 2.5) eqFactor = 2.5;
+                                    if (eqFactor < 1.75) eqFactor = 1.75;
+                                    eqFactor *= vehicle.minTurningRadius;
+                                    yt.turnDistance += (eqFactor / cosAngleOffPerp); //acute
+                                }
+                            }
+                            else
+                            {
+                                //which is actually left
+                                if (yt.isYouTurnRight)
+                                {
+                                    double eqFactor = (vehicle.minTurningRadius / (toolTurnWidth * 0.5) * 1.5);
+                                    if (eqFactor > 2.5) eqFactor = 2.5;
+                                    if (eqFactor < 1.75) eqFactor = 1.75;
+                                    eqFactor *= vehicle.minTurningRadius;
+                                    yt.turnDistance += (eqFactor / cosAngleOffPerp); //acute
+                                }
+                                else
+                                {
+                                    double eqFactor = (vehicle.minTurningRadius / (toolTurnWidth * 0.5) * 1.25);
+                                    if (eqFactor > 2.5) eqFactor = 2.5;
+                                    if (eqFactor < 1.5) eqFactor = 1.5;
+                                    eqFactor *= vehicle.minTurningRadius;
+                                    yt.turnDistance += (eqFactor ) + ((2 * vehicle.minTurningRadius - toolTurnWidth) * (1 - cosAngleOffPerp));//obtuse
+                                }
+                            }
+                        }
+
+                        //ping is used for distance on turn button
+                        yt.ping = yt.turnDistance - yt.ping;
+
+                        //trigger the if close enough to headland 
+                        if ((distPivot <= yt.turnDistance) && (distPivot >= yt.turnDistance - 2.0) && !yt.isYouTurnTriggered)
+                            yt.YouTurnTrigger();
+                    }
                 }
                 else
                 {
-                    headAB = curve.refHeading;
-                    if (!curve.isABSameAsFixHeading)
-                        headAB += Math.PI;
-                }
+                    //how far are we from any boundary
+                    bnd.FindClosestBoundaryPoint(pivotAxlePos, pivotAxlePos.heading);
 
-                hl.FindClosestHeadlandPoint(pivotAxlePos, headAB);
-                if ((int)hl.closestHeadlandPt.easting != -20000)
-                {
-                    distPivot = glm.Distance(pivotAxlePos, hl.closestHeadlandPt);
-                }
-                else distPivot = -3333;
+                    //or did we lose the boundary - we are on the highway cuz we left the outer boundary
+                    if ((int)bnd.closestBoundaryPt.easting != -20000)
+                    {
+                        distPivot = glm.Distance(pivotAxlePos, bnd.closestBoundaryPt);
 
-                //trigger the "its ready to generate a youturn when 35.11m away" but don't make it just yet
-                if (distPivot < yt.triggerDistance && distPivot > (yt.triggerDistance - 2.0) && !yt.isYouTurnTriggered && yt.isInWorkArea)
-                {
-                    //begin the whole process, all conditions are met
-                    yt.YouTurnTrigger();
-                    headlandAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(pivotAxlePos.heading - hl.closestHeadlandPt.heading) - Math.PI);
-                    headlandDistanceDelta = Math.Abs(Math.Cos(headlandAngleOffPerpendicular) * vehicle.toolWidth*1.5);
-                }
+                        //no closer then 1/2 tool width from boundary
+                        distPivot -= (0.5 * vehicle.toolWidth);
+                    }
 
-                //Do the sequencing of functions around the turn.
-                if (yt.isSequenceTriggered) yt.DoSequenceEvent();
-                distanceToStartAutoTurn = -1;
+                    else distPivot = -3333;
+
+                }
 
                 //start counting down - this is not run if shape is drawn
                 if (yt.isYouTurnTriggerPointSet && yt.isYouTurnBtnOn)
                 {
-                    //if we are too much off track - 5 degrees 500 mm, pointing wrong way, kill the turn
-                    if ((Math.Abs(guidanceLineSteerAngle) > 500) && (Math.Abs(guidanceLineDistanceOff) > 500))
+                    //if we are too much off track - 10 degrees 1500 mm, pointing wrong way, kill the turn
+                    if ((Math.Abs(guidanceLineSteerAngle) > 1000) && (Math.Abs(guidanceLineDistanceOff) > 1500))
                     {
-                        yt.ResetYouTurnAndSequenceEvents();
+                        yt.ResetYouTurn();
                     }
                     else
                     {
                         //how far have we gone since youturn request was triggered
-                        distanceToStartAutoTurn = glm.Distance(pivotAxlePos, yt.youTurnTriggerPoint);
-                        if (distanceToStartAutoTurn > (yt.triggerDistance + yt.youTurnStartOffset+headlandDistanceDelta))
+                        //distanceToStartAutoTurn = glm.Distance(toolPos, yt.youTurnTriggerPoint);
+                        //if (distanceToStartAutoTurn > (yt.triggerDistance + yt.youTurnStartOffset + headlandDistanceDelta))
                         {
                             //keep from running this again since youturn is plotted now
                             yt.isYouTurnTriggerPointSet = false;
                             yt.isLastYouTurnRight = yt.isYouTurnRight;
                             yt.BuildYouTurnListToRight(yt.isYouTurnRight);
+                            //yt.isYouTurnTriggered = false;
                         }
                     }
                 }
             }
 
-            else //make sure youturn and sequence is off - we are not in normal turn here
-            {
-                if(yt.isYouTurnTriggered | yt.isSequenceTriggered)
-                {
-                    yt.ResetYouTurnAndSequenceEvents();
-                }
-            }
+            ////its a drive thru inner boundary
+            //else
+            //{
+
+            //    if (distPivot < yt.triggerDistance && distPivot > (yt.triggerDistance - 2.0) && !yt.isEnteringDriveThru && !yt.isInboundary && isBndInWay)
+            //    {
+            //        //our direction heading into turn
+            //        //yt.youTurnTriggerPoint = pivotAxlePos;
+            //        yt.isEnteringDriveThru = true;
+            //        headlandAngleOffPerpendicular = Math.PI - Math.Abs(Math.Abs(hl.closestHeadlandPt.heading - pivotAxlePos.heading) - Math.PI);
+            //        if (headlandAngleOffPerpendicular < 0) headlandAngleOffPerpendicular += glm.twoPI;
+            //        //while (headlandAngleOffPerpendicular > 1.57) headlandAngleOffPerpendicular -= 1.57;
+            //        headlandAngleOffPerpendicular -= glm.PIBy2;
+            //        headlandDistanceDelta = Math.Tan(Math.Abs(headlandAngleOffPerpendicular));
+            //        headlandDistanceDelta *= vehicle.toolWidth;
+            //    }
+
+            //    if (yt.isEnteringDriveThru)
+            //    {
+            //        int c = 0;
+            //        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            //        {
+            //            //checked for any not triggered yet (false) - if there is, not done yet
+            //            if (!seq.seqEnter[i].isTrig) c++;
+            //        }
+
+            //        if (c == 0)
+            //        {
+            //            //sequences all done so reset everything
+            //            //yt.isSequenceTriggered = false;
+            //            yt.whereAmI = 0;
+            //            yt.ResetSequenceEventTriggers();
+            //            distTool = -2222;
+            //            yt.isEnteringDriveThru = false;
+            //            yt.isExitingDriveThru = true;
+            //            //yt.youTurnTriggerPoint = pivotAxlePos;
+            //        }
+            //    }
+
+            //    if (yt.isExitingDriveThru)
+            //    {
+            //        int c = 0;
+            //        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
+            //        {
+            //            //checked for any not triggered yet (false) - if there is, not done yet
+            //            if (!seq.seqExit[i].isTrig) c++;
+            //        }
+
+            //        if (c == 0)
+            //        {
+            //            //sequences all done so reset everything
+            //            //yt.isSequenceTriggered = false;
+            //            yt.whereAmI = 0;
+            //            yt.ResetSequenceEventTriggers();
+            //            distTool = -2222;
+            //            yt.isEnteringDriveThru = false;
+            //            yt.isExitingDriveThru = false;
+            //            yt.youTurnTriggerPoint = pivotAxlePos;
+            //        }
+            //    }
+            //}
+
+            //Do the sequencing of functions around the turn.
+            //if (yt.isSequenceTriggered) yt.DoSequenceEvent();
+
+            //do sequencing for drive thru boundaries
+            //if (yt.isEnteringDriveThru || yt.isExitingDriveThru) yt.DoDriveThruSequenceEvent();
+
+            //else //make sure youturn and sequence is off - we are not in normal turn here
+            //{
+            //    if (yt.isYouTurnTriggered | yt.isSequenceTriggered)
+            //    {
+            //        yt.ResetYouTurn();
+            //    }
+            //}
 
             #endregion
 
@@ -709,7 +892,7 @@ namespace AgOpenGPS
             cosSectionHeading = Math.Cos(-toolPos.heading);
         }
 
-        //perimter and boundary point generation
+        //perimeter and boundary point generation
         private void AddBoundaryAndPerimiterPoint()
         {
             //save the north & east as previous
@@ -717,26 +900,30 @@ namespace AgOpenGPS
             prevBoundaryPos.northing = pn.fix.northing;
 
             //build the boundary line
-            if (boundz.isOkToAddPoints)
+            
+                bool isInner = false;
+                for (int i = 0; i < MAXBOUNDARIES; i++) isInner |= bndArr[i].isOkToAddPoints;
+
+            if (isInner)
             {
-                if (boundz.isDrawRightSide)
+                if (bndArr[bnd.boundarySelected].isDrawRightSide)
                 {
                     //Right side
-                    vec3 point = new vec3(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
+                    CBndPt point = new CBndPt(cosSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.easting,
                         sinSectionHeading * (section[vehicle.numOfSections - 1].positionRight) + toolPos.northing, toolPos.heading);
-                    boundz.ptList.Add(point);
+                    bndArr[bnd.boundarySelected].bndLine.Add(point);
                 }
 
-                    //draw on left side
+                //draw on left side
                 else
                 {
                     //Right side
-                    vec3 point = new vec3(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
+                    CBndPt point = new CBndPt(cosSectionHeading * (section[0].positionLeft) + toolPos.easting,
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing, toolPos.heading);
-                    boundz.ptList.Add(point);
+                    bndArr[bnd.boundarySelected].bndLine.Add(point);
                 }
-
             }
+            
 
             //build the polygon to calculate area
             if (periArea.isBtnPerimeterOn)
@@ -757,7 +944,6 @@ namespace AgOpenGPS
                         sinSectionHeading * (section[0].positionLeft) + toolPos.northing);
                     periArea.periPtList.Add(point);
                 }
-
             }
         }
 
@@ -893,17 +1079,28 @@ namespace AgOpenGPS
             section[vehicle.numOfSections].isInsideBoundary = true;
 
             //determine if section is in boundary using the section left/right positions
+            bool isLeftIn = true, isRightIn = true;
             for (int j = 0; j < vehicle.numOfSections; j++)
             {
-                if (boundz.isSet)
+                if (bndArr[0].isSet)
                 {
-                    bool isLeftIn = true, isRightIn = true;
                     if (j == 0)
                     {
                         //only one first left point, the rest are all rights moved over to left
-                        isLeftIn = boundz.IsPointInsideBoundary(section[j].leftPoint);
-                        isRightIn = boundz.IsPointInsideBoundary(section[j].rightPoint);
+                        isLeftIn = bndArr[0].IsPointInsideBoundary(section[j].leftPoint);
+                        isRightIn = bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
 
+                        for (int i = 1; i < MAXBOUNDARIES; i++)
+                        {
+                            //inner boundaries should normally NOT have point inside
+                            if (bndArr[i].isSet)
+                            {
+                                isLeftIn &= !bndArr[i].IsPointInsideBoundary(section[j].leftPoint);
+                                isRightIn &= !bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                            }
+                        }
+
+                        //merge the two sides into in or out
                         if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
                         else section[j].isInsideBoundary = false;
                     }
@@ -912,11 +1109,16 @@ namespace AgOpenGPS
                     {
                         //grab the right of previous section, its the left of this section
                         isLeftIn = isRightIn;
-                        isRightIn = boundz.IsPointInsideBoundary(section[j].rightPoint);
+                        isRightIn = bndArr[0].IsPointInsideBoundary(section[j].rightPoint);
+                        for (int i = 1; i < MAXBOUNDARIES; i++)
+                        {
+                            //inner boundaries should normally NOT have point inside
+                            if (bndArr[i].isSet) isRightIn &= !bndArr[i].IsPointInsideBoundary(section[j].rightPoint);
+                        }
+
                         if (isLeftIn && isRightIn) section[j].isInsideBoundary = true;
                         else section[j].isInsideBoundary = false;
                     }
-
                     section[vehicle.numOfSections].isInsideBoundary &= section[j].isInsideBoundary;
                 }
 

@@ -25,7 +25,6 @@ namespace AgOpenGPS
     {
         //copy of the mainform address
         private readonly FormGPS mf;
-
         private readonly OpenGL gl;
 
         //original start position
@@ -35,14 +34,14 @@ namespace AgOpenGPS
         public vec3 startInfieldPoint = new vec3(9999, 9999, 0);
 
         public vec3 headingInfieldPoint = new vec3(9999, 9999, 0);
-        public bool isStartInfieldPointSet, isPathToInfieldMade, isStayInBounds = false;
+        public bool isStartInfieldPointSet, isPathToInfieldMade;
 
         private vec3 startHeadlandPoint = new vec3(9999, 9999, 0);
         private vec3 endHeadlandPoint = new vec3(9999, 9999, 0);
 
         public int numHeadlandPasses;
 
-        private double insideOutside, distance;
+        private double distance;
         private vec3 point;
 
         public double distanceFromRefLine, distanceFromCurrentLine, refLineSide = 1.0;
@@ -87,13 +86,6 @@ namespace AgOpenGPS
             numHeadlandPasses = 2;
         }
 
-        //mf.hl.startPoint.easting = 0;
-        //mf.hl.startPoint.northing = 0;
-        //mf.hl.startPoint.heading = 0;
-        //mf.hl.headingPoint.easting = 0;
-        //mf.hl.headingPoint.northing = 0;
-        //mf.hl.headingPoint.heading = 0;
-
         public bool StartDrivingRecordedPath()
         {
             genListCount = genList.Count;
@@ -115,11 +107,11 @@ namespace AgOpenGPS
             homePoint = mf.pivotAxlePos;
             endHeadlandPoint = homePoint;
 
-            //first find out which side is inside the boundary
-            insideOutside = glm.PIBy2;
-            point.easting = mf.boundz.ptList[3].easting - (Math.Sin(insideOutside + mf.boundz.ptList[3].heading) * 2.0);
-            point.northing = mf.boundz.ptList[3].northing - (Math.Cos(insideOutside + mf.boundz.ptList[3].heading) * 2.0);
-            if (!mf.boundz.IsPointInsideBoundary(point)) insideOutside *= -1.0;
+            ////first find out which side is inside the boundary
+            //insideOutside = glm.PIBy2;
+            //point.easting = mf.bnd.ptList[3].easting - (Math.Sin(insideOutside + mf.bnd.ptList[3].heading) * 2.0);
+            //point.northing = mf.bnd.ptList[3].northing - (Math.Cos(insideOutside + mf.bnd.ptList[3].heading) * 2.0);
+            //if (!mf.bnd.IsPointInsideBoundary(point)) insideOutside *= -1.0;
 
             //clear the main list
             guideList.Clear();
@@ -141,10 +133,10 @@ namespace AgOpenGPS
         public void GenerateHeadlandPath()
         {
             //first find out which side is inside the boundary
-            insideOutside = glm.PIBy2;
-            point.easting = mf.boundz.ptList[3].easting - (Math.Sin(insideOutside + mf.boundz.ptList[3].heading) * 2.0);
-            point.northing = mf.boundz.ptList[3].northing - (Math.Cos(insideOutside + mf.boundz.ptList[3].heading) * 2.0);
-            if (!mf.boundz.IsPointInsideBoundary(point)) insideOutside *= -1.0;
+            //insideOutside = glm.PIBy2;
+            //point.easting = mf.bnd.ptList[3].easting - (Math.Sin(insideOutside + mf.bnd.ptList[3].heading) * 2.0);
+            //point.northing = mf.bnd.ptList[3].northing - (Math.Cos(insideOutside + mf.bnd.ptList[3].heading) * 2.0);
+            //if (!mf.bnd.IsPointInsideBoundary(point)) insideOutside *= -1.0;
 
             //keep copy of original position/heading
             homePoint = mf.pivotAxlePos;
@@ -162,18 +154,10 @@ namespace AgOpenGPS
                 CDubins dubPath = new CDubins();
                 CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.2;
 
-                //get the dubins path vec3 point coordinates of turn
-                dubList.Clear();
-                if (passNumber == 1)
-                {
-                    if (isStayInBounds) dubList = dubPath.GenerateDubins(mf.pivotAxlePos, startHeadlandPoint, mf.boundz);
-                    else dubList = dubPath.GenerateDubins(mf.pivotAxlePos, startHeadlandPoint);
-                }
-                else
-                {
-                    if (isStayInBounds) dubList = dubPath.GenerateDubins(endHeadlandPoint, startHeadlandPoint, mf.boundz);
-                    else dubList = dubPath.GenerateDubins(endHeadlandPoint, startHeadlandPoint);
-                }
+                ////get the dubins path vec3 point coordinates of turn
+                //dubList.Clear();
+                //if (passNumber == 1) dubList = dubPath.GenerateDubins(mf.pivotAxlePos, startHeadlandPoint, mf.bnd);
+                //else dubList = dubPath.GenerateDubins(endHeadlandPoint, startHeadlandPoint, mf.bnd);
 
                 //transfer point list to genList class
                 for (int i = 0; i < dubList.Count; i++)
@@ -208,10 +192,9 @@ namespace AgOpenGPS
             CDubins dubPathToStart = new CDubins();
             CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.2;
 
-            //get the dubins path vec3 point coordinates of turn
-            dubList.Clear();
-            if (isStayInBounds) dubList = dubPathToStart.GenerateDubins(endHeadlandPoint, startInfieldPoint, mf.boundz);
-            else dubList = dubPathToStart.GenerateDubins(endHeadlandPoint, startInfieldPoint);
+            ////get the dubins path vec3 point coordinates of turn
+            //dubList.Clear();
+            //dubList = dubPathToStart.GenerateDubins(endHeadlandPoint, startInfieldPoint, mf.bnd);
 
             //transfer point list to genList class
             for (int i = 0; i < dubList.Count; i++)
@@ -237,12 +220,11 @@ namespace AgOpenGPS
 
             //go to the startpoint
             CDubins dubPathToStart = new CDubins();
-            CDubins.turningRadius = mf.vehicle.minTurningRadius * 1.2;
+            CDubins.turningRadius = mf.vehicle.minTurningRadius * 2.0;
 
-            //get the dubins path vec3 point coordinates of turn
-            dubList.Clear();
-            if (isStayInBounds) dubList = dubPathToStart.GenerateDubins(mf.pivotAxlePos, homePoint, mf.boundz);
-            else dubList = dubPathToStart.GenerateDubins(mf.pivotAxlePos, homePoint);
+            ////get the dubins path vec3 point coordinates of turn
+            //dubList.Clear();
+            //dubList = dubPathToStart.GenerateDubins(mf.pivotAxlePos, homePoint, mf.bnd);
 
             //transfer point list to genList class
             for (int i = 0; i < dubList.Count; i++)
@@ -351,37 +333,37 @@ namespace AgOpenGPS
             //determine how wide a headland space
             //totalHeadWidth = (mf.vehicle.toolWidth - mf.vehicle.toolOverlap) * (passNum - 0.45);
 
-            //count the points from the boundary
-            int boundaryPtCount = mf.boundz.ptList.Count;
+            ////count the points from the boundary
+            //int boundaryPtCount = mf.bnd.ptList.Count;
 
-            for (int i = 0; i < boundaryPtCount; i++)
-            {
-                //calculate the point inside the boundary
-                point.easting = mf.boundz.ptList[i].easting - (System.Math.Sin(insideOutside + mf.boundz.ptList[i].heading) * totalHeadWidth);
-                point.northing = mf.boundz.ptList[i].northing - (Math.Cos(insideOutside + mf.boundz.ptList[i].heading) * totalHeadWidth);
-                point.heading = mf.boundz.ptList[i].heading;
+            //for (int i = 0; i < boundaryPtCount; i++)
+            //{
+            //    //calculate the point inside the boundary
+            //    point.easting = mf.bnd.ptList[i].easting - (System.Math.Sin(insideOutside + mf.bnd.ptList[i].heading) * totalHeadWidth);
+            //    point.northing = mf.bnd.ptList[i].northing - (Math.Cos(insideOutside + mf.bnd.ptList[i].heading) * totalHeadWidth);
+            //    point.heading = mf.bnd.ptList[i].heading;
 
-                //only add if inside actual field boundary
-                if (mf.boundz.IsPointInsideBoundary(point)) accList.Add(point);
-            }
+            //    //only add if inside actual field boundary
+            //    if (mf.bnd.IsPointInsideBoundary(point)) accList.Add(point);
+            //}
 
             int headCount = accList.Count;
 
-            //remove the points too close to boundary
-            for (int i = 0; i < boundaryPtCount; i++)
-            {
-                for (int j = 0; j < headCount; j++)
-                {
-                    //make sure distance between headland and boundary is not less then width
-                    distance = glm.Distance(mf.boundz.ptList[i], accList[j]);
-                    if (distance < (totalHeadWidth * 0.98))
-                    {
-                        accList.RemoveAt(j);
-                        headCount = accList.Count;
-                        j = 0;
-                    }
-                }
-            }
+            ////remove the points too close to boundary
+            //for (int i = 0; i < boundaryPtCount; i++)
+            //{
+            //    for (int j = 0; j < headCount; j++)
+            //    {
+            //        //make sure distance between headland and boundary is not less then width
+            //        distance = glm.Distance(mf.bnd.ptList[i], accList[j]);
+            //        if (distance < (totalHeadWidth * 0.98))
+            //        {
+            //            accList.RemoveAt(j);
+            //            headCount = accList.Count;
+            //            j = 0;
+            //        }
+            //    }
+            //}
 
             //make sure distance isn't too small between points on headland
 

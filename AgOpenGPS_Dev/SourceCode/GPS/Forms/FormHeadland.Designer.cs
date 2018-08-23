@@ -75,7 +75,7 @@
             0,
             0,
             65536});
-            this.nudWidths.Location = new System.Drawing.Point(810, 324);
+            this.nudWidths.Location = new System.Drawing.Point(806, 324);
             this.nudWidths.Maximum = new decimal(new int[] {
             10,
             0,
@@ -101,7 +101,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(806, 298);
+            this.label1.Location = new System.Drawing.Point(802, 298);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 23);
             this.label1.TabIndex = 72;
@@ -112,7 +112,7 @@
             this.lblArea.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblArea.AutoSize = true;
             this.lblArea.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblArea.Location = new System.Drawing.Point(808, 680);
+            this.lblArea.Location = new System.Drawing.Point(804, 680);
             this.lblArea.Name = "lblArea";
             this.lblArea.Size = new System.Drawing.Size(117, 29);
             this.lblArea.TabIndex = 74;
@@ -122,7 +122,7 @@
             // 
             this.lblX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblX.AutoSize = true;
-            this.lblX.Location = new System.Drawing.Point(812, 552);
+            this.lblX.Location = new System.Drawing.Point(808, 552);
             this.lblX.Name = "lblX";
             this.lblX.Size = new System.Drawing.Size(21, 23);
             this.lblX.TabIndex = 75;
@@ -132,7 +132,7 @@
             // 
             this.lblY.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblY.AutoSize = true;
-            this.lblY.Location = new System.Drawing.Point(875, 552);
+            this.lblY.Location = new System.Drawing.Point(871, 552);
             this.lblY.Name = "lblY";
             this.lblY.Size = new System.Drawing.Size(21, 23);
             this.lblY.TabIndex = 76;
@@ -143,7 +143,7 @@
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(809, 435);
+            this.label3.Location = new System.Drawing.Point(805, 435);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(98, 23);
             this.label3.TabIndex = 81;
@@ -158,9 +158,9 @@
             0,
             0,
             0});
-            this.nudHeadlandIncludeAngle.Location = new System.Drawing.Point(809, 461);
+            this.nudHeadlandIncludeAngle.Location = new System.Drawing.Point(805, 461);
             this.nudHeadlandIncludeAngle.Minimum = new decimal(new int[] {
-            50,
+            20,
             0,
             0,
             0});
@@ -182,7 +182,7 @@
             this.btnDeleteLastPoint.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDeleteLastPoint.Image = global::AgOpenGPS.Properties.Resources.PointDelete;
             this.btnDeleteLastPoint.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDeleteLastPoint.Location = new System.Drawing.Point(809, 95);
+            this.btnDeleteLastPoint.Location = new System.Drawing.Point(805, 95);
             this.btnDeleteLastPoint.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDeleteLastPoint.Name = "btnDeleteLastPoint";
             this.btnDeleteLastPoint.Size = new System.Drawing.Size(128, 88);
@@ -198,7 +198,7 @@
             this.btnDone.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDone.Image = global::AgOpenGPS.Properties.Resources.PointDone;
             this.btnDone.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnDone.Location = new System.Drawing.Point(809, 189);
+            this.btnDone.Location = new System.Drawing.Point(805, 189);
             this.btnDone.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnDone.Name = "btnDone";
             this.btnDone.Size = new System.Drawing.Size(128, 88);
@@ -215,7 +215,7 @@
             this.btnStart.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStart.Image = global::AgOpenGPS.Properties.Resources.PointStart;
             this.btnStart.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnStart.Location = new System.Drawing.Point(809, 2);
+            this.btnStart.Location = new System.Drawing.Point(805, 2);
             this.btnStart.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnStart.Name = "btnStart";
             this.btnStart.Size = new System.Drawing.Size(128, 88);
@@ -230,7 +230,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(810, 587);
+            this.btnCancel.Location = new System.Drawing.Point(806, 587);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 88);
@@ -248,7 +248,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOK.Location = new System.Drawing.Point(810, 715);
+            this.btnOK.Location = new System.Drawing.Point(806, 715);
             this.btnOK.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(128, 88);
@@ -261,7 +261,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.ClientSize = new System.Drawing.Size(940, 806);
+            this.ClientSize = new System.Drawing.Size(936, 806);
             this.ControlBox = false;
             this.Controls.Add(this.nudHeadlandIncludeAngle);
             this.Controls.Add(this.label3);

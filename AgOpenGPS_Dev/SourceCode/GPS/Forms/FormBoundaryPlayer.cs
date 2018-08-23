@@ -17,39 +17,42 @@ namespace AgOpenGPS
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-           mf.boundz.isOkToAddPoints = false;
-
-            if (mf.boundz.ptList.Count > 5)
+            if (mf.bndArr[mf.bnd.boundarySelected].bndLine.Count > 5)
             {
-                mf.boundz.PreCalcBoundaryLines();
-                mf.boundz.isSet = true;
-                mf.FileSaveOuterBoundary();
+                mf.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
+                mf.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected);
+                mf.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
+                mf.bndArr[mf.bnd.boundarySelected].isSet = true;
             }
             else
             {
-                mf.boundz.calcList.Clear();
-                mf.boundz.ptList.Clear();
-                mf.boundz.area = 0;
-                mf.boundz.isSet = false;
-                mf.FileSaveOuterBoundary();
+                mf.bndArr[mf.bnd.boundarySelected].calcList.Clear();
+                mf.bndArr[mf.bnd.boundarySelected].bndLine.Clear();
+                mf.bndArr[mf.bnd.boundarySelected].area = 0;
+                mf.bndArr[mf.bnd.boundarySelected].isSet = false;
             }
+
+            mf.FileSaveBoundary();
+
+            //stop it all for adding
+            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bndArr[i].isOkToAddPoints = false;
+
             //close window
             Close();
+        }
 
-    }
-
-        //ctually the record button
+        //actually the record button
         private void btnPausePlay_Click(object sender, EventArgs e)
         {
-            if (mf.boundz.isOkToAddPoints)
+         if (mf.bndArr[mf.bnd.boundarySelected].isOkToAddPoints)
             {
-                mf.boundz.isOkToAddPoints = false;
+                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bndArr[i].isOkToAddPoints = false;
                 btnPausePlay.Image = Properties.Resources.BoundaryRecord;
                 btnPausePlay.Text = "Record";
             }
             else
             {
-                mf.boundz.isOkToAddPoints = true;
+                mf.bndArr[mf.bnd.boundarySelected].isOkToAddPoints = true;
                 btnPausePlay.Image = Properties.Resources.boundaryPause;
                 btnPausePlay.Text = "Pause";
             }
@@ -57,21 +60,23 @@ namespace AgOpenGPS
 
         private void FormBoundaryPlayer_Load(object sender, EventArgs e)
         {
-            mf.boundz.isOkToAddPoints = false;
+            for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++) mf.bndArr[i].isOkToAddPoints = false;
             btnPausePlay.Image = Properties.Resources.BoundaryRecord;
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            mf.boundz.CalculateBoundaryArea();
+            {
+                mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
 
-            if (mf.isMetric)
-            {
-                lblArea.Text = Math.Round(mf.boundz.area * 0.0001, 2) + " Ha";
-            }
-            else
-            {
-                lblArea.Text = Math.Round(mf.boundz.area * 0.000247105, 2) + " Acre";
+                if (mf.isMetric)
+                {
+                    lblArea.Text = Math.Round(mf.bndArr[mf.bnd.boundarySelected].area * 0.0001, 2) + " Ha";
+                }
+                else
+                {
+                    lblArea.Text = Math.Round(mf.bndArr[mf.bnd.boundarySelected].area * 0.000247105, 2) + " Acre";
+                }
             }
         }
     }

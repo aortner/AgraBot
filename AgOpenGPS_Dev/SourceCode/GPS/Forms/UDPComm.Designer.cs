@@ -25,7 +25,7 @@ namespace AgOpenGPS
         private byte[] buffer = new byte[1024];
 
         // Status delegate
-        private delegate void UpdateRecvMessageDelegate(string recvMessage);
+        private delegate void UpdateRecvMessageDelegate(int port, byte[] msg);
         private UpdateRecvMessageDelegate updateRecvMessageDelegate = null;
 
         //sends ascii text message
@@ -60,7 +60,7 @@ namespace AgOpenGPS
                     IPEndPoint epAutoSteer = new IPEndPoint(epIP, Properties.Settings.Default.setIP_autoSteerPort);
 
                     // Send packet to the zero
-                    if (byteData.Length != 0)                        
+                    if (byteData.Length != 0)
                         sendSocket.BeginSendTo(byteData, 0, byteData.Length, SocketFlags.None, epAutoSteer, new AsyncCallback(SendData), null);
                 }
                 catch (Exception e)
@@ -90,7 +90,7 @@ namespace AgOpenGPS
             {
                 // Initialise the IPEndPoint for the client
                 EndPoint epSender = new IPEndPoint(IPAddress.Any, 0);
-            
+
                 // Receive all data
                 int msgLen = recvSocket.EndReceiveFrom(asyncResult, ref epSender);
 
@@ -98,48 +98,82 @@ namespace AgOpenGPS
                 Array.Copy(buffer, localMsg, msgLen);
 
                 // Listen for more connections again...
-                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData),epSender);
+                recvSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epSender, new AsyncCallback(ReceiveData), epSender);
 
-                string text = Encoding.ASCII.GetString(localMsg);
-
+                //string text =  Encoding.ASCII.GetString(localMsg);
+                
+                int port = ((IPEndPoint)epSender).Port;
                 // Update status through a delegate
-                Invoke(updateRecvMessageDelegate, new object[] { text });
+                Invoke(updateRecvMessageDelegate, new object[] { port, localMsg });
             }
             catch (Exception e)
             {
                 WriteErrorLog("UDP Recv data " + e.ToString());
-
                 MessageBox.Show("ReceiveData Error: " + e.Message, "UDP Server", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        
-        private void UpdateRecvMessage(string recvd)
-        {
-            //recvSentenceSettings = recvd;
-            //pn.rawBuffer += recvd;
-            mc.recvUDPSentence = recvd;
 
-            string[] words = mc.recvUDPSentence.Split(',');
-            if (words[0] == "LIDAR")
+        private void UpdateRecvMessage(int port, byte[] data)
+        {
+            //quick check
+            if (data.Length != 10) return;
+
+            switch (port)
             {
-                int.TryParse(words[1], out mc.lidarDistance);
+                //autosteer
+                case 5577:
+                    {
+                        if (ahrs.isHeadingBNO)
+                        {
+                            mc.prevGyroHeading = mc.gyroHeading;
+                            mc.gyroHeading = (Int16)((data[4] << 8) + data[5]);
+                        }
+
+                        if (ahrs.isRollDogs)
+                        {
+                            mc.rollRaw = (Int16)((data[6] << 8) + data[7]);
+                        }
+
+                        mc.steerSwitchValue = data[8];
+                        mc.workSwitchValue = mc.steerSwitchValue & 1;
+                        mc.steerSwitchValue = mc.steerSwitchValue & 2;
+
+                        //build string for display
+                        double steerAngle = (Int16)((data[2] << 8) + data[3]);
+                        steerAngle *= 0.01;
+                        mc.serialRecvAutoSteerStr = steerAngle.ToString("N2") + "," + (((double)(guidanceLineSteerAngle)) * 0.01).ToString("N2")
+                              + "," + (mc.gyroHeading * 0.0625).ToString("N1") + "," + (mc.rollRaw * 0.0625).ToString("N1") + "," + mc.steerSwitchValue.ToString();
+                        break;
+                    }
+
+                //autoDrive
+                case 5566:
+                    {
+                        mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
+                        break;
+                    }
+
+                //lidar
+                case 5588:
+                    {
+                        mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
+                        //mc.recvUDPSentence = DateTime.Now.ToString() + "," + mc.lidarDistance.ToString();
+                        break;
+                    }
+
+                //IMU
+                case 5544:
+                    {
+                        break;
+                    }
             }
 
-            //if (words.Length == 5)
+            //else if (data[0] == 0x7F && data[1] == 0xF1)
             //{
-                ////first 2 used for display mainly in autosteer window chart as strings
-                ////parse the values
-                //if (ahrs.isHeadingBNO)
-                //{
-                //    mc.prevGyroHeading = mc.gyroHeading;
-                //    int.TryParse(words[2], out mc.gyroHeading);
-                //}
-
-                //if (ahrs.isRollDogs) int.TryParse(words[3], out mc.rollRaw);
-
-                //mc.workSwitchValue = mc.steerSwitchValue & 1;
-                //mc.steerSwitchValue = mc.steerSwitchValue & 2;
+            //    mc.lidarDistance = (Int16)((data[2] << 8) + data[3]);
             //}
+
+
         }
 
         #region Gesture

@@ -78,21 +78,21 @@ namespace AgOpenGPS
     //
 
     /// <summary>
-    /// x,y,z,k
+    /// easting, northing, heading, boundary#
     /// </summary>
     public struct vec4
     {
         public double easting; //easting
         public double heading; //heading etc
         public double northing; //northing
-        public double altitude;    //altitude
+        public double boundary;    //altitude
 
-        public vec4(double _easting, double _heading, double _northing, double _altitude)
+        public vec4(double _easting, double _northing, double _heading, double _boundary)
         {
             this.easting = _easting;
             this.heading = _heading;
             this.northing = _northing;
-            this.altitude = _altitude;
+            this.boundary = _boundary;
         }
     }
 

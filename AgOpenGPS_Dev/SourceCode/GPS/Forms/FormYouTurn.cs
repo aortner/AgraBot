@@ -27,20 +27,20 @@ namespace AgOpenGPS
             string line = Properties.Vehicle.Default.seq_FunctionList;
             string[] words = line.Split(',');
 
-            mf.yt.pos3 = words[0];
-            mf.yt.pos4 = words[1];
-            mf.yt.pos5 = words[2];
-            mf.yt.pos6 = words[3];
-            mf.yt.pos7 = words[4];
-            mf.yt.pos8 = words[5];
+            mf.seq.pos3 = words[0];
+            mf.seq.pos4 = words[1];
+            mf.seq.pos5 = words[2];
+            mf.seq.pos6 = words[3];
+            mf.seq.pos7 = words[4];
+            mf.seq.pos8 = words[5];
 
             //set button text and background color
-            btnToggle3.Text = mf.yt.pos3;
-            btnToggle4.Text = mf.yt.pos4;
-            btnToggle5.Text = mf.yt.pos5;
-            btnToggle6.Text = mf.yt.pos6;
-            btnToggle7.Text = mf.yt.pos7;
-            btnToggle8.Text = mf.yt.pos8;
+            btnToggle3.Text = mf.seq.pos3;
+            btnToggle4.Text = mf.seq.pos4;
+            btnToggle5.Text = mf.seq.pos5;
+            btnToggle6.Text = mf.seq.pos6;
+            btnToggle7.Text = mf.seq.pos7;
+            btnToggle8.Text = mf.seq.pos8;
             FunctionButtonsOnOff();
 
             //the drop down lists
@@ -89,7 +89,7 @@ namespace AgOpenGPS
                 else lblWhenTrig.Text = "After";
             }
 
-            lblTriggerDistance.Text = mf.yt.triggerDistance.ToString() + "m";
+            lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
 
             //update dubins button
             if (!mf.yt.isUsingDubinsTurn)
@@ -130,8 +130,6 @@ namespace AgOpenGPS
             {
                 btnDewLoop4.BackColor = Color.Salmon;
             }
-
-
             if (mf.yt.isDew2Right)
             {
                 btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnRight;
@@ -140,7 +138,6 @@ namespace AgOpenGPS
             {
                 btnDewLoop2RightOrLeft.Image = Properties.Resources.ArrowTurnLeft;
             }
-
         }
 
         private void btnDewLoop2_Click(object sender, EventArgs e)
@@ -594,154 +591,154 @@ namespace AgOpenGPS
 
         private void LoadComboStrings()
         {
-            cboxEnterFunc0.Items.Add(mf.yt.pos1);
-            cboxEnterFunc0.Items.Add(mf.yt.pos2);
-            cboxEnterFunc0.Items.Add(mf.yt.pos3);
-            cboxEnterFunc0.Items.Add(mf.yt.pos4);
-            cboxEnterFunc0.Items.Add(mf.yt.pos5);
-            cboxEnterFunc0.Items.Add(mf.yt.pos6);
-            cboxEnterFunc0.Items.Add(mf.yt.pos7);
-            cboxEnterFunc0.Items.Add(mf.yt.pos8);
-            cboxExitFunc0.Items.Add(mf.yt.pos1);
-            cboxExitFunc0.Items.Add(mf.yt.pos2);
-            cboxExitFunc0.Items.Add(mf.yt.pos3);
-            cboxExitFunc0.Items.Add(mf.yt.pos4);
-            cboxExitFunc0.Items.Add(mf.yt.pos5);
-            cboxExitFunc0.Items.Add(mf.yt.pos6);
-            cboxExitFunc0.Items.Add(mf.yt.pos7);
-            cboxExitFunc0.Items.Add(mf.yt.pos8);
+            cboxEnterFunc0.Items.Add(mf.seq.pos1);
+            cboxEnterFunc0.Items.Add(mf.seq.pos2);
+            cboxEnterFunc0.Items.Add(mf.seq.pos3);
+            cboxEnterFunc0.Items.Add(mf.seq.pos4);
+            cboxEnterFunc0.Items.Add(mf.seq.pos5);
+            cboxEnterFunc0.Items.Add(mf.seq.pos6);
+            cboxEnterFunc0.Items.Add(mf.seq.pos7);
+            cboxEnterFunc0.Items.Add(mf.seq.pos8);
+            cboxExitFunc0.Items.Add(mf.seq.pos1);
+            cboxExitFunc0.Items.Add(mf.seq.pos2);
+            cboxExitFunc0.Items.Add(mf.seq.pos3);
+            cboxExitFunc0.Items.Add(mf.seq.pos4);
+            cboxExitFunc0.Items.Add(mf.seq.pos5);
+            cboxExitFunc0.Items.Add(mf.seq.pos6);
+            cboxExitFunc0.Items.Add(mf.seq.pos7);
+            cboxExitFunc0.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc1.Items.Add(mf.yt.pos1);
-            cboxEnterFunc1.Items.Add(mf.yt.pos2);
-            cboxEnterFunc1.Items.Add(mf.yt.pos3);
-            cboxEnterFunc1.Items.Add(mf.yt.pos4);
-            cboxEnterFunc1.Items.Add(mf.yt.pos5);
-            cboxEnterFunc1.Items.Add(mf.yt.pos6);
-            cboxEnterFunc1.Items.Add(mf.yt.pos7);
-            cboxEnterFunc1.Items.Add(mf.yt.pos8);
-            cboxExitFunc1.Items.Add(mf.yt.pos1);
-            cboxExitFunc1.Items.Add(mf.yt.pos2);
-            cboxExitFunc1.Items.Add(mf.yt.pos3);
-            cboxExitFunc1.Items.Add(mf.yt.pos4);
-            cboxExitFunc1.Items.Add(mf.yt.pos5);
-            cboxExitFunc1.Items.Add(mf.yt.pos6);
-            cboxExitFunc1.Items.Add(mf.yt.pos7);
-            cboxExitFunc1.Items.Add(mf.yt.pos8);
+            cboxEnterFunc1.Items.Add(mf.seq.pos1);
+            cboxEnterFunc1.Items.Add(mf.seq.pos2);
+            cboxEnterFunc1.Items.Add(mf.seq.pos3);
+            cboxEnterFunc1.Items.Add(mf.seq.pos4);
+            cboxEnterFunc1.Items.Add(mf.seq.pos5);
+            cboxEnterFunc1.Items.Add(mf.seq.pos6);
+            cboxEnterFunc1.Items.Add(mf.seq.pos7);
+            cboxEnterFunc1.Items.Add(mf.seq.pos8);
+            cboxExitFunc1.Items.Add(mf.seq.pos1);
+            cboxExitFunc1.Items.Add(mf.seq.pos2);
+            cboxExitFunc1.Items.Add(mf.seq.pos3);
+            cboxExitFunc1.Items.Add(mf.seq.pos4);
+            cboxExitFunc1.Items.Add(mf.seq.pos5);
+            cboxExitFunc1.Items.Add(mf.seq.pos6);
+            cboxExitFunc1.Items.Add(mf.seq.pos7);
+            cboxExitFunc1.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc2.Items.Add(mf.yt.pos1);
-            cboxEnterFunc2.Items.Add(mf.yt.pos2);
-            cboxEnterFunc2.Items.Add(mf.yt.pos3);
-            cboxEnterFunc2.Items.Add(mf.yt.pos4);
-            cboxEnterFunc2.Items.Add(mf.yt.pos5);
-            cboxEnterFunc2.Items.Add(mf.yt.pos6);
-            cboxEnterFunc2.Items.Add(mf.yt.pos7);
-            cboxEnterFunc2.Items.Add(mf.yt.pos8);
-            cboxExitFunc2.Items.Add(mf.yt.pos1);
-            cboxExitFunc2.Items.Add(mf.yt.pos2);
-            cboxExitFunc2.Items.Add(mf.yt.pos3);
-            cboxExitFunc2.Items.Add(mf.yt.pos4);
-            cboxExitFunc2.Items.Add(mf.yt.pos5);
-            cboxExitFunc2.Items.Add(mf.yt.pos6);
-            cboxExitFunc2.Items.Add(mf.yt.pos7);
-            cboxExitFunc2.Items.Add(mf.yt.pos8);
+            cboxEnterFunc2.Items.Add(mf.seq.pos1);
+            cboxEnterFunc2.Items.Add(mf.seq.pos2);
+            cboxEnterFunc2.Items.Add(mf.seq.pos3);
+            cboxEnterFunc2.Items.Add(mf.seq.pos4);
+            cboxEnterFunc2.Items.Add(mf.seq.pos5);
+            cboxEnterFunc2.Items.Add(mf.seq.pos6);
+            cboxEnterFunc2.Items.Add(mf.seq.pos7);
+            cboxEnterFunc2.Items.Add(mf.seq.pos8);
+            cboxExitFunc2.Items.Add(mf.seq.pos1);
+            cboxExitFunc2.Items.Add(mf.seq.pos2);
+            cboxExitFunc2.Items.Add(mf.seq.pos3);
+            cboxExitFunc2.Items.Add(mf.seq.pos4);
+            cboxExitFunc2.Items.Add(mf.seq.pos5);
+            cboxExitFunc2.Items.Add(mf.seq.pos6);
+            cboxExitFunc2.Items.Add(mf.seq.pos7);
+            cboxExitFunc2.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc3.Items.Add(mf.yt.pos1);
-            cboxEnterFunc3.Items.Add(mf.yt.pos2);
-            cboxEnterFunc3.Items.Add(mf.yt.pos3);
-            cboxEnterFunc3.Items.Add(mf.yt.pos4);
-            cboxEnterFunc3.Items.Add(mf.yt.pos5);
-            cboxEnterFunc3.Items.Add(mf.yt.pos6);
-            cboxEnterFunc3.Items.Add(mf.yt.pos7);
-            cboxEnterFunc3.Items.Add(mf.yt.pos8);
-            cboxExitFunc3.Items.Add(mf.yt.pos1);
-            cboxExitFunc3.Items.Add(mf.yt.pos2);
-            cboxExitFunc3.Items.Add(mf.yt.pos3);
-            cboxExitFunc3.Items.Add(mf.yt.pos4);
-            cboxExitFunc3.Items.Add(mf.yt.pos5);
-            cboxExitFunc3.Items.Add(mf.yt.pos6);
-            cboxExitFunc3.Items.Add(mf.yt.pos7);
-            cboxExitFunc3.Items.Add(mf.yt.pos8);
+            cboxEnterFunc3.Items.Add(mf.seq.pos1);
+            cboxEnterFunc3.Items.Add(mf.seq.pos2);
+            cboxEnterFunc3.Items.Add(mf.seq.pos3);
+            cboxEnterFunc3.Items.Add(mf.seq.pos4);
+            cboxEnterFunc3.Items.Add(mf.seq.pos5);
+            cboxEnterFunc3.Items.Add(mf.seq.pos6);
+            cboxEnterFunc3.Items.Add(mf.seq.pos7);
+            cboxEnterFunc3.Items.Add(mf.seq.pos8);
+            cboxExitFunc3.Items.Add(mf.seq.pos1);
+            cboxExitFunc3.Items.Add(mf.seq.pos2);
+            cboxExitFunc3.Items.Add(mf.seq.pos3);
+            cboxExitFunc3.Items.Add(mf.seq.pos4);
+            cboxExitFunc3.Items.Add(mf.seq.pos5);
+            cboxExitFunc3.Items.Add(mf.seq.pos6);
+            cboxExitFunc3.Items.Add(mf.seq.pos7);
+            cboxExitFunc3.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc4.Items.Add(mf.yt.pos1);
-            cboxEnterFunc4.Items.Add(mf.yt.pos2);
-            cboxEnterFunc4.Items.Add(mf.yt.pos3);
-            cboxEnterFunc4.Items.Add(mf.yt.pos4);
-            cboxEnterFunc4.Items.Add(mf.yt.pos5);
-            cboxEnterFunc4.Items.Add(mf.yt.pos6);
-            cboxEnterFunc4.Items.Add(mf.yt.pos7);
-            cboxEnterFunc4.Items.Add(mf.yt.pos8);
-            cboxExitFunc4.Items.Add(mf.yt.pos1);
-            cboxExitFunc4.Items.Add(mf.yt.pos2);
-            cboxExitFunc4.Items.Add(mf.yt.pos3);
-            cboxExitFunc4.Items.Add(mf.yt.pos4);
-            cboxExitFunc4.Items.Add(mf.yt.pos5);
-            cboxExitFunc4.Items.Add(mf.yt.pos6);
-            cboxExitFunc4.Items.Add(mf.yt.pos7);
-            cboxExitFunc4.Items.Add(mf.yt.pos8);
+            cboxEnterFunc4.Items.Add(mf.seq.pos1);
+            cboxEnterFunc4.Items.Add(mf.seq.pos2);
+            cboxEnterFunc4.Items.Add(mf.seq.pos3);
+            cboxEnterFunc4.Items.Add(mf.seq.pos4);
+            cboxEnterFunc4.Items.Add(mf.seq.pos5);
+            cboxEnterFunc4.Items.Add(mf.seq.pos6);
+            cboxEnterFunc4.Items.Add(mf.seq.pos7);
+            cboxEnterFunc4.Items.Add(mf.seq.pos8);
+            cboxExitFunc4.Items.Add(mf.seq.pos1);
+            cboxExitFunc4.Items.Add(mf.seq.pos2);
+            cboxExitFunc4.Items.Add(mf.seq.pos3);
+            cboxExitFunc4.Items.Add(mf.seq.pos4);
+            cboxExitFunc4.Items.Add(mf.seq.pos5);
+            cboxExitFunc4.Items.Add(mf.seq.pos6);
+            cboxExitFunc4.Items.Add(mf.seq.pos7);
+            cboxExitFunc4.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc5.Items.Add(mf.yt.pos1);
-            cboxEnterFunc5.Items.Add(mf.yt.pos2);
-            cboxEnterFunc5.Items.Add(mf.yt.pos3);
-            cboxEnterFunc5.Items.Add(mf.yt.pos4);
-            cboxEnterFunc5.Items.Add(mf.yt.pos5);
-            cboxEnterFunc5.Items.Add(mf.yt.pos6);
-            cboxEnterFunc5.Items.Add(mf.yt.pos7);
-            cboxEnterFunc5.Items.Add(mf.yt.pos8);
-            cboxExitFunc5.Items.Add(mf.yt.pos1);
-            cboxExitFunc5.Items.Add(mf.yt.pos2);
-            cboxExitFunc5.Items.Add(mf.yt.pos3);
-            cboxExitFunc5.Items.Add(mf.yt.pos4);
-            cboxExitFunc5.Items.Add(mf.yt.pos5);
-            cboxExitFunc5.Items.Add(mf.yt.pos6);
-            cboxExitFunc5.Items.Add(mf.yt.pos7);
-            cboxExitFunc5.Items.Add(mf.yt.pos8);
+            cboxEnterFunc5.Items.Add(mf.seq.pos1);
+            cboxEnterFunc5.Items.Add(mf.seq.pos2);
+            cboxEnterFunc5.Items.Add(mf.seq.pos3);
+            cboxEnterFunc5.Items.Add(mf.seq.pos4);
+            cboxEnterFunc5.Items.Add(mf.seq.pos5);
+            cboxEnterFunc5.Items.Add(mf.seq.pos6);
+            cboxEnterFunc5.Items.Add(mf.seq.pos7);
+            cboxEnterFunc5.Items.Add(mf.seq.pos8);
+            cboxExitFunc5.Items.Add(mf.seq.pos1);
+            cboxExitFunc5.Items.Add(mf.seq.pos2);
+            cboxExitFunc5.Items.Add(mf.seq.pos3);
+            cboxExitFunc5.Items.Add(mf.seq.pos4);
+            cboxExitFunc5.Items.Add(mf.seq.pos5);
+            cboxExitFunc5.Items.Add(mf.seq.pos6);
+            cboxExitFunc5.Items.Add(mf.seq.pos7);
+            cboxExitFunc5.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc6.Items.Add(mf.yt.pos1);
-            cboxEnterFunc6.Items.Add(mf.yt.pos2);
-            cboxEnterFunc6.Items.Add(mf.yt.pos3);
-            cboxEnterFunc6.Items.Add(mf.yt.pos4);
-            cboxEnterFunc6.Items.Add(mf.yt.pos5);
-            cboxEnterFunc6.Items.Add(mf.yt.pos6);
-            cboxEnterFunc6.Items.Add(mf.yt.pos7);
-            cboxEnterFunc6.Items.Add(mf.yt.pos8);
-            cboxExitFunc6.Items.Add(mf.yt.pos1);
-            cboxExitFunc6.Items.Add(mf.yt.pos2);
-            cboxExitFunc6.Items.Add(mf.yt.pos3);
-            cboxExitFunc6.Items.Add(mf.yt.pos4);
-            cboxExitFunc6.Items.Add(mf.yt.pos5);
-            cboxExitFunc6.Items.Add(mf.yt.pos6);
-            cboxExitFunc6.Items.Add(mf.yt.pos7);
-            cboxExitFunc6.Items.Add(mf.yt.pos8);
+            cboxEnterFunc6.Items.Add(mf.seq.pos1);
+            cboxEnterFunc6.Items.Add(mf.seq.pos2);
+            cboxEnterFunc6.Items.Add(mf.seq.pos3);
+            cboxEnterFunc6.Items.Add(mf.seq.pos4);
+            cboxEnterFunc6.Items.Add(mf.seq.pos5);
+            cboxEnterFunc6.Items.Add(mf.seq.pos6);
+            cboxEnterFunc6.Items.Add(mf.seq.pos7);
+            cboxEnterFunc6.Items.Add(mf.seq.pos8);
+            cboxExitFunc6.Items.Add(mf.seq.pos1);
+            cboxExitFunc6.Items.Add(mf.seq.pos2);
+            cboxExitFunc6.Items.Add(mf.seq.pos3);
+            cboxExitFunc6.Items.Add(mf.seq.pos4);
+            cboxExitFunc6.Items.Add(mf.seq.pos5);
+            cboxExitFunc6.Items.Add(mf.seq.pos6);
+            cboxExitFunc6.Items.Add(mf.seq.pos7);
+            cboxExitFunc6.Items.Add(mf.seq.pos8);
 
-            cboxEnterFunc7.Items.Add(mf.yt.pos1);
-            cboxEnterFunc7.Items.Add(mf.yt.pos2);
-            cboxEnterFunc7.Items.Add(mf.yt.pos3);
-            cboxEnterFunc7.Items.Add(mf.yt.pos4);
-            cboxEnterFunc7.Items.Add(mf.yt.pos5);
-            cboxEnterFunc7.Items.Add(mf.yt.pos6);
-            cboxEnterFunc7.Items.Add(mf.yt.pos7);
-            cboxEnterFunc7.Items.Add(mf.yt.pos8);
-            cboxExitFunc7.Items.Add(mf.yt.pos1);
-            cboxExitFunc7.Items.Add(mf.yt.pos2);
-            cboxExitFunc7.Items.Add(mf.yt.pos3);
-            cboxExitFunc7.Items.Add(mf.yt.pos4);
-            cboxExitFunc7.Items.Add(mf.yt.pos5);
-            cboxExitFunc7.Items.Add(mf.yt.pos6);
-            cboxExitFunc7.Items.Add(mf.yt.pos7);
-            cboxExitFunc7.Items.Add(mf.yt.pos8);
+            cboxEnterFunc7.Items.Add(mf.seq.pos1);
+            cboxEnterFunc7.Items.Add(mf.seq.pos2);
+            cboxEnterFunc7.Items.Add(mf.seq.pos3);
+            cboxEnterFunc7.Items.Add(mf.seq.pos4);
+            cboxEnterFunc7.Items.Add(mf.seq.pos5);
+            cboxEnterFunc7.Items.Add(mf.seq.pos6);
+            cboxEnterFunc7.Items.Add(mf.seq.pos7);
+            cboxEnterFunc7.Items.Add(mf.seq.pos8);
+            cboxExitFunc7.Items.Add(mf.seq.pos1);
+            cboxExitFunc7.Items.Add(mf.seq.pos2);
+            cboxExitFunc7.Items.Add(mf.seq.pos3);
+            cboxExitFunc7.Items.Add(mf.seq.pos4);
+            cboxExitFunc7.Items.Add(mf.seq.pos5);
+            cboxExitFunc7.Items.Add(mf.seq.pos6);
+            cboxExitFunc7.Items.Add(mf.seq.pos7);
+            cboxExitFunc7.Items.Add(mf.seq.pos8);
         }
 
         private void LoadEditFunctionNames()
         {
-            tboxPos1.Text = mf.yt.pos1;
-            tboxPos2.Text = mf.yt.pos2;
-            tboxPos3.Text = mf.yt.pos3;
-            tboxPos4.Text = mf.yt.pos4;
+            tboxPos1.Text = mf.seq.pos1;
+            tboxPos2.Text = mf.seq.pos2;
+            tboxPos3.Text = mf.seq.pos3;
+            tboxPos4.Text = mf.seq.pos4;
 
-            tboxPos5.Text = mf.yt.pos5;
-            tboxPos6.Text = mf.yt.pos6;
-            tboxPos7.Text = mf.yt.pos7;
-            tboxPos8.Text = mf.yt.pos8;
+            tboxPos5.Text = mf.seq.pos5;
+            tboxPos6.Text = mf.seq.pos6;
+            tboxPos7.Text = mf.seq.pos7;
+            tboxPos8.Text = mf.seq.pos8;
         }
 
         #endregion Procedures
@@ -852,6 +849,8 @@ namespace AgOpenGPS
         private void cboxRowWidth_SelectedIndexChanged(object sender, EventArgs e)
         {
             mf.yt.rowSkipsWidth = cboxRowWidth.SelectedIndex + 1;
+            mf.yt.skips = mf.yt.rowSkipsWidth;
+
         }
 
         #endregion YouTurn
@@ -872,16 +871,18 @@ namespace AgOpenGPS
             if (mf.yt.youTurnStartOffset < 0) lblWhenTrig.Text = "Before";
             else lblWhenTrig.Text = "After";
         }
+
         private void btnTriggerDistanceUp_MouseDown(object sender, MouseEventArgs e)
         {
-            if (mf.yt.triggerDistance++ > 50) mf.yt.triggerDistance = 50;
-            lblTriggerDistance.Text = mf.yt.triggerDistance.ToString() + "m";
+            if (mf.yt.triggerDistanceOffset++ > 50) mf.yt.triggerDistanceOffset = 50;
+            lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
         }
 
         private void btnTriggerDistanceDn_MouseDown(object sender, MouseEventArgs e)
         {
-            if (mf.yt.triggerDistance-- < 5) mf.yt.triggerDistance = 5;
-            lblTriggerDistance.Text = mf.yt.triggerDistance.ToString() + "m";
+            mf.yt.triggerDistanceOffset--;
+            if (mf.yt.triggerDistanceOffset < 0) mf.yt.triggerDistanceOffset = 0;
+            lblTriggerDistance.Text = mf.yt.triggerDistanceOffset.ToString() + "m";
         }
         #endregion Distance
 
@@ -1038,13 +1039,13 @@ namespace AgOpenGPS
         private void btnSaveNames_Click(object sender, EventArgs e)
         {
             //pos1 = tboxPos1.Text; pos2 = tboxPos2.Text; auto manual buttons are read only
-            mf.yt.pos3 = tboxPos3.Text;
-            mf.yt.pos4 = tboxPos4.Text;
+            mf.seq.pos3 = tboxPos3.Text;
+            mf.seq.pos4 = tboxPos4.Text;
 
-            mf.yt.pos5 = tboxPos5.Text;
-            mf.yt.pos6 = tboxPos6.Text;
-            mf.yt.pos7 = tboxPos7.Text;
-            mf.yt.pos8 = tboxPos8.Text;
+            mf.seq.pos5 = tboxPos5.Text;
+            mf.seq.pos6 = tboxPos6.Text;
+            mf.seq.pos7 = tboxPos7.Text;
+            mf.seq.pos8 = tboxPos8.Text;
 
             //clear everything out
             cboxEnterFunc0.Items.Clear();
@@ -1089,16 +1090,16 @@ namespace AgOpenGPS
             PopulateSequencePages();
 
             //save in settings
-            Properties.Vehicle.Default.seq_FunctionList = mf.yt.pos3 + "," + mf.yt.pos4 + "," + mf.yt.pos5 + "," + mf.yt.pos6 + "," + mf.yt.pos7 + "," + mf.yt.pos8;
+            Properties.Vehicle.Default.seq_FunctionList = mf.seq.pos3 + "," + mf.seq.pos4 + "," + mf.seq.pos5 + "," + mf.seq.pos6 + "," + mf.seq.pos7 + "," + mf.seq.pos8;
             Properties.Vehicle.Default.Save();
 
             //reload buttons text
-            btnToggle3.Text = mf.yt.pos3;
-            btnToggle4.Text = mf.yt.pos4;
-            btnToggle5.Text = mf.yt.pos5;
-            btnToggle6.Text = mf.yt.pos6;
-            btnToggle7.Text = mf.yt.pos7;
-            btnToggle8.Text = mf.yt.pos8;
+            btnToggle3.Text = mf.seq.pos3;
+            btnToggle4.Text = mf.seq.pos4;
+            btnToggle5.Text = mf.seq.pos5;
+            btnToggle6.Text = mf.seq.pos6;
+            btnToggle7.Text = mf.seq.pos7;
+            btnToggle8.Text = mf.seq.pos8;
 
             //select entry tab page 1
             tabControl1.SelectTab(1);
@@ -1122,12 +1123,12 @@ namespace AgOpenGPS
             string line = Properties.Vehicle.Default.seq_FunctionList;
             string[] words = line.Split(',');
 
-            mf.yt.pos3 = words[0];
-            mf.yt.pos4 = words[1];
-            mf.yt.pos5 = words[2];
-            mf.yt.pos6 = words[3];
-            mf.yt.pos7 = words[4];
-            mf.yt.pos8 = words[5];
+            mf.seq.pos3 = words[0];
+            mf.seq.pos4 = words[1];
+            mf.seq.pos5 = words[2];
+            mf.seq.pos6 = words[3];
+            mf.seq.pos7 = words[4];
+            mf.seq.pos8 = words[5];
 
             //the edit page of text boxes
             LoadEditFunctionNames();
@@ -1145,7 +1146,7 @@ namespace AgOpenGPS
         //{
         //    mf.seq.ResetAllSequences();
         //    PopulateSequencePages();
-        //    mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] = 0;
+        //    mf.mc.machineControlData[mf.mc.cnYouTurnByte] = 0;
         //}
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -1153,13 +1154,13 @@ namespace AgOpenGPS
             //save all the sequences and events
             SaveSequences();
 
-            Properties.Vehicle.Default.set_youSkipHeight = mf.yt.rowSkipsHeight;
+            //Properties.Vehicle.Default.set_youSkipHeight = mf.yt.rowSkipsHeight;
             Properties.Vehicle.Default.set_youSkipWidth = mf.yt.rowSkipsWidth;
             Properties.Vehicle.Default.set_youUseDubins = mf.yt.isUsingDubinsTurn;
 
             Properties.Vehicle.Default.set_youStartYouTurnAt = mf.yt.youTurnStartOffset;
-            Properties.Vehicle.Default.set_youTriggerDistance = mf.yt.triggerDistance;
-            mf.hl.boxLength = 3.0 * mf.yt.triggerDistance;
+            Properties.Vehicle.Default.set_youTriggerDistance = mf.yt.triggerDistanceOffset;
+            mf.hl.boxLength = 3.0 * mf.yt.triggerDistanceOffset;
 
             StringBuilder sbEntry = new StringBuilder();
             StringBuilder sbExit = new StringBuilder();
@@ -1215,7 +1216,7 @@ namespace AgOpenGPS
 
         private void btnTurnAllOff_Click(object sender, EventArgs e)
         {
-            mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] = 0;
+            mf.mc.machineControlData[mf.mc.cnYouTurn] = 0;
             FunctionButtonsOnOff();
         }
 
@@ -1226,72 +1227,71 @@ namespace AgOpenGPS
 
         private void btnToggle3_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 0))
-                mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11111110;
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00000001;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 0))
+                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11111110;
+            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00000001;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle4_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 1))
-                mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11111101;
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00000010;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 1))
+                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11111101;
+            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00000010;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle5_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 2))
-                mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11111011;
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00000100;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 2))
+                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11111011;
+            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00000100;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle6_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 3))
-                mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11110111;
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00001000;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 3))
+                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11110111;
+            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00001000;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle7_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 4))
-                mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11101111;
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00010000;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 4))
+                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11101111;
+            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00010000;
             FunctionButtonsOnOff();
         }
 
         private void btnToggle8_Click(object sender, EventArgs e)
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 5))
-                mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] &= 0b11011111;
-            else mf.mc.relayRateData[mf.mc.rdYouTurnControlByte] |= 0b00100000;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 5))
+                mf.mc.machineControlData[mf.mc.cnYouTurn] &= 0b11011111;
+            else mf.mc.machineControlData[mf.mc.cnYouTurn] |= 0b00100000;
             FunctionButtonsOnOff();
         }
 
         private void FunctionButtonsOnOff()
         {
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 0)) btnToggle3.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 0)) btnToggle3.BackColor = Color.LightGreen;
             else btnToggle3.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 1)) btnToggle4.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 1)) btnToggle4.BackColor = Color.LightGreen;
             else btnToggle4.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 2)) btnToggle5.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 2)) btnToggle5.BackColor = Color.LightGreen;
             else btnToggle5.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 3)) btnToggle6.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 3)) btnToggle6.BackColor = Color.LightGreen;
             else btnToggle6.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 4)) btnToggle7.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 4)) btnToggle7.BackColor = Color.LightGreen;
             else btnToggle7.BackColor = Color.LightSalmon;
 
-            if (IsBitSet(mf.mc.relayRateData[mf.mc.rdYouTurnControlByte], 5)) btnToggle8.BackColor = Color.LightGreen;
+            if (IsBitSet(mf.mc.machineControlData[mf.mc.cnYouTurn], 5)) btnToggle8.BackColor = Color.LightGreen;
             else btnToggle8.BackColor = Color.LightSalmon;
         }
-
     }
 }

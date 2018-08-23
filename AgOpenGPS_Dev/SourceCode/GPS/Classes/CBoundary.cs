@@ -12,6 +12,8 @@ namespace AgOpenGPS
         private readonly OpenGL gl;
         private readonly OpenGL glb;
 
+        private readonly double scanWidth, boxLength;
+
         //constructor
         public CBoundary(OpenGL _gl, OpenGL _glb, FormGPS _f)
         {
@@ -19,281 +21,178 @@ namespace AgOpenGPS
             gl = _gl;
             glb = _glb;
 
-            area = 0;
-            isSet = false;
-            isDrawRightSide = true;
-            isOkToAddPoints = false;
+            boundarySelected = 0;
+            scanWidth = 1.0;
+            boxLength = 2000;
         }
 
-        //list of coordinates of boundary line
-        public List<vec3> ptList = new List<vec3>();
-
-        //the list of constants and multiples of the boundary
-        public List<vec2> calcList = new List<vec2>();
-
         // the list of possible bounds points
-        public List<vec2> bdList = new List<vec2>();
+        public List<vec4> bndClosestList = new List<vec4>();
 
-        //area variable
-        public double area;
-
-        public string areaHectare = "";
-        public string areaAcre = "";
-
-        //boundary variables
-        public bool isOkToAddPoints, isSet, isDrawRightSide;
+        public int boundarySelected, closestBoundaryNum;
 
         //generated box for finding closest point
         public vec2 boxA = new vec2(9000, 9000), boxB = new vec2(9000, 9002);
         public vec2 boxC = new vec2(9001, 9001), boxD = new vec2(9002, 9003);
 
         //point at the farthest boundary segment from pivotAxle
-        public vec2 closestBoundaryPt = new vec2(-10000, -10000);
+        public vec3 closestBoundaryPt = new vec3(-10000, -10000, 9);
 
-        public void CalculateHeadings()
+        public bool FindBoundaryPointInPath(vec3 fromPt, double headAB, int bndNum)
         {
-            //to calc heading based on next and previous points to give an average heading.
-            int cnt = ptList.Count;
-            vec3[] arr = new vec3[cnt];
-            cnt--;
-            ptList.CopyTo(arr);
-            ptList.Clear();
+            boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth);
+            boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
 
-            //first point needs last, first, second points
-            vec3 pt3 = arr[0];
-            pt3.heading = Math.Atan2(arr[1].easting - arr[cnt].easting, arr[1].northing - arr[cnt].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            ptList.Add(pt3);
+            boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+            boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
 
-            //middle points
-            for (int i = 1; i < cnt; i++)
-            {
-                pt3 = arr[i];
-                pt3.heading = Math.Atan2(arr[i+1].easting - arr[i-1].easting, arr[i+1].northing - arr[i-1].northing);
-                if (pt3.heading < 0) pt3.heading += glm.twoPI;
-                ptList.Add(pt3);
-            }
+            boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
+            boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
 
-            //last and first point
-            pt3 = arr[cnt];
-            pt3.heading = Math.Atan2(arr[0].easting - arr[cnt-1].easting, arr[0].northing - arr[cnt-1].northing);
-            if (pt3.heading < 0) pt3.heading += glm.twoPI;
-            ptList.Add(pt3);
-        }
-
-        public void FindClosestBoundaryPoint(vec2 fromPt)
-        {
-            boxA.easting = fromPt.easting - (Math.Sin(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
-            boxA.northing = fromPt.northing - (Math.Cos(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
-
-            boxB.easting = fromPt.easting + (Math.Sin(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
-            boxB.northing = fromPt.northing + (Math.Cos(mf.fixHeading + glm.PIBy2) * mf.vehicle.toolWidth * 0.5);
-
-            boxC.easting = boxB.easting + (Math.Sin(mf.fixHeading) * 2000.0);
-            boxC.northing = boxB.northing + (Math.Cos(mf.fixHeading) * 2000.0);
-
-            boxD.easting = boxA.easting + (Math.Sin(mf.fixHeading) * 2000.0);
-            boxD.northing = boxA.northing + (Math.Cos(mf.fixHeading) * 2000.0);
+            boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
+            boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
 
             //determine if point is inside bounding box
-            bdList.Clear();
-            int ptCount = ptList.Count;
+            bndClosestList.Clear();
+            int ptCount = mf.bndArr[bndNum].bndLine.Count;
             for (int p = 0; p < ptCount; p++)
             {
-                if ((((boxB.easting - boxA.easting) * (ptList[p].northing - boxA.northing))
-                        - ((boxB.northing - boxA.northing) * (ptList[p].easting - boxA.easting))) < 0) { continue; }
+                if ((((boxB.easting - boxA.easting) * (mf.bndArr[bndNum].bndLine[p].northing - boxA.northing))
+                        - ((boxB.northing - boxA.northing) * (mf.bndArr[bndNum].bndLine[p].easting - boxA.easting))) < 0) { continue; }
 
-                if ((((boxD.easting - boxC.easting) * (ptList[p].northing - boxC.northing))
-                        - ((boxD.northing - boxC.northing) * (ptList[p].easting - boxC.easting))) < 0) { continue; }
+                if ((((boxD.easting - boxC.easting) * (mf.bndArr[bndNum].bndLine[p].northing - boxC.northing))
+                        - ((boxD.northing - boxC.northing) * (mf.bndArr[bndNum].bndLine[p].easting - boxC.easting))) < 0) { continue; }
 
-                if ((((boxC.easting - boxB.easting) * (ptList[p].northing - boxB.northing))
-                        - ((boxC.northing - boxB.northing) * (ptList[p].easting - boxB.easting))) < 0) { continue; }
+                if ((((boxC.easting - boxB.easting) * (mf.bndArr[bndNum].bndLine[p].northing - boxB.northing))
+                        - ((boxC.northing - boxB.northing) * (mf.bndArr[bndNum].bndLine[p].easting - boxB.easting))) < 0) { continue; }
 
-                if ((((boxA.easting - boxD.easting) * (ptList[p].northing - boxD.northing))
-                        - ((boxA.northing - boxD.northing) * (ptList[p].easting - boxD.easting))) < 0) { continue; }
+                if ((((boxA.easting - boxD.easting) * (mf.bndArr[bndNum].bndLine[p].northing - boxD.northing))
+                        - ((boxA.northing - boxD.northing) * (mf.bndArr[bndNum].bndLine[p].easting - boxD.easting))) < 0) { continue; }
 
-                //it's in the box, so add to list
-                closestBoundaryPt.easting = ptList[p].easting;
-                closestBoundaryPt.northing = ptList[p].northing;
-                bdList.Add(closestBoundaryPt);
+                //there is a boundary point in the box.
+                return true;
+            }
+
+            //no boundary point in box
+            return false;
+        }
+
+        public void FindClosestBoundaryPoint(vec3 fromPt, double headAB)
+        {
+            //heading is based on ABLine, average Curve, and going same direction as AB or not
+            //Draw a bounding box to determine if points are in it
+
+            //if (mf.yt.isYouTurnTriggered || mf.yt.isEnteringDriveThru || mf.yt.isExitingDriveThru)
+            //{
+            //    boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth); //subtract if positive
+            //    boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
+
+            //    boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+            //    boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
+
+            //    boxC.easting = boxB.easting + (Math.Sin(headAB) * boxLength);
+            //    boxC.northing = boxB.northing + (Math.Cos(headAB) * boxLength);
+
+            //    boxD.easting = boxA.easting + (Math.Sin(headAB) * boxLength);
+            //    boxD.northing = boxA.northing + (Math.Cos(headAB) * boxLength);
+
+            //    boxA.easting -= (Math.Sin(headAB) * boxLength);
+            //    boxA.northing -= (Math.Cos(headAB) * boxLength);
+
+            //    boxB.easting -= (Math.Sin(headAB) * boxLength);
+            //    boxB.northing -= (Math.Cos(headAB) * boxLength);
+            //}
+            //else
+            {
+                boxA.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * -scanWidth);
+                boxA.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * -scanWidth);
+
+                boxB.easting = fromPt.easting + (Math.Sin(headAB + glm.PIBy2) * scanWidth);
+                boxB.northing = fromPt.northing + (Math.Cos(headAB + glm.PIBy2) * scanWidth);
+
+                boxC.easting = boxB.easting + (Math.Sin(headAB) * 2000.0);
+                boxC.northing = boxB.northing + (Math.Cos(headAB) * 2000.0);
+
+                boxD.easting = boxA.easting + (Math.Sin(headAB) * 2000.0);
+                boxD.northing = boxA.northing + (Math.Cos(headAB) * 2000.0);
+            }
+
+            int ptCount;
+
+            //determine if point is inside bounding box
+            bndClosestList.Clear();
+            vec4 inBox;
+            for (int i = 0; i < FormGPS.MAXHEADS; i++)
+            {
+                ptCount = mf.bndArr[i].bndLine.Count;
+                for (int p = 0; p < ptCount; p++)
+                {
+                    if ((((boxB.easting - boxA.easting) * (mf.bndArr[i].bndLine[p].northing - boxA.northing))
+                            - ((boxB.northing - boxA.northing) * (mf.bndArr[i].bndLine[p].easting - boxA.easting))) < 0) { continue; }
+
+                    if ((((boxD.easting - boxC.easting) * (mf.bndArr[i].bndLine[p].northing - boxC.northing))
+                            - ((boxD.northing - boxC.northing) * (mf.bndArr[i].bndLine[p].easting - boxC.easting))) < 0) { continue; }
+
+                    if ((((boxC.easting - boxB.easting) * (mf.bndArr[i].bndLine[p].northing - boxB.northing))
+                            - ((boxC.northing - boxB.northing) * (mf.bndArr[i].bndLine[p].easting - boxB.easting))) < 0) { continue; }
+
+                    if ((((boxA.easting - boxD.easting) * (mf.bndArr[i].bndLine[p].northing - boxD.northing))
+                            - ((boxA.northing - boxD.northing) * (mf.bndArr[i].bndLine[p].easting - boxD.easting))) < 0) { continue; }
+
+                    //it's in the box, so add to list
+                    inBox.easting = mf.bndArr[i].bndLine[p].easting;
+                    inBox.northing = mf.bndArr[i].bndLine[p].northing;
+                    inBox.heading = mf.bndArr[i].bndLine[p].heading;
+                    inBox.boundary = i;
+
+                    //which boundary/headland is it from
+                    bndClosestList.Add(inBox);
+                }
             }
 
             //which of the points is closest
-            closestBoundaryPt.easting = -1; closestBoundaryPt.northing = -1;
-            ptCount = bdList.Count;
-            if (ptCount == 0)
-            {
-                return;
-            }
-            else
+            closestBoundaryPt.easting = -20000; closestBoundaryPt.northing = -20000;
+            ptCount = bndClosestList.Count;
+            if (ptCount != 0)
             {
                 //determine closest point
                 double minDistance = 9999999;
                 for (int i = 0; i < ptCount; i++)
                 {
-                    double dist = ((fromPt.easting - bdList[i].easting) * (fromPt.easting - bdList[i].easting))
-                                    + ((fromPt.northing - bdList[i].northing) * (fromPt.northing - bdList[i].northing));
+                    double dist = ((fromPt.easting - bndClosestList[i].easting) * (fromPt.easting - bndClosestList[i].easting))
+                                    + ((fromPt.northing - bndClosestList[i].northing) * (fromPt.northing - bndClosestList[i].northing));
                     if (minDistance >= dist)
                     {
                         minDistance = dist;
-                        closestBoundaryPt = bdList[i];
+
+                        closestBoundaryPt.easting = bndClosestList[i].easting;
+                        closestBoundaryPt.northing = bndClosestList[i].northing;
+                        closestBoundaryPt.heading = bndClosestList[i].heading;
+                        mf.bnd.closestBoundaryNum = (int)bndClosestList[i].boundary;
                     }
                 }
+                if (closestBoundaryPt.heading < 0) closestBoundaryPt.heading += glm.twoPI;
             }
         }
 
-        public void ResetBoundary()
+        //draws the derived closest point
+        public void DrawClosestPoint()
         {
-            calcList.Clear();
-            ptList.Clear();
-            area = 0;
-            areaAcre = "";
-            areaHectare = "";
+            gl.PointSize(4.0f);
 
-            isDrawRightSide = true;
-            isSet = false;
-            isOkToAddPoints = false;
-        }
-
-        public void PreCalcBoundaryLines()
-        {
-            int j = ptList.Count - 1;
-            //clear the list, constant is easting, multiple is northing
-            calcList.Clear();
-            vec2 constantMultiple = new vec2(0, 0);
-
-            for (int i = 0; i < ptList.Count; j = i++)
-            {
-                //check for divide by zero
-                if (Math.Abs(ptList[i].northing - ptList[j].northing) < 0.00000000001)
-                {
-                    constantMultiple.easting = ptList[i].easting;
-                    constantMultiple.northing = 0;
-                    calcList.Add(constantMultiple);
-                }
-                else
-                {
-                    //determine constant and multiple and add to list
-                    constantMultiple.easting = ptList[i].easting - ((ptList[i].northing * ptList[j].easting)
-                                    / (ptList[j].northing - ptList[i].northing)) + ((ptList[i].northing * ptList[i].easting)
-                                        / (ptList[j].northing - ptList[i].northing));
-                    constantMultiple.northing = (ptList[j].easting - ptList[i].easting) / (ptList[j].northing - ptList[i].northing);
-                    calcList.Add(constantMultiple);
-                }
-            }
-
-            areaHectare = Math.Round(mf.boundz.area * 0.0001, 1) + " Ha";
-            areaAcre = Math.Round(mf.boundz.area * 0.000247105, 1) + " Ac";
-        }
-
-        public bool IsPointInsideBoundary(vec3 testPointv3)
-        {
-            if (calcList.Count < 3) return false;
-            int j = ptList.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < ptList.Count; j = i++)
-            {
-                if ((ptList[i].northing < testPointv3.northing && ptList[j].northing >= testPointv3.northing)
-                || (ptList[j].northing < testPointv3.northing && ptList[i].northing >= testPointv3.northing))
-                {
-                    oddNodes ^= ((testPointv3.northing * calcList[i].northing) + calcList[i].easting < testPointv3.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
-        public bool IsPointInsideBoundary(vec2 testPointv2)
-        {
-            if (calcList.Count < 3) return false;
-            int j = ptList.Count - 1;
-            bool oddNodes = false;
-
-            //test against the constant and multiples list the test point
-            for (int i = 0; i < ptList.Count; j = i++)
-            {
-                if ((ptList[i].northing < testPointv2.northing && ptList[j].northing >= testPointv2.northing)
-                || (ptList[j].northing < testPointv2.northing && ptList[i].northing >= testPointv2.northing))
-                {
-                    oddNodes ^= ((testPointv2.northing * calcList[i].northing) + calcList[i].easting < testPointv2.easting);
-                }
-            }
-            return oddNodes; //true means inside.
-        }
-
-        public void DrawBoundaryLine()
-        {
-            ////draw the perimeter line so far
-            int ptCount = ptList.Count;
-            if (ptCount < 1) return;
-            gl.LineWidth(2);
-            gl.Color(0.95f, 0.2f, 0.60f);
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            for (int h = 0; h < ptCount; h++) gl.Vertex(ptList[h].easting, ptList[h].northing, 0);
-            gl.End();
-
-            //the "close the loop" line
-            gl.LineWidth(2);
-            gl.Color(0.9f, 0.632f, 0.4170f);
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            gl.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
-            gl.Vertex(ptList[0].easting, ptList[0].northing, 0);
+            gl.Color(0.919f, 0.932f, 0.070f);
+            gl.Begin(OpenGL.GL_POINTS);
+            gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
             gl.End();
 
             gl.LineWidth(2);
-            gl.Color(0.98f, 0.2f, 0.60f);
+            gl.Color(0.92f, 0.62f, 0.42f);
             gl.Begin(OpenGL.GL_LINE_STRIP);
             gl.Vertex(boxD.easting, boxD.northing, 0);
             gl.Vertex(boxA.easting, boxA.northing, 0);
             gl.Vertex(boxB.easting, boxB.northing, 0);
             gl.Vertex(boxC.easting, boxC.northing, 0);
             gl.End();
-
-            ptCount = bdList.Count;
-            if (ptCount < 1) return;
-            gl.PointSize(4);
-            gl.Color(0.19f, 0.932f, 0.70f);
-            gl.Begin(OpenGL.GL_POINTS);
-            gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
-            gl.End();
-        }
-
-        //draw a blue line in the back buffer for section control over boundary line
-        public void DrawBoundaryLineOnBackBuffer()
-        {
-            ////draw the perimeter line so far
-            int ptCount = ptList.Count;
-            if (ptCount < 1) return;
-            glb.LineWidth(4);
-            glb.Color(0.0f, 0.99f, 0.0f);
-            glb.Begin(OpenGL.GL_LINE_STRIP);
-            for (int h = 0; h < ptCount; h++) glb.Vertex(ptList[h].easting, ptList[h].northing, 0);
-            glb.End();
-
-            //the "close the loop" line
-            glb.LineWidth(4);
-            glb.Color(0.0f, 0.990f, 0.0f);
-            glb.Begin(OpenGL.GL_LINE_STRIP);
-            glb.Vertex(ptList[ptCount - 1].easting, ptList[ptCount - 1].northing, 0);
-            glb.Vertex(ptList[0].easting, ptList[0].northing, 0);
-            glb.End();
-        }
-
-        //obvious
-        public void CalculateBoundaryArea()
-        {
-            int ptCount = ptList.Count;
-            if (ptCount < 1) return;
-
-            area = 0;         // Accumulates area in the loop
-            int j = ptCount - 1;  // The last vertex is the 'previous' one to the first
-
-            for (int i = 0; i < ptCount; j = i++)
-            {
-                area += (ptList[j].easting + ptList[i].easting) * (ptList[j].northing - ptList[i].northing);
-            }
-            area = Math.Abs(area / 2);
         }
     }
 }

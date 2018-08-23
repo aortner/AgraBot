@@ -98,12 +98,12 @@ namespace AgOpenGPS
         //Degrees Radians Conversions
         public static double toDegrees(double radians)
         {
-            return radians * (57.295779513082325225835265587528);
+            return radians * 57.295779513082325225835265587528;
         }
 
         public static double toRadians(double degrees)
         {
-            return degrees * (0.01745329251994329576923690768489);
+            return degrees * 0.01745329251994329576923690768489;
         }
 
         //Distance calcs of all kinds
@@ -122,6 +122,20 @@ namespace AgOpenGPS
         }
 
         public static double Distance(vec2 first, vec3 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double Distance(CBndPt first, vec3 second)
+        {
+            return Math.Sqrt(
+                Math.Pow(first.easting - second.easting, 2)
+                + Math.Pow(first.northing - second.northing, 2));
+        }
+
+        public static double Distance(CBndPt first, CBndPt second)
         {
             return Math.Sqrt(
                 Math.Pow(first.easting - second.easting, 2)
@@ -163,8 +177,8 @@ namespace AgOpenGPS
 
         public static float acosh(float x)
         {
-            if (x < (1f)) return 0f;
-            return (float)Math.Log(x + Math.Sqrt((x * x) - (1f)));
+            if (x < 1f) return 0f;
+            return (float)Math.Log(x + Math.Sqrt((x * x) - 1f));
         }
 
         public static float asin(float x)
@@ -190,7 +204,7 @@ namespace AgOpenGPS
         public static float atanh(float x)
         {
             if (Math.Abs(x) >= 1f) return 0;
-            return (0.5f) * (float)Math.Log((1f + x) / (1f - x));
+            return 0.5f * (float)Math.Log((1f + x) / (1f - x));
         }
 
         public static float cos(float angle)
@@ -205,12 +219,12 @@ namespace AgOpenGPS
 
         public static float toDegrees(float radians)
         {
-            return radians * (57.295779513082325225835265587528f);
+            return radians * 57.295779513082325225835265587528f;
         }
 
         public static float toRadians(float degrees)
         {
-            return degrees * (0.01745329251994329576923690766743f);
+            return degrees * 0.01745329251994329576923690766743f;
         }
 
         public static float sin(float angle)

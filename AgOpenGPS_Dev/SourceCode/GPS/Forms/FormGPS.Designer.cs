@@ -130,15 +130,20 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
+            this.tboxRecvUDP = new System.Windows.Forms.TextBox();
             this.btnLidarOnOff = new System.Windows.Forms.Button();
+            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
             this.lblLidarDistance = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnGeneratePath = new System.Windows.Forms.Button();
+            this.btnPauseDrivingPath = new System.Windows.Forms.Button();
             this.lblFixOffset = new System.Windows.Forms.Label();
+            this.btnDrivePath = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
+            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
+            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
             this.lblHeadlandDistanceFromTool = new System.Windows.Forms.Label();
@@ -147,7 +152,6 @@
             this.lblRoll = new System.Windows.Forms.Label();
             this.lblGPSHeading = new System.Windows.Forms.Label();
             this.lblYawHeading = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.label24 = new System.Windows.Forms.Label();
             this.btnTiltUp = new ProXoft.WinForms.RepeatButton();
@@ -207,12 +211,11 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnFileExplorer = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
-            this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
-            this.btnZoomOut = new ProXoft.WinForms.RepeatButton();
             this.autoPage4 = new System.Windows.Forms.TabPage();
-            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
+            this.btnDeleteRecPath = new System.Windows.Forms.Button();
+            this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
@@ -1048,16 +1051,19 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.DataPage.Controls.Add(this.tboxRecvUDP);
             this.DataPage.Controls.Add(this.btnLidarOnOff);
+            this.DataPage.Controls.Add(this.btnRecPathPauseRecord);
             this.DataPage.Controls.Add(this.lblLidarDistance);
             this.DataPage.Controls.Add(this.label1);
-            this.DataPage.Controls.Add(this.btnGeneratePath);
+            this.DataPage.Controls.Add(this.btnPauseDrivingPath);
             this.DataPage.Controls.Add(this.lblFixOffset);
             this.DataPage.Controls.Add(this.label2);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.lblFixQuality);
-            this.DataPage.Controls.Add(this.btnDeleteAllData);
             this.DataPage.Controls.Add(this.lblAltitude);
+            this.DataPage.Controls.Add(this.btnZoomOut);
+            this.DataPage.Controls.Add(this.btnZoomIn);
             this.DataPage.Controls.Add(this.lblLongitude);
             this.DataPage.Controls.Add(this.lblLatitude);
             this.DataPage.Controls.Add(this.lblHeadlandDistanceFromTool);
@@ -1068,7 +1074,6 @@
             this.DataPage.Controls.Add(this.lblYawHeading);
             this.DataPage.Controls.Add(this.lblEasting);
             this.DataPage.Controls.Add(this.lblNorthing);
-            this.DataPage.Controls.Add(this.label26);
             this.DataPage.Controls.Add(this.label25);
             this.DataPage.Controls.Add(this.label24);
             this.DataPage.Controls.Add(this.btnTiltUp);
@@ -1095,6 +1100,13 @@
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
+            // tboxRecvUDP
+            // 
+            this.tboxRecvUDP.BackColor = System.Drawing.SystemColors.ControlLight;
+            resources.ApplyResources(this.tboxRecvUDP, "tboxRecvUDP");
+            this.tboxRecvUDP.Name = "tboxRecvUDP";
+            this.tboxRecvUDP.ReadOnly = true;
+            // 
             // btnLidarOnOff
             // 
             this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
@@ -1103,6 +1115,15 @@
             this.btnLidarOnOff.Name = "btnLidarOnOff";
             this.btnLidarOnOff.UseVisualStyleBackColor = false;
             this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
+            // 
+            // btnRecPathPauseRecord
+            // 
+            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
+            this.btnRecPathPauseRecord.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
+            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
+            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
             // 
             // lblLidarDistance
             // 
@@ -1114,19 +1135,28 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // btnGeneratePath
+            // btnPauseDrivingPath
             // 
-            this.btnGeneratePath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
-            this.btnGeneratePath.Image = global::AgOpenGPS.Properties.Resources.Headland;
-            this.btnGeneratePath.Name = "btnGeneratePath";
-            this.btnGeneratePath.UseVisualStyleBackColor = false;
-            this.btnGeneratePath.Click += new System.EventHandler(this.btnGeneratePath_Click);
+            this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
+            resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
+            this.btnPauseDrivingPath.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
+            this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
+            this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
+            this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
             // 
             // lblFixOffset
             // 
             resources.ApplyResources(this.lblFixOffset, "lblFixOffset");
             this.lblFixOffset.Name = "lblFixOffset";
+            // 
+            // btnDrivePath
+            // 
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            this.btnDrivePath.Name = "btnDrivePath";
+            this.btnDrivePath.UseVisualStyleBackColor = false;
+            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
             // 
             // label2
             // 
@@ -1147,6 +1177,22 @@
             // 
             resources.ApplyResources(this.lblAltitude, "lblAltitude");
             this.lblAltitude.Name = "lblAltitude";
+            // 
+            // btnZoomOut
+            // 
+            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
+            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
+            this.btnZoomOut.Name = "btnZoomOut";
+            this.btnZoomOut.UseVisualStyleBackColor = false;
+            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
+            // 
+            // btnZoomIn
+            // 
+            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
+            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.UseVisualStyleBackColor = false;
+            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
             // 
             // lblLongitude
             // 
@@ -1187,11 +1233,6 @@
             // 
             resources.ApplyResources(this.lblYawHeading, "lblYawHeading");
             this.lblYawHeading.Name = "lblYawHeading";
-            // 
-            // label26
-            // 
-            resources.ApplyResources(this.label26, "label26");
-            this.label26.Name = "label26";
             // 
             // label25
             // 
@@ -1314,6 +1355,7 @@
             this.zoomPage2.Controls.Add(this.label4);
             this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
             this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
+            this.zoomPage2.Controls.Add(this.btnDeleteAllData);
             this.zoomPage2.Controls.Add(this.btnPerimeter);
             resources.ApplyResources(this.zoomPage2, "zoomPage2");
             this.zoomPage2.Name = "zoomPage2";
@@ -1570,8 +1612,6 @@
             this.configPage1.Controls.Add(this.btnHelp);
             this.configPage1.Controls.Add(this.btnFileExplorer);
             this.configPage1.Controls.Add(this.btnGPSData);
-            this.configPage1.Controls.Add(this.btnZoomIn);
-            this.configPage1.Controls.Add(this.btnZoomOut);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
             // 
@@ -1638,46 +1678,32 @@
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
-            // btnZoomIn
-            // 
-            resources.ApplyResources(this.btnZoomIn, "btnZoomIn");
-            this.btnZoomIn.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomIn.Name = "btnZoomIn";
-            this.btnZoomIn.UseVisualStyleBackColor = false;
-            this.btnZoomIn.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomIn_MouseDown);
-            // 
-            // btnZoomOut
-            // 
-            resources.ApplyResources(this.btnZoomOut, "btnZoomOut");
-            this.btnZoomOut.BackColor = System.Drawing.Color.Lavender;
-            this.btnZoomOut.Name = "btnZoomOut";
-            this.btnZoomOut.UseVisualStyleBackColor = false;
-            this.btnZoomOut.MouseDown += new System.Windows.Forms.MouseEventHandler(this.btnZoomOut_MouseDown);
-            // 
             // autoPage4
             // 
-            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
+            this.autoPage4.Controls.Add(this.btnDeleteRecPath);
+            this.autoPage4.Controls.Add(this.btnGeneratePath);
+            this.autoPage4.Controls.Add(this.btnDriveGenPath);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
             this.autoPage4.UseVisualStyleBackColor = true;
             // 
-            // btnRecPathPauseRecord
+            // btnDeleteRecPath
             // 
-            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
-            this.btnRecPathPauseRecord.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
-            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
-            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
-            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
+            this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
+            this.btnDeleteRecPath.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
+            this.btnDeleteRecPath.Name = "btnDeleteRecPath";
+            this.btnDeleteRecPath.UseVisualStyleBackColor = false;
+            this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
             // 
-            // btnManualAutoDrive
+            // btnGeneratePath
             // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            this.btnGeneratePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
+            this.btnGeneratePath.Image = global::AgOpenGPS.Properties.Resources.Headland;
+            this.btnGeneratePath.Name = "btnGeneratePath";
+            this.btnGeneratePath.UseVisualStyleBackColor = false;
+            this.btnGeneratePath.Click += new System.EventHandler(this.btnGeneratePath_Click);
             // 
             // btnDriveGenPath
             // 
@@ -1687,6 +1713,15 @@
             this.btnDriveGenPath.Name = "btnDriveGenPath";
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
+            // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Image = global::AgOpenGPS.Properties.Resources.OK64;
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // btnResetSim
             // 
@@ -1750,7 +1785,6 @@
             // timerSim
             // 
             this.timerSim.Enabled = true;
-            this.timerSim.Interval = 200;
             this.timerSim.Tick += new System.EventHandler(this.timerSim_Tick);
             // 
             // toolStripMenuItem2
@@ -2006,10 +2040,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.Controls.Add(this.btnManualAutoDrive);
-            this.Controls.Add(this.btnDriveGenPath);
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
             this.Controls.Add(this.tabControl1);
+            this.Controls.Add(this.btnDrivePath);
             this.Controls.Add(this.lblHeading);
             this.Controls.Add(this.btnSwapDirection);
             this.Controls.Add(this.statusStrip1);
@@ -2253,7 +2287,6 @@
         private System.Windows.Forms.Button btnSection12Man;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.Label label24;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.TabPage rate2Page5;
         private System.Windows.Forms.Label lblFlowRateRight;
         private System.Windows.Forms.Label lblFlowRateLeft;
@@ -2294,9 +2327,13 @@
         public System.Windows.Forms.Button btnSnap;
         public System.Windows.Forms.Button btnDriveGenPath;
         private System.Windows.Forms.Button btnManualAutoDrive;
+        public System.Windows.Forms.Button btnPauseDrivingPath;
+        private System.Windows.Forms.Button btnDeleteRecPath;
+        public System.Windows.Forms.Button btnDrivePath;
         private System.Windows.Forms.Label lblLidarDistance;
-        private System.Windows.Forms.Button btnLidarOnOff;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnLidarOnOff;
+        private System.Windows.Forms.TextBox tboxRecvUDP;
     }
 }
 

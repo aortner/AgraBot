@@ -54,6 +54,7 @@
             this.btnYouTurnRecord = new System.Windows.Forms.Button();
             this.btnYouTurnCustom = new System.Windows.Forms.Button();
             this.tabDistance = new System.Windows.Forms.TabPage();
+            this.label47 = new System.Windows.Forms.Label();
             this.label48 = new System.Windows.Forms.Label();
             this.btnTriggerDistanceDn = new ProXoft.WinForms.RepeatButton();
             this.btnTriggerDistanceUp = new ProXoft.WinForms.RepeatButton();
@@ -168,7 +169,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label47 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabYouTurn.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -283,6 +283,7 @@
             this.cboxRowWidth.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboxRowWidth.FormattingEnabled = true;
             this.cboxRowWidth.Items.AddRange(new object[] {
+            "0",
             "1",
             "2",
             "3",
@@ -577,6 +578,17 @@
             this.tabDistance.TabIndex = 5;
             this.tabDistance.Text = "Distance";
             this.tabDistance.UseVisualStyleBackColor = true;
+            // 
+            // label47
+            // 
+            this.label47.AutoSize = true;
+            this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label47.Location = new System.Drawing.Point(621, 137);
+            this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label47.Name = "label47";
+            this.label47.Size = new System.Drawing.Size(111, 25);
+            this.label47.TabIndex = 162;
+            this.label47.Text = "Headland";
             // 
             // label48
             // 
@@ -2183,17 +2195,6 @@
             this.btnOK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnOK.UseVisualStyleBackColor = true;
             this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // label47
-            // 
-            this.label47.AutoSize = true;
-            this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(621, 137);
-            this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.label47.Name = "label47";
-            this.label47.Size = new System.Drawing.Size(111, 25);
-            this.label47.TabIndex = 162;
-            this.label47.Text = "Headland";
             // 
             // FormYouTurn
             // 

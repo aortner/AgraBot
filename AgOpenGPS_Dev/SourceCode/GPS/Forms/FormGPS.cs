@@ -26,6 +26,12 @@ namespace AgOpenGPS
         //How many youturn functions
         public const int MAXFUNCTIONS = 8;
 
+        //How many boundaries allowed
+        public const int MAXBOUNDARIES = 6;
+
+        //How many headlands allowed
+        public const int MAXHEADS = 6;
+
         //The base directory where AgOpenGPS will be stored and fields and vehicles branch from
         public string baseDirectory;
 
@@ -107,7 +113,7 @@ namespace AgOpenGPS
         public CNMEA pn;
 
         /// <summary>
-        /// an array of sections, so far only 8 section + 1 fullWidth Section
+        /// an array of sections, so far 16 section + 1 fullWidth Section
         /// </summary>
         public CSection[] section = new CSection[MAXSECTIONS];
 
@@ -152,14 +158,24 @@ namespace AgOpenGPS
         public CPerimeter periArea;
 
         /// <summary>
-        /// The outer boundary of the field
+        /// The boundary object
         /// </summary>
-        public CBoundary boundz;
+        public CBoundary bnd;
+
+        /// <summary>
+        /// array of boundaries
+        /// </summary>
+        public CBoundaryLines[] bndArr = new CBoundaryLines[MAXBOUNDARIES];
 
         /// <summary>
         /// The headland created
         /// </summary>
         public CHeadland hl;
+
+        /// <summary>
+        /// array of headlands
+        /// </summary>
+        public CHeadlandLines[] hlArr = new CHeadlandLines[MAXHEADS];
 
         /// <summary>
         /// The entry and exit sequences, functions, actions
@@ -243,10 +259,16 @@ namespace AgOpenGPS
             periArea = new CPerimeter(gl);
 
             //boundary object
-            boundz = new CBoundary(gl, glBack, this);
+            bnd = new CBoundary(gl, glBack, this);
+
+            //boundaries array
+            for (int j = 0; j < MAXBOUNDARIES; j++) bndArr[j] = new CBoundaryLines(gl, glBack, this);
 
             //headland object
             hl = new CHeadland(gl, this);
+
+            //headlands array
+            for (int j = 0; j < MAXHEADS; j++) hlArr[j] = new CHeadlandLines(gl, this);
 
             //rate object for dual flowmeters
             rcd = new CDualRate(this);
@@ -563,19 +585,19 @@ namespace AgOpenGPS
 
         private void btnMakeContourFromBoundary_Click(object sender, EventArgs e)
         {
-            if (!boundz.isSet) return;
+            if (!bndArr[0].isSet) return;
 
             vec3 point = new vec3();
 
             //count the points from the boundary
-            int ptCount = boundz.ptList.Count;
+            int ptCount = bndArr[0].bndLine.Count;
 
-            //first find out which side is inside the boundary
-            double oneSide = glm.PIBy2;
-            point.easting = boundz.ptList[3].easting - (Math.Sin(oneSide + boundz.ptList[3].heading) * 2.0);
-            point.northing = boundz.ptList[3].northing - (Math.Cos(oneSide + boundz.ptList[3].heading) * 2.0);
+            ////first find out which side is inside the boundary
+            //double oneSide = glm.PIBy2;
+            //point.easting = bnd.ptList[3].easting - (Math.Sin(oneSide + bnd.ptList[3].heading) * 2.0);
+            //point.northing = bnd.ptList[3].northing - (Math.Cos(oneSide + bnd.ptList[3].heading) * 2.0);
 
-            if (boundz.IsPointInsideBoundary(point)) oneSide *= -1.0;
+            //if (bnd.IsPointInsideBoundary(point)) oneSide *= -1.0;
 
             //determine how wide a headland space
             double totalHeadWidth = vehicle.toolWidth * 0.46;
@@ -586,9 +608,9 @@ namespace AgOpenGPS
             for (int i = ptCount - 1; i >= 0; i--)
             {
                 //calculate the point inside the boundary
-                point.easting = boundz.ptList[i].easting - (Math.Sin(oneSide + boundz.ptList[i].heading) * totalHeadWidth);
-                point.northing = boundz.ptList[i].northing - (Math.Cos(oneSide + boundz.ptList[i].heading) * totalHeadWidth);
-                point.heading = boundz.ptList[i].heading - Math.PI;
+                point.easting = bndArr[0].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.northing = bndArr[0].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.heading = bndArr[0].bndLine[i].heading - Math.PI;
                 if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
 
                 //only add if inside actual field boundary
@@ -602,13 +624,15 @@ namespace AgOpenGPS
         {
             if (recPath.isRecordOn)
             {
+                FileSaveRecPath();
                 recPath.isRecordOn = false;
-                btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
             }
             else if (isJobStarted)
             {
+                recPath.recList.Clear();
                 recPath.isRecordOn = true;
-                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
+                btnRecPathPauseRecord.Image = Properties.Resources.boundaryStop;
             }
         }
 
@@ -871,21 +895,21 @@ namespace AgOpenGPS
 
         private void btnGeneratePath_Click(object sender, EventArgs e)
         {
-            if (boundz.isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
-            {
-                //field too small or moving
-                if (boundz.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
-                if (pn.speed > 0.3) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
+            //if (bnd.isSet)// && (ABLine.isABLineSet | curve.isCurveSet))
+            //{
+            //    //field too small or moving
+            //    if (bnd.ptList.Count < 4) { TimedMessageBox(3000, "!!!!", gStr.gsBoundaryTooSmall); return; }
+            //    if (pn.speed > 0.2) { TimedMessageBox(3000, "Vehicle Moving", "You Must Be Standing Still"); return; }
 
-                using (var form = new FormGenerate(this))
-                {
-                    var result = form.ShowDialog();
-                    if (result == DialogResult.OK)
-                    {
-                    }
-                }
-            }
-            else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
+            //    using (var form = new FormGenerate(this))
+            //    {
+            //        var result = form.ShowDialog();
+            //        if (result == DialogResult.OK)
+            //        {
+            //        }
+            //    }
+            //}
+            //else { TimedMessageBox(3000, gStr.gsBoundaryNotSet, gStr.gsCreateBoundaryFirst); }
         }
 
         private void btnDriveGenPath_Click(object sender, EventArgs e)
@@ -932,6 +956,60 @@ namespace AgOpenGPS
             }
         }
 
+        private void btnDrivePath_Click(object sender, EventArgs e)
+        {
+            if (!recPath.isPausedDrivingRecordedPath)
+            {
+                //already running?
+                if (recPath.isDrivingRecordedPath)
+                {
+                    recPath.StopDrivingRecordedPath();
+                    return;
+                }
+
+                //start the recorded path driving process
+                if (!recPath.StartDrivingRecordedPath())
+                {
+                    //Cancel the recPath - something went seriously wrong
+                    recPath.StopDrivingRecordedPath();
+                }
+                else
+                {
+                    btnDrivePath.Image = Properties.Resources.AutoStop;
+                }
+            }
+            else
+            {
+                recPath.isPausedDrivingRecordedPath = false;
+                btnPauseDrivingPath.BackColor = Color.Lime;
+            }
+        }
+
+        private void btnStopDrivingPath_Click(object sender, EventArgs e)
+        {
+            recPath.StopDrivingRecordedPath();
+        }
+
+        private void btnDeleteRecPath_Click(object sender, EventArgs e)
+        {
+            recPath.recList.Clear();
+            FileSaveRecPath();
+        }
+
+        private void btnPauseDrivingPath_Click(object sender, EventArgs e)
+        {
+            if (recPath.isPausedDrivingRecordedPath)
+            {
+                recPath.isPausedDrivingRecordedPath = !recPath.isPausedDrivingRecordedPath;
+                btnPauseDrivingPath.BackColor = Color.Lime;
+            }
+            else
+            {
+                recPath.isPausedDrivingRecordedPath = !recPath.isPausedDrivingRecordedPath;
+                btnPauseDrivingPath.BackColor = Color.OrangeRed;
+            }
+        }
+
         private void btnLidarOnOff_Click(object sender, EventArgs e)
         {
             isLidarBtnOn = !isLidarBtnOn;
@@ -945,6 +1023,7 @@ namespace AgOpenGPS
                 btnLidarOnOff.Text = "Lidar Off";
                 btnLidarOnOff.Image = Properties.Resources.boundaryStop;
             }
+
         }
 
         //dialog for requesting user to save or cancel
@@ -1103,7 +1182,7 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
-                btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
             }
 
             LineUpManualBtns();
@@ -1253,11 +1332,11 @@ namespace AgOpenGPS
             //reset acre and distance counters
             totalSquareMeters = 0;
 
-            //reset boundary
-            boundz.ResetBoundary();
+            //reset boundaries
+            for (int i = 0; i < MAXBOUNDARIES; i++) bndArr[i].ResetBoundary();
 
             //reset headland
-            hl.ResetHeadland();
+            for (int i = 0; i < FormGPS.MAXHEADS; i++) hlArr[i].ResetHeadland();
 
             //update the menu
             fieldToolStripMenuItem.Text = gStr.gsStartNewField;
@@ -1268,7 +1347,7 @@ namespace AgOpenGPS
 
             //auto YouTurn shutdown
             yt.isYouTurnBtnOn = false;
-            yt.ResetYouTurnAndSequenceEvents();
+            yt.ResetYouTurn();
             youTurnProgressBar = 0;
 
             //turn off youturn...
@@ -1281,7 +1360,7 @@ namespace AgOpenGPS
             if (recPath.isRecordOn)
             {
                 recPath.isRecordOn = false;
-                btnRecPathPauseRecord.Image = Properties.Resources.boundaryPause;
+                btnRecPathPauseRecord.Image = Properties.Resources.BoundaryRecord;
             }
 
             //reset all Port Module values
@@ -1292,9 +1371,7 @@ namespace AgOpenGPS
             yt.isDew2Set = false;
             yt.isDew4Set = false;
             yt.dew4Index = 0;
-            yt.ResetYouTurnAndSequenceEvents();
-            mc.autoSteerData[mc.sdYouTurnByte] = 0;
-            mc.relayRateData[mc.rdYouTurnControlByte] = 0;
+            yt.ResetYouTurn();
         }
 
         //bring up field dialog for new/open/resume
@@ -1437,84 +1514,84 @@ namespace AgOpenGPS
                 case 3: //Relay 1
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, yt.pos3, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111110;
+                        TimedMessageBox(1000, seq.pos3, "Turn Off");
+                        mc.machineControlData[mc.cnYouTurn] &= 0b11111110;
                     }
                     else
                     {
-                        TimedMessageBox(1000, yt.pos3, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000001;
+                        TimedMessageBox(1000, seq.pos3, "Turn On");
+                        mc.machineControlData[mc.cnYouTurn] |= 0b00000001;
                     }
                     break;
 
                 case 4: //Relay 2
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, yt.pos4, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111101;
+                        TimedMessageBox(1000, seq.pos4, "Turn Off");
+                        mc.machineControlData[mc.cnYouTurn] &= 0b11111101;
                     }
                     else
                     {
-                        TimedMessageBox(1000, yt.pos4, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000010;
+                        TimedMessageBox(1000, seq.pos4, "Turn On");
+                        mc.machineControlData[mc.cnYouTurn] |= 0b00000010;
                     }
                     break;
 
                 case 5: //Relay 3
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, yt.pos5, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11111011;
+                        TimedMessageBox(1000, seq.pos5, "Turn Off");
+                        mc.machineControlData[mc.cnYouTurn] &= 0b11111011;
                     }
                     else
                     {
-                        TimedMessageBox(1000, yt.pos5, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00000100;
+                        TimedMessageBox(1000, seq.pos5, "Turn On");
+                        mc.machineControlData[mc.cnYouTurn] |= 0b00000100;
                     }
                     break;
 
                 case 6: //Relay 4
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, yt.pos6, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11110111;
+                        TimedMessageBox(1000, seq.pos6, "Turn Off");
+                        mc.machineControlData[mc.cnYouTurn] &= 0b11110111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, yt.pos6, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00001000;
+                        TimedMessageBox(1000, seq.pos6, "Turn On");
+                        mc.machineControlData[mc.cnYouTurn] |= 0b00001000;
                     }
                     break;
 
                 case 7: //Relay 5
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, yt.pos7, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11101111;
+                        TimedMessageBox(1000, seq.pos7, "Turn Off");
+                        mc.machineControlData[mc.cnYouTurn] &= 0b11101111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, yt.pos7, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00010000;
+                        TimedMessageBox(1000, seq.pos7, "Turn On");
+                        mc.machineControlData[mc.cnYouTurn] |= 0b00010000;
                     }
                     break;
 
                 case 8: //Relay 6
                     if (action == 0)
                     {
-                        TimedMessageBox(1000, yt.pos8, "Turn Off");
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b11011111;
+                        TimedMessageBox(1000, seq.pos8, "Turn Off");
+                        mc.machineControlData[mc.cnYouTurn] &= 0b11011111;
                     }
                     else
                     {
-                        TimedMessageBox(1000, yt.pos8, "Turn On");
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b00100000;
+                        TimedMessageBox(1000, seq.pos8, "Turn On");
+                        mc.machineControlData[mc.cnYouTurn] |= 0b00100000;
                     }
                     break;
             }
 
             //load the autosteer youturn byte also.
-            mc.autoSteerData[mc.sdYouTurnByte] = mc.relayRateData[mc.rdYouTurnControlByte];
+            //mc.autoSteerData[mc.sdX] = mc.machineControlData[mc.cnYouTurnByte];
         }
 
         //take the distance from object and convert to camera data
@@ -1564,11 +1641,13 @@ namespace AgOpenGPS
             }
 
             //FileSaveHeadland();
-            FileSaveOuterBoundary();
+            for (int i = 0; i < MAXBOUNDARIES; i++)
+            {
+                FileSaveBoundary();
+            }
             FileSaveSections();
             FileSaveContour();
             FileSaveFlagsKML();
-            FileSaveRecPath();
 
             JobClose();
             Text = "AgOpenGPS";

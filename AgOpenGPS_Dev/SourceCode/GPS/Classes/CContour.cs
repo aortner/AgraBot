@@ -127,7 +127,7 @@ namespace AgOpenGPS
             {
                 ptList.Clear();
                 int ra = stripList.Count - 1;
-                stripList.RemoveAt(ra);
+                if (ra > 0) stripList.RemoveAt(ra);
             }
 
             //turn it off
@@ -146,27 +146,27 @@ namespace AgOpenGPS
             double cos3H = Math.Cos(pivot.heading + glm.PIBy2) * 0.5;
 
             //build a frustum box ahead of fix to find adjacent paths and points
-            boxA.easting = pivot.easting - (sin2H);
-            boxA.northing = pivot.northing - (cos2H);
+            boxA.easting = pivot.easting - sin2H;
+            boxA.northing = pivot.northing - cos2H;
             boxA.easting -= (sinH * 0.5);
             boxA.northing -= (cosH * 0.5);
 
-            boxB.easting = pivot.easting + (sin2H);
-            boxB.northing = pivot.northing + (cos2H);
+            boxB.easting = pivot.easting + sin2H;
+            boxB.northing = pivot.northing + cos2H;
             boxB.easting -= (sinH * 0.5);
             boxB.northing -= (cosH * 0.5);
 
-            boxC.easting = boxB.easting + (sinH);
-            boxC.northing = boxB.northing + (cosH);
+            boxC.easting = boxB.easting + sinH;
+            boxC.northing = boxB.northing + cosH;
 
-            boxD.easting = boxA.easting + (sinH);
-            boxD.northing = boxA.northing + (cosH);
+            boxD.easting = boxA.easting + sinH;
+            boxD.northing = boxA.northing + cosH;
 
-            boxE.easting = pivot.easting - (sin3H);
-            boxE.northing = pivot.northing - (cos3H);
+            boxE.easting = pivot.easting - sin3H;
+            boxE.northing = pivot.northing - cos3H;
 
-            boxF.easting = pivot.easting + (sin3H);
-            boxF.northing = pivot.northing + (cos3H);
+            boxF.easting = pivot.easting + sin3H;
+            boxF.northing = pivot.northing + cos3H;
 
             conList.Clear();
             ctList.Clear();
@@ -331,8 +331,8 @@ namespace AgOpenGPS
                 stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
             }
 
-            double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
-            bool fail = false;
+            //double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
+            //bool fail = false;
 
             for (int i = start; i < stop; i++)
             {
@@ -340,21 +340,27 @@ namespace AgOpenGPS
                     stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                     stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                     stripList[strip][i].heading);
-                //ctList.Add(point);
+                ctList.Add(point);
 
-                //make sure its not closer then 1 eq width
-                for (int j = start; j < stop; j++)
-                {
-                    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
-                    if (check < distSq)
-                    {
-                        fail = true;
-                        break;
-                    }
-                }
+                //var point = new vec3(
+                //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                //    stripList[strip][i].heading);
+                ////ctList.Add(point);
 
-                if (!fail) ctList.Add(point);
-                fail = false;
+                ////make sure its not closer then 1 eq width
+                //for (int j = start; j < stop; j++)
+                //{
+                //    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
+                //    if (check < distSq)
+                //    {
+                //        fail = true;
+                //        break;
+                //    }
+                //}
+
+                //if (!fail) ctList.Add(point);
+                //fail = false;
             }
         }
 
@@ -412,11 +418,11 @@ namespace AgOpenGPS
                 distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
                 // ** Pure pursuit ** - calc point on ABLine closest to current position
-                double U = (((pivot.easting - ctList[A].easting) * (dx)) + ((pivot.northing - ctList[A].northing) * (dy)))
+                double U = (((pivot.easting - ctList[A].easting) * dx) + ((pivot.northing - ctList[A].northing) * dy))
                             / ((dx * dx) + (dy * dy));
 
-                rEastCT = ctList[A].easting + (U * (dx));
-                rNorthCT = ctList[A].northing + (U * (dy));
+                rEastCT = ctList[A].easting + (U * dx);
+                rNorthCT = ctList[A].northing + (U * dy);
 
                 ////determine if the point is between 2 points initially determined
                 //double minx, maxx, miny, maxy;
@@ -672,7 +678,7 @@ namespace AgOpenGPS
                 {
                     gl.Color(0.95f, 0.30f, 0.950f);
 
-                    double theta = glm.twoPI / (numSegments);
+                    double theta = glm.twoPI / numSegments;
                     double c = Math.Cos(theta);//precalculate the sine and cosine
                     double s = Math.Sin(theta);
 
@@ -702,7 +708,6 @@ namespace AgOpenGPS
 
                     gl.Color(1.0f, 0.5f, 0.95f);
                     gl.Vertex(goalPointCT.easting, goalPointCT.northing, 0.0);
-
                     gl.End();
                     gl.PointSize(1.0f);
                 }

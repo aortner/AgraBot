@@ -148,6 +148,7 @@ namespace AgOpenGPS
 
                 //if (recPath.isRecordOn)
                 recPath.DrawRecordedLine();
+                recPath.DrawDubins();
 
                 //draw generated path
                 genPath.DrawGeneratedPath();
@@ -193,17 +194,30 @@ namespace AgOpenGPS
                 }
 
                 //draw the perimter line, returns if no line to draw
-                periArea.DrawPerimeterLine();
+                if (periArea.isBtnPerimeterOn)periArea.DrawPerimeterLine();
 
-                //draw the boundary
-                boundz.DrawBoundaryLine();
+                //draw the boundaries
+                for (int i = 0; i < MAXBOUNDARIES; i++)
+                {
+                    bndArr[i].DrawBoundaryLine();
+                }
 
                 //draw the Headland line
-                if (hl.isSet) hl.DrawHeadlandLine();
+                for (int i = 0; i < MAXBOUNDARIES; i++)
+                {
+                    if (hlArr[i].isSet) hlArr[i].DrawHeadlandLine();
+                }
+
+                //Draw closest headland point if youturn on
+                if (yt.isYouTurnBtnOn)
+                {
+                    hl.DrawClosestPoint();
+                    bnd.DrawClosestPoint();
+                }
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Look: " + (hl.closest).ToString());
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "Angle: " + glm.toDegrees(headlandAngleOffPerpendicular).ToString("N1"));
+                gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Angle: " + yt.boundaryAngleOffPerpendicular.ToString());
+                gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + yt.turnDistance.ToString());
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
@@ -507,7 +521,10 @@ namespace AgOpenGPS
             }
 
             //draw boundary line
-            boundz.DrawBoundaryLineOnBackBuffer();
+            for (int i = 0; i < MAXBOUNDARIES; i++)
+            {
+                if (bndArr[i].isSet) bndArr[i].DrawBoundaryLineOnBackBuffer();
+            }
             
             //determine farthest ahead lookahead - is the height of the readpixel line
             double rpHeight = 0;
@@ -606,7 +623,7 @@ namespace AgOpenGPS
                         //If any nowhere applied, send OnRequest, if its all green send an offRequest
                         section[j].isSectionRequiredOn = false;
 
-                        if (boundz.isSet)
+                        if (bndArr[0].isSet)
                         {
 
                             int start = 0, end = 0, skip = 0;
@@ -1201,36 +1218,46 @@ namespace AgOpenGPS
                 }
             }
             ////draw the perimeter line so far
-            if (boundz.isSet)
+
+            for (int i = 0; i < MAXBOUNDARIES; i++)
             {
-                int ptCount = boundz.ptList.Count;
-                if (ptCount > 0)
+                if (bndArr[i].isSet)
                 {
+                    ////draw the perimeter line so far
+                    int ptCount = bndArr[i].bndLine.Count;
+                    if (ptCount < 1) return;
                     gl.LineWidth(2);
-                    gl.Color(0.98f, 0.2f, 0.60f);
+                    if (bndArr[i].isDriveThru) gl.Color(0.25f, 0.952f, 0.960f);
+                    else gl.Color(0.95f, 0.2f, 0.860f);
                     gl.Begin(OpenGL.GL_LINE_STRIP);
-                    for (int h = 0; h < ptCount; h++) gl.Vertex(boundz.ptList[h].easting, boundz.ptList[h].northing, 0);
+                    for (int h = 0; h < ptCount; h++) gl.Vertex(bndArr[i].bndLine[h].easting, bndArr[i].bndLine[h].northing, 0);
                     gl.End();
 
                     //the "close the loop" line
+                    gl.LineWidth(2);
+                    gl.Color(0.9f, 0.632f, 0.4170f);
                     gl.Begin(OpenGL.GL_LINE_STRIP);
-                    gl.Vertex(boundz.ptList[ptCount - 1].easting, boundz.ptList[ptCount - 1].northing, 0);
-                    gl.Vertex(boundz.ptList[0].easting, boundz.ptList[0].northing, 0);
+                    gl.Vertex(bndArr[i].bndLine[ptCount - 1].easting, bndArr[i].bndLine[ptCount - 1].northing, 0);
+                    gl.Vertex(bndArr[i].bndLine[0].easting, bndArr[i].bndLine[0].northing, 0);
                     gl.End();
                 }
             }
 
-            ////draw the headland line
-            if (hl.isSet)
+
+            ////draw the headland lines
+            for (int i = 0; i < FormGPS.MAXHEADS; i++)
             {
-                int pts = hl.headLineList.Count;
-                if (pts > 0)
+                if (hlArr[i].isSet)
                 {
-                    gl.PointSize(4);
-                    gl.Color(0.9298f, 0.9572f, 0.260f);
-                    gl.Begin(OpenGL.GL_POINTS);
-                    for (int h = 0; h < pts; h++) gl.Vertex(hl.headLineList[h].easting, hl.headLineList[h].northing, 0);
-                    gl.End();
+                    int pts = hlArr[i].hlLine.Count;
+                    if (pts > 0)
+                    {
+                        gl.PointSize(4);
+                        gl.Color(0.9298f, 0.9572f, 0.260f);
+                        gl.Begin(OpenGL.GL_POINTS);
+                        for (int h = 0; h < pts; h++) gl.Vertex(hlArr[i].hlLine[h].easting, hlArr[i].hlLine[h].northing, 0);
+                        gl.End();
+                    }
                 }
             }
 
@@ -1307,13 +1334,13 @@ namespace AgOpenGPS
                 }
 
                 //min max of the boundary
-                int bndCnt = boundz.ptList.Count;
+                int bndCnt = bndArr[0].bndLine.Count;
                 if (bndCnt > 0)
                 {
                     for (int i = 0; i < bndCnt; i++)
                     {
-                        double x = boundz.ptList[i].easting;
-                        double y = boundz.ptList[i].northing;
+                        double x = bndArr[0].bndLine[i].easting;
+                        double y = bndArr[0].bndLine[i].northing;
 
                         //also tally the max/min of field x and z
                         if (minFieldX > x) minFieldX = x;

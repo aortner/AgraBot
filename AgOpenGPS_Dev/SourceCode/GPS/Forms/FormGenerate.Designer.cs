@@ -53,7 +53,6 @@
             this.btnStartDrawingHeadland = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.cboxStayInBounds = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.openGLHead)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudWidths)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudHeadlandIncludeAngle)).BeginInit();
@@ -87,7 +86,7 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCancel.Location = new System.Drawing.Point(1033, 864);
+            this.btnCancel.Location = new System.Drawing.Point(1042, 864);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(128, 88);
@@ -105,7 +104,7 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnOK.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnOK.Location = new System.Drawing.Point(1258, 864);
+            this.btnOK.Location = new System.Drawing.Point(1267, 864);
             this.btnOK.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(128, 88);
@@ -121,7 +120,7 @@
             this.btnMakeHeadRecPath.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMakeHeadRecPath.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnMakeHeadRecPath.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnMakeHeadRecPath.Location = new System.Drawing.Point(278, 110);
+            this.btnMakeHeadRecPath.Location = new System.Drawing.Point(287, 58);
             this.btnMakeHeadRecPath.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnMakeHeadRecPath.Name = "btnMakeHeadRecPath";
             this.btnMakeHeadRecPath.Size = new System.Drawing.Size(125, 116);
@@ -136,7 +135,7 @@
             this.lblStartHeading.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStartHeading.AutoSize = true;
             this.lblStartHeading.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartHeading.Location = new System.Drawing.Point(9, 337);
+            this.lblStartHeading.Location = new System.Drawing.Point(9, 312);
             this.lblStartHeading.Name = "lblStartHeading";
             this.lblStartHeading.Size = new System.Drawing.Size(14, 13);
             this.lblStartHeading.TabIndex = 92;
@@ -147,7 +146,7 @@
             this.lblStartNorthing.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStartNorthing.AutoSize = true;
             this.lblStartNorthing.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartNorthing.Location = new System.Drawing.Point(9, 305);
+            this.lblStartNorthing.Location = new System.Drawing.Point(9, 280);
             this.lblStartNorthing.Name = "lblStartNorthing";
             this.lblStartNorthing.Size = new System.Drawing.Size(13, 13);
             this.lblStartNorthing.TabIndex = 91;
@@ -158,7 +157,7 @@
             this.lblStartEasting.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStartEasting.AutoSize = true;
             this.lblStartEasting.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStartEasting.Location = new System.Drawing.Point(9, 272);
+            this.lblStartEasting.Location = new System.Drawing.Point(9, 247);
             this.lblStartEasting.Name = "lblStartEasting";
             this.lblStartEasting.Size = new System.Drawing.Size(13, 13);
             this.lblStartEasting.TabIndex = 90;
@@ -170,7 +169,7 @@
             this.btnStartPt.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnStartPt.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnStartPt.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnStartPt.Location = new System.Drawing.Point(100, 266);
+            this.btnStartPt.Location = new System.Drawing.Point(100, 241);
             this.btnStartPt.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnStartPt.Name = "btnStartPt";
             this.btnStartPt.Size = new System.Drawing.Size(134, 90);
@@ -185,7 +184,7 @@
             this.btnNumHeadlandPassesDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNumHeadlandPassesDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNumHeadlandPassesDn.Image = ((System.Drawing.Image)(resources.GetObject("btnNumHeadlandPassesDn.Image")));
-            this.btnNumHeadlandPassesDn.Location = new System.Drawing.Point(51, 176);
+            this.btnNumHeadlandPassesDn.Location = new System.Drawing.Point(60, 124);
             this.btnNumHeadlandPassesDn.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnNumHeadlandPassesDn.Name = "btnNumHeadlandPassesDn";
             this.btnNumHeadlandPassesDn.Size = new System.Drawing.Size(59, 69);
@@ -198,7 +197,7 @@
             this.btnNumHeadlandPassesUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnNumHeadlandPassesUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnNumHeadlandPassesUp.Image = ((System.Drawing.Image)(resources.GetObject("btnNumHeadlandPassesUp.Image")));
-            this.btnNumHeadlandPassesUp.Location = new System.Drawing.Point(51, 97);
+            this.btnNumHeadlandPassesUp.Location = new System.Drawing.Point(60, 45);
             this.btnNumHeadlandPassesUp.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnNumHeadlandPassesUp.Name = "btnNumHeadlandPassesUp";
             this.btnNumHeadlandPassesUp.Size = new System.Drawing.Size(59, 69);
@@ -211,7 +210,7 @@
             this.lblNumPassesTotal.AutoSize = true;
             this.lblNumPassesTotal.BackColor = System.Drawing.SystemColors.Control;
             this.lblNumPassesTotal.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumPassesTotal.Location = new System.Drawing.Point(143, 176);
+            this.lblNumPassesTotal.Location = new System.Drawing.Point(152, 124);
             this.lblNumPassesTotal.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNumPassesTotal.Name = "lblNumPassesTotal";
             this.lblNumPassesTotal.Size = new System.Drawing.Size(70, 45);
@@ -222,7 +221,7 @@
             // 
             this.label47.AutoSize = true;
             this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label47.Location = new System.Drawing.Point(127, 117);
+            this.label47.Location = new System.Drawing.Point(136, 65);
             this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label47.Name = "label47";
             this.label47.Size = new System.Drawing.Size(122, 50);
@@ -236,7 +235,7 @@
             this.btnBringUpABLine.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBringUpABLine.Image = global::AgOpenGPS.Properties.Resources.ArrowRight;
             this.btnBringUpABLine.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnBringUpABLine.Location = new System.Drawing.Point(1033, 14);
+            this.btnBringUpABLine.Location = new System.Drawing.Point(1042, 14);
             this.btnBringUpABLine.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnBringUpABLine.Name = "btnBringUpABLine";
             this.btnBringUpABLine.Size = new System.Drawing.Size(128, 82);
@@ -294,7 +293,7 @@
             this.btnPathToInfieldStart.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnPathToInfieldStart.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPathToInfieldStart.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnPathToInfieldStart.Location = new System.Drawing.Point(278, 266);
+            this.btnPathToInfieldStart.Location = new System.Drawing.Point(278, 241);
             this.btnPathToInfieldStart.Margin = new System.Windows.Forms.Padding(6, 5, 6, 5);
             this.btnPathToInfieldStart.Name = "btnPathToInfieldStart";
             this.btnPathToInfieldStart.Size = new System.Drawing.Size(134, 90);
@@ -421,7 +420,6 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.cboxStayInBounds);
             this.groupBox2.Controls.Add(this.btnStartPt);
             this.groupBox2.Controls.Add(this.lblStartEasting);
             this.groupBox2.Controls.Add(this.lblStartNorthing);
@@ -440,23 +438,11 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Generate Path";
             // 
-            // cboxStayInBounds
-            // 
-            this.cboxStayInBounds.AutoSize = true;
-            this.cboxStayInBounds.Location = new System.Drawing.Point(140, 51);
-            this.cboxStayInBounds.Name = "cboxStayInBounds";
-            this.cboxStayInBounds.Size = new System.Drawing.Size(258, 39);
-            this.cboxStayInBounds.TabIndex = 169;
-            this.cboxStayInBounds.Text = "Stay In Bounds";
-            this.cboxStayInBounds.UseVisualStyleBackColor = true;
-            this.cboxStayInBounds.CheckedChanged += new System.EventHandler(this.cboxStayInBounds_CheckedChanged);
-            // 
             // FormGenerate
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoScroll = true;
-            this.ClientSize = new System.Drawing.Size(1410, 920);
+            this.ClientSize = new System.Drawing.Size(1410, 966);
             this.ControlBox = false;
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -465,7 +451,7 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.openGLHead);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormGenerate";
@@ -510,6 +496,5 @@
         private System.Windows.Forms.Button btnStartDrawingHeadland;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.CheckBox cboxStayInBounds;
     }
 }

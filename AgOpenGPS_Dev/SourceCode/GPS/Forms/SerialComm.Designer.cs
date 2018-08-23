@@ -42,51 +42,52 @@ namespace AgOpenGPS
         #region AutoSteerPort //--------------------------------------------------------------------
 
         public void AutoSteerDataOutToPort()
-        {
+        {            
             if (isInAutoDrive) //Is in Auto Drive Mode enabled
             {
                 if (!ast.isInFreeDriveMode)
                 {
-                    //make it go.
-                    if (genPath.isBtnDriveGenPathOn)
+                    //make it go - or with 1
+                    if (genPath.isBtnDriveGenPathOn| recPath.isDrivingRecordedPath)
                     {
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b01000000;
-                        mc.relayRateData[mc.rdYouTurnControlByte] |= 0b10000000;
+                        mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
                     }
-                    //make it not go
+                    //make it not go - and with zero
                     else
                     {
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b10111111;
-                        mc.relayRateData[mc.rdYouTurnControlByte] &= 0b01111111;
+                        mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
                     }
-
-                    //make youturn array the same for relay and autosteer
-                    mc.autoSteerData[mc.sdYouTurnByte] = mc.relayRateData[mc.rdYouTurnControlByte];
                 }
                 else //in AutoDrive and FreeDrive
                 {
-                    mc.relayRateData[mc.rdYouTurnControlByte] |= 0b01000000;
-                    mc.relayRateData[mc.rdYouTurnControlByte] |= 0b10000000;
+                    mc.machineControlData[mc.cnPedalControl] |= 0b11000000;
                 }
 
                 //Is there something in the way?
                 if (isLidarBtnOn && (mc.lidarDistance > 200 && mc.lidarDistance < 1000))
                 {
-                    mc.relayRateData[mc.rdYouTurnControlByte] &= 0b10111111;
-                    mc.relayRateData[mc.rdYouTurnControlByte] &= 0b01111111;
+                    mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
                 }
-                mc.autoSteerData[mc.sdYouTurnByte] = mc.relayRateData[mc.rdYouTurnControlByte];
-
             }
             else // Auto/Manual is in Manual so release the clutch
             {
                 //release the clutch for manual driving
-                mc.relayRateData[mc.rdYouTurnControlByte] |= 0b01000000;
-                mc.relayRateData[mc.rdYouTurnControlByte] &= 0b01111111;
-                mc.autoSteerData[mc.sdYouTurnByte] = mc.relayRateData[mc.rdYouTurnControlByte];
+                mc.machineControlData[mc.cnPedalControl] |= 0b01000000;
+                mc.machineControlData[mc.cnPedalControl] &= 0b01111111;
             }
 
-            if (Properties.Settings.Default.setUDP_isOn) SendUDPMessage(mc.autoSteerData);
+            //pause the thing if paused. Duh.
+            if (recPath.isPausedDrivingRecordedPath)
+            {
+                mc.machineControlData[mc.cnPedalControl] &= 0b00111111;
+            }
+
+            //send out to network
+            if (Properties.Settings.Default.setUDP_isOn)
+            {
+                SendUDPMessage(mc.machineControlData);
+                SendUDPMessage(mc.autoSteerData);
+            }
 
             //Tell Arduino the steering parameter values
             if (spAutoSteer.IsOpen)
@@ -102,6 +103,9 @@ namespace AgOpenGPS
 
         public void AutoSteerSettingsOutToPort()
         {
+            //send out the settings
+            SendUDPMessage(mc.autoSteerSettings);
+
             //Tell Arduino autoSteer settings
             if (spAutoSteer.IsOpen)
             {

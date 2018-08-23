@@ -17,15 +17,6 @@ namespace AgOpenGPS
         /// <summary> /// Has the you turn shape been built and displayed? /// </summary>
         public bool isYouTurnShapeDisplayed;
 
-        public string pos1 = "Manual Button";
-        public string pos2 = "Auto Button";
-        public string pos3 = "";
-        public string pos4 = "";
-        public string pos5 = "";
-        public string pos6 = "";
-        public string pos7 = "";
-        public string pos8 = "";
-
         /// <summary>  /// turning right or left?/// </summary>
         public bool isYouTurnRight, isLastToggle;
 
@@ -33,16 +24,15 @@ namespace AgOpenGPS
         public bool isLastYouTurnRight;
 
         /// <summary>/// triggered right after youTurnTriggerPoint is set /// </summary>
-        public bool isYouTurnTriggered, isSequenceTriggered;
+        public bool isYouTurnTriggered;
+
+        public bool isEnteringDriveThru = false, isExitingDriveThru = false;
 
         /// <summary> /// is the start trigger point 45m from headland set? /// </summary>
         public bool isYouTurnTriggerPointSet;
 
-        /// <summary>  /// The point 45 m from headland that starts everything  /// </summary>
-        public vec3 youTurnTriggerPoint = new vec3(0, 0, 0);
-
         //if not in workArea but in bounds, then we are on headland
-        public bool isInWorkArea, isInBoundz, isInHeadland;
+        public bool isInWorkArea, isInBoundz;
 
         /// <summary> /// At trigger point, was vehicle going same direction as ABLine? /// </summary>
         public bool isABLineSameAsHeadingAtTrigger;
@@ -56,6 +46,9 @@ namespace AgOpenGPS
         //
         public bool isUsingDubinsTurn;
 
+        public double boundaryAngleOffPerpendicular;
+        public double turnDistance = 25, tangencyAngle, ping;
+
         //Dew Loop turn 2 -> 2R,3L,2L,2R,3R,2L
         public bool isDew2Set, isDew2Right;
 
@@ -68,17 +61,15 @@ namespace AgOpenGPS
         public int[] dew4Skips = new int[] { 3, 4, 3, 3, 4, 3, 4, 2 };
         public bool[] dew4Direction = new bool[] { true, false, false, true, true, true, true, false };
 
-        public int rowSkipsWidth = 1, rowSkipsHeight = 1, lastTime = 3;
+        public int rowSkipsWidth = 1, rowSkipsHeight = 1, skips = 1, lastTime = 3;
 
         /// <summary>  /// distance from headland as offset where to start turn shape /// </summary>
         public int youTurnStartOffset;
 
-        /// <summary> /// 0=Not in youturn, 1=Entering headland, 2=Exiting headland /// </summary>
-        public int whereAmI = 0;
-
         //guidance values
         public double distanceFromCurrentLine;
-        public double triggerDistance;
+
+        public double triggerDistanceOffset;
 
         public double dxAB, dyAB;
         private int A, B, C;
@@ -110,27 +101,17 @@ namespace AgOpenGPS
             gl = _gl;
             glb = _glb;
 
-            triggerDistance = Properties.Vehicle.Default.set_youTriggerDistance;
+            triggerDistanceOffset = Properties.Vehicle.Default.set_youTriggerDistance;
 
             //how far before or after boundary line should turn happen
             youTurnStartOffset = Properties.Vehicle.Default.set_youStartYouTurnAt;
 
             //the youturn shape scaling.
             rowSkipsHeight = Properties.Vehicle.Default.set_youSkipHeight;
+            skips = Properties.Vehicle.Default.set_youSkipWidth;
             rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
 
             isUsingDubinsTurn = Properties.Vehicle.Default.set_youUseDubins;
-
-            //Fill in the strings for comboboxes - editable
-            string line = Properties.Vehicle.Default.seq_FunctionList;
-            string[] words = line.Split(',');
-
-            pos3 = words[0];
-            pos4 = words[1];
-            pos5 = words[2];
-            pos6 = words[3];
-            pos7 = words[4];
-            pos8 = words[5];
         }
 
         //called when the 25 m mark is reached before headland
@@ -138,10 +119,9 @@ namespace AgOpenGPS
         {
             //trigger pulled and make box double ended
             isYouTurnTriggered = true;
-            isSequenceTriggered = true;
 
             //our direction heading into turn
-            if (mf.ABLine.isABLineSet) isABLineSameAsHeadingAtTrigger = mf.ABLine.isABSameAsFixHeading;
+            if (mf.ABLine.isABLineSet) isABLineSameAsHeadingAtTrigger = mf.ABLine.isABSameAsVehicleHeading;
             else isABLineSameAsHeadingAtTrigger = mf.curve.isSameWay;
 
             //data buffer for pixels read from off screen buffer
@@ -168,11 +148,11 @@ namespace AgOpenGPS
             { isGrnOnRight = grnPix[j] > 50; }
 
             //one side or the other - but not both Exclusive Or
-            if (isGrnOnLeft ^ isGrnOnRight)
-            {
-                isYouTurnRight = !isGrnOnRight;
-            }
-            else //can't determine which way to turn, so pick opposite of last turn
+            //if (isGrnOnLeft ^ isGrnOnRight)
+            //{
+            //    isYouTurnRight = !isGrnOnRight;
+            //}
+            //else //can't determine which way to turn, so pick opposite of last turn
             {
                 //just do the opposite of last turn
                 isYouTurnRight = !isLastYouTurnRight;
@@ -181,7 +161,6 @@ namespace AgOpenGPS
 
             //set point and save to start measuring from
             isYouTurnTriggerPointSet = true;
-            youTurnTriggerPoint = mf.pivotAxlePos;
 
             if (mf.yt.isDew2Set) //Loops of 2,3 skips
             {
@@ -235,7 +214,7 @@ namespace AgOpenGPS
         }
 
         //something went seriously wrong so reset everything
-        public void ResetYouTurnAndSequenceEvents()
+        public void ResetYouTurn()
         {
             //fix you turn
             isYouTurnShapeDisplayed = false;
@@ -245,131 +224,9 @@ namespace AgOpenGPS
             mf.AutoYouTurnButtonsReset();
 
             //reset sequence
-            isSequenceTriggered = false;
-            whereAmI = 0;
-            ResetSequenceEventTriggers();
-        }
-
-        //reset trig flag to false on all array elements with a function
-        public void ResetSequenceEventTriggers()
-        {
-            for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-            {
-                if (mf.seq.seqEnter[i].function != 0) mf.seq.seqEnter[i].isTrig = false;
-                if (mf.seq.seqExit[i].function != 0) mf.seq.seqExit[i].isTrig = false;
-            }
-        }
-
-        //determine when if and how functions are triggered
-        public void DoSequenceEvent()
-        {
-            if (mf.yt.isSequenceTriggered)
-            {
-                //determine if Section is entry or exit based on trigger point direction
-                bool isToolHeadingSameAsABHeading;
-
-#pragma warning disable CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-
-                //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
-                double headAB;
-                if (mf.ABLine.isABLineSet)
-                {
-                    double abFixHeadingDelta = (Math.Abs(mf.toolPos.heading - mf.ABLine.abHeading));
-                    if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
-                    isToolHeadingSameAsABHeading = (abFixHeadingDelta <= glm.PIBy2);
-                    headAB = mf.ABLine.abHeading;
-                }
-                else  //AB Curve
-                {
-                    //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
-                    double abFixHeadingDelta = (Math.Abs(mf.toolPos.heading - mf.curve.refHeading));
-                    if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
-                    isToolHeadingSameAsABHeading = (abFixHeadingDelta <= glm.PIBy2);
-                    headAB = mf.curve.refHeading;
-                }
-
-                if (!isToolHeadingSameAsABHeading) headAB += Math.PI;
-
-                mf.hl.FindClosestHeadlandPoint(mf.toolPos, headAB);
-                if ((int)mf.hl.closestHeadlandPt.easting != -20000)
-                {
-                    mf.distTool = glm.Distance(mf.toolPos, mf.hl.closestHeadlandPt);
-#pragma warning restore CS1690 // Accessing a member on a field of a marshal-by-reference class may cause a runtime exception
-                }
-                else //we've lost the headland
-                {
-                    mf.yt.isSequenceTriggered = false;
-                    mf.yt.ResetSequenceEventTriggers();
-                    mf.distTool = -3333;
-                    return;
-                }
-
-                //make distance sign correct
-                if (isInHeadland) mf.distTool *= -1;
-                mf.distTool += (mf.headlandDistanceDelta * 0.5);
-
-                //since same as AB Line, we are entering
-                if (isABLineSameAsHeadingAtTrigger == isToolHeadingSameAsABHeading) whereAmI = 1;
-
-                //since opposite of AB Line at trigger we are exiting
-                else whereAmI = 2;
-
-                //did we do all the events?
-                int c = 0;
-                for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-                {
-                    //checked for any not triggered yet (false) - if there is, not done yet
-                    if (!mf.seq.seqEnter[i].isTrig) c++;
-                    if (!mf.seq.seqExit[i].isTrig) c++;
-                }
-
-                if (c == 0)
-                {
-                    //sequences all done so reset everything
-                    isSequenceTriggered = false;
-                    whereAmI = 0;
-                    ResetSequenceEventTriggers();
-                    mf.distTool = -2222;
-                }
-
-                switch (whereAmI)
-                {
-                    case 0: //not in you turn
-                        break;
-
-                    case 1: //Entering the headland
-
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-                        {
-                            //have we gone past the distance and still haven't done it
-                            if (mf.distTool < mf.seq.seqEnter[i].distance && !mf.seq.seqEnter[i].isTrig)
-                            {
-                                //it shall only run once
-                                mf.seq.seqEnter[i].isTrig = true;
-
-                                //send the function and action to perform
-                                mf.DoYouTurnSequenceEvent(mf.seq.seqEnter[i].function, mf.seq.seqEnter[i].action);
-                            }
-                        }
-                        break;
-
-                    case 2: //Exiting the headland
-
-                        for (int i = 0; i < FormGPS.MAXFUNCTIONS; i++)
-                        {
-                            //have we gone past the distance and still haven't done it
-                            if (mf.distTool > mf.seq.seqExit[i].distance && !mf.seq.seqExit[i].isTrig)
-                            {
-                                //it shall only run once
-                                mf.seq.seqExit[i].isTrig = true;
-
-                                //send the function and action to perform
-                                mf.DoYouTurnSequenceEvent(mf.seq.seqExit[i].function, mf.seq.seqExit[i].action);
-                            }
-                        }
-                        break;
-                }
-            }
+            //isSequenceTriggered = false;
+            //whereAmI = 0;
+            //ResetSequenceEventTriggers();
         }
 
         //get list of points from txt shape file
@@ -430,7 +287,7 @@ namespace AgOpenGPS
             {
                 rEastYT = mf.ABLine.rEastAB;
                 rNorthYT = mf.ABLine.rNorthAB;
-                isABSameAsFixHeading = mf.ABLine.isABSameAsFixHeading;
+                isABSameAsFixHeading = mf.ABLine.isABSameAsVehicleHeading;
                 abHeading = mf.ABLine.abHeading;
                 delta = 1;
             }
@@ -455,25 +312,23 @@ namespace AgOpenGPS
             //to compensate for AB Curve overlap
             turnOffset *= delta;
 
+            double turnRadius = turnOffset / Math.Cos(boundaryAngleOffPerpendicular);
+
             //if using dubins to calculate youturn
             if (isUsingDubinsTurn)
             {
-                int skips = 0;
                 double head = abHeading;
 
                 //if its straight across it makes 2 loops instead so goal is a little lower then start
                 if (!isABSameAsFixHeading) head += 3.14;
                 else head -= 0.01;
 
-                //move the start forward 4 meters
+                //move the start forward 2 meters
                 rEastYT += (Math.Sin(head) * 2);
                 rNorthYT += (Math.Cos(head) * 2);
 
                 var start = new vec3(rEastYT, rNorthYT, head);
                 var goal = new vec3();
-
-                head -= Math.PI;
-                if (head < 0) head += glm.twoPI;
 
                 //also adjust for rowskips if Dew loops are set
                 if (isDew2Set | isDew4Set)
@@ -501,19 +356,81 @@ namespace AgOpenGPS
                     skips = rowSkipsWidth;
                 }
 
-                //calculate the turn
-                if (isTurnRight)
+                turnRadius *= skips;
+                turnOffset *= skips;
+
+                //move the cross line calc to not include first turn
+                goal.easting = rEastYT + (Math.Sin(head) * ping);
+                goal.northing = rNorthYT + (Math.Cos(head) * ping);
+
+                //headland angle relative to vehicle heading to head along the boundary left or right
+                double bndAngle = head - boundaryAngleOffPerpendicular + glm.PIBy2;
+
+                //now we go the other way to turn round
+                head -= Math.PI;
+                if (head < 0) head += glm.twoPI;
+
+                if ((mf.vehicle.minTurningRadius * 2.0) < turnOffset)
                 {
-                    goal.easting = rEastYT - (Math.Cos(-head) * turnOffset * skips);
-                    goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset * skips);
-                    goal.heading = head;
+                    //are we right of boundary
+                    if (boundaryAngleOffPerpendicular > 0)
+                    {
+                        if (isYouTurnRight) //which is actually right now
+                        {
+                            goal.easting += (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing += (Math.Cos(bndAngle) * turnRadius);
+
+                            double dis = (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
+                        else //going left
+                        {
+                            goal.easting -= (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing -= (Math.Cos(bndAngle) * turnRadius);
+
+                            double dis = (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
+                    }
+                    else // going left of boundary
+                    {
+                        if (isYouTurnRight) //pointing to right
+                        {
+                            goal.easting += (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing += (Math.Cos(bndAngle) * turnRadius);
+
+                            double dis = (mf.vehicle.minTurningRadius * Math.Tan(tangencyAngle)); //short
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
+                        else
+                        {
+                            goal.easting -= (Math.Sin(bndAngle) * turnRadius);
+                            goal.northing -= (Math.Cos(bndAngle) * turnRadius);
+
+                            double dis = (mf.vehicle.minTurningRadius / Math.Tan(tangencyAngle)); //long
+                            goal.easting += (Math.Sin(head) * dis);
+                            goal.northing += (Math.Cos(head) * dis);
+                        }
+                    }
                 }
                 else
                 {
-                    goal.easting = rEastYT + (Math.Cos(-head) * turnOffset * skips);
-                    goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset * skips);
-                    goal.heading = head;
+                    if (isTurnRight)
+                    {
+                        goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
+                        goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
+                    }
+                    else
+                    {
+                        goal.easting = rEastYT + (Math.Cos(-head) * turnOffset);
+                        goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
+                    }
                 }
+
+                goal.heading = head;
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);
@@ -628,12 +545,12 @@ namespace AgOpenGPS
                 }
 
                 // ** Pure pursuit ** - calc point on ABLine closest to current position
-                double U = (((pivot.easting - ytList[A].easting) * (dx))
-                            + ((pivot.northing - ytList[A].northing) * (dz)))
+                double U = (((pivot.easting - ytList[A].easting) * dx)
+                            + ((pivot.northing - ytList[A].northing) * dz))
                             / ((dx * dx) + (dz * dz));
 
-                rEastYT = ytList[A].easting + (U * (dx));
-                rNorthYT = ytList[A].northing + (U * (dz));
+                rEastYT = ytList[A].easting + (U * dx);
+                rNorthYT = ytList[A].northing + (U * dz);
 
                 //used for accumulating distance to find goal point
                 double distSoFar;
