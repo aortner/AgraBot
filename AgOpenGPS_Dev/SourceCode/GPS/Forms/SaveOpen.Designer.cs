@@ -1549,7 +1549,7 @@ namespace AgOpenGPS
                 catch (Exception e)
                 {
                     Console.WriteLine(e.Message + "\n Cannot write to file.");
-                    WriteErrorLog("Saving AB Line" + e.ToString());
+                    WriteErrorLog("Saving Curve Line" + e.ToString());
 
                     return;
                 }

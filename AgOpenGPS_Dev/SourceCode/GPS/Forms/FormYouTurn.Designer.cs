@@ -582,6 +582,7 @@
             // label47
             // 
             this.label47.AutoSize = true;
+            this.label47.Enabled = false;
             this.label47.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label47.Location = new System.Drawing.Point(621, 137);
             this.label47.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -630,6 +631,7 @@
             // btnDistanceDn
             // 
             this.btnDistanceDn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDistanceDn.Enabled = false;
             this.btnDistanceDn.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceDn.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceDn.Image")));
             this.btnDistanceDn.Location = new System.Drawing.Point(549, 194);
@@ -643,6 +645,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
+            this.label12.Enabled = false;
             this.label12.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.Location = new System.Drawing.Point(554, 87);
             this.label12.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -666,6 +669,7 @@
             // btnDistanceUp
             // 
             this.btnDistanceUp.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnDistanceUp.Enabled = false;
             this.btnDistanceUp.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDistanceUp.Image = ((System.Drawing.Image)(resources.GetObject("btnDistanceUp.Image")));
             this.btnDistanceUp.Location = new System.Drawing.Point(659, 194);
@@ -680,6 +684,7 @@
             // 
             this.lblDistance.AutoSize = true;
             this.lblDistance.BackColor = System.Drawing.SystemColors.Control;
+            this.lblDistance.Enabled = false;
             this.lblDistance.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblDistance.Location = new System.Drawing.Point(618, 73);
             this.lblDistance.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -691,6 +696,7 @@
             // lblWhenTrig
             // 
             this.lblWhenTrig.AutoSize = true;
+            this.lblWhenTrig.Enabled = false;
             this.lblWhenTrig.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWhenTrig.Location = new System.Drawing.Point(538, 137);
             this.lblWhenTrig.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
@@ -2172,10 +2178,10 @@
             this.btnCancel.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCancel.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnCancel.Image")));
-            this.btnCancel.Location = new System.Drawing.Point(933, 331);
+            this.btnCancel.Location = new System.Drawing.Point(843, 293);
             this.btnCancel.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(72, 111);
+            this.btnCancel.Size = new System.Drawing.Size(88, 111);
             this.btnCancel.TabIndex = 130;
             this.btnCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             // 
@@ -2186,10 +2192,10 @@
             this.btnOK.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOK.Image = ((System.Drawing.Image)(resources.GetObject("btnOK.Image")));
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOK.Location = new System.Drawing.Point(933, 468);
+            this.btnOK.Location = new System.Drawing.Point(843, 468);
             this.btnOK.Margin = new System.Windows.Forms.Padding(2, 3, 2, 3);
             this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(72, 109);
+            this.btnOK.Size = new System.Drawing.Size(88, 109);
             this.btnOK.TabIndex = 129;
             this.btnOK.Text = "Save";
             this.btnOK.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
@@ -2200,7 +2206,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1016, 589);
+            this.ClientSize = new System.Drawing.Size(942, 589);
             this.ControlBox = false;
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.tabControl1);

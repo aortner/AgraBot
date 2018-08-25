@@ -107,7 +107,7 @@ namespace AgOpenGPS
             youTurnStartOffset = Properties.Vehicle.Default.set_youStartYouTurnAt;
 
             //the youturn shape scaling.
-            rowSkipsHeight = Properties.Vehicle.Default.set_youSkipHeight;
+            //rowSkipsHeight = Properties.Vehicle.Default.set_youSkipHeight;
             skips = Properties.Vehicle.Default.set_youSkipWidth;
             rowSkipsWidth = Properties.Vehicle.Default.set_youSkipWidth;
 
@@ -274,7 +274,7 @@ namespace AgOpenGPS
         }
 
         //build the points and path of youturn to be scaled and transformed
-        public void BuildYouTurnListToRight(bool isTurnRight)
+        public void BuildYouTurnListToRight(bool isTurnRight, bool isTurnButtonTriggered)
         {
             isYouTurnShapeDisplayed = true;
 
@@ -370,7 +370,7 @@ namespace AgOpenGPS
                 head -= Math.PI;
                 if (head < 0) head += glm.twoPI;
 
-                if ((mf.vehicle.minTurningRadius * 2.0) < turnOffset)
+                if ((mf.vehicle.minTurningRadius * 1.98) < turnOffset)
                 {
                     //are we right of boundary
                     if (boundaryAngleOffPerpendicular > 0)
@@ -431,6 +431,20 @@ namespace AgOpenGPS
                 }
 
                 goal.heading = head;
+
+                if (isTurnButtonTriggered)
+                {
+                    if (isTurnRight)
+                    {
+                        goal.easting = rEastYT - (Math.Cos(-head) * turnOffset);
+                        goal.northing = rNorthYT - (Math.Sin(-head) * turnOffset);
+                    }
+                    else
+                    {
+                        goal.easting = rEastYT + (Math.Cos(-head) * turnOffset);
+                        goal.northing = rNorthYT + (Math.Sin(-head) * turnOffset);
+                    }
+                }
 
                 //generate the turn points
                 ytList = dubYouTurnPath.GenerateDubins(start, goal);

@@ -48,22 +48,22 @@
       <Value Profile="(Default)" />
     </Setting>
     <Setting Name="setF_FieldColorR" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">130</Value>
+      <Value Profile="(Default)">98</Value>
     </Setting>
     <Setting Name="setF_FieldColorG" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">120</Value>
+      <Value Profile="(Default)">98</Value>
     </Setting>
     <Setting Name="setF_FieldColorB" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">30</Value>
+      <Value Profile="(Default)">98</Value>
     </Setting>
     <Setting Name="setF_SectionColorR" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">50</Value>
+      <Value Profile="(Default)">27</Value>
     </Setting>
     <Setting Name="setF_SectionColorG" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">220</Value>
+      <Value Profile="(Default)">151</Value>
     </Setting>
     <Setting Name="setF_SectionColorB" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">200</Value>
+      <Value Profile="(Default)">160</Value>
     </Setting>
     <Setting Name="setF_IsWorkSwitchActiveLow" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -114,16 +114,16 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setF_boundaryTriggerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setAS_maxIntegral" Type="System.Byte" Scope="User">
       <Value Profile="(Default)">20</Value>
     </Setting>
     <Setting Name="setMenu_isSideGuideLines" Type="System.Boolean" Scope="User">
-      <Value Profile="(Default)">True</Value>
+      <Value Profile="(Default)">False</Value>
     </Setting>
     <Setting Name="setAS_countsPerDegree" Type="System.Byte" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">8</Value>
     </Setting>
     <Setting Name="setMenu_isPureOn" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -135,13 +135,13 @@
       <Value Profile="(Default)">9999</Value>
     </Setting>
     <Setting Name="setIP_autoSteerIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">127.0.0.1</Value>
+      <Value Profile="(Default)">192.168.1.255</Value>
     </Setting>
     <Setting Name="setIP_autoSteerPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">8888</Value>
     </Setting>
     <Setting Name="setIP_rateRelayIP" Type="System.String" Scope="User">
-      <Value Profile="(Default)">127.0.0.1</Value>
+      <Value Profile="(Default)">192.168.1.255</Value>
     </Setting>
     <Setting Name="setIP_rateRelayPort" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">7777</Value>
@@ -216,10 +216,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setGPS_Latitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">52</Value>
+      <Value Profile="(Default)">53.4360564</Value>
     </Setting>
     <Setting Name="setGPS_Longitude" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">111</Value>
+      <Value Profile="(Default)">-111.160047</Value>
     </Setting>
   </Settings>
 </SettingsFile>

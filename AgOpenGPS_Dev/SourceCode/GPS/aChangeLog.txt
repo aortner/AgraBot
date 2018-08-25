@@ -1,4 +1,14 @@
-﻿v2.7 June 2
+﻿v2.8 Aug 20, 2018
+* Removed the eq control for now
+* Smarter better turn control for uturn
+* Skips go from 0 instead of 1
+* Fixed manual turns
+* Record playback is functional
+* Multi boundaries with innner and outer
+* Lots of unfinished.
+* Set to 53.4360564 -111.160047
+
+v2.7 June 2
 * Contour mod to remove backwards movement
 * StartPoint and direction for auto in headland form
 * Fixed inclusion angle on headland to not jump back to eq width

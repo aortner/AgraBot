@@ -52,7 +52,7 @@
             // btnLeftRight
             // 
             this.btnLeftRight.Enabled = false;
-            this.btnLeftRight.Image = global::AgOpenGPS.Properties.Resources.BoundaryRight;
+            this.btnLeftRight.Image = ((System.Drawing.Image)(resources.GetObject("btnLeftRight.Image")));
             this.btnLeftRight.Location = new System.Drawing.Point(710, 14);
             this.btnLeftRight.Name = "btnLeftRight";
             this.btnLeftRight.Size = new System.Drawing.Size(121, 120);
@@ -63,7 +63,7 @@
             // btnDelete
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnDelete.Image = global::AgOpenGPS.Properties.Resources.BoundaryDelete;
+            this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
             this.btnDelete.Location = new System.Drawing.Point(710, 267);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 120);
@@ -76,7 +76,7 @@
             // btnOuter
             // 
             this.btnOuter.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOuter.Image = global::AgOpenGPS.Properties.Resources.BoundaryOuter;
+            this.btnOuter.Image = ((System.Drawing.Image)(resources.GetObject("btnOuter.Image")));
             this.btnOuter.Location = new System.Drawing.Point(536, 14);
             this.btnOuter.Name = "btnOuter";
             this.btnOuter.Size = new System.Drawing.Size(129, 120);
@@ -91,7 +91,7 @@
             this.btnSerialCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.back_button;
+            this.btnSerialCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialCancel.Image")));
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnSerialCancel.Location = new System.Drawing.Point(876, 267);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);
@@ -110,7 +110,7 @@
             this.btnGo.Enabled = false;
             this.btnGo.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGo.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.btnGo.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
+            this.btnGo.Image = ((System.Drawing.Image)(resources.GetObject("btnGo.Image")));
             this.btnGo.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnGo.Location = new System.Drawing.Point(876, 14);
             this.btnGo.Margin = new System.Windows.Forms.Padding(5);
@@ -124,7 +124,7 @@
             // btnLoadBoundaryFromGE
             // 
             this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnLoadBoundaryFromGE.Image = global::AgOpenGPS.Properties.Resources.FileOpen;
+            this.btnLoadBoundaryFromGE.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadBoundaryFromGE.Image")));
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
             this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(536, 177);
             this.btnLoadBoundaryFromGE.Name = "btnLoadBoundaryFromGE";
@@ -208,6 +208,7 @@
             this.lvLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvLines.BackColor = System.Drawing.SystemColors.Menu;
             this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.chField,
             this.chAngle,
@@ -224,7 +225,7 @@
             this.lvLines.Size = new System.Drawing.Size(489, 243);
             this.lvLines.TabIndex = 89;
             this.lvLines.UseCompatibleStateImageBehavior = false;
-            this.lvLines.View = System.Windows.Forms.View.Details;
+            this.lvLines.View = System.Windows.Forms.View.List;
             // 
             // chField
             // 

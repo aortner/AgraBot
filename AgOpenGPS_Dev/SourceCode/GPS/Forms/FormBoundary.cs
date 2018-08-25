@@ -233,7 +233,8 @@ namespace AgOpenGPS
                         {
                             line = reader.ReadLine();
                             line = line.Trim();
-                            string[] numberSets = line.Split(' ');
+                            char[] delimiterChars = { ' ', '\t', '\r', '\n' };
+                            string[] numberSets = line.Split(delimiterChars);
                             done = true;
 
                             //at least 3 points
@@ -252,46 +253,9 @@ namespace AgOpenGPS
                                 }
 
                                 //fix the points if there are gaps bigger then
+                                mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryHeadings();
                                 mf.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                                 mf.bndArr[mf.bnd.boundarySelected].FixBoundaryLine(mf.bnd.boundarySelected);
-
-                                ////make sure distance isn't too small between points on headland
-                                //int headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
-                                ////double spacing = mf.vehicle.toolWidth * 0.25;
-                                //const double spacing = 3.0;
-                                //double distance;
-                                //for (int i = 0; i < headCount - 1; i++)
-                                //{
-                                //    distance = glm.Distance(mf.bndArr[mf.bnd.boundarySelected].bndLine[i], mf.bndArr[mf.bnd.boundarySelected].bndLine[i + 1]);
-                                //    if (distance < spacing)
-                                //    {
-                                //        mf.bndArr[mf.bnd.boundarySelected].bndLine.RemoveAt(i + 1);
-                                //        headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
-                                //        i = 0;
-                                //    }
-                                //}
-
-                                ////make sure distance isn't too big between points on headland
-                                //headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
-                                //for (int i = 0; i < headCount; i++)
-                                //{
-                                //    int j = i + 1;
-                                //    if (j == headCount) j = 0;
-                                //    distance = glm.Distance(mf.bndArr[mf.bnd.boundarySelected].bndLine[i], mf.bndArr[mf.bnd.boundarySelected].bndLine[j]);
-                                //    if (distance > (spacing * 1.333))
-                                //    {
-                                //        CBndPt point = new CBndPt((mf.bndArr[mf.bnd.boundarySelected].bndLine[i].easting + mf.bndArr[mf.bnd.boundarySelected].bndLine[j].easting) / 2.0,
-                                //        (mf.bndArr[mf.bnd.boundarySelected].bndLine[i].northing + mf.bndArr[mf.bnd.boundarySelected].bndLine[j].northing) / 2.0,
-                                //         mf.bndArr[mf.bnd.boundarySelected].bndLine[i].heading);
-
-                                //        mf.bndArr[mf.bnd.boundarySelected].bndLine.Insert(j, point);
-                                //        headCount = mf.bndArr[mf.bnd.boundarySelected].bndLine.Count;
-                                //        i = 0;
-                                //    }
-                                //}
-
-                                ////Google earth doesn't have headings so need to calc them
-                                //mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryHeadings();
 
                                 //boundary area, pre calcs etc
                                 mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();

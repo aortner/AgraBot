@@ -490,7 +490,7 @@ namespace AgOpenGPS
                         yt.ping = yt.turnDistance;
 
 
-                        if (vehicle.minTurningRadius * 2.0 < toolTurnWidth)
+                        if (vehicle.minTurningRadius * 1.98 < toolTurnWidth)
                         {
                             if (yt.boundaryAngleOffPerpendicular < 0)
                             {
@@ -610,7 +610,7 @@ namespace AgOpenGPS
                             //keep from running this again since youturn is plotted now
                             yt.isYouTurnTriggerPointSet = false;
                             yt.isLastYouTurnRight = yt.isYouTurnRight;
-                            yt.BuildYouTurnListToRight(yt.isYouTurnRight);
+                            yt.BuildYouTurnListToRight(yt.isYouTurnRight, false);
                             //yt.isYouTurnTriggered = false;
                         }
                     }

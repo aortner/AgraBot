@@ -48,10 +48,10 @@
       <Value Profile="(Default)">True</Value>
     </Setting>
     <Setting Name="setVehicle_antennaPivot" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">1.1</Value>
+      <Value Profile="(Default)">0.1</Value>
     </Setting>
     <Setting Name="setVehicle_wheelbase" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">5</Value>
+      <Value Profile="(Default)">2.5</Value>
     </Setting>
     <Setting Name="setVehicle_hitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-0.5</Value>
@@ -78,7 +78,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="setVehicle_slowSpeedCutoff" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">2</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setVehicle_tankTrailingHitchLength" Type="System.Double" Scope="User">
       <Value Profile="(Default)">-1.5</Value>
@@ -87,13 +87,13 @@
       <Value Profile="(Default)">10</Value>
     </Setting>
     <Setting Name="setVehicle_goalPointLookAhead" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">1</Value>
     </Setting>
     <Setting Name="setVehicle_maxAngularVelocity" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">3</Value>
+      <Value Profile="(Default)">6</Value>
     </Setting>
     <Setting Name="setVehicle_maxSteerAngle" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">35</Value>
+      <Value Profile="(Default)">45</Value>
     </Setting>
     <Setting Name="set_youSkipWidth" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>
@@ -132,7 +132,7 @@
       <Value Profile="(Default)">Turn Off,Turn On</Value>
     </Setting>
     <Setting Name="setVehicle_minTurningRadius" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">10</Value>
+      <Value Profile="(Default)">4</Value>
     </Setting>
     <Setting Name="set_youUseDubins" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">True</Value>
@@ -153,7 +153,7 @@
       <Value Profile="(Default)">0</Value>
     </Setting>
     <Setting Name="set_youTriggerDistance" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">15</Value>
+      <Value Profile="(Default)">2</Value>
     </Setting>
   </Settings>
 </SettingsFile>
