@@ -265,7 +265,6 @@ namespace AgOpenGPS
                                 {
                                     mf.FileSaveBoundary();
                                 }
-                                Close();
                             }
                             else
                             {
@@ -273,6 +272,9 @@ namespace AgOpenGPS
                             }
                         }
                     }
+
+                    UpdateChart();
+                    cboxSelectBoundary.Enabled = true;
                 }
                 catch (Exception)
                 {

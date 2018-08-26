@@ -40,13 +40,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.cboxDriveThru = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
             this.lvLines = new System.Windows.Forms.ListView();
             this.chField = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chAngle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chEasting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnLeftRight
@@ -98,7 +98,7 @@
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 120);
             this.btnSerialCancel.TabIndex = 64;
-            this.btnSerialCancel.Text = "Cancel";
+            this.btnSerialCancel.Text = "Return";
             this.btnSerialCancel.TextAlign = System.Drawing.ContentAlignment.BottomCenter;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
@@ -203,47 +203,6 @@
             this.label2.TabIndex = 76;
             this.label2.Text = "Drive Thru?";
             // 
-            // lvLines
-            // 
-            this.lvLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lvLines.BackColor = System.Drawing.SystemColors.Menu;
-            this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.chField,
-            this.chAngle,
-            this.chEasting});
-            this.lvLines.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lvLines.GridLines = true;
-            this.lvLines.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
-            this.lvLines.LabelWrap = false;
-            this.lvLines.Location = new System.Drawing.Point(12, 144);
-            this.lvLines.MultiSelect = false;
-            this.lvLines.Name = "lvLines";
-            this.lvLines.Scrollable = false;
-            this.lvLines.ShowGroups = false;
-            this.lvLines.Size = new System.Drawing.Size(489, 243);
-            this.lvLines.TabIndex = 89;
-            this.lvLines.UseCompatibleStateImageBehavior = false;
-            this.lvLines.View = System.Windows.Forms.View.List;
-            // 
-            // chField
-            // 
-            this.chField.Text = "Line";
-            this.chField.Width = 130;
-            // 
-            // chAngle
-            // 
-            this.chAngle.Text = "Drive Thru";
-            this.chAngle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chAngle.Width = 200;
-            // 
-            // chEasting
-            // 
-            this.chEasting.Text = "Area";
-            this.chEasting.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.chEasting.Width = 150;
-            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -274,16 +233,57 @@
             this.label5.TabIndex = 92;
             this.label5.Text = "Bounds";
             // 
+            // lvLines
+            // 
+            this.lvLines.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lvLines.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.chField,
+            this.chAngle,
+            this.chEasting});
+            this.lvLines.Enabled = false;
+            this.lvLines.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvLines.GridLines = true;
+            this.lvLines.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.None;
+            this.lvLines.LabelWrap = false;
+            this.lvLines.Location = new System.Drawing.Point(21, 144);
+            this.lvLines.MultiSelect = false;
+            this.lvLines.Name = "lvLines";
+            this.lvLines.Scrollable = false;
+            this.lvLines.ShowGroups = false;
+            this.lvLines.Size = new System.Drawing.Size(489, 245);
+            this.lvLines.TabIndex = 93;
+            this.lvLines.UseCompatibleStateImageBehavior = false;
+            this.lvLines.View = System.Windows.Forms.View.Details;
+            // 
+            // chField
+            // 
+            this.chField.Text = "Line";
+            this.chField.Width = 130;
+            // 
+            // chAngle
+            // 
+            this.chAngle.Text = "Drive Thru";
+            this.chAngle.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chAngle.Width = 200;
+            // 
+            // chEasting
+            // 
+            this.chEasting.Text = "Area";
+            this.chEasting.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.chEasting.Width = 150;
+            // 
             // FormBoundary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 407);
+            this.ClientSize = new System.Drawing.Size(1006, 401);
             this.ControlBox = false;
+            this.Controls.Add(this.lvLines);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.lvLines);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.cboxDriveThru);
             this.Controls.Add(this.label1);
@@ -320,12 +320,12 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboxDriveThru;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.ListView lvLines;
         private System.Windows.Forms.ColumnHeader chField;
         private System.Windows.Forms.ColumnHeader chAngle;
         private System.Windows.Forms.ColumnHeader chEasting;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
     }
 }

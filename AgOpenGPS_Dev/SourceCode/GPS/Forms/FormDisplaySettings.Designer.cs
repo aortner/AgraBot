@@ -218,7 +218,7 @@
             0,
             0});
             this.nudBoundaryDistance.Minimum = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             0});

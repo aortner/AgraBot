@@ -124,6 +124,9 @@ namespace AgOpenGPS
             vec4 inBox;
             for (int i = 0; i < FormGPS.MAXHEADS; i++)
             {
+                //skip the drive thru
+                if (mf.bndArr[i].isDriveThru) continue;
+
                 ptCount = mf.bndArr[i].bndLine.Count;
                 for (int p = 0; p < ptCount; p++)
                 {
