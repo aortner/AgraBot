@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.IO;
 using System.Windows.Forms;
 
 namespace AgOpenGPS
@@ -195,6 +196,17 @@ namespace AgOpenGPS
             UpdateChart();
         }
 
+        private void btnToggleDriveThru_Click(object sender, EventArgs e)
+        {
+            if (mf.bnd.boundarySelected != 0 && mf.bndArr[mf.bnd.boundarySelected].isSet)
+            {
+                mf.bndArr[mf.bnd.boundarySelected].isDriveThru = !mf.bndArr[mf.bnd.boundarySelected].isDriveThru;
+                UpdateChart();
+
+                mf.FileSaveBoundary();
+            }
+        }
+
         private double easting, northing, latK, lonK;
 
         private void btnLoadBoundaryFromGE_Click(object sender, EventArgs e)
@@ -219,8 +231,24 @@ namespace AgOpenGPS
             //start to read the file
             string line = null;
             int index;
+
             using (System.IO.StreamReader reader = new System.IO.StreamReader(fileAndDirectory))
             {
+
+                //int count = 0;
+
+                //while (!reader.EndOfStream)
+                //{
+                //    line = reader.ReadLine();
+                //    index = line.IndexOf("<coordinates>");
+
+                //    if (index != -1) count++;
+                //}
+
+                //reader.DiscardBufferedData();
+                //reader.BaseStream.Seek(0, SeekOrigin.Begin);
+                //reader.BaseStream.Position = 0;
+
                 bool done = false;
                 try
                 {
@@ -261,7 +289,7 @@ namespace AgOpenGPS
                                 mf.bndArr[mf.bnd.boundarySelected].CalculateBoundaryArea();
                                 mf.bndArr[mf.bnd.boundarySelected].PreCalcBoundaryLines();
                                 mf.bndArr[mf.bnd.boundarySelected].isSet = true;
-                                for (int i = 0; i < FormGPS.MAXBOUNDARIES; i++)
+
                                 {
                                     mf.FileSaveBoundary();
                                 }
@@ -300,6 +328,7 @@ namespace AgOpenGPS
             mf.FileMakeCurrentKML(mf.pn.latitude, mf.pn.longitude);
             System.Diagnostics.Process.Start(mf.fieldsDirectory + mf.currentFieldDirectory + "\\CurrentPosition.KML");
         }
+
 
         private double ArcLengthOfMeridian(double phi)
         {

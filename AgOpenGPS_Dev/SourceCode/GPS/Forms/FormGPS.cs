@@ -1198,10 +1198,7 @@ namespace AgOpenGPS
             }
 
             //FileSaveHeadland();
-            for (int i = 0; i < MAXBOUNDARIES; i++)
-            {
-                FileSaveBoundary();
-            }
+            FileSaveBoundary();
             FileSaveSections();
             FileSaveContour();
             FileSaveFlagsKML();

@@ -2786,8 +2786,23 @@ namespace AgOpenGPS
             }
         }
 
-        public string DistPivotM { get { return ((int)(distPivot - yt.turnDistance)) + " m"; } }
-        public string DistPivotFt { get { return (((int)(glm.m2ft * (distPivot-yt.turnDistance))) + " ft"); } }
+        public string DistPivotM
+        {
+            get
+            {
+                if (distPivot > 0 ) return((int)(distPivot - yt.turnDistance)) + " m";
+                else return "--";
+
+            }
+        }
+        public string DistPivotFt
+        {
+            get
+            {
+                if (distPivot > 0 ) return (((int)(glm.m2ft * (distPivot - yt.turnDistance))) + " ft");
+                else return "--";
+            }
+        }
 
         public Texture ParticleTexture { get; set; }
 

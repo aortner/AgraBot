@@ -47,6 +47,7 @@
             this.chField = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chAngle = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.chEasting = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.btnToggleDriveThru = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLeftRight
@@ -64,7 +65,7 @@
             // 
             this.btnDelete.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.Image = ((System.Drawing.Image)(resources.GetObject("btnDelete.Image")));
-            this.btnDelete.Location = new System.Drawing.Point(710, 267);
+            this.btnDelete.Location = new System.Drawing.Point(710, 183);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(121, 120);
             this.btnDelete.TabIndex = 65;
@@ -93,7 +94,7 @@
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = ((System.Drawing.Image)(resources.GetObject("btnSerialCancel.Image")));
             this.btnSerialCancel.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnSerialCancel.Location = new System.Drawing.Point(876, 267);
+            this.btnSerialCancel.Location = new System.Drawing.Point(876, 183);
             this.btnSerialCancel.Margin = new System.Windows.Forms.Padding(5);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(121, 120);
@@ -126,7 +127,7 @@
             this.btnLoadBoundaryFromGE.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnLoadBoundaryFromGE.Image = ((System.Drawing.Image)(resources.GetObject("btnLoadBoundaryFromGE.Image")));
             this.btnLoadBoundaryFromGE.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(536, 177);
+            this.btnLoadBoundaryFromGE.Location = new System.Drawing.Point(702, 410);
             this.btnLoadBoundaryFromGE.Name = "btnLoadBoundaryFromGE";
             this.btnLoadBoundaryFromGE.Size = new System.Drawing.Size(129, 84);
             this.btnLoadBoundaryFromGE.TabIndex = 68;
@@ -140,7 +141,7 @@
             this.btnOpenGoogleEarth.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnOpenGoogleEarth.Image = ((System.Drawing.Image)(resources.GetObject("btnOpenGoogleEarth.Image")));
             this.btnOpenGoogleEarth.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(536, 301);
+            this.btnOpenGoogleEarth.Location = new System.Drawing.Point(536, 410);
             this.btnOpenGoogleEarth.Name = "btnOpenGoogleEarth";
             this.btnOpenGoogleEarth.Size = new System.Drawing.Size(129, 86);
             this.btnOpenGoogleEarth.TabIndex = 69;
@@ -252,7 +253,7 @@
             this.lvLines.Name = "lvLines";
             this.lvLines.Scrollable = false;
             this.lvLines.ShowGroups = false;
-            this.lvLines.Size = new System.Drawing.Size(489, 245);
+            this.lvLines.Size = new System.Drawing.Size(489, 243);
             this.lvLines.TabIndex = 93;
             this.lvLines.UseCompatibleStateImageBehavior = false;
             this.lvLines.View = System.Windows.Forms.View.Details;
@@ -274,12 +275,23 @@
             this.chEasting.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.chEasting.Width = 150;
             // 
+            // btnToggleDriveThru
+            // 
+            this.btnToggleDriveThru.Location = new System.Drawing.Point(536, 183);
+            this.btnToggleDriveThru.Name = "btnToggleDriveThru";
+            this.btnToggleDriveThru.Size = new System.Drawing.Size(121, 120);
+            this.btnToggleDriveThru.TabIndex = 94;
+            this.btnToggleDriveThru.Text = "Toggle Drive Thru";
+            this.btnToggleDriveThru.UseVisualStyleBackColor = true;
+            this.btnToggleDriveThru.Click += new System.EventHandler(this.btnToggleDriveThru_Click);
+            // 
             // FormBoundary
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1006, 401);
+            this.ClientSize = new System.Drawing.Size(1006, 517);
             this.ControlBox = false;
+            this.Controls.Add(this.btnToggleDriveThru);
             this.Controls.Add(this.lvLines);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -327,5 +339,6 @@
         private System.Windows.Forms.ColumnHeader chField;
         private System.Windows.Forms.ColumnHeader chAngle;
         private System.Windows.Forms.ColumnHeader chEasting;
+        private System.Windows.Forms.Button btnToggleDriveThru;
     }
 }
