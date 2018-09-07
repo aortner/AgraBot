@@ -198,3 +198,6 @@
    at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
    at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
 
+Validate ChecksumSystem.NullReferenceException: Object reference not set to an instance of an object.
+   at AgOpenGPS.CNMEA.ValidateChecksum(String Sentence) - 9/3/2018 12:38:12 PM
+
