@@ -362,10 +362,6 @@ namespace AgOpenGPS
             }
         }
 
-        private void tabSteer_Click(object sender, EventArgs e)
-        {
-
-        }
         //private void btnAuto_Click(object sender, EventArgs e)
         //{
         //    unoChart.ChartAreas[0].AxisY.Maximum = Double.NaN;

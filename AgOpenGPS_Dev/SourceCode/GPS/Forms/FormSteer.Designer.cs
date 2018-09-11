@@ -462,6 +462,7 @@
             this.hsbarMinPWM.Size = new System.Drawing.Size(450, 40);
             this.hsbarMinPWM.TabIndex = 284;
             this.hsbarMinPWM.Value = 100;
+            this.hsbarMinPWM.ValueChanged += new System.EventHandler(this.hsbarMinPWM_ValueChanged);
             // 
             // label41
             // 
@@ -759,10 +760,9 @@
             this.tabSteer.Controls.Add(this.label30);
             this.tabSteer.Location = new System.Drawing.Point(4, 49);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(608, 601);
+            this.tabSteer.Size = new System.Drawing.Size(608, 351);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Gain";
-            this.tabSteer.Click += new System.EventHandler(this.tabSteer_Click);
             // 
             // lblCountsPerDegree
             // 
@@ -814,6 +814,7 @@
             this.hsbarCountsPerDegree.Size = new System.Drawing.Size(450, 40);
             this.hsbarCountsPerDegree.TabIndex = 304;
             this.hsbarCountsPerDegree.Value = 255;
+            this.hsbarCountsPerDegree.ValueChanged += new System.EventHandler(this.hsbarCountsPerDegree_ValueChanged);
             // 
             // lblMaxSteerAngle
             // 
@@ -865,6 +866,7 @@
             this.hsbarMaxSteerAngle.Size = new System.Drawing.Size(450, 40);
             this.hsbarMaxSteerAngle.TabIndex = 299;
             this.hsbarMaxSteerAngle.Value = 10;
+            this.hsbarMaxSteerAngle.ValueChanged += new System.EventHandler(this.hsbarMaxSteerAngle_ValueChanged);
             // 
             // lblSteerAngleSensorZero
             // 
@@ -915,6 +917,7 @@
             this.hsbarSteerAngleSensorZero.Name = "hsbarSteerAngleSensorZero";
             this.hsbarSteerAngleSensorZero.Size = new System.Drawing.Size(450, 40);
             this.hsbarSteerAngleSensorZero.TabIndex = 294;
+            this.hsbarSteerAngleSensorZero.ValueChanged += new System.EventHandler(this.hsbarSteerAngleSensorZero_ValueChanged);
             // 
             // lblLookAhead
             // 
@@ -1032,7 +1035,7 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 49);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(608, 602);
+            this.tabDrive.Size = new System.Drawing.Size(608, 351);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
@@ -1065,7 +1068,7 @@
             this.richTextBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(5, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(583, 1256);
+            this.richTextBox1.Size = new System.Drawing.Size(583, 1340);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
