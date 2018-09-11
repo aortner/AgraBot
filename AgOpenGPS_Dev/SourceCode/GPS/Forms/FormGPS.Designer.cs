@@ -137,7 +137,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
             this.lblFixOffset = new System.Windows.Forms.Label();
-            this.btnDrivePath = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
@@ -215,6 +214,7 @@
             this.btnDeleteRecPath = new System.Windows.Forms.Button();
             this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
+            this.btnDrivePath = new System.Windows.Forms.Button();
             this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
@@ -1149,15 +1149,6 @@
             resources.ApplyResources(this.lblFixOffset, "lblFixOffset");
             this.lblFixOffset.Name = "lblFixOffset";
             // 
-            // btnDrivePath
-            // 
-            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
-            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.btnDrivePath.Name = "btnDrivePath";
-            this.btnDrivePath.UseVisualStyleBackColor = false;
-            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
-            // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
@@ -1713,6 +1704,15 @@
             this.btnDriveGenPath.Name = "btnDriveGenPath";
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
+            // 
+            // btnDrivePath
+            // 
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
+            this.btnDrivePath.Name = "btnDrivePath";
+            this.btnDrivePath.UseVisualStyleBackColor = false;
+            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
             // 
             // btnManualAutoDrive
             // 

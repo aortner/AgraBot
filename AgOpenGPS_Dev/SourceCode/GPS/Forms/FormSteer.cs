@@ -30,24 +30,53 @@ namespace AgOpenGPS
 
         private void FormSteer_Load(object sender, EventArgs e)
         {
-            btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
-            btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
-            btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
-            btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
-            btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-            btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
-            btnLookAheadMinus.Text = mf.vehicle.goalPointLookAhead.ToString();
-            btnMaxAngVelMinus.Text = mf.vehicle.maxAngularVelocity.ToString();
-            btnMaxSteerMinus.Text = mf.vehicle.maxSteerAngle.ToString();
-            btnMaxIntegralMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral].ToString();
-            btnCountsPerDegreeMinus.Text = ((double)(mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree])).ToString();
+            //btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
+            //btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
+            //btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
+            //btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
+
+            hsbarSteerAngleSensorZero.Value = Properties.Settings.Default.setAS_steerAngleOffset - 127;
+            lblSteerAngleSensorZero.Text = hsbarSteerAngleSensorZero.Value.ToString();
+
+            hsbarCountsPerDegree.Value = Properties.Settings.Default.setAS_countsPerDegree;
+            lblCountsPerDegree.Text = hsbarCountsPerDegree.Value.ToString();
+
+            hsbarMinPWM.Value = Properties.Settings.Default.setAS_minSteerPWM;
+            lblMinPWM.Text = hsbarMinPWM.Value.ToString();
+
+            hsbarProportionalGain.Value = Properties.Settings.Default.setAS_Kp;
+            lblProportionalGain.Text = hsbarProportionalGain.Value.ToString();
+
+            hsbarOutputGain.Value = Properties.Settings.Default.setAS_Ko;
+            lblOutputGain.Text = hsbarOutputGain.Value.ToString();
+
+            hsbarSidehillDraftGain.Value = Properties.Settings.Default.setAS_Kd;
+            lblSidehillDraftGain.Text = hsbarSidehillDraftGain.Value.ToString();
+
+            hsbarIntegralGain.Value = Properties.Settings.Default.setAS_Ki;
+            lblIntegralGain.Text = hsbarIntegralGain.Value.ToString();
+
+            hsbarIntegralMax.Value = Properties.Settings.Default.setAS_maxIntegral;
+            lblIntegralMax.Text = hsbarIntegralMax.Value.ToString();
+
+            mf.vehicle.maxSteerAngle = Properties.Vehicle.Default.setVehicle_maxSteerAngle;
+            hsbarMaxSteerAngle.Value = (Int16)mf.vehicle.maxSteerAngle;
+            lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
+
+            mf.vehicle.goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
+            hsbarLookAhead.Value = (Int16)mf.vehicle.goalPointLookAhead;
+            lblLookAhead.Text = hsbarLookAhead.Value.ToString();
+
+            mf.vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
+            hsbarMaxAngularVelocity.Value = (Int16)mf.vehicle.maxAngularVelocity;
+            lblMaxAngularVelocity.Text = hsbarMaxAngularVelocity.Value.ToString();
 
             //make sure free drive is off
             btnFreeDrive.BackColor = Color.Red;
             mf.ast.isInFreeDriveMode = false;
             btnFreeDriveZero.Enabled = false;
-            tbarFreeDriveAngle.Enabled = false;
-            tbarFreeDriveAngle.Value = 0;
+            hSBarFreeDrive.Enabled = false;
+            hSBarFreeDrive.Value = 0;
             driveFreeSteerAngle = 0;
             lblFreeDriveAngle.Text = "0";
         }
@@ -81,206 +110,102 @@ namespace AgOpenGPS
             DrawChart();
         }
 
-        //Buttons
-        private void btnPPlus_Click(object sender, EventArgs e)
+        //Scrollbars
+        private void hsbarCountsPerDegree_ValueChanged(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssKp]++;
-            btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnPMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKp]--;
-            btnPMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKp].ToString();
-            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnIPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKi]++;
-            btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnIMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKi]--;
-            btnIMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKi].ToString();
-            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnDPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKd]++;
-            if (mf.mc.autoSteerSettings[mf.mc.ssKd] > 24) mf.mc.autoSteerSettings[mf.mc.ssKd] = 24;
-            btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnDMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKd]--;
-            if (mf.mc.autoSteerSettings[mf.mc.ssKd] == 255) mf.mc.autoSteerSettings[mf.mc.ssKd] = 0;
-            btnDMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKd].ToString();
-            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnOPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKo]++;
-            btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnOMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssKo]--;
-            btnOMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssKo].ToString();
-            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void buttonLookAheadPlus_Click(object sender, EventArgs e)
-        {
-            mf.vehicle.goalPointLookAhead += 0.5;
-            btnLookAheadMinus.Text = mf.vehicle.goalPointLookAhead.ToString();
-            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void btnLookAheadMinus_Click(object sender, EventArgs e)
-        {
-            mf.vehicle.goalPointLookAhead -= 0.5;
-            if (mf.vehicle.goalPointLookAhead < 1.0) mf.vehicle.goalPointLookAhead = 1.0;
-            btnLookAheadMinus.Text = mf.vehicle.goalPointLookAhead.ToString();
-            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void btnMaxSteerPlus_Click(object sender, EventArgs e)
-        {
-            mf.vehicle.maxSteerAngle++;
-            btnMaxSteerMinus.Text = mf.vehicle.maxSteerAngle.ToString();
-            Properties.Vehicle.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void btnMaxSteerMinus_Click(object sender, EventArgs e)
-        {
-            mf.vehicle.maxSteerAngle--;
-            if (mf.vehicle.maxSteerAngle < 3) mf.vehicle.maxSteerAngle = 3;
-            btnMaxSteerMinus.Text = mf.vehicle.maxSteerAngle.ToString();
-            Properties.Vehicle.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void btnMaxAngVelPlus_Click(object sender, EventArgs e)
-        {
-            mf.vehicle.maxAngularVelocity += 0.1;
-            btnMaxAngVelMinus.Text = mf.vehicle.maxAngularVelocity.ToString();
-            Properties.Vehicle.Default.setVehicle_maxAngularVelocity = mf.vehicle.maxAngularVelocity;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void btnMaxAngVelMinus_Click(object sender, EventArgs e)
-        {
-            mf.vehicle.maxAngularVelocity -= 0.1;
-            if (mf.vehicle.maxAngularVelocity < 0.2) mf.vehicle.maxAngularVelocity = 0.2;
-            btnMaxAngVelMinus.Text = mf.vehicle.maxAngularVelocity.ToString();
-            Properties.Vehicle.Default.setVehicle_maxAngularVelocity = mf.vehicle.maxAngularVelocity;
-            Properties.Vehicle.Default.Save();
-        }
-
-        private void btnSteerPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset]++;
-            btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnSteerMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset]--;
-            if (mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] < 1) mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] = 1;
-            btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnMinPWMPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssMinPWM]++;
-            btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
-            Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnMinPWMMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssMinPWM]--;
-            if (mf.mc.autoSteerSettings[mf.mc.ssMinPWM] < 1) mf.mc.autoSteerSettings[mf.mc.ssMinPWM] = 1;
-            btnMinPWMMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMinPWM].ToString();
-            Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnMaxIntegralPlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]++;
-            btnMaxIntegralMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral].ToString();
-            Properties.Settings.Default.setAS_maxIntegral = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnMaxIntegralMinus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]--;
-            if (mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] < 2) mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] = 2;
-            btnMaxIntegralMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral].ToString();
-            Properties.Settings.Default.setAS_maxIntegral = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral];
-            Properties.Settings.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
-        private void btnCountsPerDegreePlus_Click(object sender, EventArgs e)
-        {
-            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]++;
-            //if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] > 50) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 50;
-            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
+            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = (byte)hsbarCountsPerDegree.Value;
+            lblCountsPerDegree.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
             Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
             Properties.Settings.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void btnCountsPerDegreeMinus_Click(object sender, EventArgs e)
+        private void hsbarMaxSteerAngle_ValueChanged(object sender, EventArgs e)
         {
-            mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]--;
-            //if (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] < 1) mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = 1;
-            btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-            Properties.Settings.Default.setAS_countsPerDegree = mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree];
+            mf.vehicle.maxSteerAngle = hsbarMaxSteerAngle.Value;
+            lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
+            Properties.Vehicle.Default.setVehicle_maxSteerAngle = mf.vehicle.maxSteerAngle;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void hsbarSteerAngleSensorZero_ValueChanged(object sender, EventArgs e)
+        {
+            lblSteerAngleSensorZero.Text = hsbarSteerAngleSensorZero.Value.ToString();
+            mf.mc.autoSteerSettings[mf.mc.ssSteerOffset] = (byte)(127 + hsbarSteerAngleSensorZero.Value);
+            Properties.Settings.Default.setAS_steerAngleOffset = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset];
             Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarMinPWM_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssMinPWM] = (byte)hsbarMinPWM.Value;
+            lblMinPWM.Text = (mf.mc.autoSteerSettings[mf.mc.ssMinPWM]).ToString();
+            Properties.Settings.Default.setAS_minSteerPWM = mf.mc.autoSteerSettings[mf.mc.ssMinPWM];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarProportionalGain_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssKp] = (byte)hsbarProportionalGain.Value;
+            lblProportionalGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKp]).ToString();
+            Properties.Settings.Default.setAS_Kp = mf.mc.autoSteerSettings[mf.mc.ssKp];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarOutputGain_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssKo] = (byte)hsbarOutputGain.Value;
+            lblOutputGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKo]).ToString();
+            Properties.Settings.Default.setAS_Ko = mf.mc.autoSteerSettings[mf.mc.ssKo];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarSidehillDraftGain_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssKd] = (byte)hsbarSidehillDraftGain.Value;
+            lblSidehillDraftGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKd]).ToString();
+            Properties.Settings.Default.setAS_Kd = mf.mc.autoSteerSettings[mf.mc.ssKd];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarIntegralGain_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssKi] = (byte)hsbarIntegralGain.Value;
+            lblIntegralGain.Text = (mf.mc.autoSteerSettings[mf.mc.ssKi]).ToString();
+            Properties.Settings.Default.setAS_Ki = mf.mc.autoSteerSettings[mf.mc.ssKi];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarIntegralMax_ValueChanged(object sender, EventArgs e)
+        {
+            mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral] = (byte)hsbarIntegralMax.Value;
+            lblIntegralMax.Text = (mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral]).ToString();
+            Properties.Settings.Default.setAS_maxIntegral = mf.mc.autoSteerSettings[mf.mc.ssMaxIntegral];
+            Properties.Settings.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarMaxAngularVelocity_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.maxAngularVelocity = (byte)hsbarMaxAngularVelocity.Value;
+            lblMaxAngularVelocity.Text = mf.vehicle.maxAngularVelocity.ToString();
+            Properties.Vehicle.Default.setVehicle_maxAngularVelocity = mf.vehicle.maxAngularVelocity;
+            Properties.Vehicle.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAhead = (byte)hsbarLookAhead.Value;
+            lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
+            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
+            Properties.Vehicle.Default.Save();
             mf.AutoSteerSettingsOutToPort();
         }
 
@@ -302,15 +227,15 @@ namespace AgOpenGPS
                 var result = form.ShowDialog();
                 if (result == DialogResult.OK)
                 {
-                    btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-                    btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-                    mf.AutoSteerSettingsOutToPort();
+                    //lblCountsPerDegree.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
+                    //btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
+                    //mf.AutoSteerSettingsOutToPort();
                 }
                 else
                 {
-                    btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
-                    btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
-                    mf.AutoSteerSettingsOutToPort();
+                    //btnCountsPerDegreeMinus.Text = (mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree]).ToString();
+                    //btnSteerMinus.Text = mf.mc.autoSteerSettings[mf.mc.ssSteerOffset].ToString();
+                    //mf.AutoSteerSettingsOutToPort();
                 }
             }
 
@@ -319,11 +244,10 @@ namespace AgOpenGPS
             WindowState = FormWindowState.Normal;
         }
 
-        private void tbarFreeDriveAngle_ValueChanged(object sender, EventArgs e)
+        private void hSBarFreeDrive_ValueChanged(object sender, EventArgs e)
         {
-            driveFreeSteerAngle = (Int16)tbarFreeDriveAngle.Value;
+            driveFreeSteerAngle = (Int16)hSBarFreeDrive.Value;
             lblFreeDriveAngle.Text = Convert.ToString(driveFreeSteerAngle);
-            tbarFreeDriveAngle.Value = driveFreeSteerAngle;
         }
 
         private void btnFreeDrive_Click(object sender, EventArgs e)
@@ -334,8 +258,8 @@ namespace AgOpenGPS
                 btnFreeDrive.BackColor = Color.Red;
                 mf.ast.isInFreeDriveMode = false;
                 btnFreeDriveZero.Enabled = false;
-                tbarFreeDriveAngle.Enabled = false;
-                tbarFreeDriveAngle.Value = 0;
+                hSBarFreeDrive.Enabled = false;
+                hSBarFreeDrive.Value = 0;
                 driveFreeSteerAngle = 0;
                 lblFreeDriveAngle.Text = "0";
             }
@@ -345,8 +269,8 @@ namespace AgOpenGPS
                 btnFreeDrive.BackColor = Color.LimeGreen;
                 mf.ast.isInFreeDriveMode = true;
                 btnFreeDriveZero.Enabled = true;
-                tbarFreeDriveAngle.Enabled = true;
-                tbarFreeDriveAngle.Value = 0;
+                hSBarFreeDrive.Enabled = true;
+                hSBarFreeDrive.Value = 0;
                 driveFreeSteerAngle = 0;
                 lblFreeDriveAngle.Text = "0";
             }
@@ -355,7 +279,7 @@ namespace AgOpenGPS
         private void btnFreeDriveZero_Click(object sender, EventArgs e)
         {
             driveFreeSteerAngle = 0;
-            tbarFreeDriveAngle.Value = driveFreeSteerAngle;
+            hSBarFreeDrive.Value = driveFreeSteerAngle;
             lblFreeDriveAngle.Text = Convert.ToString(driveFreeSteerAngle);
         }
 
@@ -438,37 +362,41 @@ namespace AgOpenGPS
             }
         }
 
-        private void btnAuto_Click(object sender, EventArgs e)
+        private void tabSteer_Click(object sender, EventArgs e)
         {
-            unoChart.ChartAreas[0].AxisY.Maximum = Double.NaN;
-            unoChart.ChartAreas[0].RecalculateAxesScale();
-            unoChart.ResetAutoValues();
-        }
 
-        private void btnPlus_Click(object sender, EventArgs e)
-        {
-            if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
-                unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
-            else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
-            unoChart.ChartAreas[0].AxisY.Minimum -= 50;
-            unoChart.ChartAreas[0].AxisY.Maximum += 50;
-            unoChart.ResetAutoValues();
         }
+        //private void btnAuto_Click(object sender, EventArgs e)
+        //{
+        //    unoChart.ChartAreas[0].AxisY.Maximum = Double.NaN;
+        //    unoChart.ChartAreas[0].RecalculateAxesScale();
+        //    unoChart.ResetAutoValues();
+        //}
 
-        private void btnMinus_Click(object sender, EventArgs e)
-        {
-            if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
-                unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
-            else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
+        //private void btnPlus_Click(object sender, EventArgs e)
+        //{
+        //    if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
+        //        unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
+        //    else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
+        //    unoChart.ChartAreas[0].AxisY.Minimum -= 50;
+        //    unoChart.ChartAreas[0].AxisY.Maximum += 50;
+        //    unoChart.ResetAutoValues();
+        //}
 
-            if (unoChart.ChartAreas[0].AxisY.Maximum <= 51)
-            {
-                unoChart.ChartAreas[0].AxisY.Maximum = 60;
-                unoChart.ChartAreas[0].AxisY.Minimum = -60;
-            }
-            unoChart.ChartAreas[0].AxisY.Minimum += 50;
-            unoChart.ChartAreas[0].AxisY.Maximum -= 50;
-            unoChart.ResetAutoValues();
-        }
+        //private void btnMinus_Click(object sender, EventArgs e)
+        //{
+        //    if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
+        //        unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
+        //    else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
+
+        //    if (unoChart.ChartAreas[0].AxisY.Maximum <= 51)
+        //    {
+        //        unoChart.ChartAreas[0].AxisY.Maximum = 60;
+        //        unoChart.ChartAreas[0].AxisY.Minimum = -60;
+        //    }
+        //    unoChart.ChartAreas[0].AxisY.Minimum += 50;
+        //    unoChart.ChartAreas[0].AxisY.Maximum -= 50;
+        //    unoChart.ResetAutoValues();
+        //}
     }
 }

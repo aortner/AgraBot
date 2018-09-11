@@ -160,7 +160,7 @@ void loop()
 		roll += analogRead(A1);
 		roll = roll >> 2; //divide by 4
 
-		//inclinometer goes from -25 to 25 from 0 volts to 5 volts
+		//inclinometer goes from -25 to 25 from 0.5 volts to 4.5 volts
 		rollK = map(roll, 0, 1023, -500, 500); //20 counts per degree * 16.0
 		rollK *= 0.8;
 
@@ -187,7 +187,7 @@ void loop()
 		steeringPosition += analogRead(A0);    delay(2);
 		steeringPosition += analogRead(A0);
 		steeringPosition = steeringPosition >> 2; //divide by 4
-		steeringPosition = (steeringPosition - steeringPositionZero + XeRoll / (Kd+1));   //read the steering position sensor
+		steeringPosition = (steeringPosition - steeringPositionZero + (XeRoll * (Kd/24)) );   //read the steering position sensor
 		//steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
 
     //close enough to center, remove any correction
@@ -200,7 +200,7 @@ void loop()
       //provide a limit - the old max integral value
       if (corr > maxIntegralValue) corr = maxIntegralValue;
 
-      //now add the correction times counts per degree to fool steering position
+      //now add the correction to fool steering position
       if (distanceFromLine > 40) 
       {
         steerAngleSetPoint -= corr;
@@ -230,7 +230,8 @@ void loop()
 			steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
 			calcSteeringPID();  //do the pid
 			motorDrive();       //out to motors the pwm value
-		}
+		
+   
 		else
 		{
 			//we've lost the comm to AgOpenGPS
@@ -291,7 +292,7 @@ void loop()
 		}
 		else          //valid conditions to turn on autosteer
 		{
-			bitSet(PINB, 5);   //turn LED on
+			//bitSet(PINB, 5);   //turn LED on
 			watchdogTimer = 0;  //reset watchdog
 			serialResetTimer = 0; //if serial buffer is getting full, empty it
 		}
@@ -310,7 +311,7 @@ void loop()
 		Ki = (float)Serial.read() * 0.001;   // read Ki from AgOpenGPS
 		Kd = (float)Serial.read() * 1.0;   // read Kd from AgOpenGPS
 		Ko = (float)Serial.read() * 0.1;   // read Ko from AgOpenGPS
-		steeringPositionZero = 412 + Serial.read();  //read steering zero offset
+		steeringPositionZero = 385 + Serial.read();  //read steering zero offset
 		minPWMValue = Serial.read(); //read the minimum amount of PWM for instant on
 		maxIntegralValue = Serial.read()*0.1; //
 		steerSensorCounts = Serial.read(); //sent as 10 times the setting displayed in AOG

@@ -128,46 +128,10 @@
   <data name="contextMenuStripOpenGL.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="contextMenuStripOpenGL.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 160</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripOpenGL.Name" xml:space="preserve">
-    <value>contextMenuStripOpenGL</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripOpenGL.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="openGLControl.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 12pt</value>
-  </data>
-  <data name="openGLControl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 38</value>
-  </data>
-  <data name="openGLControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>4, 6, 4, 6</value>
-  </data>
-  <data name="openGLControl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>752, 707</value>
-  </data>
-  <data name="openGLControl.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;openGLControl.Name" xml:space="preserve">
-    <value>openGLControl</value>
-  </data>
-  <data name="&gt;&gt;openGLControl.Type" xml:space="preserve">
-    <value>SharpGL.OpenGLControl, SharpGL.WinForms, Version=0.0.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27</value>
-  </data>
-  <data name="&gt;&gt;openGLControl.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;openGLControl.ZOrder" xml:space="preserve">
-    <value>38</value>
-  </data>
   <data name="deleteFlagToolOpenGLContextMenu.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="deleteFlagToolOpenGLContextMenu.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABGdBTUEAALGPC/xhBQAAABl0RVh0U29m
@@ -425,6 +389,42 @@
   <data name="googleEarthOpenGLContextMenu.Text" xml:space="preserve">
     <value>.</value>
   </data>
+  <data name="contextMenuStripOpenGL.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 160</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripOpenGL.Name" xml:space="preserve">
+    <value>contextMenuStripOpenGL</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripOpenGL.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="openGLControl.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 12pt</value>
+  </data>
+  <data name="openGLControl.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 38</value>
+  </data>
+  <data name="openGLControl.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>4, 6, 4, 6</value>
+  </data>
+  <data name="openGLControl.Size" type="System.Drawing.Size, System.Drawing">
+    <value>752, 707</value>
+  </data>
+  <data name="openGLControl.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;openGLControl.Name" xml:space="preserve">
+    <value>openGLControl</value>
+  </data>
+  <data name="&gt;&gt;openGLControl.Type" xml:space="preserve">
+    <value>SharpGL.OpenGLControl, SharpGL.WinForms, Version=0.0.0.0, Culture=neutral, PublicKeyToken=27fc851303210b27</value>
+  </data>
+  <data name="&gt;&gt;openGLControl.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;openGLControl.ZOrder" xml:space="preserve">
+    <value>38</value>
+  </data>
   <data name="txtDistanceOffABLine.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -488,20 +488,8 @@
   <data name="&gt;&gt;openGLControlBack.ZOrder" xml:space="preserve">
     <value>39</value>
   </data>
-  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 38</value>
-  </data>
-  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
-    <value>File</value>
-  </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 6</value>
-  </data>
-  <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
-    <value>319, 40</value>
-  </data>
-  <data name="menustripLanguage.Text" xml:space="preserve">
-    <value>Language</value>
   </data>
   <data name="menuLanguageEnglish.Size" type="System.Drawing.Size, System.Drawing">
     <value>240, 40</value>
@@ -544,6 +532,12 @@
   </data>
   <data name="menuLanguageItalian.Text" xml:space="preserve">
     <value>Italiano</value>
+  </data>
+  <data name="menustripLanguage.Size" type="System.Drawing.Size, System.Drawing">
+    <value>319, 40</value>
+  </data>
+  <data name="menustripLanguage.Text" xml:space="preserve">
+    <value>Language</value>
   </data>
   <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
     <value>316, 6</value>
@@ -593,11 +587,11 @@
   <data name="aboutToolStripMenuItem.Text" xml:space="preserve">
     <value>About...</value>
   </data>
-  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>118, 38</value>
+  <data name="fileToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 38</value>
   </data>
-  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Display</value>
+  <data name="fileToolStripMenuItem.Text" xml:space="preserve">
+    <value>File</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 6</value>
@@ -611,12 +605,6 @@
   <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 6</value>
   </data>
-  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>263, 40</value>
-  </data>
-  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
-    <value>Colors</value>
-  </data>
   <data name="sectionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 40</value>
   </data>
@@ -629,11 +617,11 @@
   <data name="fieldToolStripMenuItem1.Text" xml:space="preserve">
     <value>Field</value>
   </data>
-  <data name="toolStripUnitsMenu.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="colorsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>263, 40</value>
   </data>
-  <data name="toolStripUnitsMenu.Text" xml:space="preserve">
-    <value>Units</value>
+  <data name="colorsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Colors</value>
   </data>
   <data name="metricToolStrip.Size" type="System.Drawing.Size, System.Drawing">
     <value>200, 40</value>
@@ -646,6 +634,12 @@
   </data>
   <data name="imperialToolStrip.Text" xml:space="preserve">
     <value>Imperial</value>
+  </data>
+  <data name="toolStripUnitsMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>263, 40</value>
+  </data>
+  <data name="toolStripUnitsMenu.Text" xml:space="preserve">
+    <value>Units</value>
   </data>
   <data name="sideGuideLines.Size" type="System.Drawing.Size, System.Drawing">
     <value>263, 40</value>
@@ -701,6 +695,12 @@
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
     <value>260, 6</value>
   </data>
+  <data name="settingsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>118, 38</value>
+  </data>
+  <data name="settingsToolStripMenuItem.Text" xml:space="preserve">
+    <value>Display</value>
+  </data>
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>271, 18</value>
   </metadata>
@@ -748,30 +748,6 @@
   </data>
   <data name="statusStrip1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt</value>
-  </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 743</value>
-  </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1362, 56</value>
-  </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>95</value>
-  </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>10</value>
   </data>
   <data name="stripHz.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -874,24 +850,6 @@
   </data>
   <data name="toolStripDropDownButton2.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="toolStripDropDownButton2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt</value>
-  </data>
-  <data name="toolStripDropDownButton2.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="toolStripDropDownButton2.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="toolStripDropDownButton2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 55</value>
-  </data>
-  <data name="toolStripDropDownButton2.Text" xml:space="preserve">
-    <value>Config</value>
-  </data>
-  <data name="toolStripDropDownButton2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>Overlay</value>
   </data>
   <data name="toolstripUDPConfig.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 28pt</value>
@@ -1647,6 +1605,24 @@
   <data name="toolstripYouTurnConfig.Text" xml:space="preserve">
     <value>U Turn</value>
   </data>
+  <data name="toolStripDropDownButton2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 18pt</value>
+  </data>
+  <data name="toolStripDropDownButton2.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="toolStripDropDownButton2.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="toolStripDropDownButton2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 55</value>
+  </data>
+  <data name="toolStripDropDownButton2.Text" xml:space="preserve">
+    <value>Config</value>
+  </data>
+  <data name="toolStripDropDownButton2.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>Overlay</value>
+  </data>
   <data name="stripAreaRate.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -1667,24 +1643,6 @@
   </data>
   <data name="toolStripDropDownBtnFuncs.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>None</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 18pt</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
-    <value>None</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 55</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.Text" xml:space="preserve">
-    <value>Start</value>
-  </data>
-  <data name="toolStripDropDownBtnFuncs.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>Overlay</value>
   </data>
   <data name="toolstripField.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 28pt</value>
@@ -2183,6 +2141,24 @@
   <data name="toolstripResetTrip.Text" xml:space="preserve">
     <value>&gt;0&lt; Trip</value>
   </data>
+  <data name="toolStripDropDownBtnFuncs.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 18pt</value>
+  </data>
+  <data name="toolStripDropDownBtnFuncs.ImageScaling" type="System.Windows.Forms.ToolStripItemImageScaling, System.Windows.Forms">
+    <value>None</value>
+  </data>
+  <data name="toolStripDropDownBtnFuncs.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="toolStripDropDownBtnFuncs.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 55</value>
+  </data>
+  <data name="toolStripDropDownBtnFuncs.Text" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="toolStripDropDownBtnFuncs.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>Overlay</value>
+  </data>
   <data name="stripDistance.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -2275,6 +2251,30 @@
   </data>
   <data name="stripOnlineAutoSteer.ToolTipText" xml:space="preserve">
     <value>Arduino</value>
+  </data>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 743</value>
+  </data>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1362, 56</value>
+  </data>
+  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>95</value>
+  </data>
+  <data name="statusStrip1.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="lblNorthing.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -2395,15 +2395,6 @@
   </metadata>
   <data name="contextMenuStripFlag.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="contextMenuStripFlag.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 400</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripFlag.Name" xml:space="preserve">
-    <value>contextMenuStripFlag</value>
-  </data>
-  <data name="&gt;&gt;contextMenuStripFlag.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripMenuItemFlagRed.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2761,20 +2752,20 @@
   <data name="toolStripMenuFlagDeleteAll.Text" xml:space="preserve">
     <value>toolStripMenuFlagDeleteAll</value>
   </data>
+  <data name="contextMenuStripFlag.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 400</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripFlag.Name" xml:space="preserve">
+    <value>contextMenuStripFlag</value>
+  </data>
+  <data name="&gt;&gt;contextMenuStripFlag.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="contextMenuArea.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>611, 18</value>
   </metadata>
   <data name="contextMenuArea.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="contextMenuArea.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 80</value>
-  </data>
-  <data name="&gt;&gt;contextMenuArea.Name" xml:space="preserve">
-    <value>contextMenuArea</value>
-  </data>
-  <data name="&gt;&gt;contextMenuArea.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="toolStripMenuAreaSide.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2895,6 +2886,15 @@
   </data>
   <data name="toolStripMenuAreaSide.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>TextBeforeImage</value>
+  </data>
+  <data name="contextMenuArea.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 80</value>
+  </data>
+  <data name="&gt;&gt;contextMenuArea.Name" xml:space="preserve">
+    <value>contextMenuArea</value>
+  </data>
+  <data name="&gt;&gt;contextMenuArea.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="tboxSentence.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
@@ -3045,7 +3045,7 @@
         AAEAAAD/////AQAAAAAAAAAMAgAAAFdTeXN0ZW0uV2luZG93cy5Gb3JtcywgVmVyc2lvbj00LjAuMC4w
         LCBDdWx0dXJlPW5ldXRyYWwsIFB1YmxpY0tleVRva2VuPWI3N2E1YzU2MTkzNGUwODkFAQAAACZTeXN0
         ZW0uV2luZG93cy5Gb3Jtcy5JbWFnZUxpc3RTdHJlYW1lcgEAAAAERGF0YQcCAgAAAAkDAAAADwMAAACO
-        MgAAAk1TRnQBSQFMAgEBBAEAAZABEwGQARMBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
+        MgAAAk1TRnQBSQFMAgEBBAEAAZgBEwGYARMBQAEAAUABAAT/AQkBAAj/AUIBTQE2AQQGAAE2AQQCAAEo
         BAABAQIAAYADAAEBAQABCAYAAYAYAAGAAgABgAMAAoABAAGAAwABgAEAAYABAAKAAgADwAEAAcAB3AHA
         AQAB8AHKAaYBAAEzBQABMwEAATMBAAEzAQACMwIAAxYBAAMcAQADIgEAAykBAANVAQADTQEAA0IBAAM5
         AQABgAF8Af8BAAJQAf8BAAGTAQAB1gEAAf8B7AHMAQABxgHWAe8BAAHWAucBAAGQAakBrQIAAf8BMwMA
@@ -5046,630 +5046,6 @@
   <data name="&gt;&gt;DataPage.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;btnMakeContourFromBoundary.Name" xml:space="preserve">
-    <value>btnMakeContourFromBoundary</value>
-  </data>
-  <data name="&gt;&gt;btnMakeContourFromBoundary.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnMakeContourFromBoundary.Parent" xml:space="preserve">
-    <value>zoomPage2</value>
-  </data>
-  <data name="&gt;&gt;btnMakeContourFromBoundary.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>zoomPage2</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;lblZooom.Name" xml:space="preserve">
-    <value>lblZooom</value>
-  </data>
-  <data name="&gt;&gt;lblZooom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblZooom.Parent" xml:space="preserve">
-    <value>zoomPage2</value>
-  </data>
-  <data name="&gt;&gt;lblZooom.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteAllData.Name" xml:space="preserve">
-    <value>btnDeleteAllData</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteAllData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteAllData.Parent" xml:space="preserve">
-    <value>zoomPage2</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteAllData.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;btnPerimeter.Name" xml:space="preserve">
-    <value>btnPerimeter</value>
-  </data>
-  <data name="&gt;&gt;btnPerimeter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnPerimeter.Parent" xml:space="preserve">
-    <value>zoomPage2</value>
-  </data>
-  <data name="&gt;&gt;btnPerimeter.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="zoomPage2.ImageIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="zoomPage2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 72</value>
-  </data>
-  <data name="zoomPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="zoomPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>599, 534</value>
-  </data>
-  <data name="zoomPage2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;zoomPage2.Name" xml:space="preserve">
-    <value>zoomPage2</value>
-  </data>
-  <data name="&gt;&gt;zoomPage2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;zoomPage2.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;zoomPage2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;label30.Name" xml:space="preserve">
-    <value>label30</value>
-  </data>
-  <data name="&gt;&gt;label30.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;label21.Name" xml:space="preserve">
-    <value>label21</value>
-  </data>
-  <data name="&gt;&gt;label21.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Name" xml:space="preserve">
-    <value>txtBoxSendArduino</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;txtBoxSendArduino.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Name" xml:space="preserve">
-    <value>txtBoxRecvArduino</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;txtBoxRecvArduino.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;label23.Name" xml:space="preserve">
-    <value>label23</value>
-  </data>
-  <data name="&gt;&gt;label23.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label23.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;label23.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateRight.Name" xml:space="preserve">
-    <value>lblFlowRateRight</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateRight.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateRight.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateLeft.Name" xml:space="preserve">
-    <value>lblFlowRateLeft</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateLeft.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRateLeft.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointRight.Name" xml:space="preserve">
-    <value>lblRateSetpointRight</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointRight.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointRight.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRight.Name" xml:space="preserve">
-    <value>lblFlowRight</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRight.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblFlowRight.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualLeft.Name" xml:space="preserve">
-    <value>lblRateAppliedActualLeft</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualLeft.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualLeft.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;label28.Name" xml:space="preserve">
-    <value>label28</value>
-  </data>
-  <data name="&gt;&gt;label28.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;lblFlowLeft.Name" xml:space="preserve">
-    <value>lblFlowLeft</value>
-  </data>
-  <data name="&gt;&gt;lblFlowLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblFlowLeft.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblFlowLeft.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualRight.Name" xml:space="preserve">
-    <value>lblRateAppliedActualRight</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualRight.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualRight.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblRateAppliedActualRight.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;lblDualAccumulatedVolume.Name" xml:space="preserve">
-    <value>lblDualAccumulatedVolume</value>
-  </data>
-  <data name="&gt;&gt;lblDualAccumulatedVolume.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblDualAccumulatedVolume.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblDualAccumulatedVolume.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointLeft.Name" xml:space="preserve">
-    <value>lblRateSetpointLeft</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointLeft.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;lblRateSetpointLeft.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="&gt;&gt;btnSelectSingleDualMeter.Name" xml:space="preserve">
-    <value>btnSelectSingleDualMeter</value>
-  </data>
-  <data name="&gt;&gt;btnSelectSingleDualMeter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSelectSingleDualMeter.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnSelectSingleDualMeter.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate2.Name" xml:space="preserve">
-    <value>btnSelectRate2</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate2.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate2.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate1.Name" xml:space="preserve">
-    <value>btnSelectRate1</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate1.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnSelectRate1.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightDn.Name" xml:space="preserve">
-    <value>btnRateRightDn</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightDn.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightDn.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightDn.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightUp.Name" xml:space="preserve">
-    <value>btnRateRightUp</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightUp.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightUp.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnRateRightUp.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="&gt;&gt;btnDualRateConfig.Name" xml:space="preserve">
-    <value>btnDualRateConfig</value>
-  </data>
-  <data name="&gt;&gt;btnDualRateConfig.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDualRateConfig.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnDualRateConfig.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftDn.Name" xml:space="preserve">
-    <value>btnRateLeftDn</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftDn.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftDn.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftDn.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftUp.Name" xml:space="preserve">
-    <value>btnRateLeftUp</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftUp.Type" xml:space="preserve">
-    <value>ProXoft.WinForms.RepeatButton, RepeatButtonControl, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftUp.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnRateLeftUp.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="&gt;&gt;btnDualRate.Name" xml:space="preserve">
-    <value>btnDualRate</value>
-  </data>
-  <data name="&gt;&gt;btnDualRate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDualRate.Parent" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;btnDualRate.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="rate2Page5.ImageIndex" type="System.Int32, mscorlib">
-    <value>2</value>
-  </data>
-  <data name="rate2Page5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 72</value>
-  </data>
-  <data name="rate2Page5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>599, 534</value>
-  </data>
-  <data name="rate2Page5.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;rate2Page5.Name" xml:space="preserve">
-    <value>rate2Page5</value>
-  </data>
-  <data name="&gt;&gt;rate2Page5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rate2Page5.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;rate2Page5.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnFixOffset.Name" xml:space="preserve">
-    <value>btnFixOffset</value>
-  </data>
-  <data name="&gt;&gt;btnFixOffset.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFixOffset.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnFixOffset.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnSmoothAB.Name" xml:space="preserve">
-    <value>btnSmoothAB</value>
-  </data>
-  <data name="&gt;&gt;btnSmoothAB.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnSmoothAB.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnSmoothAB.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnFlagsGoogleEarth.Name" xml:space="preserve">
-    <value>btnFlagsGoogleEarth</value>
-  </data>
-  <data name="&gt;&gt;btnFlagsGoogleEarth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFlagsGoogleEarth.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnFlagsGoogleEarth.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnWebCam.Name" xml:space="preserve">
-    <value>btnWebCam</value>
-  </data>
-  <data name="&gt;&gt;btnWebCam.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnWebCam.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnWebCam.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.Name" xml:space="preserve">
-    <value>btnHelp</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnHelp.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;btnFileExplorer.Name" xml:space="preserve">
-    <value>btnFileExplorer</value>
-  </data>
-  <data name="&gt;&gt;btnFileExplorer.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnFileExplorer.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnFileExplorer.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;btnGPSData.Name" xml:space="preserve">
-    <value>btnGPSData</value>
-  </data>
-  <data name="&gt;&gt;btnGPSData.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGPSData.Parent" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;btnGPSData.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="configPage1.ImageIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="configPage1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 72</value>
-  </data>
-  <data name="configPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>3, 3, 3, 3</value>
-  </data>
-  <data name="configPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>599, 534</value>
-  </data>
-  <data name="configPage1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;configPage1.Name" xml:space="preserve">
-    <value>configPage1</value>
-  </data>
-  <data name="&gt;&gt;configPage1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;configPage1.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;configPage1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteRecPath.Name" xml:space="preserve">
-    <value>btnDeleteRecPath</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteRecPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteRecPath.Parent" xml:space="preserve">
-    <value>autoPage4</value>
-  </data>
-  <data name="&gt;&gt;btnDeleteRecPath.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnGeneratePath.Name" xml:space="preserve">
-    <value>btnGeneratePath</value>
-  </data>
-  <data name="&gt;&gt;btnGeneratePath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnGeneratePath.Parent" xml:space="preserve">
-    <value>autoPage4</value>
-  </data>
-  <data name="&gt;&gt;btnGeneratePath.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;btnDriveGenPath.Name" xml:space="preserve">
-    <value>btnDriveGenPath</value>
-  </data>
-  <data name="&gt;&gt;btnDriveGenPath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDriveGenPath.Parent" xml:space="preserve">
-    <value>autoPage4</value>
-  </data>
-  <data name="&gt;&gt;btnDriveGenPath.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="autoPage4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 72</value>
-  </data>
-  <data name="autoPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>599, 534</value>
-  </data>
-  <data name="autoPage4.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="autoPage4.Text" xml:space="preserve">
-    <value>Auto</value>
-  </data>
-  <data name="&gt;&gt;autoPage4.Name" xml:space="preserve">
-    <value>autoPage4</value>
-  </data>
-  <data name="&gt;&gt;autoPage4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;autoPage4.Parent" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;autoPage4.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 20.25pt</value>
-  </data>
-  <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
-    <value>118, 68</value>
-  </data>
-  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 39</value>
-  </data>
-  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>607, 610</value>
-  </data>
-  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
-    <value>tabControl1</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="btnDrivePath.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Tahoma, 14.25pt, style=Bold</value>
-  </data>
-  <data name="btnDrivePath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnDrivePath.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 633</value>
-  </data>
-  <data name="btnDrivePath.Size" type="System.Drawing.Size, System.Drawing">
-    <value>100, 100</value>
-  </data>
-  <data name="btnDrivePath.TabIndex" type="System.Int32, mscorlib">
-    <value>152</value>
-  </data>
-  <data name="&gt;&gt;btnDrivePath.Name" xml:space="preserve">
-    <value>btnDrivePath</value>
-  </data>
-  <data name="&gt;&gt;btnDrivePath.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnDrivePath.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnDrivePath.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="btnMakeContourFromBoundary.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 12pt, style=Bold</value>
   </data>
@@ -5991,6 +5367,33 @@
   </data>
   <data name="&gt;&gt;btnPerimeter.ZOrder" xml:space="preserve">
     <value>9</value>
+  </data>
+  <data name="zoomPage2.ImageIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="zoomPage2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 72</value>
+  </data>
+  <data name="zoomPage2.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="zoomPage2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>599, 534</value>
+  </data>
+  <data name="zoomPage2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;zoomPage2.Name" xml:space="preserve">
+    <value>zoomPage2</value>
+  </data>
+  <data name="&gt;&gt;zoomPage2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;zoomPage2.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;zoomPage2.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
   <data name="label30.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -7321,6 +6724,30 @@ FlowMeter</value>
   <data name="&gt;&gt;btnDualRate.ZOrder" xml:space="preserve">
     <value>23</value>
   </data>
+  <data name="rate2Page5.ImageIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="rate2Page5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 72</value>
+  </data>
+  <data name="rate2Page5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>599, 534</value>
+  </data>
+  <data name="rate2Page5.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="&gt;&gt;rate2Page5.Name" xml:space="preserve">
+    <value>rate2Page5</value>
+  </data>
+  <data name="&gt;&gt;rate2Page5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rate2Page5.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;rate2Page5.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
   <data name="btnFixOffset.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 14.25pt</value>
   </data>
@@ -8457,6 +7884,33 @@ FlowMeter</value>
   <data name="&gt;&gt;btnGPSData.ZOrder" xml:space="preserve">
     <value>6</value>
   </data>
+  <data name="configPage1.ImageIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="configPage1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 72</value>
+  </data>
+  <data name="configPage1.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>3, 3, 3, 3</value>
+  </data>
+  <data name="configPage1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>599, 534</value>
+  </data>
+  <data name="configPage1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;configPage1.Name" xml:space="preserve">
+    <value>configPage1</value>
+  </data>
+  <data name="&gt;&gt;configPage1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;configPage1.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;configPage1.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="btnDeleteRecPath.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
   </data>
@@ -8561,6 +8015,84 @@ FlowMeter</value>
   </data>
   <data name="&gt;&gt;btnDriveGenPath.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="autoPage4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 72</value>
+  </data>
+  <data name="autoPage4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>599, 534</value>
+  </data>
+  <data name="autoPage4.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="autoPage4.Text" xml:space="preserve">
+    <value>Auto</value>
+  </data>
+  <data name="&gt;&gt;autoPage4.Name" xml:space="preserve">
+    <value>autoPage4</value>
+  </data>
+  <data name="&gt;&gt;autoPage4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabPage, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;autoPage4.Parent" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;autoPage4.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="tabControl1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 20.25pt</value>
+  </data>
+  <data name="tabControl1.ItemSize" type="System.Drawing.Size, System.Drawing">
+    <value>118, 68</value>
+  </data>
+  <data name="tabControl1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 39</value>
+  </data>
+  <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>607, 610</value>
+  </data>
+  <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Name" xml:space="preserve">
+    <value>tabControl1</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TabControl, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tabControl1.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="btnDrivePath.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Tahoma, 14.25pt, style=Bold</value>
+  </data>
+  <data name="btnDrivePath.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btnDrivePath.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 633</value>
+  </data>
+  <data name="btnDrivePath.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 100</value>
+  </data>
+  <data name="btnDrivePath.TabIndex" type="System.Int32, mscorlib">
+    <value>152</value>
+  </data>
+  <data name="&gt;&gt;btnDrivePath.Name" xml:space="preserve">
+    <value>btnDrivePath</value>
+  </data>
+  <data name="&gt;&gt;btnDrivePath.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnDrivePath.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnDrivePath.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="btnManualAutoDrive.Font" type="System.Drawing.Font, System.Drawing">
     <value>Tahoma, 10pt, style=Bold</value>
@@ -8874,42 +8406,6 @@ FlowMeter</value>
   <data name="panelSimControls.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>panelSimControls</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panelSimControls.Location" type="System.Drawing.Point, System.Drawing">
-    <value>755, 648</value>
-  </data>
-  <data name="panelSimControls.Size" type="System.Drawing.Size, System.Drawing">
-    <value>604, 42</value>
-  </data>
-  <data name="panelSimControls.TabIndex" type="System.Int32, mscorlib">
-    <value>172</value>
-  </data>
-  <data name="panelSimControls.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="&gt;&gt;panelSimControls.Name" xml:space="preserve">
-    <value>panelSimControls</value>
-  </data>
-  <data name="&gt;&gt;panelSimControls.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelSimControls.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelSimControls.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
   <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Right</value>
   </data>
@@ -8945,6 +8441,30 @@ FlowMeter</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="panelSimControls.Location" type="System.Drawing.Point, System.Drawing">
+    <value>755, 648</value>
+  </data>
+  <data name="panelSimControls.Size" type="System.Drawing.Size, System.Drawing">
+    <value>604, 42</value>
+  </data>
+  <data name="panelSimControls.TabIndex" type="System.Int32, mscorlib">
+    <value>172</value>
+  </data>
+  <data name="panelSimControls.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;panelSimControls.Name" xml:space="preserve">
+    <value>panelSimControls</value>
+  </data>
+  <data name="&gt;&gt;panelSimControls.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelSimControls.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelSimControls.ZOrder" xml:space="preserve">
+    <value>33</value>
   </data>
   <data name="btnSection8Man.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>

@@ -212,10 +212,10 @@ void loop()
 		steeringPosition += analogRead(A0);    delay(2);
 		steeringPosition += analogRead(A0);
 		steeringPosition = steeringPosition >> 2; //divide by 4
-		steeringPosition = (steeringPosition - steeringPositionZero + XeRoll / (Kd+1));   //read the steering position sensor
+		steeringPosition = (steeringPosition - steeringPositionZero + (XeRoll * (Kd/24)) );   //read the steering position sensor
 		//steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
 
-    //close enough to center, remove any correction
+    //close enough to center, 4 cm, remove any correction
     if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
     else
     {
@@ -225,7 +225,7 @@ void loop()
       //provide a limit - the old max integral value
       if (corr > maxIntegralValue) corr = maxIntegralValue;
 
-      //now add the correction times counts per degree to fool steering position
+      //now add the correction to fool steering position
       if (distanceFromLine > 40) 
       {
         steerAngleSetPoint -= corr;
@@ -340,7 +340,7 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       Ki = (float)data[3] * 0.001;   // read Ki from AgOpenGPS
       Kd = (float)data[4] * 1.0;   // read Kd from AgOpenGPS
       Ko = (float)data[5] * 0.1;   // read Ko from AgOpenGPS
-      steeringPositionZero = 412 + data[6];  //read steering zero offset
+      steeringPositionZero = 385 + data[6];  //read steering zero offset
       minPWMValue = data[7]; //read the minimum amount of PWM for instant on
       maxIntegralValue = data[8]*0.1; //
       steerSensorCounts = data[9]; //sent as 10 times the setting displayed in AOG

@@ -58,7 +58,6 @@ namespace AgOpenGPS
             if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
             else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
             else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
-
         }
 
         private void bntOK_Click(object sender, EventArgs e)

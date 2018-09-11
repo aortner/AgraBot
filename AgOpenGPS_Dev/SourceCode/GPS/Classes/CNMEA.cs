@@ -240,6 +240,7 @@ Field	Meaning
                 if (mf.ahrs.isRollPAOGI)
                 //input to the kalman filter
                 {
+                    //added by Andreas Ortner
                     rollK = nRoll;
 
                     //Kalman filter
