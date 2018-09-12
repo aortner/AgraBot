@@ -123,6 +123,12 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Forms\FormSteerGraph.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormSteerGraph.Designer.cs">
+      <DependentUpon>FormSteerGraph.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormGenerate.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -560,6 +566,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormSteer.resx">
       <DependentUpon>FormSteer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\FormSteerGraph.resx">
+      <DependentUpon>FormSteerGraph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormtimedMessage.de.resx">
       <DependentUpon>FormTimedMessage.cs</DependentUpon>

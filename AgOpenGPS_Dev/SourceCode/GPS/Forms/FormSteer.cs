@@ -1,22 +1,12 @@
 ﻿using System;
 using System.Drawing;
 using System.Windows.Forms;
-using System.Windows.Forms.DataVisualization.Charting;
 
 namespace AgOpenGPS
 {
     public partial class FormSteer : Form
     {
         private readonly FormGPS mf = null;
-        private string[] words;
-
-        //chart data
-        private string dataSteerAngle = "0";
-
-        //private string dataP = "4";
-        //private string dataI = "6";
-        //private string dataD = "-6";
-        private string dataPWM = "-10";
 
         //the trackbar angle for free drive
         private Int16 driveFreeSteerAngle = 0;
@@ -106,8 +96,6 @@ namespace AgOpenGPS
                 tboxSerialToAutoSteer.Text = mf.mc.autoSteerData[mf.mc.sdRelayLo] + ", " + mf.mc.autoSteerData[mf.mc.sdSpeed]
                                         + ", " + mf.mc.autoSteerData[mf.mc.sdDistanceLo] + ", " + (driveFreeSteerAngle * 100);
             }
-
-            DrawChart();
         }
 
         //Scrollbars
@@ -283,116 +271,6 @@ namespace AgOpenGPS
             lblFreeDriveAngle.Text = Convert.ToString(driveFreeSteerAngle);
         }
 
-        //chart
-        private void DrawChart()
-        {
-            //just data
-            words = mf.mc.serialRecvAutoSteerStr.Split(',');
-            if (words.Length < 5)
-            {
-                dataSteerAngle = "0";
-                //dataP = "1";
-                //dataI = "2";
-                //dataD = "-1";
-                dataPWM = "-2";
-            }
-            else
-            {
-                //word 0 - steerangle, 1 - pwmDisplay
-                dataSteerAngle = mf.mc.serialRecvAutoSteerStr.Split(',')[0];
-                //dataP = mf.mc.serialRecvAutoSteerStr.Split(',')[1];
-                //dataI = mf.mc.serialRecvAutoSteerStr.Split(',')[2];
-                //dataD = mf.mc.serialRecvAutoSteerStr.Split(',')[3];
-                dataPWM = mf.mc.serialRecvAutoSteerStr.Split(',')[1];
 
-                lblSteerAng.Text = dataSteerAngle;
-                //lblP.Text = dataP;
-                //lblI.Text = dataI;
-                //lblD.Text = dataD;
-                lblPWM.Text = dataPWM;
-            }
-
-            //chart data
-            Series s = unoChart.Series["S"];
-            //Series t = unoChart.Series["P"];
-            //Series u = unoChart.Series["I"];
-            //Series v = unoChart.Series["D"];
-            Series w = unoChart.Series["PWM"];
-            double nextX = 1;
-            //double nextX2 = 1;
-            //double nextX3 = 1;
-            //double nextX4 = 1;
-            double nextX5 = 1;
-
-            if (s.Points.Count > 0) nextX = s.Points[s.Points.Count - 1].XValue + 1;
-            //if (t.Points.Count > 0) nextX2 = t.Points[t.Points.Count - 1].XValue + 1;
-            //if (u.Points.Count > 0) nextX3 = u.Points[u.Points.Count - 1].XValue + 1;
-            //if (v.Points.Count > 0) nextX4 = u.Points[u.Points.Count - 1].XValue + 1;
-            if (w.Points.Count > 0) nextX5 = w.Points[w.Points.Count - 1].XValue + 1;
-
-            unoChart.Series["S"].Points.AddXY(nextX, dataSteerAngle);
-            //unoChart.Series["P"].Points.AddXY(nextX2, dataP);
-            //unoChart.Series["I"].Points.AddXY(nextX3, dataI);
-            //unoChart.Series["D"].Points.AddXY(nextX4, dataD);
-            unoChart.Series["PWM"].Points.AddXY(nextX5, dataPWM);
-
-            //if (isScroll)
-            {
-                while (s.Points.Count > 100)
-                {
-                    s.Points.RemoveAt(0);
-                }
-                //while (t.Points.Count > 100)
-                //{
-                //    t.Points.RemoveAt(0);
-                //}
-                //while (u.Points.Count > 100)
-                //{
-                //    u.Points.RemoveAt(0);
-                //}
-                //while (v.Points.Count > 100)
-                //{
-                //    v.Points.RemoveAt(0);
-                //}
-                while (w.Points.Count > 100)
-                {
-                    w.Points.RemoveAt(0);
-                }
-                unoChart.ResetAutoValues();
-            }
-        }
-
-        //private void btnAuto_Click(object sender, EventArgs e)
-        //{
-        //    unoChart.ChartAreas[0].AxisY.Maximum = Double.NaN;
-        //    unoChart.ChartAreas[0].RecalculateAxesScale();
-        //    unoChart.ResetAutoValues();
-        //}
-
-        //private void btnPlus_Click(object sender, EventArgs e)
-        //{
-        //    if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
-        //        unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
-        //    else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
-        //    unoChart.ChartAreas[0].AxisY.Minimum -= 50;
-        //    unoChart.ChartAreas[0].AxisY.Maximum += 50;
-        //    unoChart.ResetAutoValues();
-        //}
-
-        //private void btnMinus_Click(object sender, EventArgs e)
-        //{
-        //    if (Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum) > Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum))
-        //        unoChart.ChartAreas[0].AxisY.Maximum = Math.Abs(unoChart.ChartAreas[0].AxisY.Minimum);
-        //    else unoChart.ChartAreas[0].AxisY.Minimum = Math.Abs(unoChart.ChartAreas[0].AxisY.Maximum) * -1;
-
-        //    if (unoChart.ChartAreas[0].AxisY.Maximum <= 51)
-        //    {
-        //        unoChart.ChartAreas[0].AxisY.Maximum = 60;
-        //        unoChart.ChartAreas[0].AxisY.Minimum = -60;
-        //    }
-        //    unoChart.ChartAreas[0].AxisY.Minimum += 50;
-        //    unoChart.ChartAreas[0].AxisY.Maximum -= 50;
-        //    unoChart.ResetAutoValues();
-        //}
     }
 }

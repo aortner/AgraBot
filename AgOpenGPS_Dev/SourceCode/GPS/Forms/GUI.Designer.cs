@@ -2477,7 +2477,6 @@ namespace AgOpenGPS
             }
         }
 
-
         //function mouse down in window for picking
         private void openGLControl_MouseDown(object sender, MouseEventArgs e)
         {
@@ -2511,7 +2510,21 @@ namespace AgOpenGPS
             //
             Form form = new FormSteer(this);
             form.Show();
+
+            //check if window already exists
+            Form fcg = Application.OpenForms["FormSteerGraph"];
+
+            if (fcg != null)
+            {
+                fcg.Focus();
+                return;
+            }
+
+            //
+            Form formG = new FormSteerGraph(this);
+            formG.Show();
         }
+
         private void toolstripVehicleConfig_Click(object sender, EventArgs e)
         {
             using (var form = new FormSettings(this, 0))

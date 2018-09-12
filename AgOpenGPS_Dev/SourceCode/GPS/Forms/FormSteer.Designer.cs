@@ -29,22 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSteer));
             this.label14 = new System.Windows.Forms.Label();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.tboxSerialToAutoSteer = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.unoChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
-            this.lblSteerAng = new System.Windows.Forms.Label();
-            this.lblPWM = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
             this.btnSteerWizard = new System.Windows.Forms.Button();
             this.btnFreeDriveZero = new System.Windows.Forms.Button();
             this.btnFreeDrive = new System.Windows.Forms.Button();
@@ -113,8 +103,6 @@
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
-            this.helpProvider1 = new System.Windows.Forms.HelpProvider();
-            ((System.ComponentModel.ISupportInitialize)(this.unoChart)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -128,7 +116,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(319, 576);
+            this.label14.Location = new System.Drawing.Point(310, 413);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 23);
             this.label14.TabIndex = 126;
@@ -139,11 +127,11 @@
             this.tboxSerialFromAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(369, 576);
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(360, 413);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(272, 27);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(255, 27);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
             // 
             // label15
@@ -152,7 +140,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(4, 578);
+            this.label15.Location = new System.Drawing.Point(4, 415);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 23);
             this.label15.TabIndex = 124;
@@ -163,142 +151,18 @@
             this.tboxSerialToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxSerialToAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialToAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(37, 576);
+            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(37, 413);
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
-            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(275, 27);
+            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(254, 27);
             this.tboxSerialToAutoSteer.TabIndex = 123;
             // 
             // timer1
             // 
             this.timer1.Enabled = true;
+            this.timer1.Interval = 500;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
-            // unoChart
-            // 
-            this.unoChart.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.unoChart.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.None;
-            this.unoChart.BackColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY.LineWidth = 2;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.BorderWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 93F;
-            chartArea1.Position.Width = 100F;
-            chartArea1.Position.Y = 7F;
-            this.unoChart.ChartAreas.Add(chartArea1);
-            this.unoChart.Location = new System.Drawing.Point(3, 414);
-            this.unoChart.Margin = new System.Windows.Forms.Padding(0);
-            this.unoChart.Name = "unoChart";
-            this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.BackSecondaryColor = System.Drawing.Color.White;
-            series1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Color = System.Drawing.Color.OrangeRed;
-            series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsVisibleInLegend = false;
-            series1.Name = "S";
-            series1.YValuesPerPoint = 6;
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.Lime;
-            series2.IsVisibleInLegend = false;
-            series2.Name = "PWM";
-            this.unoChart.Series.Add(series1);
-            this.unoChart.Series.Add(series2);
-            this.unoChart.Size = new System.Drawing.Size(616, 146);
-            this.unoChart.TabIndex = 179;
-            this.unoChart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
-            // 
-            // lblSteerAng
-            // 
-            this.lblSteerAng.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSteerAng.AutoSize = true;
-            this.lblSteerAng.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblSteerAng.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSteerAng.ForeColor = System.Drawing.Color.OrangeRed;
-            this.lblSteerAng.Location = new System.Drawing.Point(104, 415);
-            this.lblSteerAng.Name = "lblSteerAng";
-            this.lblSteerAng.Size = new System.Drawing.Size(59, 19);
-            this.lblSteerAng.TabIndex = 180;
-            this.lblSteerAng.Text = "label1";
-            // 
-            // lblPWM
-            // 
-            this.lblPWM.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblPWM.AutoSize = true;
-            this.lblPWM.BackColor = System.Drawing.SystemColors.ControlText;
-            this.lblPWM.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPWM.ForeColor = System.Drawing.Color.Lime;
-            this.lblPWM.Location = new System.Drawing.Point(251, 415);
-            this.lblPWM.Name = "lblPWM";
-            this.lblPWM.Size = new System.Drawing.Size(59, 19);
-            this.lblPWM.TabIndex = 184;
-            this.lblPWM.Text = "label5";
-            // 
-            // label1
-            // 
-            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label1.Location = new System.Drawing.Point(6, 415);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(94, 19);
-            this.label1.TabIndex = 188;
-            this.label1.Text = "Steer Actual";
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label5.Location = new System.Drawing.Point(178, 415);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(67, 19);
-            this.label5.TabIndex = 192;
-            this.label5.Text = "SetPoint";
-            // 
-            // label6
-            // 
-            this.label6.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(40, 561);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(182, 13);
-            this.label6.TabIndex = 193;
-            this.label6.Text = "Relay, Speed, Distance, Steer Angle";
-            // 
-            // label18
-            // 
-            this.label18.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(373, 561);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(202, 13);
-            this.label18.TabIndex = 207;
-            this.label18.Text = "Steer Angle, PWM, Heading, Roll, Switch";
             // 
             // btnSteerWizard
             // 
@@ -366,7 +230,8 @@
             // 
             // tabControl1
             // 
-            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.tabControl1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tabControl1.Appearance = System.Windows.Forms.TabAppearance.Buttons;
             this.tabControl1.Controls.Add(this.tabGain);
@@ -379,7 +244,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(616, 404);
+            this.tabControl1.Size = new System.Drawing.Size(616, 396);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 232;
             // 
@@ -419,7 +284,7 @@
             this.tabGain.Controls.Add(this.hsbarProportionalGain);
             this.tabGain.Location = new System.Drawing.Point(4, 49);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(608, 351);
+            this.tabGain.Size = new System.Drawing.Size(608, 343);
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "PID";
             // 
@@ -760,7 +625,7 @@
             this.tabSteer.Controls.Add(this.label30);
             this.tabSteer.Location = new System.Drawing.Point(4, 49);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(608, 351);
+            this.tabSteer.Size = new System.Drawing.Size(608, 324);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Gain";
             // 
@@ -1035,7 +900,7 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 49);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(608, 351);
+            this.tabDrive.Size = new System.Drawing.Size(608, 324);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
@@ -1056,7 +921,7 @@
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 49);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(608, 351);
+            this.tabPage2.Size = new System.Drawing.Size(608, 343);
             this.tabPage2.TabIndex = 15;
             this.tabPage2.Text = "Help";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1076,31 +941,24 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.InactiveBorder;
-            this.ClientSize = new System.Drawing.Size(619, 604);
-            this.Controls.Add(this.label18);
-            this.Controls.Add(this.label6);
+            this.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.ClientSize = new System.Drawing.Size(619, 441);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.tboxSerialFromAutoSteer);
             this.Controls.Add(this.label15);
             this.Controls.Add(this.tboxSerialToAutoSteer);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.lblPWM);
-            this.Controls.Add(this.lblSteerAng);
-            this.Controls.Add(this.unoChart);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(635, 480);
             this.Name = "FormSteer";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.ShowIcon = false;
             this.Text = "Auto Steer Configuration";
             this.TopMost = true;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormSteer_FormClosing);
             this.Load += new System.EventHandler(this.FormSteer_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.unoChart)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.tabGain.ResumeLayout(false);
             this.tabGain.PerformLayout();
@@ -1121,13 +979,6 @@
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tboxSerialToAutoSteer;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.DataVisualization.Charting.Chart unoChart;
-        private System.Windows.Forms.Label lblSteerAng;
-        private System.Windows.Forms.Label lblPWM;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnSteerWizard;
         private System.Windows.Forms.Button btnFreeDriveZero;
         private System.Windows.Forms.Button btnFreeDrive;
@@ -1139,7 +990,6 @@
         private System.Windows.Forms.TabPage tabGain;
         private System.Windows.Forms.TabPage tabDrive;
         private System.Windows.Forms.HScrollBar hSBarFreeDrive;
-        private System.Windows.Forms.HelpProvider helpProvider1;
         private System.Windows.Forms.Label lblIntegralMax;
         private System.Windows.Forms.Label label43;
         private System.Windows.Forms.Label label44;
