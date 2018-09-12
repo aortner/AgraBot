@@ -1,0 +1,203 @@
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:38 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:38 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:38 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:39 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:39 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:39 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:39 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:40 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:40 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:41 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:41 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:42 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:42 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:43 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:43 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:44 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:44 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:45 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:45 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:46 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:46 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:47 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:47 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:48 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:48 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:49 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:49 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:50 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:50 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:50 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:51 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:51 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:52 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:52 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+ UDP Send DataSystem.Net.Sockets.SocketException (0x80004005): A socket operation was attempted to an unreachable network
+   at System.Net.Sockets.Socket.EndSend(IAsyncResult asyncResult)
+   at AgOpenGPS.FormGPS.SendData(IAsyncResult asyncResult) in C:\Users\Grizs\Desktop\AgOpenGPS_Dev\SourceCode\GPS\Forms\UDPComm.Designer.cs:line 78 - 2018-08-24 1:43:53 PM
+
+Validate ChecksumSystem.NullReferenceException: Object reference not set to an instance of an object.
+   at AgOpenGPS.CNMEA.ValidateChecksum(String Sentence) - 9/3/2018 12:38:12 PM
+
