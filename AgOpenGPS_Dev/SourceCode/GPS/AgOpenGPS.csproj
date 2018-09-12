@@ -820,6 +820,7 @@
     <None Include="btnImages\FlowMeterSingle.png" />
     <None Include="btnImages\AutoGo.png" />
     <None Include="btnImages\AutoStop.png" />
+    <None Include="btnImages\Chart.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

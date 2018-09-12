@@ -699,7 +699,8 @@ namespace AgOpenGPS
                 btnContour.Left = Width - 123;
                 btnCurve.Left = Width - 123;
                 btnManualOffOn.Left = Width - 123;
-                btnSectionOffAutoOn.Left = Width - 132;
+                //btnSnap.Left = Width - 123;
+                btnSectionOffAutoOn.Left = Width - 130;
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = Width/2 - 60;
                 txtDistanceOffABLine.Top = 80;
@@ -708,7 +709,7 @@ namespace AgOpenGPS
             {
                 //tab will be visible
                 tabControl1.Visible = true;
-                openGLControl.Width = Width - 630;
+                openGLControl.Width = Width - 620;
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
                 panelSimControls.Visible = true;
@@ -716,7 +717,8 @@ namespace AgOpenGPS
                 btnContour.Left = Width - 730;
                 btnCurve.Left = Width - 730;
                 btnManualOffOn.Left = Width - 730;
-                btnSectionOffAutoOn.Left = Width - 740;
+                //btnSnap.Left = Width - 730;
+                btnSectionOffAutoOn.Left = Width - 737;
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = (Width - 630)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
@@ -1636,7 +1638,6 @@ namespace AgOpenGPS
             camera.camSetDistance = camera.zoomValue * camera.zoomValue * -1;
             SetZoom();
         }
-
         private void toolStripZoomIn_Click(object sender, EventArgs e)
         {
             if (camera.zoomValue <= 20)
@@ -1712,7 +1713,6 @@ namespace AgOpenGPS
             flagPts.Add(flagPt);
             FileSaveFlags();
         }
-
         private void btnFixOffset_Click(object sender, EventArgs e)
         {
             using (var form = new FormShiftPos(this))
@@ -1721,8 +1721,6 @@ namespace AgOpenGPS
                 if (result == DialogResult.OK) { }
             }
         }
-
-
         private void btnSmoothAB_Click(object sender, EventArgs e)
         {
             if (isJobStarted && curve.isCurveBtnOn)
@@ -2491,6 +2489,38 @@ namespace AgOpenGPS
         }
 
         //taskbar buttons
+
+        private void toolStripBtnSwap_Click(object sender, EventArgs e)
+        {
+            if (!yt.isYouTurnTriggerPointSet)
+            {
+                //is it turning right already?
+                if (yt.isYouTurnRight)
+                {
+                    yt.isYouTurnRight = false;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    AutoYouTurnButtonsReset();
+                }
+                else
+                {
+                    //make it turn the other way
+                    yt.isYouTurnRight = true;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    AutoYouTurnButtonsReset();
+                }
+            }
+        }
+        private void toolStripBtnSnap_Click(object sender, EventArgs e)
+        {
+            if (ABLine.isABLineSet) ABLine.SnapABLine();
+            else if (curve.isCurveSet) curve.SnapABCurve();
+            else
+            {
+                var form = new FormTimedMessage(2000, (gStr.gsNoGuidanceLines), (gStr.gsTurnOnContourOrABLine));
+                form.Show();
+            }
+        }
+
         private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
         {
             var form = new FormYouTurn(this);
@@ -2510,7 +2540,9 @@ namespace AgOpenGPS
             //
             Form form = new FormSteer(this);
             form.Show();
-
+        }
+        private void toolStripAutoSteerChart_Click(object sender, EventArgs e)
+        {
             //check if window already exists
             Form fcg = Application.OpenForms["FormSteerGraph"];
 
@@ -2524,6 +2556,7 @@ namespace AgOpenGPS
             Form formG = new FormSteerGraph(this);
             formG.Show();
         }
+
 
         private void toolstripVehicleConfig_Click(object sender, EventArgs e)
         {
@@ -2615,21 +2648,22 @@ namespace AgOpenGPS
                 else sim.DoSimTick(sim.steerAngleScrollBar);
             }
         }
-        private void tbarStepDistance_Scroll(object sender, EventArgs e)
-        {
-            sim.stepDistance = ((double)(tbarStepDistance.Value)) / 10.0 / (double)fixUpdateHz;
-        }
-        private void tbarSteerAngle_Scroll(object sender, EventArgs e)
-        {
-            sim.steerAngleScrollBar = (tbarSteerAngle.Value) * 0.1;
-            lblSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
 
+        private void hsbarSteerAngle_Scroll(object sender, ScrollEventArgs e)
+        {
+            sim.steerAngleScrollBar = (hsbarSteerAngle.Value - 300) * 0.1;
+            lblSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
+        }
+
+        private void hsbarStepDistance_Scroll(object sender, ScrollEventArgs e)
+        {
+            sim.stepDistance = ((double)(hsbarStepDistance.Value)) / 10.0 / (double)fixUpdateHz;
         }
 
         private void btnResetSteerAngle_Click(object sender, EventArgs e)
         {
             sim.steerAngleScrollBar = 0;
-            tbarSteerAngle.Value = 0;
+            hsbarSteerAngle.Value = 300;
             lblSteerAngle.Text = sim.steerAngleScrollBar.ToString("N1");
         }
         private void btnResetSim_Click(object sender, EventArgs e)

@@ -116,7 +116,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(310, 413);
+            this.label14.Location = new System.Drawing.Point(310, 283);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(43, 23);
             this.label14.TabIndex = 126;
@@ -126,8 +126,9 @@
             // 
             this.tboxSerialFromAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
+            this.tboxSerialFromAutoSteer.Enabled = false;
             this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(360, 413);
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(360, 283);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
@@ -140,7 +141,7 @@
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(4, 415);
+            this.label15.Location = new System.Drawing.Point(4, 285);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(31, 23);
             this.label15.TabIndex = 124;
@@ -150,8 +151,9 @@
             // 
             this.tboxSerialToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxSerialToAutoSteer.BackColor = System.Drawing.SystemColors.Control;
+            this.tboxSerialToAutoSteer.Enabled = false;
             this.tboxSerialToAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(37, 413);
+            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(37, 283);
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
@@ -167,7 +169,7 @@
             // btnSteerWizard
             // 
             this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerWizard.Location = new System.Drawing.Point(520, 35);
+            this.btnSteerWizard.Location = new System.Drawing.Point(520, 24);
             this.btnSteerWizard.Name = "btnSteerWizard";
             this.btnSteerWizard.Size = new System.Drawing.Size(80, 60);
             this.btnSteerWizard.TabIndex = 220;
@@ -179,7 +181,7 @@
             // btnFreeDriveZero
             // 
             this.btnFreeDriveZero.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDriveZero.Location = new System.Drawing.Point(218, 84);
+            this.btnFreeDriveZero.Location = new System.Drawing.Point(227, 24);
             this.btnFreeDriveZero.Name = "btnFreeDriveZero";
             this.btnFreeDriveZero.Size = new System.Drawing.Size(173, 65);
             this.btnFreeDriveZero.TabIndex = 226;
@@ -190,9 +192,9 @@
             // btnFreeDrive
             // 
             this.btnFreeDrive.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDrive.Location = new System.Drawing.Point(30, 35);
+            this.btnFreeDrive.Location = new System.Drawing.Point(30, 24);
             this.btnFreeDrive.Name = "btnFreeDrive";
-            this.btnFreeDrive.Size = new System.Drawing.Size(118, 80);
+            this.btnFreeDrive.Size = new System.Drawing.Size(118, 65);
             this.btnFreeDrive.TabIndex = 228;
             this.btnFreeDrive.Text = "Drive";
             this.btnFreeDrive.UseVisualStyleBackColor = true;
@@ -202,7 +204,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(553, 250);
+            this.label20.Location = new System.Drawing.Point(553, 187);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(27, 19);
             this.label20.TabIndex = 229;
@@ -212,7 +214,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(32, 250);
+            this.label21.Location = new System.Drawing.Point(32, 187);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(33, 19);
             this.label21.TabIndex = 230;
@@ -222,7 +224,7 @@
             // 
             this.lblFreeDriveAngle.AutoSize = true;
             this.lblFreeDriveAngle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFreeDriveAngle.Location = new System.Drawing.Point(308, 175);
+            this.lblFreeDriveAngle.Location = new System.Drawing.Point(295, 108);
             this.lblFreeDriveAngle.Name = "lblFreeDriveAngle";
             this.lblFreeDriveAngle.Size = new System.Drawing.Size(22, 23);
             this.lblFreeDriveAngle.TabIndex = 231;
@@ -244,7 +246,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(616, 396);
+            this.tabControl1.Size = new System.Drawing.Size(616, 266);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 232;
             // 
@@ -284,7 +286,7 @@
             this.tabGain.Controls.Add(this.hsbarProportionalGain);
             this.tabGain.Location = new System.Drawing.Point(4, 49);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(608, 343);
+            this.tabGain.Size = new System.Drawing.Size(608, 213);
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "PID";
             // 
@@ -625,7 +627,7 @@
             this.tabSteer.Controls.Add(this.label30);
             this.tabSteer.Location = new System.Drawing.Point(4, 49);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(608, 324);
+            this.tabSteer.Size = new System.Drawing.Size(608, 227);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Gain";
             // 
@@ -900,14 +902,14 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 49);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(608, 324);
+            this.tabDrive.Size = new System.Drawing.Size(608, 255);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
             // hSBarFreeDrive
             // 
             this.hSBarFreeDrive.LargeChange = 1;
-            this.hSBarFreeDrive.Location = new System.Drawing.Point(30, 200);
+            this.hSBarFreeDrive.Location = new System.Drawing.Point(30, 133);
             this.hSBarFreeDrive.Maximum = 40;
             this.hSBarFreeDrive.Minimum = -40;
             this.hSBarFreeDrive.Name = "hSBarFreeDrive";
@@ -933,7 +935,7 @@
             this.richTextBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(5, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(583, 1340);
+            this.richTextBox1.Size = new System.Drawing.Size(566, 1340);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -942,7 +944,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(619, 441);
+            this.ClientSize = new System.Drawing.Size(619, 311);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.tboxSerialFromAutoSteer);
             this.Controls.Add(this.label15);
@@ -952,7 +954,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(635, 480);
+            this.MinimumSize = new System.Drawing.Size(635, 350);
             this.Name = "FormSteer";
             this.ShowIcon = false;
             this.Text = "Auto Steer Configuration";

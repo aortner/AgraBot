@@ -22,6 +22,7 @@ namespace AgOpenGPS
         public FormSteerGraph(Form callingForm)
         {
             mf = callingForm as FormGPS;
+            timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
             InitializeComponent();
         }
 

@@ -549,8 +549,8 @@ namespace AgOpenGPS
             if (keyData == Keys.K)
             {
                 sim.stepDistance += 0.05;
-                if (sim.stepDistance > 5.8) sim.stepDistance = 5.8;
-                tbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
+                if (sim.stepDistance > 4.8) sim.stepDistance = 4.8;
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
 
                 return true;
             }
@@ -559,7 +559,7 @@ namespace AgOpenGPS
             if (keyData == Keys.J)
             {
                 sim.stepDistance = 0;
-                tbarStepDistance.Value = 0;
+                hsbarStepDistance.Value = 0;
                 return true;
             }
 
@@ -568,7 +568,7 @@ namespace AgOpenGPS
             {
                 sim.stepDistance -= 0.05;
                 if (sim.stepDistance < 0) sim.stepDistance = 0;
-                tbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
+                hsbarStepDistance.Value = (int)(sim.stepDistance * 10.0 * fixUpdateHz);
                 return true;
             }
 
@@ -579,7 +579,7 @@ namespace AgOpenGPS
                 if (sim.steerAngle > 30) sim.steerAngle = 30;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 lblSteerAngle.Text = sim.steerAngle.ToString();
-                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
+                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
                 return true;
             }
 
@@ -590,7 +590,7 @@ namespace AgOpenGPS
                 if (sim.steerAngle < -30) sim.steerAngle = -30;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 lblSteerAngle.Text = sim.steerAngle.ToString();
-                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
+                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
                 return true;
             }
 
@@ -600,7 +600,7 @@ namespace AgOpenGPS
                 sim.steerAngle = 0.0;
                 sim.steerAngleScrollBar = sim.steerAngle;
                 lblSteerAngle.Text = sim.steerAngle.ToString();
-                tbarSteerAngle.Value = (int)(10 * sim.steerAngle);
+                hsbarSteerAngle.Value = (int)(10 * sim.steerAngle) + 300;
                 return true;
             }
 

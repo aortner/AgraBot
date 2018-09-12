@@ -81,14 +81,17 @@
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripBtnSnap = new System.Windows.Forms.ToolStripDropDownButton();
             this.btnHideTabs = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripBtnSwap = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripDisplayConfig = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripAutoSteerChart = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.stripAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
@@ -133,6 +136,7 @@
             this.tboxRecvUDP = new System.Windows.Forms.TextBox();
             this.btnLidarOnOff = new System.Windows.Forms.Button();
             this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.lblLidarDistance = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
@@ -210,24 +214,21 @@
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnFileExplorer = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
+            this.btnSwapDirection = new System.Windows.Forms.Button();
+            this.btnSnap = new System.Windows.Forms.Button();
             this.autoPage4 = new System.Windows.Forms.TabPage();
             this.btnDeleteRecPath = new System.Windows.Forms.Button();
             this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
-            this.btnDrivePath = new System.Windows.Forms.Button();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.lblSteerAngle = new System.Windows.Forms.Label();
-            this.tbarSteerAngle = new System.Windows.Forms.TrackBar();
-            this.tbarStepDistance = new System.Windows.Forms.TrackBar();
             this.timerSim = new System.Windows.Forms.Timer(this.components);
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
             this.panelSimControls = new System.Windows.Forms.Panel();
-            this.label3 = new System.Windows.Forms.Label();
+            this.hsbarSteerAngle = new System.Windows.Forms.HScrollBar();
+            this.hsbarStepDistance = new System.Windows.Forms.HScrollBar();
             this.btnSection8Man = new System.Windows.Forms.Button();
             this.btnSection7Man = new System.Windows.Forms.Button();
             this.btnSection6Man = new System.Windows.Forms.Button();
@@ -242,11 +243,10 @@
             this.btnSection12Man = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
-            this.btnSwapDirection = new System.Windows.Forms.Button();
+            this.btnDrivePath = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
             this.btnFlag = new System.Windows.Forms.Button();
-            this.btnSnap = new System.Windows.Forms.Button();
             this.btnAutoSteer = new System.Windows.Forms.Button();
             this.btnRightYouTurn = new System.Windows.Forms.Button();
             this.btnContour = new System.Windows.Forms.Button();
@@ -266,8 +266,6 @@
             this.rate2Page5.SuspendLayout();
             this.configPage1.SuspendLayout();
             this.autoPage4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).BeginInit();
             this.panelSimControls.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -654,7 +652,9 @@
             this.statusStrip1.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
+            this.toolStripBtnSnap,
             this.btnHideTabs,
+            this.toolStripBtnSwap,
             this.stripEqWidth,
             this.toolStripDropDownButton2,
             this.stripAreaRate,
@@ -677,6 +677,14 @@
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
             // 
+            // toolStripBtnSnap
+            // 
+            resources.ApplyResources(this.toolStripBtnSnap, "toolStripBtnSnap");
+            this.toolStripBtnSnap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnSnap.Name = "toolStripBtnSnap";
+            this.toolStripBtnSnap.ShowDropDownArrow = false;
+            this.toolStripBtnSnap.Click += new System.EventHandler(this.toolStripBtnSnap_Click);
+            // 
             // btnHideTabs
             // 
             resources.ApplyResources(this.btnHideTabs, "btnHideTabs");
@@ -684,6 +692,14 @@
             this.btnHideTabs.Name = "btnHideTabs";
             this.btnHideTabs.ShowDropDownArrow = false;
             this.btnHideTabs.Click += new System.EventHandler(this.btnHideTabs_Click);
+            // 
+            // toolStripBtnSwap
+            // 
+            resources.ApplyResources(this.toolStripBtnSwap, "toolStripBtnSwap");
+            this.toolStripBtnSwap.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnSwap.Name = "toolStripBtnSwap";
+            this.toolStripBtnSwap.ShowDropDownArrow = false;
+            this.toolStripBtnSwap.Click += new System.EventHandler(this.toolStripBtnSwap_Click);
             // 
             // stripEqWidth
             // 
@@ -700,10 +716,10 @@
             this.toolstripUDPConfig,
             this.toolstripUSBPortsConfig,
             this.toolstripDisplayConfig,
-            this.toolstripVehicleConfig,
+            this.toolStripAutoSteerChart,
             this.toolstripAutoSteerConfig,
+            this.toolstripVehicleConfig,
             this.toolstripYouTurnConfig});
-            this.toolStripDropDownButton2.Image = global::AgOpenGPS.Properties.Resources.SetupStatusStrip;
             this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ShowDropDownArrow = false;
@@ -726,16 +742,14 @@
             // 
             this.toolstripDisplayConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
             resources.ApplyResources(this.toolstripDisplayConfig, "toolstripDisplayConfig");
-            this.toolstripDisplayConfig.Image = global::AgOpenGPS.Properties.Resources.gyro;
             this.toolstripDisplayConfig.Name = "toolstripDisplayConfig";
             this.toolstripDisplayConfig.Click += new System.EventHandler(this.toolstripDisplayConfig_Click);
             // 
-            // toolstripVehicleConfig
+            // toolStripAutoSteerChart
             // 
-            this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
-            resources.ApplyResources(this.toolstripVehicleConfig, "toolstripVehicleConfig");
-            this.toolstripVehicleConfig.Name = "toolstripVehicleConfig";
-            this.toolstripVehicleConfig.Click += new System.EventHandler(this.toolstripVehicleConfig_Click);
+            resources.ApplyResources(this.toolStripAutoSteerChart, "toolStripAutoSteerChart");
+            this.toolStripAutoSteerChart.Name = "toolStripAutoSteerChart";
+            this.toolStripAutoSteerChart.Click += new System.EventHandler(this.toolStripAutoSteerChart_Click);
             // 
             // toolstripAutoSteerConfig
             // 
@@ -743,6 +757,13 @@
             resources.ApplyResources(this.toolstripAutoSteerConfig, "toolstripAutoSteerConfig");
             this.toolstripAutoSteerConfig.Name = "toolstripAutoSteerConfig";
             this.toolstripAutoSteerConfig.Click += new System.EventHandler(this.toolstripAutoSteerConfig_Click);
+            // 
+            // toolstripVehicleConfig
+            // 
+            this.toolstripVehicleConfig.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripVehicleConfig, "toolstripVehicleConfig");
+            this.toolstripVehicleConfig.Name = "toolstripVehicleConfig";
+            this.toolstripVehicleConfig.Click += new System.EventHandler(this.toolstripVehicleConfig_Click);
             // 
             // toolstripYouTurnConfig
             // 
@@ -765,7 +786,6 @@
             this.toolstripBoundary,
             this.toolstripHeadland,
             this.toolstripResetTrip});
-            this.toolStripDropDownBtnFuncs.Image = global::AgOpenGPS.Properties.Resources.start;
             this.toolStripDropDownBtnFuncs.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownBtnFuncs.Name = "toolStripDropDownBtnFuncs";
             this.toolStripDropDownBtnFuncs.ShowDropDownArrow = false;
@@ -808,7 +828,6 @@
             // 
             resources.ApplyResources(this.toolStripZoomOut, "toolStripZoomOut");
             this.toolStripZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripZoomOut.Image = global::AgOpenGPS.Properties.Resources.ZoomOut48;
             this.toolStripZoomOut.Name = "toolStripZoomOut";
             this.toolStripZoomOut.ShowDropDownArrow = false;
             this.toolStripZoomOut.Click += new System.EventHandler(this.toolStripZoomOut_Click);
@@ -817,7 +836,6 @@
             // 
             resources.ApplyResources(this.toolStripZoomIn, "toolStripZoomIn");
             this.toolStripZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripZoomIn.Image = global::AgOpenGPS.Properties.Resources.ZoomIn48;
             this.toolStripZoomIn.Name = "toolStripZoomIn";
             this.toolStripZoomIn.ShowDropDownArrow = false;
             this.toolStripZoomIn.Click += new System.EventHandler(this.toolStripZoomIn_Click);
@@ -1054,6 +1072,7 @@
             this.DataPage.Controls.Add(this.tboxRecvUDP);
             this.DataPage.Controls.Add(this.btnLidarOnOff);
             this.DataPage.Controls.Add(this.btnRecPathPauseRecord);
+            this.DataPage.Controls.Add(this.btnManualAutoDrive);
             this.DataPage.Controls.Add(this.lblLidarDistance);
             this.DataPage.Controls.Add(this.label1);
             this.DataPage.Controls.Add(this.btnPauseDrivingPath);
@@ -1111,7 +1130,6 @@
             // 
             this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
-            this.btnLidarOnOff.Image = global::AgOpenGPS.Properties.Resources.boundaryPlay;
             this.btnLidarOnOff.Name = "btnLidarOnOff";
             this.btnLidarOnOff.UseVisualStyleBackColor = false;
             this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
@@ -1120,10 +1138,17 @@
             // 
             this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
-            this.btnRecPathPauseRecord.Image = global::AgOpenGPS.Properties.Resources.BoundaryRecord;
             this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
             this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
             this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
+            // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // lblLidarDistance
             // 
@@ -1139,7 +1164,6 @@
             // 
             this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
             resources.ApplyResources(this.btnPauseDrivingPath, "btnPauseDrivingPath");
-            this.btnPauseDrivingPath.Image = global::AgOpenGPS.Properties.Resources.boundaryPause;
             this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
             this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
             this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
@@ -1524,7 +1548,6 @@
             // btnSelectSingleDualMeter
             // 
             resources.ApplyResources(this.btnSelectSingleDualMeter, "btnSelectSingleDualMeter");
-            this.btnSelectSingleDualMeter.Image = global::AgOpenGPS.Properties.Resources.FlowMeterSingle;
             this.btnSelectSingleDualMeter.Name = "btnSelectSingleDualMeter";
             this.btnSelectSingleDualMeter.UseVisualStyleBackColor = true;
             this.btnSelectSingleDualMeter.Click += new System.EventHandler(this.btnSelectSingleDualMeter_Click);
@@ -1533,7 +1556,6 @@
             // 
             this.btnSelectRate2.BackColor = System.Drawing.Color.LightGray;
             resources.ApplyResources(this.btnSelectRate2, "btnSelectRate2");
-            this.btnSelectRate2.Image = global::AgOpenGPS.Properties.Resources.RateSelect2;
             this.btnSelectRate2.Name = "btnSelectRate2";
             this.btnSelectRate2.UseVisualStyleBackColor = false;
             this.btnSelectRate2.Click += new System.EventHandler(this.btnSelectRate2_Click);
@@ -1542,7 +1564,6 @@
             // 
             this.btnSelectRate1.BackColor = System.Drawing.Color.LightSkyBlue;
             resources.ApplyResources(this.btnSelectRate1, "btnSelectRate1");
-            this.btnSelectRate1.Image = global::AgOpenGPS.Properties.Resources.Rate1Select;
             this.btnSelectRate1.Name = "btnSelectRate1";
             this.btnSelectRate1.UseVisualStyleBackColor = false;
             this.btnSelectRate1.Click += new System.EventHandler(this.btnSelectRate1_Click);
@@ -1565,7 +1586,6 @@
             // 
             this.btnDualRateConfig.BackColor = System.Drawing.Color.Transparent;
             resources.ApplyResources(this.btnDualRateConfig, "btnDualRateConfig");
-            this.btnDualRateConfig.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.btnDualRateConfig.Name = "btnDualRateConfig";
             this.btnDualRateConfig.UseVisualStyleBackColor = false;
             this.btnDualRateConfig.Click += new System.EventHandler(this.btnDualRateConfig_Click);
@@ -1603,6 +1623,8 @@
             this.configPage1.Controls.Add(this.btnHelp);
             this.configPage1.Controls.Add(this.btnFileExplorer);
             this.configPage1.Controls.Add(this.btnGPSData);
+            this.configPage1.Controls.Add(this.btnSwapDirection);
+            this.configPage1.Controls.Add(this.btnSnap);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
             // 
@@ -1669,6 +1691,24 @@
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
+            // btnSwapDirection
+            // 
+            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
+            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
+            this.btnSwapDirection.Name = "btnSwapDirection";
+            this.btnSwapDirection.UseVisualStyleBackColor = false;
+            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click);
+            // 
+            // btnSnap
+            // 
+            resources.ApplyResources(this.btnSnap, "btnSnap");
+            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
+            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
+            this.btnSnap.Name = "btnSnap";
+            this.btnSnap.UseVisualStyleBackColor = false;
+            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
+            // 
             // autoPage4
             // 
             this.autoPage4.Controls.Add(this.btnDeleteRecPath);
@@ -1682,7 +1722,6 @@
             // 
             this.btnDeleteRecPath.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnDeleteRecPath, "btnDeleteRecPath");
-            this.btnDeleteRecPath.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteRecPath.Name = "btnDeleteRecPath";
             this.btnDeleteRecPath.UseVisualStyleBackColor = false;
             this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
@@ -1691,7 +1730,6 @@
             // 
             this.btnGeneratePath.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnGeneratePath, "btnGeneratePath");
-            this.btnGeneratePath.Image = global::AgOpenGPS.Properties.Resources.Headland;
             this.btnGeneratePath.Name = "btnGeneratePath";
             this.btnGeneratePath.UseVisualStyleBackColor = false;
             this.btnGeneratePath.Click += new System.EventHandler(this.btnGeneratePath_Click);
@@ -1700,28 +1738,9 @@
             // 
             this.btnDriveGenPath.BackColor = System.Drawing.Color.AliceBlue;
             resources.ApplyResources(this.btnDriveGenPath, "btnDriveGenPath");
-            this.btnDriveGenPath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
             this.btnDriveGenPath.Name = "btnDriveGenPath";
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
-            // 
-            // btnDrivePath
-            // 
-            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
-            this.btnDrivePath.Image = global::AgOpenGPS.Properties.Resources.AutoGo;
-            this.btnDrivePath.Name = "btnDrivePath";
-            this.btnDrivePath.UseVisualStyleBackColor = false;
-            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
-            // 
-            // btnManualAutoDrive
-            // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.Image = global::AgOpenGPS.Properties.Resources.OK64;
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // btnResetSim
             // 
@@ -1747,40 +1766,10 @@
             this.lblPureSteerAngle.BackColor = System.Drawing.Color.Transparent;
             this.lblPureSteerAngle.Name = "lblPureSteerAngle";
             // 
-            // label12
-            // 
-            resources.ApplyResources(this.label12, "label12");
-            this.label12.Name = "label12";
-            // 
-            // label11
-            // 
-            resources.ApplyResources(this.label11, "label11");
-            this.label11.Name = "label11";
-            // 
             // lblSteerAngle
             // 
             resources.ApplyResources(this.lblSteerAngle, "lblSteerAngle");
             this.lblSteerAngle.Name = "lblSteerAngle";
-            // 
-            // tbarSteerAngle
-            // 
-            resources.ApplyResources(this.tbarSteerAngle, "tbarSteerAngle");
-            this.tbarSteerAngle.LargeChange = 10;
-            this.tbarSteerAngle.Maximum = 300;
-            this.tbarSteerAngle.Minimum = -300;
-            this.tbarSteerAngle.Name = "tbarSteerAngle";
-            this.tbarSteerAngle.TickFrequency = 30;
-            this.tbarSteerAngle.Scroll += new System.EventHandler(this.tbarSteerAngle_Scroll);
-            // 
-            // tbarStepDistance
-            // 
-            resources.ApplyResources(this.tbarStepDistance, "tbarStepDistance");
-            this.tbarStepDistance.LargeChange = 10;
-            this.tbarStepDistance.Maximum = 300;
-            this.tbarStepDistance.Name = "tbarStepDistance";
-            this.tbarStepDistance.TickFrequency = 10;
-            this.tbarStepDistance.Value = 20;
-            this.tbarStepDistance.Scroll += new System.EventHandler(this.tbarStepDistance_Scroll);
             // 
             // timerSim
             // 
@@ -1795,20 +1784,29 @@
             // panelSimControls
             // 
             resources.ApplyResources(this.panelSimControls, "panelSimControls");
-            this.panelSimControls.Controls.Add(this.btnResetSteerAngle);
-            this.panelSimControls.Controls.Add(this.label3);
-            this.panelSimControls.Controls.Add(this.btnResetSim);
             this.panelSimControls.Controls.Add(this.lblSteerAngle);
-            this.panelSimControls.Controls.Add(this.label11);
-            this.panelSimControls.Controls.Add(this.label12);
-            this.panelSimControls.Controls.Add(this.tbarSteerAngle);
-            this.panelSimControls.Controls.Add(this.tbarStepDistance);
+            this.panelSimControls.Controls.Add(this.hsbarSteerAngle);
+            this.panelSimControls.Controls.Add(this.hsbarStepDistance);
+            this.panelSimControls.Controls.Add(this.btnResetSteerAngle);
+            this.panelSimControls.Controls.Add(this.btnResetSim);
             this.panelSimControls.Name = "panelSimControls";
             // 
-            // label3
+            // hsbarSteerAngle
             // 
-            resources.ApplyResources(this.label3, "label3");
-            this.label3.Name = "label3";
+            resources.ApplyResources(this.hsbarSteerAngle, "hsbarSteerAngle");
+            this.hsbarSteerAngle.LargeChange = 20;
+            this.hsbarSteerAngle.Maximum = 600;
+            this.hsbarSteerAngle.Name = "hsbarSteerAngle";
+            this.hsbarSteerAngle.Value = 300;
+            this.hsbarSteerAngle.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarSteerAngle_Scroll);
+            // 
+            // hsbarStepDistance
+            // 
+            this.hsbarStepDistance.LargeChange = 5;
+            resources.ApplyResources(this.hsbarStepDistance, "hsbarStepDistance");
+            this.hsbarStepDistance.Maximum = 300;
+            this.hsbarStepDistance.Name = "hsbarStepDistance";
+            this.hsbarStepDistance.Scroll += new System.Windows.Forms.ScrollEventHandler(this.hsbarStepDistance_Scroll);
             // 
             // btnSection8Man
             // 
@@ -1934,7 +1932,6 @@
             // 
             resources.ApplyResources(this.btnCurve, "btnCurve");
             this.btnCurve.BackColor = System.Drawing.Color.Lavender;
-            this.btnCurve.Image = global::AgOpenGPS.Properties.Resources.CurveOff;
             this.btnCurve.Name = "btnCurve";
             this.btnCurve.UseVisualStyleBackColor = false;
             this.btnCurve.Click += new System.EventHandler(this.btnCurve_Click);
@@ -1948,14 +1945,13 @@
             this.btnLeftYouTurn.UseVisualStyleBackColor = false;
             this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
             // 
-            // btnSwapDirection
+            // btnDrivePath
             // 
-            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
-            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
-            this.btnSwapDirection.Name = "btnSwapDirection";
-            this.btnSwapDirection.UseVisualStyleBackColor = false;
-            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click);
+            this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnDrivePath, "btnDrivePath");
+            this.btnDrivePath.Name = "btnDrivePath";
+            this.btnDrivePath.UseVisualStyleBackColor = false;
+            this.btnDrivePath.Click += new System.EventHandler(this.btnDrivePath_Click);
             // 
             // btnEnableAutoYouTurn
             // 
@@ -1981,15 +1977,6 @@
             this.btnFlag.Name = "btnFlag";
             this.btnFlag.UseVisualStyleBackColor = false;
             this.btnFlag.Click += new System.EventHandler(this.btnFlag_Click);
-            // 
-            // btnSnap
-            // 
-            resources.ApplyResources(this.btnSnap, "btnSnap");
-            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSnap.Name = "btnSnap";
-            this.btnSnap.UseVisualStyleBackColor = false;
-            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
             // 
             // btnAutoSteer
             // 
@@ -2039,19 +2026,16 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.Controls.Add(this.btnManualAutoDrive);
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnDrivePath);
             this.Controls.Add(this.lblHeading);
-            this.Controls.Add(this.btnSwapDirection);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.btnEnableAutoYouTurn);
             this.Controls.Add(this.lblPureSteerAngle);
             this.Controls.Add(this.btnSectionOffAutoOn);
             this.Controls.Add(this.btnFlag);
-            this.Controls.Add(this.btnSnap);
             this.Controls.Add(this.btnAutoSteer);
             this.Controls.Add(this.btnRightYouTurn);
             this.Controls.Add(this.btnContour);
@@ -2101,8 +2085,6 @@
             this.rate2Page5.PerformLayout();
             this.configPage1.ResumeLayout(false);
             this.autoPage4.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tbarSteerAngle)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbarStepDistance)).EndInit();
             this.panelSimControls.ResumeLayout(false);
             this.panelSimControls.PerformLayout();
             this.ResumeLayout(false);
@@ -2204,8 +2186,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label lblZooom;
         private System.Windows.Forms.Timer timerSim;
-        private System.Windows.Forms.TrackBar tbarStepDistance;
-        private System.Windows.Forms.TrackBar tbarSteerAngle;
         private System.Windows.Forms.Button btnResetSteerAngle;
         private System.Windows.Forms.Label lblSteerAngle;
         private System.Windows.Forms.Button btnResetSim;
@@ -2232,8 +2212,6 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblHeadlandDistanceAway;
         private System.Windows.Forms.Label lblBoundaryArea;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label15;
         private System.Windows.Forms.Label lblHeadlandDistanceFromTool;
         private System.Windows.Forms.ToolStripMenuItem toolstripUDPConfig;
@@ -2250,7 +2228,6 @@
         private System.Windows.Forms.ToolStripDropDownButton btnHideTabs;
         public System.Windows.Forms.Button btnSectionOffAutoOn;
         private System.Windows.Forms.ToolStripStatusLabel stripEqWidth;
-        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolStripMenuItem menustripLanguage;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageEnglish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageDeutsch;
@@ -2334,6 +2311,11 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLidarOnOff;
         private System.Windows.Forms.TextBox tboxRecvUDP;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripBtnSnap;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripBtnSwap;
+        private System.Windows.Forms.ToolStripMenuItem toolStripAutoSteerChart;
+        private System.Windows.Forms.HScrollBar hsbarStepDistance;
+        private System.Windows.Forms.HScrollBar hsbarSteerAngle;
     }
 }
 
