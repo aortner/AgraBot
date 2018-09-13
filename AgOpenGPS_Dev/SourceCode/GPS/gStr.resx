@@ -141,6 +141,12 @@
     <value>Create a Boundary and an ABLine or Curve First</value>
     <comment>x</comment>
   </data>
+  <data name="gsCurveNotOn" xml:space="preserve">
+    <value>ABCurve Not Enabled</value>
+  </data>
+  <data name="gsCurveTurnOn" xml:space="preserve">
+    <value>Turn ABCurve On</value>
+  </data>
   <data name="gsDrawingHasBegun" xml:space="preserve">
     <value>Drawing Has Begun</value>
     <comment>x</comment>

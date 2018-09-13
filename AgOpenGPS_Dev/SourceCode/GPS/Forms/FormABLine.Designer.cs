@@ -126,8 +126,8 @@
             // 
             // btnDeleteAB
             // 
-            resources.ApplyResources(this.btnDeleteAB, "btnDeleteAB");
             this.btnDeleteAB.BackColor = System.Drawing.Color.Transparent;
+            resources.ApplyResources(this.btnDeleteAB, "btnDeleteAB");
             this.btnDeleteAB.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnDeleteAB.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
             this.btnDeleteAB.Name = "btnDeleteAB";
@@ -269,8 +269,6 @@
             this.BackColor = System.Drawing.SystemColors.InactiveBorder;
             this.ControlBox = false;
             this.Controls.Add(this.lblABHeading);
-            this.Controls.Add(this.lblFixHeading);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnPlus90);
             this.Controls.Add(this.btnListUse);
@@ -291,6 +289,8 @@
             this.Controls.Add(this.btnBPoint);
             this.Controls.Add(this.btnAPoint);
             this.Controls.Add(this.btnABLineOk);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.lblFixHeading);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.HelpButton = true;
             this.MaximizeBox = false;

@@ -2495,7 +2495,8 @@ namespace AgOpenGPS
 
             else
             {
-                TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
+                if (!isJobStarted)  TimedMessageBox(2000, gStr.gsFieldNotOpen, gStr.gsStartNewField);
+                else TimedMessageBox(2000, gStr.gsCurveNotOn, gStr.gsCurveTurnOn);
             }
         }
 

@@ -42,59 +42,37 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabGain = new System.Windows.Forms.TabPage();
             this.lblMinPWM = new System.Windows.Forms.Label();
-            this.label39 = new System.Windows.Forms.Label();
-            this.label40 = new System.Windows.Forms.Label();
             this.hsbarMinPWM = new System.Windows.Forms.HScrollBar();
             this.label41 = new System.Windows.Forms.Label();
             this.lblIntegralMax = new System.Windows.Forms.Label();
-            this.label43 = new System.Windows.Forms.Label();
-            this.label44 = new System.Windows.Forms.Label();
             this.label45 = new System.Windows.Forms.Label();
             this.hsbarIntegralMax = new System.Windows.Forms.HScrollBar();
             this.lblIntegralGain = new System.Windows.Forms.Label();
-            this.label31 = new System.Windows.Forms.Label();
-            this.label32 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
             this.hsbarIntegralGain = new System.Windows.Forms.HScrollBar();
             this.lblSidehillDraftGain = new System.Windows.Forms.Label();
-            this.label27 = new System.Windows.Forms.Label();
-            this.label28 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
             this.hsbarSidehillDraftGain = new System.Windows.Forms.HScrollBar();
             this.lblOutputGain = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.label22 = new System.Windows.Forms.Label();
             this.hsbarOutputGain = new System.Windows.Forms.HScrollBar();
             this.lblProportionalGain = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.hsbarProportionalGain = new System.Windows.Forms.HScrollBar();
             this.tabSteer = new System.Windows.Forms.TabPage();
             this.lblCountsPerDegree = new System.Windows.Forms.Label();
-            this.label23 = new System.Windows.Forms.Label();
-            this.label24 = new System.Windows.Forms.Label();
             this.label25 = new System.Windows.Forms.Label();
             this.hsbarCountsPerDegree = new System.Windows.Forms.HScrollBar();
             this.lblMaxSteerAngle = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
             this.label19 = new System.Windows.Forms.Label();
             this.hsbarMaxSteerAngle = new System.Windows.Forms.HScrollBar();
             this.lblSteerAngleSensorZero = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label13 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.hsbarSteerAngleSensorZero = new System.Windows.Forms.HScrollBar();
             this.lblLookAhead = new System.Windows.Forms.Label();
-            this.label35 = new System.Windows.Forms.Label();
-            this.label36 = new System.Windows.Forms.Label();
             this.hsbarLookAhead = new System.Windows.Forms.HScrollBar();
             this.label37 = new System.Windows.Forms.Label();
             this.lblMaxAngularVelocity = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label26 = new System.Windows.Forms.Label();
             this.hsbarMaxAngularVelocity = new System.Windows.Forms.HScrollBar();
             this.label30 = new System.Windows.Forms.Label();
             this.tabDrive = new System.Windows.Forms.TabPage();
@@ -102,6 +80,7 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
             this.btnExit = new System.Windows.Forms.Button();
+            this.btnMax = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -115,11 +94,11 @@
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromAutoSteer.Enabled = false;
             this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(242, 286);
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(242, 318);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(231, 24);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(214, 24);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
             // 
             // tboxSerialToAutoSteer
@@ -128,7 +107,7 @@
             this.tboxSerialToAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialToAutoSteer.Enabled = false;
             this.tboxSerialToAutoSteer.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(2, 285);
+            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(2, 317);
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
@@ -144,7 +123,7 @@
             // btnSteerWizard
             // 
             this.btnSteerWizard.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSteerWizard.Location = new System.Drawing.Point(520, 24);
+            this.btnSteerWizard.Location = new System.Drawing.Point(434, 29);
             this.btnSteerWizard.Name = "btnSteerWizard";
             this.btnSteerWizard.Size = new System.Drawing.Size(80, 60);
             this.btnSteerWizard.TabIndex = 220;
@@ -156,7 +135,7 @@
             // btnFreeDriveZero
             // 
             this.btnFreeDriveZero.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDriveZero.Location = new System.Drawing.Point(227, 24);
+            this.btnFreeDriveZero.Location = new System.Drawing.Point(192, 24);
             this.btnFreeDriveZero.Name = "btnFreeDriveZero";
             this.btnFreeDriveZero.Size = new System.Drawing.Size(173, 65);
             this.btnFreeDriveZero.TabIndex = 226;
@@ -167,7 +146,7 @@
             // btnFreeDrive
             // 
             this.btnFreeDrive.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnFreeDrive.Location = new System.Drawing.Point(30, 24);
+            this.btnFreeDrive.Location = new System.Drawing.Point(27, 24);
             this.btnFreeDrive.Name = "btnFreeDrive";
             this.btnFreeDrive.Size = new System.Drawing.Size(118, 65);
             this.btnFreeDrive.TabIndex = 228;
@@ -179,7 +158,7 @@
             // 
             this.label20.AutoSize = true;
             this.label20.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label20.Location = new System.Drawing.Point(553, 187);
+            this.label20.Location = new System.Drawing.Point(487, 187);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(27, 19);
             this.label20.TabIndex = 229;
@@ -189,7 +168,7 @@
             // 
             this.label21.AutoSize = true;
             this.label21.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label21.Location = new System.Drawing.Point(32, 187);
+            this.label21.Location = new System.Drawing.Point(39, 187);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(33, 19);
             this.label21.TabIndex = 230;
@@ -199,7 +178,7 @@
             // 
             this.lblFreeDriveAngle.AutoSize = true;
             this.lblFreeDriveAngle.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFreeDriveAngle.Location = new System.Drawing.Point(295, 108);
+            this.lblFreeDriveAngle.Location = new System.Drawing.Point(266, 108);
             this.lblFreeDriveAngle.Name = "lblFreeDriveAngle";
             this.lblFreeDriveAngle.Size = new System.Drawing.Size(22, 23);
             this.lblFreeDriveAngle.TabIndex = 231;
@@ -216,12 +195,12 @@
             this.tabControl1.Controls.Add(this.tabDrive);
             this.tabControl1.Controls.Add(this.tabPage2);
             this.tabControl1.Font = new System.Drawing.Font("Tahoma", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tabControl1.ItemSize = new System.Drawing.Size(150, 45);
+            this.tabControl1.ItemSize = new System.Drawing.Size(140, 45);
             this.tabControl1.Location = new System.Drawing.Point(3, 7);
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(616, 270);
+            this.tabControl1.Size = new System.Drawing.Size(574, 298);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 232;
             // 
@@ -229,39 +208,28 @@
             // 
             this.tabGain.AutoScroll = true;
             this.tabGain.BackColor = System.Drawing.Color.PowderBlue;
-            this.tabGain.Controls.Add(this.lblMinPWM);
-            this.tabGain.Controls.Add(this.label39);
-            this.tabGain.Controls.Add(this.label40);
+            this.tabGain.Controls.Add(this.btnMax);
             this.tabGain.Controls.Add(this.hsbarMinPWM);
+            this.tabGain.Controls.Add(this.hsbarIntegralMax);
+            this.tabGain.Controls.Add(this.hsbarIntegralGain);
+            this.tabGain.Controls.Add(this.hsbarSidehillDraftGain);
+            this.tabGain.Controls.Add(this.hsbarOutputGain);
+            this.tabGain.Controls.Add(this.hsbarProportionalGain);
+            this.tabGain.Controls.Add(this.lblMinPWM);
             this.tabGain.Controls.Add(this.label41);
             this.tabGain.Controls.Add(this.lblIntegralMax);
-            this.tabGain.Controls.Add(this.label43);
-            this.tabGain.Controls.Add(this.label44);
             this.tabGain.Controls.Add(this.label45);
-            this.tabGain.Controls.Add(this.hsbarIntegralMax);
             this.tabGain.Controls.Add(this.lblIntegralGain);
-            this.tabGain.Controls.Add(this.label31);
-            this.tabGain.Controls.Add(this.label32);
             this.tabGain.Controls.Add(this.label33);
-            this.tabGain.Controls.Add(this.hsbarIntegralGain);
             this.tabGain.Controls.Add(this.lblSidehillDraftGain);
-            this.tabGain.Controls.Add(this.label27);
-            this.tabGain.Controls.Add(this.label28);
             this.tabGain.Controls.Add(this.label29);
-            this.tabGain.Controls.Add(this.hsbarSidehillDraftGain);
             this.tabGain.Controls.Add(this.lblOutputGain);
-            this.tabGain.Controls.Add(this.label9);
-            this.tabGain.Controls.Add(this.label11);
             this.tabGain.Controls.Add(this.label22);
-            this.tabGain.Controls.Add(this.hsbarOutputGain);
             this.tabGain.Controls.Add(this.lblProportionalGain);
-            this.tabGain.Controls.Add(this.label3);
-            this.tabGain.Controls.Add(this.label4);
             this.tabGain.Controls.Add(this.label7);
-            this.tabGain.Controls.Add(this.hsbarProportionalGain);
             this.tabGain.Location = new System.Drawing.Point(4, 49);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(608, 217);
+            this.tabGain.Size = new System.Drawing.Size(566, 245);
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "PID";
             // 
@@ -269,39 +237,19 @@
             // 
             this.lblMinPWM.AutoSize = true;
             this.lblMinPWM.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMinPWM.Location = new System.Drawing.Point(477, 559);
+            this.lblMinPWM.Location = new System.Drawing.Point(319, 441);
             this.lblMinPWM.Name = "lblMinPWM";
             this.lblMinPWM.Size = new System.Drawing.Size(108, 45);
             this.lblMinPWM.TabIndex = 288;
             this.lblMinPWM.Text = "-888";
             // 
-            // label39
-            // 
-            this.label39.AutoSize = true;
-            this.label39.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label39.Location = new System.Drawing.Point(21, 604);
-            this.label39.Name = "label39";
-            this.label39.Size = new System.Drawing.Size(19, 19);
-            this.label39.TabIndex = 287;
-            this.label39.Text = "1";
-            // 
-            // label40
-            // 
-            this.label40.AutoSize = true;
-            this.label40.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label40.Location = new System.Drawing.Point(429, 604);
-            this.label40.Name = "label40";
-            this.label40.Size = new System.Drawing.Size(39, 19);
-            this.label40.TabIndex = 286;
-            this.label40.Text = "100";
-            // 
             // hsbarMinPWM
             // 
             this.hsbarMinPWM.LargeChange = 1;
-            this.hsbarMinPWM.Location = new System.Drawing.Point(18, 564);
+            this.hsbarMinPWM.Location = new System.Drawing.Point(16, 460);
             this.hsbarMinPWM.Minimum = 1;
             this.hsbarMinPWM.Name = "hsbarMinPWM";
-            this.hsbarMinPWM.Size = new System.Drawing.Size(450, 40);
+            this.hsbarMinPWM.Size = new System.Drawing.Size(287, 23);
             this.hsbarMinPWM.TabIndex = 284;
             this.hsbarMinPWM.Value = 100;
             this.hsbarMinPWM.ValueChanged += new System.EventHandler(this.hsbarMinPWM_ValueChanged);
@@ -309,10 +257,10 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label41.Location = new System.Drawing.Point(21, 535);
+            this.label41.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label41.Location = new System.Drawing.Point(29, 435);
             this.label41.Name = "label41";
-            this.label41.Size = new System.Drawing.Size(213, 27);
+            this.label41.Size = new System.Drawing.Size(184, 23);
             this.label41.TabIndex = 285;
             this.label41.Text = "Minimum PWM Drive";
             // 
@@ -320,49 +268,29 @@
             // 
             this.lblIntegralMax.AutoSize = true;
             this.lblIntegralMax.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIntegralMax.Location = new System.Drawing.Point(477, 455);
+            this.lblIntegralMax.Location = new System.Drawing.Point(319, 359);
             this.lblIntegralMax.Name = "lblIntegralMax";
             this.lblIntegralMax.Size = new System.Drawing.Size(108, 45);
             this.lblIntegralMax.TabIndex = 278;
             this.lblIntegralMax.Text = "-888";
             // 
-            // label43
-            // 
-            this.label43.AutoSize = true;
-            this.label43.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label43.Location = new System.Drawing.Point(20, 502);
-            this.label43.Name = "label43";
-            this.label43.Size = new System.Drawing.Size(19, 19);
-            this.label43.TabIndex = 277;
-            this.label43.Text = "0";
-            // 
-            // label44
-            // 
-            this.label44.AutoSize = true;
-            this.label44.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label44.Location = new System.Drawing.Point(436, 502);
-            this.label44.Name = "label44";
-            this.label44.Size = new System.Drawing.Size(29, 19);
-            this.label44.TabIndex = 276;
-            this.label44.Text = "50";
-            // 
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label45.Location = new System.Drawing.Point(20, 433);
+            this.label45.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label45.Location = new System.Drawing.Point(29, 352);
             this.label45.Name = "label45";
-            this.label45.Size = new System.Drawing.Size(196, 27);
+            this.label45.Size = new System.Drawing.Size(168, 23);
             this.label45.TabIndex = 275;
             this.label45.Text = "Max Integral Value";
             // 
             // hsbarIntegralMax
             // 
             this.hsbarIntegralMax.LargeChange = 2;
-            this.hsbarIntegralMax.Location = new System.Drawing.Point(17, 460);
+            this.hsbarIntegralMax.Location = new System.Drawing.Point(16, 377);
             this.hsbarIntegralMax.Maximum = 50;
             this.hsbarIntegralMax.Name = "hsbarIntegralMax";
-            this.hsbarIntegralMax.Size = new System.Drawing.Size(450, 40);
+            this.hsbarIntegralMax.Size = new System.Drawing.Size(287, 23);
             this.hsbarIntegralMax.TabIndex = 274;
             this.hsbarIntegralMax.Value = 50;
             this.hsbarIntegralMax.ValueChanged += new System.EventHandler(this.hsbarIntegralMax_ValueChanged);
@@ -371,49 +299,29 @@
             // 
             this.lblIntegralGain.AutoSize = true;
             this.lblIntegralGain.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIntegralGain.Location = new System.Drawing.Point(477, 351);
+            this.lblIntegralGain.Location = new System.Drawing.Point(319, 277);
             this.lblIntegralGain.Name = "lblIntegralGain";
             this.lblIntegralGain.Size = new System.Drawing.Size(108, 45);
             this.lblIntegralGain.TabIndex = 273;
             this.lblIntegralGain.Text = "-888";
             // 
-            // label31
-            // 
-            this.label31.AutoSize = true;
-            this.label31.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label31.Location = new System.Drawing.Point(20, 399);
-            this.label31.Name = "label31";
-            this.label31.Size = new System.Drawing.Size(19, 19);
-            this.label31.TabIndex = 272;
-            this.label31.Text = "0";
-            // 
-            // label32
-            // 
-            this.label32.AutoSize = true;
-            this.label32.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label32.Location = new System.Drawing.Point(428, 399);
-            this.label32.Name = "label32";
-            this.label32.Size = new System.Drawing.Size(39, 19);
-            this.label32.TabIndex = 271;
-            this.label32.Text = "255";
-            // 
             // label33
             // 
             this.label33.AutoSize = true;
-            this.label33.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label33.Location = new System.Drawing.Point(20, 330);
+            this.label33.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label33.Location = new System.Drawing.Point(29, 269);
             this.label33.Name = "label33";
-            this.label33.Size = new System.Drawing.Size(139, 27);
+            this.label33.Size = new System.Drawing.Size(120, 23);
             this.label33.TabIndex = 270;
             this.label33.Text = "Integral Gain";
             // 
             // hsbarIntegralGain
             // 
             this.hsbarIntegralGain.LargeChange = 1;
-            this.hsbarIntegralGain.Location = new System.Drawing.Point(17, 356);
+            this.hsbarIntegralGain.Location = new System.Drawing.Point(16, 294);
             this.hsbarIntegralGain.Maximum = 255;
             this.hsbarIntegralGain.Name = "hsbarIntegralGain";
-            this.hsbarIntegralGain.Size = new System.Drawing.Size(450, 40);
+            this.hsbarIntegralGain.Size = new System.Drawing.Size(287, 23);
             this.hsbarIntegralGain.TabIndex = 269;
             this.hsbarIntegralGain.Value = 127;
             this.hsbarIntegralGain.ValueChanged += new System.EventHandler(this.hsbarIntegralGain_ValueChanged);
@@ -422,49 +330,29 @@
             // 
             this.lblSidehillDraftGain.AutoSize = true;
             this.lblSidehillDraftGain.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSidehillDraftGain.Location = new System.Drawing.Point(477, 247);
+            this.lblSidehillDraftGain.Location = new System.Drawing.Point(319, 195);
             this.lblSidehillDraftGain.Name = "lblSidehillDraftGain";
             this.lblSidehillDraftGain.Size = new System.Drawing.Size(108, 45);
             this.lblSidehillDraftGain.TabIndex = 268;
             this.lblSidehillDraftGain.Text = "-888";
             // 
-            // label27
-            // 
-            this.label27.AutoSize = true;
-            this.label27.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label27.Location = new System.Drawing.Point(21, 294);
-            this.label27.Name = "label27";
-            this.label27.Size = new System.Drawing.Size(19, 19);
-            this.label27.TabIndex = 267;
-            this.label27.Text = "0";
-            // 
-            // label28
-            // 
-            this.label28.AutoSize = true;
-            this.label28.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label28.Location = new System.Drawing.Point(436, 294);
-            this.label28.Name = "label28";
-            this.label28.Size = new System.Drawing.Size(29, 19);
-            this.label28.TabIndex = 266;
-            this.label28.Text = "24";
-            // 
             // label29
             // 
             this.label29.AutoSize = true;
-            this.label29.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label29.Location = new System.Drawing.Point(21, 225);
+            this.label29.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label29.Location = new System.Drawing.Point(29, 186);
             this.label29.Name = "label29";
-            this.label29.Size = new System.Drawing.Size(187, 27);
+            this.label29.Size = new System.Drawing.Size(161, 23);
             this.label29.TabIndex = 265;
             this.label29.Text = "Sidehill Draft Gain";
             // 
             // hsbarSidehillDraftGain
             // 
             this.hsbarSidehillDraftGain.LargeChange = 1;
-            this.hsbarSidehillDraftGain.Location = new System.Drawing.Point(18, 252);
+            this.hsbarSidehillDraftGain.Location = new System.Drawing.Point(17, 211);
             this.hsbarSidehillDraftGain.Maximum = 24;
             this.hsbarSidehillDraftGain.Name = "hsbarSidehillDraftGain";
-            this.hsbarSidehillDraftGain.Size = new System.Drawing.Size(450, 40);
+            this.hsbarSidehillDraftGain.Size = new System.Drawing.Size(287, 23);
             this.hsbarSidehillDraftGain.TabIndex = 264;
             this.hsbarSidehillDraftGain.Value = 24;
             this.hsbarSidehillDraftGain.ValueChanged += new System.EventHandler(this.hsbarSidehillDraftGain_ValueChanged);
@@ -473,49 +361,29 @@
             // 
             this.lblOutputGain.AutoSize = true;
             this.lblOutputGain.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblOutputGain.Location = new System.Drawing.Point(477, 143);
+            this.lblOutputGain.Location = new System.Drawing.Point(319, 113);
             this.lblOutputGain.Name = "lblOutputGain";
             this.lblOutputGain.Size = new System.Drawing.Size(108, 45);
             this.lblOutputGain.TabIndex = 263;
             this.lblOutputGain.Text = "-888";
             // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(20, 191);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(19, 19);
-            this.label9.TabIndex = 262;
-            this.label9.Text = "0";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(428, 191);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(39, 19);
-            this.label11.TabIndex = 261;
-            this.label11.Text = "255";
-            // 
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label22.Location = new System.Drawing.Point(20, 120);
+            this.label22.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label22.Location = new System.Drawing.Point(29, 103);
             this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(129, 27);
+            this.label22.Size = new System.Drawing.Size(112, 23);
             this.label22.TabIndex = 260;
             this.label22.Text = "Output Gain";
             // 
             // hsbarOutputGain
             // 
             this.hsbarOutputGain.LargeChange = 1;
-            this.hsbarOutputGain.Location = new System.Drawing.Point(17, 148);
+            this.hsbarOutputGain.Location = new System.Drawing.Point(18, 128);
             this.hsbarOutputGain.Maximum = 255;
             this.hsbarOutputGain.Name = "hsbarOutputGain";
-            this.hsbarOutputGain.Size = new System.Drawing.Size(450, 40);
+            this.hsbarOutputGain.Size = new System.Drawing.Size(287, 23);
             this.hsbarOutputGain.TabIndex = 259;
             this.hsbarOutputGain.Value = 127;
             this.hsbarOutputGain.ValueChanged += new System.EventHandler(this.hsbarOutputGain_ValueChanged);
@@ -524,49 +392,29 @@
             // 
             this.lblProportionalGain.AutoSize = true;
             this.lblProportionalGain.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblProportionalGain.Location = new System.Drawing.Point(477, 39);
+            this.lblProportionalGain.Location = new System.Drawing.Point(319, 31);
             this.lblProportionalGain.Name = "lblProportionalGain";
             this.lblProportionalGain.Size = new System.Drawing.Size(108, 45);
             this.lblProportionalGain.TabIndex = 258;
             this.lblProportionalGain.Text = "-888";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(22, 87);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(19, 19);
-            this.label3.TabIndex = 257;
-            this.label3.Text = "0";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(430, 87);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(39, 19);
-            this.label4.TabIndex = 256;
-            this.label4.Text = "255";
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(22, 18);
+            this.label7.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(29, 19);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(180, 27);
+            this.label7.Size = new System.Drawing.Size(154, 23);
             this.label7.TabIndex = 255;
             this.label7.Text = "Proportional Gain";
             // 
             // hsbarProportionalGain
             // 
             this.hsbarProportionalGain.LargeChange = 1;
-            this.hsbarProportionalGain.Location = new System.Drawing.Point(19, 44);
+            this.hsbarProportionalGain.Location = new System.Drawing.Point(16, 45);
             this.hsbarProportionalGain.Maximum = 255;
             this.hsbarProportionalGain.Name = "hsbarProportionalGain";
-            this.hsbarProportionalGain.Size = new System.Drawing.Size(450, 40);
+            this.hsbarProportionalGain.Size = new System.Drawing.Size(287, 23);
             this.hsbarProportionalGain.TabIndex = 254;
             this.hsbarProportionalGain.Value = 127;
             this.hsbarProportionalGain.ValueChanged += new System.EventHandler(this.hsbarProportionalGain_ValueChanged);
@@ -576,33 +424,23 @@
             this.tabSteer.AutoScroll = true;
             this.tabSteer.BackColor = System.Drawing.Color.PowderBlue;
             this.tabSteer.Controls.Add(this.lblCountsPerDegree);
-            this.tabSteer.Controls.Add(this.label23);
-            this.tabSteer.Controls.Add(this.label24);
             this.tabSteer.Controls.Add(this.label25);
             this.tabSteer.Controls.Add(this.hsbarCountsPerDegree);
             this.tabSteer.Controls.Add(this.lblMaxSteerAngle);
-            this.tabSteer.Controls.Add(this.label16);
-            this.tabSteer.Controls.Add(this.label17);
             this.tabSteer.Controls.Add(this.label19);
             this.tabSteer.Controls.Add(this.hsbarMaxSteerAngle);
             this.tabSteer.Controls.Add(this.lblSteerAngleSensorZero);
-            this.tabSteer.Controls.Add(this.label12);
-            this.tabSteer.Controls.Add(this.label13);
             this.tabSteer.Controls.Add(this.label10);
             this.tabSteer.Controls.Add(this.hsbarSteerAngleSensorZero);
             this.tabSteer.Controls.Add(this.lblLookAhead);
-            this.tabSteer.Controls.Add(this.label35);
-            this.tabSteer.Controls.Add(this.label36);
             this.tabSteer.Controls.Add(this.hsbarLookAhead);
             this.tabSteer.Controls.Add(this.label37);
             this.tabSteer.Controls.Add(this.lblMaxAngularVelocity);
-            this.tabSteer.Controls.Add(this.label8);
-            this.tabSteer.Controls.Add(this.label26);
             this.tabSteer.Controls.Add(this.hsbarMaxAngularVelocity);
             this.tabSteer.Controls.Add(this.label30);
             this.tabSteer.Location = new System.Drawing.Point(4, 49);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(608, 213);
+            this.tabSteer.Size = new System.Drawing.Size(566, 252);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Gain";
             // 
@@ -610,50 +448,30 @@
             // 
             this.lblCountsPerDegree.AutoSize = true;
             this.lblCountsPerDegree.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCountsPerDegree.Location = new System.Drawing.Point(478, 455);
+            this.lblCountsPerDegree.Location = new System.Drawing.Point(318, 359);
             this.lblCountsPerDegree.Name = "lblCountsPerDegree";
             this.lblCountsPerDegree.Size = new System.Drawing.Size(108, 45);
             this.lblCountsPerDegree.TabIndex = 308;
             this.lblCountsPerDegree.Text = "-888";
             // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label23.Location = new System.Drawing.Point(20, 502);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(19, 19);
-            this.label23.TabIndex = 307;
-            this.label23.Text = "1";
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label24.Location = new System.Drawing.Point(427, 502);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(39, 19);
-            this.label24.TabIndex = 306;
-            this.label24.Text = "255";
-            // 
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label25.Location = new System.Drawing.Point(20, 433);
+            this.label25.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label25.Location = new System.Drawing.Point(20, 346);
             this.label25.Name = "label25";
-            this.label25.Size = new System.Drawing.Size(195, 27);
+            this.label25.Size = new System.Drawing.Size(168, 23);
             this.label25.TabIndex = 305;
             this.label25.Text = "Counts per Degree";
             // 
             // hsbarCountsPerDegree
             // 
             this.hsbarCountsPerDegree.LargeChange = 1;
-            this.hsbarCountsPerDegree.Location = new System.Drawing.Point(17, 460);
+            this.hsbarCountsPerDegree.Location = new System.Drawing.Point(17, 373);
             this.hsbarCountsPerDegree.Maximum = 255;
             this.hsbarCountsPerDegree.Minimum = 1;
             this.hsbarCountsPerDegree.Name = "hsbarCountsPerDegree";
-            this.hsbarCountsPerDegree.Size = new System.Drawing.Size(450, 40);
+            this.hsbarCountsPerDegree.Size = new System.Drawing.Size(287, 23);
             this.hsbarCountsPerDegree.TabIndex = 304;
             this.hsbarCountsPerDegree.Value = 255;
             this.hsbarCountsPerDegree.ValueChanged += new System.EventHandler(this.hsbarCountsPerDegree_ValueChanged);
@@ -662,50 +480,30 @@
             // 
             this.lblMaxSteerAngle.AutoSize = true;
             this.lblMaxSteerAngle.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaxSteerAngle.Location = new System.Drawing.Point(478, 351);
+            this.lblMaxSteerAngle.Location = new System.Drawing.Point(318, 277);
             this.lblMaxSteerAngle.Name = "lblMaxSteerAngle";
             this.lblMaxSteerAngle.Size = new System.Drawing.Size(108, 45);
             this.lblMaxSteerAngle.TabIndex = 303;
             this.lblMaxSteerAngle.Text = "-888";
             // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label16.Location = new System.Drawing.Point(19, 401);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(29, 19);
-            this.label16.TabIndex = 302;
-            this.label16.Text = "10";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label17.Location = new System.Drawing.Point(436, 400);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(29, 19);
-            this.label17.TabIndex = 301;
-            this.label17.Text = "80";
-            // 
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(20, 329);
+            this.label19.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label19.Location = new System.Drawing.Point(20, 265);
             this.label19.Name = "label19";
-            this.label19.Size = new System.Drawing.Size(283, 27);
+            this.label19.Size = new System.Drawing.Size(243, 23);
             this.label19.TabIndex = 300;
             this.label19.Text = "Max Steer Angle in Degrees";
             // 
             // hsbarMaxSteerAngle
             // 
             this.hsbarMaxSteerAngle.LargeChange = 1;
-            this.hsbarMaxSteerAngle.Location = new System.Drawing.Point(17, 356);
+            this.hsbarMaxSteerAngle.Location = new System.Drawing.Point(17, 291);
             this.hsbarMaxSteerAngle.Maximum = 80;
             this.hsbarMaxSteerAngle.Minimum = 10;
             this.hsbarMaxSteerAngle.Name = "hsbarMaxSteerAngle";
-            this.hsbarMaxSteerAngle.Size = new System.Drawing.Size(450, 40);
+            this.hsbarMaxSteerAngle.Size = new System.Drawing.Size(287, 23);
             this.hsbarMaxSteerAngle.TabIndex = 299;
             this.hsbarMaxSteerAngle.Value = 10;
             this.hsbarMaxSteerAngle.ValueChanged += new System.EventHandler(this.hsbarMaxSteerAngle_ValueChanged);
@@ -714,50 +512,30 @@
             // 
             this.lblSteerAngleSensorZero.AutoSize = true;
             this.lblSteerAngleSensorZero.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSteerAngleSensorZero.Location = new System.Drawing.Point(478, 247);
+            this.lblSteerAngleSensorZero.Location = new System.Drawing.Point(318, 195);
             this.lblSteerAngleSensorZero.Name = "lblSteerAngleSensorZero";
             this.lblSteerAngleSensorZero.Size = new System.Drawing.Size(108, 45);
             this.lblSteerAngleSensorZero.TabIndex = 298;
             this.lblSteerAngleSensorZero.Text = "-888";
             // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(20, 296);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(46, 19);
-            this.label12.TabIndex = 297;
-            this.label12.Text = "-127";
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(427, 295);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(39, 19);
-            this.label13.TabIndex = 296;
-            this.label13.Text = "127";
-            // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(20, 225);
+            this.label10.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(20, 184);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(299, 27);
+            this.label10.Size = new System.Drawing.Size(258, 23);
             this.label10.TabIndex = 295;
             this.label10.Text = "Steer Angle Sensor Zero >0<";
             // 
             // hsbarSteerAngleSensorZero
             // 
             this.hsbarSteerAngleSensorZero.LargeChange = 1;
-            this.hsbarSteerAngleSensorZero.Location = new System.Drawing.Point(17, 252);
+            this.hsbarSteerAngleSensorZero.Location = new System.Drawing.Point(17, 209);
             this.hsbarSteerAngleSensorZero.Maximum = 127;
             this.hsbarSteerAngleSensorZero.Minimum = -127;
             this.hsbarSteerAngleSensorZero.Name = "hsbarSteerAngleSensorZero";
-            this.hsbarSteerAngleSensorZero.Size = new System.Drawing.Size(450, 40);
+            this.hsbarSteerAngleSensorZero.Size = new System.Drawing.Size(287, 23);
             this.hsbarSteerAngleSensorZero.TabIndex = 294;
             this.hsbarSteerAngleSensorZero.ValueChanged += new System.EventHandler(this.hsbarSteerAngleSensorZero_ValueChanged);
             // 
@@ -765,31 +543,11 @@
             // 
             this.lblLookAhead.AutoSize = true;
             this.lblLookAhead.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLookAhead.Location = new System.Drawing.Point(478, 40);
+            this.lblLookAhead.Location = new System.Drawing.Point(318, 31);
             this.lblLookAhead.Name = "lblLookAhead";
             this.lblLookAhead.Size = new System.Drawing.Size(108, 45);
             this.lblLookAhead.TabIndex = 293;
             this.lblLookAhead.Text = "-888";
-            // 
-            // label35
-            // 
-            this.label35.AutoSize = true;
-            this.label35.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label35.Location = new System.Drawing.Point(21, 88);
-            this.label35.Name = "label35";
-            this.label35.Size = new System.Drawing.Size(19, 19);
-            this.label35.TabIndex = 292;
-            this.label35.Text = "1";
-            // 
-            // label36
-            // 
-            this.label36.AutoSize = true;
-            this.label36.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label36.Location = new System.Drawing.Point(436, 88);
-            this.label36.Name = "label36";
-            this.label36.Size = new System.Drawing.Size(29, 19);
-            this.label36.TabIndex = 291;
-            this.label36.Text = "15";
             // 
             // hsbarLookAhead
             // 
@@ -798,7 +556,7 @@
             this.hsbarLookAhead.Maximum = 15;
             this.hsbarLookAhead.Minimum = 1;
             this.hsbarLookAhead.Name = "hsbarLookAhead";
-            this.hsbarLookAhead.Size = new System.Drawing.Size(450, 40);
+            this.hsbarLookAhead.Size = new System.Drawing.Size(287, 23);
             this.hsbarLookAhead.TabIndex = 289;
             this.hsbarLookAhead.Value = 10;
             this.hsbarLookAhead.ValueChanged += new System.EventHandler(this.hsbarLookAhead_ValueChanged);
@@ -806,10 +564,10 @@
             // label37
             // 
             this.label37.AutoSize = true;
-            this.label37.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label37.Location = new System.Drawing.Point(20, 18);
+            this.label37.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label37.Location = new System.Drawing.Point(20, 21);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(227, 27);
+            this.label37.Size = new System.Drawing.Size(194, 23);
             this.label37.TabIndex = 290;
             this.label37.Text = "Look Ahead (seconds)";
             // 
@@ -817,40 +575,20 @@
             // 
             this.lblMaxAngularVelocity.AutoSize = true;
             this.lblMaxAngularVelocity.Font = new System.Drawing.Font("Tahoma", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMaxAngularVelocity.Location = new System.Drawing.Point(478, 143);
+            this.lblMaxAngularVelocity.Location = new System.Drawing.Point(318, 113);
             this.lblMaxAngularVelocity.Name = "lblMaxAngularVelocity";
             this.lblMaxAngularVelocity.Size = new System.Drawing.Size(108, 45);
             this.lblMaxAngularVelocity.TabIndex = 288;
             this.lblMaxAngularVelocity.Text = "-888";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(20, 190);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(19, 19);
-            this.label8.TabIndex = 287;
-            this.label8.Text = "2";
-            // 
-            // label26
-            // 
-            this.label26.AutoSize = true;
-            this.label26.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label26.Location = new System.Drawing.Point(436, 190);
-            this.label26.Name = "label26";
-            this.label26.Size = new System.Drawing.Size(29, 19);
-            this.label26.TabIndex = 286;
-            this.label26.Text = "10";
-            // 
             // hsbarMaxAngularVelocity
             // 
             this.hsbarMaxAngularVelocity.LargeChange = 1;
-            this.hsbarMaxAngularVelocity.Location = new System.Drawing.Point(17, 148);
+            this.hsbarMaxAngularVelocity.Location = new System.Drawing.Point(17, 127);
             this.hsbarMaxAngularVelocity.Maximum = 10;
             this.hsbarMaxAngularVelocity.Minimum = 2;
             this.hsbarMaxAngularVelocity.Name = "hsbarMaxAngularVelocity";
-            this.hsbarMaxAngularVelocity.Size = new System.Drawing.Size(450, 40);
+            this.hsbarMaxAngularVelocity.Size = new System.Drawing.Size(287, 23);
             this.hsbarMaxAngularVelocity.TabIndex = 284;
             this.hsbarMaxAngularVelocity.Value = 10;
             this.hsbarMaxAngularVelocity.ValueChanged += new System.EventHandler(this.hsbarMaxAngularVelocity_ValueChanged);
@@ -858,12 +596,12 @@
             // label30
             // 
             this.label30.AutoSize = true;
-            this.label30.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label30.Location = new System.Drawing.Point(19, 121);
+            this.label30.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label30.Location = new System.Drawing.Point(20, 102);
             this.label30.Name = "label30";
-            this.label30.Size = new System.Drawing.Size(333, 27);
+            this.label30.Size = new System.Drawing.Size(249, 23);
             this.label30.TabIndex = 285;
-            this.label30.Text = "Safe Turn (Max Angular Velocity)";
+            this.label30.Text = "Safe Turn (Max Angular Vel)";
             // 
             // tabDrive
             // 
@@ -877,18 +615,18 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 49);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(608, 213);
+            this.tabDrive.Size = new System.Drawing.Size(566, 231);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
             // hSBarFreeDrive
             // 
             this.hSBarFreeDrive.LargeChange = 1;
-            this.hSBarFreeDrive.Location = new System.Drawing.Point(30, 133);
+            this.hSBarFreeDrive.Location = new System.Drawing.Point(43, 131);
             this.hSBarFreeDrive.Maximum = 40;
             this.hSBarFreeDrive.Minimum = -40;
             this.hSBarFreeDrive.Name = "hSBarFreeDrive";
-            this.hSBarFreeDrive.Size = new System.Drawing.Size(550, 50);
+            this.hSBarFreeDrive.Size = new System.Drawing.Size(465, 50);
             this.hSBarFreeDrive.TabIndex = 233;
             this.hSBarFreeDrive.ValueChanged += new System.EventHandler(this.hSBarFreeDrive_ValueChanged);
             // 
@@ -898,7 +636,7 @@
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 49);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(608, 213);
+            this.tabPage2.Size = new System.Drawing.Size(566, 313);
             this.tabPage2.TabIndex = 15;
             this.tabPage2.Text = "Help";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -910,7 +648,7 @@
             this.richTextBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(5, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(532, 1340);
+            this.richTextBox1.Size = new System.Drawing.Size(541, 1489);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
             // 
@@ -920,13 +658,25 @@
             this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.Red;
-            this.btnExit.Location = new System.Drawing.Point(492, 280);
+            this.btnExit.Location = new System.Drawing.Point(460, 310);
             this.btnExit.Name = "btnExit";
-            this.btnExit.Size = new System.Drawing.Size(121, 35);
+            this.btnExit.Size = new System.Drawing.Size(114, 35);
             this.btnExit.TabIndex = 233;
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // btnMax
+            // 
+            this.btnMax.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMax.ForeColor = System.Drawing.Color.Black;
+            this.btnMax.Location = new System.Drawing.Point(460, 22);
+            this.btnMax.Name = "btnMax";
+            this.btnMax.Size = new System.Drawing.Size(42, 87);
+            this.btnMax.TabIndex = 289;
+            this.btnMax.Text = "M";
+            this.btnMax.UseVisualStyleBackColor = true;
+            this.btnMax.Click += new System.EventHandler(this.btnMax_Click);
             // 
             // FormSteer
             // 
@@ -934,7 +684,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
             this.CancelButton = this.btnExit;
-            this.ClientSize = new System.Drawing.Size(619, 315);
+            this.ClientSize = new System.Drawing.Size(580, 347);
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tboxSerialFromAutoSteer);
             this.Controls.Add(this.tboxSerialToAutoSteer);
@@ -942,7 +692,6 @@
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.MinimumSize = new System.Drawing.Size(635, 350);
             this.Name = "FormSteer";
             this.ShowIcon = false;
             this.Text = "Auto Steer Configuration";
@@ -978,62 +727,41 @@
         private System.Windows.Forms.TabPage tabDrive;
         private System.Windows.Forms.HScrollBar hSBarFreeDrive;
         private System.Windows.Forms.Label lblIntegralMax;
-        private System.Windows.Forms.Label label43;
-        private System.Windows.Forms.Label label44;
         private System.Windows.Forms.Label label45;
         private System.Windows.Forms.HScrollBar hsbarIntegralMax;
         private System.Windows.Forms.Label lblIntegralGain;
-        private System.Windows.Forms.Label label31;
-        private System.Windows.Forms.Label label32;
         private System.Windows.Forms.Label label33;
         private System.Windows.Forms.HScrollBar hsbarIntegralGain;
         private System.Windows.Forms.Label lblSidehillDraftGain;
-        private System.Windows.Forms.Label label27;
-        private System.Windows.Forms.Label label28;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.HScrollBar hsbarSidehillDraftGain;
         private System.Windows.Forms.Label lblOutputGain;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label22;
         private System.Windows.Forms.HScrollBar hsbarOutputGain;
         private System.Windows.Forms.Label lblProportionalGain;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.HScrollBar hsbarProportionalGain;
         private System.Windows.Forms.Label lblLookAhead;
-        private System.Windows.Forms.Label label35;
-        private System.Windows.Forms.Label label36;
         private System.Windows.Forms.HScrollBar hsbarLookAhead;
         private System.Windows.Forms.Label label37;
         private System.Windows.Forms.Label lblMaxAngularVelocity;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Label label26;
         private System.Windows.Forms.HScrollBar hsbarMaxAngularVelocity;
         private System.Windows.Forms.Label label30;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.RichTextBox richTextBox1;
         private System.Windows.Forms.Label lblMinPWM;
-        private System.Windows.Forms.Label label39;
-        private System.Windows.Forms.Label label40;
         private System.Windows.Forms.HScrollBar hsbarMinPWM;
         private System.Windows.Forms.Label label41;
         private System.Windows.Forms.Label lblCountsPerDegree;
-        private System.Windows.Forms.Label label23;
-        private System.Windows.Forms.Label label24;
         private System.Windows.Forms.Label label25;
         private System.Windows.Forms.HScrollBar hsbarCountsPerDegree;
         private System.Windows.Forms.Label lblMaxSteerAngle;
-        private System.Windows.Forms.Label label16;
-        private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.HScrollBar hsbarMaxSteerAngle;
         private System.Windows.Forms.Label lblSteerAngleSensorZero;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.HScrollBar hsbarSteerAngleSensorZero;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.Button btnMax;
     }
 }

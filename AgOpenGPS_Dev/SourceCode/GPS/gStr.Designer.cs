@@ -115,6 +115,24 @@ namespace AgOpenGPS {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ABCurve Not Enabled.
+        /// </summary>
+        internal static string gsCurveNotOn {
+            get {
+                return ResourceManager.GetString("gsCurveNotOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Turn ABCurve On.
+        /// </summary>
+        internal static string gsCurveTurnOn {
+            get {
+                return ResourceManager.GetString("gsCurveTurnOn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Drawing Has Begun.
         /// </summary>
         internal static string gsDrawingHasBegun {

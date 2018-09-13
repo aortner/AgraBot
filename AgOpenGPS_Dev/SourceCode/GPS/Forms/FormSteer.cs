@@ -275,5 +275,11 @@ namespace AgOpenGPS
         {
             Close();
         }
+
+        private void btnMax_Click(object sender, EventArgs e)
+        {
+            if (Height < 600) Height = 650;
+            else Height = 400;
+        }
     }
 }
