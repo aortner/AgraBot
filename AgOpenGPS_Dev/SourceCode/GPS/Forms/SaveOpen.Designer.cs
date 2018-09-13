@@ -874,8 +874,6 @@ namespace AgOpenGPS
                             btnABLine.Image = global::AgOpenGPS.Properties.Resources.ABLineOn;
                             btnRightYouTurn.Visible = true;
                             btnLeftYouTurn.Visible = true;
-                            btnSwapDirection.Visible = true;
-
 
                             //Heading  , ,refPoint2x,z                    
                             line = reader.ReadLine();

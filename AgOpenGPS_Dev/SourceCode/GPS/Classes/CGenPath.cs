@@ -276,7 +276,7 @@ namespace AgOpenGPS
                     genList.Clear();
 
                     //turn on UTurn
-                    mf.btnSnap.PerformClick();
+                    //mf.btnSnap.PerformClick();
                     mf.btnAutoSteer.PerformClick();
                     mf.btnEnableAutoYouTurn.PerformClick();
                 }

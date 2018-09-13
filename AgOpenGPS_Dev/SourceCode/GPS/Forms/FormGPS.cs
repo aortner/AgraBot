@@ -728,7 +728,6 @@ namespace AgOpenGPS
             btnABLine.Enabled = true;
             btnContour.Enabled = true;
             btnAutoSteer.Enabled = true;
-            btnSnap.Enabled = true;
             btnCurve.Enabled = true;
             ABLine.abHeading = 0.00;
 
@@ -850,7 +849,6 @@ namespace AgOpenGPS
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
             btnAutoSteer.Enabled = false;
-            btnSnap.Enabled = false;
             isAutoSteerBtnOn = false;
 
             btnCurve.Enabled = false;

@@ -57,7 +57,6 @@ namespace AgOpenGPS
             //turn off the turn signals lol
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
-            btnSwapDirection.Visible = false;
 
             //rate control button
             btnDualRate.Text = gStr.gsOff;
@@ -1250,7 +1249,6 @@ namespace AgOpenGPS
                 btnLeftYouTurn.Enabled = false;
                 btnRightYouTurn.Visible = false;
                 btnLeftYouTurn.Visible = false;
-                btnSwapDirection.Visible = false;
 
                 btnEnableAutoYouTurn.Enabled = false;
                 yt.isYouTurnBtnOn = false;
@@ -1300,8 +1298,6 @@ namespace AgOpenGPS
                 btnLeftYouTurn.Enabled = false;
                 btnRightYouTurn.Visible = false;
                 btnLeftYouTurn.Visible = false;
-                btnSwapDirection.Visible = false;
-
 
                 btnEnableAutoYouTurn.Enabled = false;
                 yt.isYouTurnBtnOn = false;
@@ -1316,7 +1312,6 @@ namespace AgOpenGPS
                     btnLeftYouTurn.Enabled = true;
                     btnRightYouTurn.Visible = true;
                     btnLeftYouTurn.Visible = true;
-                    btnSwapDirection.Visible = true;
 
                     //auto YouTurn shutdown
                     yt.isYouTurnBtnOn = false;
@@ -1883,7 +1878,6 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = true;
             btnRightYouTurn.Visible = true;
             btnLeftYouTurn.Visible = true;
-            btnSwapDirection.Visible = true;
 
             //auto YouTurn disabled
             yt.isYouTurnBtnOn = false;
@@ -1899,7 +1893,6 @@ namespace AgOpenGPS
             btnLeftYouTurn.Enabled = false;
             btnRightYouTurn.Visible = false;
             btnLeftYouTurn.Visible = false;
-            btnSwapDirection.Visible = false;
 
             btnEnableAutoYouTurn.Enabled = false;
             yt.isYouTurnBtnOn = false;

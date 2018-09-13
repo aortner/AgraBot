@@ -22,7 +22,6 @@ namespace AgOpenGPS
         public FormSteerGraph(Form callingForm)
         {
             mf = callingForm as FormGPS;
-            timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
             InitializeComponent();
         }
 
@@ -76,6 +75,11 @@ namespace AgOpenGPS
                 }
                 unoChart.ResetAutoValues();
             }
+        }
+
+        private void FormSteerGraph_Load(object sender, EventArgs e)
+        {
+            timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
         }
     }
 }

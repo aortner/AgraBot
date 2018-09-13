@@ -134,9 +134,6 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
             this.tboxRecvUDP = new System.Windows.Forms.TextBox();
-            this.btnLidarOnOff = new System.Windows.Forms.Button();
-            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.lblLidarDistance = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
@@ -176,11 +173,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.zoomPage2 = new System.Windows.Forms.TabPage();
-            this.btnMakeContourFromBoundary = new System.Windows.Forms.Button();
             this.label6 = new System.Windows.Forms.Label();
             this.lblZooom = new System.Windows.Forms.Label();
-            this.btnDeleteAllData = new System.Windows.Forms.Button();
-            this.btnPerimeter = new System.Windows.Forms.Button();
             this.rate2Page5 = new System.Windows.Forms.TabPage();
             this.label30 = new System.Windows.Forms.Label();
             this.label21 = new System.Windows.Forms.Label();
@@ -207,19 +201,23 @@
             this.btnRateLeftUp = new ProXoft.WinForms.RepeatButton();
             this.btnDualRate = new System.Windows.Forms.Button();
             this.configPage1 = new System.Windows.Forms.TabPage();
+            this.btnMakeContourFromBoundary = new System.Windows.Forms.Button();
             this.btnFixOffset = new System.Windows.Forms.Button();
             this.btnSmoothAB = new System.Windows.Forms.Button();
             this.btnFlagsGoogleEarth = new System.Windows.Forms.Button();
             this.btnWebCam = new System.Windows.Forms.Button();
             this.btnHelp = new System.Windows.Forms.Button();
             this.btnFileExplorer = new System.Windows.Forms.Button();
+            this.btnDeleteAllData = new System.Windows.Forms.Button();
             this.btnGPSData = new System.Windows.Forms.Button();
-            this.btnSwapDirection = new System.Windows.Forms.Button();
-            this.btnSnap = new System.Windows.Forms.Button();
+            this.btnPerimeter = new System.Windows.Forms.Button();
             this.autoPage4 = new System.Windows.Forms.TabPage();
             this.btnDeleteRecPath = new System.Windows.Forms.Button();
+            this.btnRecPathPauseRecord = new System.Windows.Forms.Button();
+            this.btnLidarOnOff = new System.Windows.Forms.Button();
             this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
@@ -1070,9 +1068,6 @@
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
             this.DataPage.Controls.Add(this.tboxRecvUDP);
-            this.DataPage.Controls.Add(this.btnLidarOnOff);
-            this.DataPage.Controls.Add(this.btnRecPathPauseRecord);
-            this.DataPage.Controls.Add(this.btnManualAutoDrive);
             this.DataPage.Controls.Add(this.lblLidarDistance);
             this.DataPage.Controls.Add(this.label1);
             this.DataPage.Controls.Add(this.btnPauseDrivingPath);
@@ -1125,30 +1120,6 @@
             resources.ApplyResources(this.tboxRecvUDP, "tboxRecvUDP");
             this.tboxRecvUDP.Name = "tboxRecvUDP";
             this.tboxRecvUDP.ReadOnly = true;
-            // 
-            // btnLidarOnOff
-            // 
-            this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
-            this.btnLidarOnOff.Name = "btnLidarOnOff";
-            this.btnLidarOnOff.UseVisualStyleBackColor = false;
-            this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
-            // 
-            // btnRecPathPauseRecord
-            // 
-            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
-            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
-            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
-            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
-            // 
-            // btnManualAutoDrive
-            // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // lblLidarDistance
             // 
@@ -1362,7 +1333,6 @@
             // zoomPage2
             // 
             this.zoomPage2.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.zoomPage2.Controls.Add(this.btnMakeContourFromBoundary);
             this.zoomPage2.Controls.Add(this.openGLControlZoom);
             this.zoomPage2.Controls.Add(this.label6);
             this.zoomPage2.Controls.Add(this.lblZooom);
@@ -1370,19 +1340,8 @@
             this.zoomPage2.Controls.Add(this.label4);
             this.zoomPage2.Controls.Add(this.lblFieldWidthEastWest);
             this.zoomPage2.Controls.Add(this.lblFieldWidthNorthSouth);
-            this.zoomPage2.Controls.Add(this.btnDeleteAllData);
-            this.zoomPage2.Controls.Add(this.btnPerimeter);
             resources.ApplyResources(this.zoomPage2, "zoomPage2");
             this.zoomPage2.Name = "zoomPage2";
-            // 
-            // btnMakeContourFromBoundary
-            // 
-            this.btnMakeContourFromBoundary.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnMakeContourFromBoundary.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
-            this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
-            this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
-            this.btnMakeContourFromBoundary.Click += new System.EventHandler(this.btnMakeContourFromBoundary_Click);
             // 
             // label6
             // 
@@ -1397,24 +1356,6 @@
             this.lblZooom.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.lblZooom.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblZooom.Name = "lblZooom";
-            // 
-            // btnDeleteAllData
-            // 
-            this.btnDeleteAllData.BackColor = System.Drawing.Color.Transparent;
-            this.btnDeleteAllData.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
-            this.btnDeleteAllData.Name = "btnDeleteAllData";
-            this.btnDeleteAllData.UseVisualStyleBackColor = false;
-            this.btnDeleteAllData.Click += new System.EventHandler(this.btnDeleteAllData_Click);
-            // 
-            // btnPerimeter
-            // 
-            this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
-            this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
-            resources.ApplyResources(this.btnPerimeter, "btnPerimeter");
-            this.btnPerimeter.Name = "btnPerimeter";
-            this.btnPerimeter.UseVisualStyleBackColor = false;
-            this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
             // rate2Page5
             // 
@@ -1616,17 +1557,27 @@
             // configPage1
             // 
             this.configPage1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.configPage1.Controls.Add(this.btnMakeContourFromBoundary);
             this.configPage1.Controls.Add(this.btnFixOffset);
             this.configPage1.Controls.Add(this.btnSmoothAB);
             this.configPage1.Controls.Add(this.btnFlagsGoogleEarth);
             this.configPage1.Controls.Add(this.btnWebCam);
             this.configPage1.Controls.Add(this.btnHelp);
             this.configPage1.Controls.Add(this.btnFileExplorer);
+            this.configPage1.Controls.Add(this.btnDeleteAllData);
             this.configPage1.Controls.Add(this.btnGPSData);
-            this.configPage1.Controls.Add(this.btnSwapDirection);
-            this.configPage1.Controls.Add(this.btnSnap);
+            this.configPage1.Controls.Add(this.btnPerimeter);
             resources.ApplyResources(this.configPage1, "configPage1");
             this.configPage1.Name = "configPage1";
+            // 
+            // btnMakeContourFromBoundary
+            // 
+            this.btnMakeContourFromBoundary.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnMakeContourFromBoundary.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
+            this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
+            this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
+            this.btnMakeContourFromBoundary.Click += new System.EventHandler(this.btnMakeContourFromBoundary_Click);
             // 
             // btnFixOffset
             // 
@@ -1682,6 +1633,15 @@
             this.btnFileExplorer.UseVisualStyleBackColor = false;
             this.btnFileExplorer.Click += new System.EventHandler(this.btnFileExplorer_Click);
             // 
+            // btnDeleteAllData
+            // 
+            this.btnDeleteAllData.BackColor = System.Drawing.Color.Transparent;
+            this.btnDeleteAllData.ContextMenuStrip = this.contextMenuStripFlag;
+            resources.ApplyResources(this.btnDeleteAllData, "btnDeleteAllData");
+            this.btnDeleteAllData.Name = "btnDeleteAllData";
+            this.btnDeleteAllData.UseVisualStyleBackColor = false;
+            this.btnDeleteAllData.Click += new System.EventHandler(this.btnDeleteAllData_Click);
+            // 
             // btnGPSData
             // 
             this.btnGPSData.BackColor = System.Drawing.Color.AliceBlue;
@@ -1691,27 +1651,20 @@
             this.btnGPSData.UseVisualStyleBackColor = false;
             this.btnGPSData.Click += new System.EventHandler(this.btnGPSData_Click);
             // 
-            // btnSwapDirection
+            // btnPerimeter
             // 
-            this.btnSwapDirection.BackColor = System.Drawing.Color.Transparent;
-            this.btnSwapDirection.ContextMenuStrip = this.contextMenuStripFlag;
-            resources.ApplyResources(this.btnSwapDirection, "btnSwapDirection");
-            this.btnSwapDirection.Name = "btnSwapDirection";
-            this.btnSwapDirection.UseVisualStyleBackColor = false;
-            this.btnSwapDirection.Click += new System.EventHandler(this.btnSwapDirection_Click);
-            // 
-            // btnSnap
-            // 
-            resources.ApplyResources(this.btnSnap, "btnSnap");
-            this.btnSnap.BackColor = System.Drawing.Color.Transparent;
-            this.btnSnap.ContextMenuStrip = this.contextMenuStripFlag;
-            this.btnSnap.Name = "btnSnap";
-            this.btnSnap.UseVisualStyleBackColor = false;
-            this.btnSnap.Click += new System.EventHandler(this.btnSnap_Click);
+            this.btnPerimeter.BackColor = System.Drawing.Color.AliceBlue;
+            this.btnPerimeter.ContextMenuStrip = this.contextMenuArea;
+            resources.ApplyResources(this.btnPerimeter, "btnPerimeter");
+            this.btnPerimeter.Name = "btnPerimeter";
+            this.btnPerimeter.UseVisualStyleBackColor = false;
+            this.btnPerimeter.Click += new System.EventHandler(this.btnPerimeter_Click);
             // 
             // autoPage4
             // 
             this.autoPage4.Controls.Add(this.btnDeleteRecPath);
+            this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
+            this.autoPage4.Controls.Add(this.btnLidarOnOff);
             this.autoPage4.Controls.Add(this.btnGeneratePath);
             this.autoPage4.Controls.Add(this.btnDriveGenPath);
             resources.ApplyResources(this.autoPage4, "autoPage4");
@@ -1725,6 +1678,22 @@
             this.btnDeleteRecPath.Name = "btnDeleteRecPath";
             this.btnDeleteRecPath.UseVisualStyleBackColor = false;
             this.btnDeleteRecPath.Click += new System.EventHandler(this.btnDeleteRecPath_Click);
+            // 
+            // btnRecPathPauseRecord
+            // 
+            this.btnRecPathPauseRecord.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnRecPathPauseRecord, "btnRecPathPauseRecord");
+            this.btnRecPathPauseRecord.Name = "btnRecPathPauseRecord";
+            this.btnRecPathPauseRecord.UseVisualStyleBackColor = false;
+            this.btnRecPathPauseRecord.Click += new System.EventHandler(this.btnRecPathPauseRecord_Click);
+            // 
+            // btnLidarOnOff
+            // 
+            this.btnLidarOnOff.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnLidarOnOff, "btnLidarOnOff");
+            this.btnLidarOnOff.Name = "btnLidarOnOff";
+            this.btnLidarOnOff.UseVisualStyleBackColor = false;
+            this.btnLidarOnOff.Click += new System.EventHandler(this.btnLidarOnOff_Click);
             // 
             // btnGeneratePath
             // 
@@ -1741,6 +1710,14 @@
             this.btnDriveGenPath.Name = "btnDriveGenPath";
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
+            // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // btnResetSim
             // 
@@ -2026,6 +2003,7 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
             this.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.Controls.Add(this.btnManualAutoDrive);
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
             this.Controls.Add(this.tabControl1);
@@ -2208,7 +2186,6 @@
         private System.Windows.Forms.ToolStripMenuItem toolstripBoundary;
         private System.Windows.Forms.ToolStripMenuItem toolstripHeadland;
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
-        private System.Windows.Forms.Button btnSwapDirection;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label lblHeadlandDistanceAway;
         private System.Windows.Forms.Label lblBoundaryArea;
@@ -2301,7 +2278,6 @@
         public System.Windows.Forms.Button btnABLine;
         public System.Windows.Forms.Button btnEnableAutoYouTurn;
         public System.Windows.Forms.Button btnAutoSteer;
-        public System.Windows.Forms.Button btnSnap;
         public System.Windows.Forms.Button btnDriveGenPath;
         private System.Windows.Forms.Button btnManualAutoDrive;
         public System.Windows.Forms.Button btnPauseDrivingPath;
