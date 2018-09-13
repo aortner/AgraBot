@@ -29,15 +29,16 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea1 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
-            System.Windows.Forms.DataVisualization.Charting.Series series1 = new System.Windows.Forms.DataVisualization.Charting.Series();
-            System.Windows.Forms.DataVisualization.Charting.Series series2 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.ChartArea chartArea3 = new System.Windows.Forms.DataVisualization.Charting.ChartArea();
+            System.Windows.Forms.DataVisualization.Charting.Series series5 = new System.Windows.Forms.DataVisualization.Charting.Series();
+            System.Windows.Forms.DataVisualization.Charting.Series series6 = new System.Windows.Forms.DataVisualization.Charting.Series();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.unoChart = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.label5 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblPWM = new System.Windows.Forms.Label();
             this.lblSteerAng = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.unoChart)).BeginInit();
             this.SuspendLayout();
             // 
@@ -54,39 +55,39 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.unoChart.AntiAliasing = System.Windows.Forms.DataVisualization.Charting.AntiAliasingStyles.None;
             this.unoChart.BackColor = System.Drawing.Color.Black;
-            chartArea1.AxisX.LabelAutoFitMaxFontSize = 8;
-            chartArea1.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.AxisY.LineWidth = 2;
-            chartArea1.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
-            chartArea1.BackColor = System.Drawing.Color.Black;
-            chartArea1.BorderWidth = 0;
-            chartArea1.Name = "ChartArea1";
-            chartArea1.Position.Auto = false;
-            chartArea1.Position.Height = 100F;
-            chartArea1.Position.Width = 100F;
-            this.unoChart.ChartAreas.Add(chartArea1);
+            chartArea3.AxisX.LabelAutoFitMaxFontSize = 8;
+            chartArea3.AxisX.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea3.AxisY.LineWidth = 2;
+            chartArea3.AxisY.MajorGrid.LineColor = System.Drawing.Color.DimGray;
+            chartArea3.BackColor = System.Drawing.Color.Black;
+            chartArea3.BorderWidth = 0;
+            chartArea3.Name = "ChartArea1";
+            chartArea3.Position.Auto = false;
+            chartArea3.Position.Height = 100F;
+            chartArea3.Position.Width = 100F;
+            this.unoChart.ChartAreas.Add(chartArea3);
             this.unoChart.Location = new System.Drawing.Point(-1, 0);
             this.unoChart.Margin = new System.Windows.Forms.Padding(0);
             this.unoChart.Name = "unoChart";
             this.unoChart.Palette = System.Windows.Forms.DataVisualization.Charting.ChartColorPalette.None;
-            series1.BackSecondaryColor = System.Drawing.Color.White;
-            series1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
-            series1.BorderWidth = 2;
-            series1.ChartArea = "ChartArea1";
-            series1.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series1.Color = System.Drawing.Color.OrangeRed;
-            series1.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            series1.IsVisibleInLegend = false;
-            series1.Name = "S";
-            series1.YValuesPerPoint = 6;
-            series2.BorderWidth = 2;
-            series2.ChartArea = "ChartArea1";
-            series2.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
-            series2.Color = System.Drawing.Color.Lime;
-            series2.IsVisibleInLegend = false;
-            series2.Name = "PWM";
-            this.unoChart.Series.Add(series1);
-            this.unoChart.Series.Add(series2);
+            series5.BackSecondaryColor = System.Drawing.Color.White;
+            series5.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            series5.BorderWidth = 2;
+            series5.ChartArea = "ChartArea1";
+            series5.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series5.Color = System.Drawing.Color.OrangeRed;
+            series5.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            series5.IsVisibleInLegend = false;
+            series5.Name = "S";
+            series5.YValuesPerPoint = 6;
+            series6.BorderWidth = 2;
+            series6.ChartArea = "ChartArea1";
+            series6.ChartType = System.Windows.Forms.DataVisualization.Charting.SeriesChartType.FastLine;
+            series6.Color = System.Drawing.Color.Lime;
+            series6.IsVisibleInLegend = false;
+            series6.Name = "PWM";
+            this.unoChart.Series.Add(series5);
+            this.unoChart.Series.Add(series6);
             this.unoChart.Size = new System.Drawing.Size(592, 212);
             this.unoChart.TabIndex = 180;
             this.unoChart.TextAntiAliasingQuality = System.Windows.Forms.DataVisualization.Charting.TextAntiAliasingQuality.SystemDefault;
@@ -145,18 +146,35 @@
             this.lblSteerAng.TabIndex = 193;
             this.lblSteerAng.Text = "label1";
             // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.button1.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.ForeColor = System.Drawing.Color.Fuchsia;
+            this.button1.Location = new System.Drawing.Point(3, 2);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(121, 35);
+            this.button1.TabIndex = 234;
+            this.button1.Text = "Exit";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FormSteerGraph
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.button1;
             this.ClientSize = new System.Drawing.Size(592, 212);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblPWM);
             this.Controls.Add(this.lblSteerAng);
             this.Controls.Add(this.unoChart);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.Location = new System.Drawing.Point(30, 30);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FormSteerGraph";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -176,5 +194,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblPWM;
         private System.Windows.Forms.Label lblSteerAng;
+        private System.Windows.Forms.Button button1;
     }
 }

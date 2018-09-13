@@ -270,5 +270,10 @@ namespace AgOpenGPS
             hSBarFreeDrive.Value = driveFreeSteerAngle;
             lblFreeDriveAngle.Text = Convert.ToString(driveFreeSteerAngle);
         }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

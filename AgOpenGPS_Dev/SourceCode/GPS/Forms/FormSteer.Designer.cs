@@ -30,9 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormSteer));
-            this.label14 = new System.Windows.Forms.Label();
             this.tboxSerialFromAutoSteer = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.tboxSerialToAutoSteer = new System.Windows.Forms.TextBox();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.btnSteerWizard = new System.Windows.Forms.Button();
@@ -103,6 +101,7 @@
             this.hSBarFreeDrive = new System.Windows.Forms.HScrollBar();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.btnExit = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabGain.SuspendLayout();
             this.tabSteer.SuspendLayout();
@@ -110,54 +109,30 @@
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label14
-            // 
-            this.label14.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label14.AutoSize = true;
-            this.label14.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label14.Location = new System.Drawing.Point(310, 283);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(43, 23);
-            this.label14.TabIndex = 126;
-            this.label14.Text = "Frm";
-            // 
             // tboxSerialFromAutoSteer
             // 
             this.tboxSerialFromAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxSerialFromAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialFromAutoSteer.Enabled = false;
-            this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(360, 283);
+            this.tboxSerialFromAutoSteer.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxSerialFromAutoSteer.Location = new System.Drawing.Point(242, 286);
             this.tboxSerialFromAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialFromAutoSteer.Name = "tboxSerialFromAutoSteer";
             this.tboxSerialFromAutoSteer.ReadOnly = true;
-            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(255, 27);
+            this.tboxSerialFromAutoSteer.Size = new System.Drawing.Size(231, 24);
             this.tboxSerialFromAutoSteer.TabIndex = 125;
-            // 
-            // label15
-            // 
-            this.label15.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.label15.AutoSize = true;
-            this.label15.Font = new System.Drawing.Font("Tahoma", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label15.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
-            this.label15.Location = new System.Drawing.Point(4, 285);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(31, 23);
-            this.label15.TabIndex = 124;
-            this.label15.Text = "To";
             // 
             // tboxSerialToAutoSteer
             // 
             this.tboxSerialToAutoSteer.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.tboxSerialToAutoSteer.BackColor = System.Drawing.SystemColors.Control;
             this.tboxSerialToAutoSteer.Enabled = false;
-            this.tboxSerialToAutoSteer.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(37, 283);
+            this.tboxSerialToAutoSteer.Font = new System.Drawing.Font("Tahoma", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tboxSerialToAutoSteer.Location = new System.Drawing.Point(2, 285);
             this.tboxSerialToAutoSteer.Margin = new System.Windows.Forms.Padding(4, 6, 4, 6);
             this.tboxSerialToAutoSteer.Name = "tboxSerialToAutoSteer";
             this.tboxSerialToAutoSteer.ReadOnly = true;
-            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(254, 27);
+            this.tboxSerialToAutoSteer.Size = new System.Drawing.Size(231, 24);
             this.tboxSerialToAutoSteer.TabIndex = 123;
             // 
             // timer1
@@ -246,7 +221,7 @@
             this.tabControl1.Margin = new System.Windows.Forms.Padding(4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(616, 266);
+            this.tabControl1.Size = new System.Drawing.Size(616, 270);
             this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 232;
             // 
@@ -286,7 +261,7 @@
             this.tabGain.Controls.Add(this.hsbarProportionalGain);
             this.tabGain.Location = new System.Drawing.Point(4, 49);
             this.tabGain.Name = "tabGain";
-            this.tabGain.Size = new System.Drawing.Size(608, 213);
+            this.tabGain.Size = new System.Drawing.Size(608, 217);
             this.tabGain.TabIndex = 13;
             this.tabGain.Text = "PID";
             // 
@@ -627,7 +602,7 @@
             this.tabSteer.Controls.Add(this.label30);
             this.tabSteer.Location = new System.Drawing.Point(4, 49);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(608, 227);
+            this.tabSteer.Size = new System.Drawing.Size(608, 213);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Gain";
             // 
@@ -902,7 +877,7 @@
             this.tabDrive.Controls.Add(this.btnFreeDriveZero);
             this.tabDrive.Location = new System.Drawing.Point(4, 49);
             this.tabDrive.Name = "tabDrive";
-            this.tabDrive.Size = new System.Drawing.Size(608, 255);
+            this.tabDrive.Size = new System.Drawing.Size(608, 213);
             this.tabDrive.TabIndex = 11;
             this.tabDrive.Text = "Drive";
             // 
@@ -923,7 +898,7 @@
             this.tabPage2.Controls.Add(this.richTextBox1);
             this.tabPage2.Location = new System.Drawing.Point(4, 49);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Size = new System.Drawing.Size(608, 343);
+            this.tabPage2.Size = new System.Drawing.Size(608, 213);
             this.tabPage2.TabIndex = 15;
             this.tabPage2.Text = "Help";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -935,23 +910,36 @@
             this.richTextBox1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.richTextBox1.Location = new System.Drawing.Point(5, 3);
             this.richTextBox1.Name = "richTextBox1";
-            this.richTextBox1.Size = new System.Drawing.Size(566, 1340);
+            this.richTextBox1.Size = new System.Drawing.Size(532, 1340);
             this.richTextBox1.TabIndex = 0;
             this.richTextBox1.Text = resources.GetString("richTextBox1.Text");
+            // 
+            // btnExit
+            // 
+            this.btnExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnExit.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnExit.Font = new System.Drawing.Font("Tahoma", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExit.ForeColor = System.Drawing.Color.Red;
+            this.btnExit.Location = new System.Drawing.Point(492, 280);
+            this.btnExit.Name = "btnExit";
+            this.btnExit.Size = new System.Drawing.Size(121, 35);
+            this.btnExit.TabIndex = 233;
+            this.btnExit.Text = "Exit";
+            this.btnExit.UseVisualStyleBackColor = true;
+            this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
             // 
             // FormSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
-            this.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.ClientSize = new System.Drawing.Size(619, 311);
-            this.Controls.Add(this.label14);
+            this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.CancelButton = this.btnExit;
+            this.ClientSize = new System.Drawing.Size(619, 315);
+            this.Controls.Add(this.btnExit);
             this.Controls.Add(this.tboxSerialFromAutoSteer);
-            this.Controls.Add(this.label15);
             this.Controls.Add(this.tboxSerialToAutoSteer);
             this.Controls.Add(this.tabControl1);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.MinimumSize = new System.Drawing.Size(635, 350);
@@ -975,10 +963,7 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.TextBox tboxSerialFromAutoSteer;
-        private System.Windows.Forms.Label label15;
         private System.Windows.Forms.TextBox tboxSerialToAutoSteer;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button btnSteerWizard;
@@ -1049,5 +1034,6 @@
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.HScrollBar hsbarSteerAngleSensorZero;
+        private System.Windows.Forms.Button btnExit;
     }
 }

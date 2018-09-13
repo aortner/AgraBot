@@ -81,5 +81,10 @@ namespace AgOpenGPS
         {
             timer1.Interval = (int)((1 / (double)mf.fixUpdateHz) * 1000);
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }
