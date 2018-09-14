@@ -46,10 +46,8 @@
             this.lblCountsPerDegree = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnSerialCancel = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.nudRadius)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudRawData)).BeginInit();
             this.SuspendLayout();
@@ -59,7 +57,7 @@
             this.btnCalculate.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCalculate.ForeColor = System.Drawing.SystemColors.ControlText;
             this.btnCalculate.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.btnCalculate.Location = new System.Drawing.Point(360, 607);
+            this.btnCalculate.Location = new System.Drawing.Point(12, 383);
             this.btnCalculate.Name = "btnCalculate";
             this.btnCalculate.Size = new System.Drawing.Size(139, 77);
             this.btnCalculate.TabIndex = 6;
@@ -72,7 +70,7 @@
             this.lblRawSteer.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblRawSteer.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblRawSteer.ForeColor = System.Drawing.Color.Yellow;
-            this.lblRawSteer.Location = new System.Drawing.Point(60, 106);
+            this.lblRawSteer.Location = new System.Drawing.Point(60, 76);
             this.lblRawSteer.Name = "lblRawSteer";
             this.lblRawSteer.Size = new System.Drawing.Size(108, 27);
             this.lblRawSteer.TabIndex = 65;
@@ -99,7 +97,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(33, 80);
+            this.label1.Location = new System.Drawing.Point(33, 50);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(171, 19);
             this.label1.TabIndex = 198;
@@ -109,7 +107,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(11, 191);
+            this.label3.Location = new System.Drawing.Point(11, 110);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(360, 38);
             this.label3.TabIndex = 199;
@@ -120,7 +118,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(11, 297);
+            this.label4.Location = new System.Drawing.Point(11, 173);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(475, 38);
             this.label4.TabIndex = 200;
@@ -131,7 +129,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(11, 512);
+            this.label5.Location = new System.Drawing.Point(12, 299);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(306, 57);
             this.label5.TabIndex = 201;
@@ -147,7 +145,7 @@
             0,
             0,
             65536});
-            this.nudRadius.Location = new System.Drawing.Point(360, 516);
+            this.nudRadius.Location = new System.Drawing.Point(324, 305);
             this.nudRadius.Minimum = new decimal(new int[] {
             40,
             0,
@@ -166,7 +164,7 @@
             // nudRawData
             // 
             this.nudRawData.Font = new System.Drawing.Font("Tahoma", 28F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudRawData.Location = new System.Drawing.Point(363, 407);
+            this.nudRawData.Location = new System.Drawing.Point(320, 230);
             this.nudRawData.Maximum = new decimal(new int[] {
             500,
             0,
@@ -186,7 +184,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(11, 407);
+            this.label6.Location = new System.Drawing.Point(12, 236);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(296, 38);
             this.label6.TabIndex = 205;
@@ -198,7 +196,7 @@
             this.lblWheelbase.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblWheelbase.Font = new System.Drawing.Font("Tahoma", 16F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblWheelbase.ForeColor = System.Drawing.Color.Yellow;
-            this.lblWheelbase.Location = new System.Drawing.Point(230, 106);
+            this.lblWheelbase.Location = new System.Drawing.Point(230, 76);
             this.lblWheelbase.Name = "lblWheelbase";
             this.lblWheelbase.Size = new System.Drawing.Size(72, 27);
             this.lblWheelbase.TabIndex = 206;
@@ -208,7 +206,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(215, 80);
+            this.label10.Location = new System.Drawing.Point(215, 50);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(149, 19);
             this.label10.TabIndex = 207;
@@ -220,7 +218,7 @@
             this.lblSteerAngle.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblSteerAngle.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblSteerAngle.ForeColor = System.Drawing.Color.Yellow;
-            this.lblSteerAngle.Location = new System.Drawing.Point(795, 516);
+            this.lblSteerAngle.Location = new System.Drawing.Point(397, 414);
             this.lblSteerAngle.Name = "lblSteerAngle";
             this.lblSteerAngle.Size = new System.Drawing.Size(67, 35);
             this.lblSteerAngle.TabIndex = 209;
@@ -232,7 +230,7 @@
             this.lblCountsPerDegree.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.lblCountsPerDegree.Font = new System.Drawing.Font("Tahoma", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCountsPerDegree.ForeColor = System.Drawing.Color.Yellow;
-            this.lblCountsPerDegree.Location = new System.Drawing.Point(620, 516);
+            this.lblCountsPerDegree.Location = new System.Drawing.Point(222, 414);
             this.lblCountsPerDegree.Name = "lblCountsPerDegree";
             this.lblCountsPerDegree.Size = new System.Drawing.Size(67, 35);
             this.lblCountsPerDegree.TabIndex = 210;
@@ -242,7 +240,7 @@
             // 
             this.label13.AutoSize = true;
             this.label13.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(783, 492);
+            this.label13.Location = new System.Drawing.Point(385, 390);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(91, 19);
             this.label13.TabIndex = 211;
@@ -252,21 +250,11 @@
             // 
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label14.Location = new System.Drawing.Point(607, 492);
+            this.label14.Location = new System.Drawing.Point(209, 390);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(141, 19);
             this.label14.TabIndex = 212;
             this.label14.Text = "Counts per Degree";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(242, 635);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(96, 19);
-            this.label11.TabIndex = 213;
-            this.label11.Text = "6. Click --->";
             // 
             // panel1
             // 
@@ -285,32 +273,19 @@
             this.btnSerialCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSerialCancel.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSerialCancel.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnSerialCancel.Location = new System.Drawing.Point(801, 609);
+            this.btnSerialCancel.Location = new System.Drawing.Point(811, 385);
             this.btnSerialCancel.Name = "btnSerialCancel";
             this.btnSerialCancel.Size = new System.Drawing.Size(97, 76);
             this.btnSerialCancel.TabIndex = 64;
             this.btnSerialCancel.UseVisualStyleBackColor = true;
             this.btnSerialCancel.Click += new System.EventHandler(this.btnSerialCancel_Click);
             // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(598, 403);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(276, 57);
-            this.label7.TabIndex = 214;
-            this.label7.Text = "7. Enter the counts per degree in the \r\n    Auto Steer form after you exit this \r" +
-    "\n    wizard.";
-            // 
             // FormWizardSteer
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(919, 698);
+            this.ClientSize = new System.Drawing.Size(919, 473);
             this.ControlBox = false;
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.label11);
             this.Controls.Add(this.label14);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.lblCountsPerDegree);
@@ -366,7 +341,5 @@
         private System.Windows.Forms.Label lblCountsPerDegree;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.Label label7;
     }
 }

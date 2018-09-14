@@ -11,6 +11,7 @@
 * Parses unix type sentences - no \r
 * Pixhawk compatible
 * Added Kalman to AVR PArse for dual antenna
+* New autosteer form for settings and chart - separate now.
 
 v2.7 June 2
 * Contour mod to remove backwards movement
