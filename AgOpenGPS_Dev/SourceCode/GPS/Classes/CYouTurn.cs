@@ -570,10 +570,12 @@ namespace AgOpenGPS
                 double distSoFar;
 
                 //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.5 * 0.27777777;
+                //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.5 * 0.27777777;
 
                 //minimum of Whatever AB Line is meters look ahead
-                if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
+                //if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
+
+                double goalPointDistance = mf.vehicle.goalPointLookAhead;
 
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;

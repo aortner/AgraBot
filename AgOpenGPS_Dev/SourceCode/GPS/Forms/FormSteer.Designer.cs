@@ -435,7 +435,7 @@
             this.tabSteer.Controls.Add(this.label30);
             this.tabSteer.Location = new System.Drawing.Point(4, 36);
             this.tabSteer.Name = "tabSteer";
-            this.tabSteer.Size = new System.Drawing.Size(450, 467);
+            this.tabSteer.Size = new System.Drawing.Size(426, 467);
             this.tabSteer.TabIndex = 5;
             this.tabSteer.Text = "Gain";
             // 
@@ -548,8 +548,7 @@
             // 
             this.hsbarLookAhead.LargeChange = 1;
             this.hsbarLookAhead.Location = new System.Drawing.Point(16, 47);
-            this.hsbarLookAhead.Maximum = 15;
-            this.hsbarLookAhead.Minimum = 1;
+            this.hsbarLookAhead.Minimum = 10;
             this.hsbarLookAhead.Name = "hsbarLookAhead";
             this.hsbarLookAhead.Size = new System.Drawing.Size(287, 23);
             this.hsbarLookAhead.TabIndex = 289;
@@ -562,9 +561,9 @@
             this.label37.Font = new System.Drawing.Font("Tahoma", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label37.Location = new System.Drawing.Point(29, 23);
             this.label37.Name = "label37";
-            this.label37.Size = new System.Drawing.Size(194, 23);
+            this.label37.Size = new System.Drawing.Size(184, 23);
             this.label37.TabIndex = 290;
-            this.label37.Text = "Look Ahead (seconds)";
+            this.label37.Text = "Look Ahead (meters)";
             // 
             // lblMaxAngularVelocity
             // 

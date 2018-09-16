@@ -694,12 +694,12 @@ namespace AgOpenGPS
                 btnTiltDown.Visible = false;
                 btnTiltUp.Visible = false;
                 panelSimControls.Visible = false;
-                btnABLine.Left = Width - 123;
-                btnContour.Left = Width - 123;
-                btnCurve.Left = Width - 123;
-                btnManualOffOn.Left = Width - 123;
-                //btnSnap.Left = Width - 123;
-                btnSectionOffAutoOn.Left = Width - 130;
+                btnContourPriority.Left = Width - 113;
+                btnABLine.Left = Width - 113;
+                btnContour.Left = Width - 113;
+                btnCurve.Left = Width - 113;
+                btnManualOffOn.Left = Width - 113;
+                btnSectionOffAutoOn.Left = Width - 116;
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = Width/2 - 60;
                 txtDistanceOffABLine.Top = 80;
@@ -712,12 +712,13 @@ namespace AgOpenGPS
                 btnTiltDown.Visible = true;
                 btnTiltUp.Visible = true;
                 panelSimControls.Visible = true;
-                btnABLine.Left = Width - 730;
-                btnContour.Left = Width - 730;
-                btnCurve.Left = Width - 730;
-                btnManualOffOn.Left = Width - 730;
-                //btnSnap.Left = Width - 730;
-                btnSectionOffAutoOn.Left = Width - 737;
+                btnContourPriority.Left = Width - 715;
+                btnABLine.Left = Width - 715;
+                btnContour.Left = Width - 715;
+                btnCurve.Left = Width - 715;
+                btnManualOffOn.Left = Width - 715;
+                //btnSnap.Left = Width - 715;
+                btnSectionOffAutoOn.Left = Width - 718;
                 LineUpManualBtns();
                 txtDistanceOffABLine.Left = (Width - 630)/2 - 60;
                 txtDistanceOffABLine.Top = -1;
@@ -1302,6 +1303,7 @@ namespace AgOpenGPS
                 btnEnableAutoYouTurn.Enabled = false;
                 yt.isYouTurnBtnOn = false;
                 btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
+                btnContourPriority.Enabled = true;
             }
 
             else
@@ -1322,8 +1324,23 @@ namespace AgOpenGPS
                     btnEnableAutoYouTurn.Enabled = true;
                     btnEnableAutoYouTurn.Image = Properties.Resources.YouTurnNo;
                 }
+                btnContourPriority.Enabled = false;
             }
         }
+        private void btnContourPriority_Click(object sender, EventArgs e)
+        {
+            ct.isRightPriority = !ct.isRightPriority;
+
+            if (ct.isRightPriority)
+            {
+                btnContourPriority.Image = Properties.Resources.ContourPriorityRight;
+            }
+            else
+            {
+                btnContourPriority.Image = Properties.Resources.ContourPriorityLeft;
+            }
+        }
+
         private void btnAutoSteer_Click(object sender, EventArgs e)
         {
             System.Media.SystemSounds.Question.Play();
@@ -1673,23 +1690,7 @@ namespace AgOpenGPS
 
         private void btnSwapDirection_Click(object sender, EventArgs e)
         {
-            if (!yt.isYouTurnTriggerPointSet)
-            {
-                //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.isYouTurnRight = false;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-            }
+
         }
         private void btnSnap_Click(object sender, EventArgs e)
         {
@@ -1800,6 +1801,27 @@ namespace AgOpenGPS
                 }
             }
         }
+        private void btnSwapDirection_Click_1(object sender, EventArgs e)
+        {
+            if (!yt.isYouTurnTriggerPointSet)
+            {
+                //is it turning right already?
+                if (yt.isYouTurnRight)
+                {
+                    yt.isYouTurnRight = false;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    AutoYouTurnButtonsReset();
+                }
+                else
+                {
+                    //make it turn the other way
+                    yt.isYouTurnRight = true;
+                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
+                    AutoYouTurnButtonsReset();
+                }
+            }
+        }
+
         private void btnEnableAutoYouTurn_Click(object sender, EventArgs e)
         {
             if (!yt.isYouTurnBtnOn)
@@ -2499,7 +2521,6 @@ namespace AgOpenGPS
                 else TimedMessageBox(2000, gStr.gsCurveNotOn, gStr.gsCurveTurnOn);
             }
         }
-
         private void toolStripAreYouSure_Click(object sender, EventArgs e)
         {
             if (isJobStarted)
@@ -2556,7 +2577,6 @@ namespace AgOpenGPS
                 else TimedMessageBox(1500, "Nothing Deleted", "Action has been cancelled");
             }
         }
-
         private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
         {
             if (!bndArr[0].isSet) return;
@@ -2593,7 +2613,6 @@ namespace AgOpenGPS
 
             TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
         }
-
         private void toolStripBtnSnap_Click(object sender, EventArgs e)
         {
             if (ABLine.isABLineSet) ABLine.SnapABLine();
@@ -2606,30 +2625,7 @@ namespace AgOpenGPS
         }
 
 
-        private void toolStripBtnSwap_Click(object sender, EventArgs e)
-        {
-            if (!yt.isYouTurnTriggerPointSet)
-            {
-                //is it turning right already?
-                if (yt.isYouTurnRight)
-                {
-                    yt.isYouTurnRight = false;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-                else
-                {
-                    //make it turn the other way
-                    yt.isYouTurnRight = true;
-                    yt.isLastYouTurnRight = !yt.isLastYouTurnRight;
-                    AutoYouTurnButtonsReset();
-                }
-            }
-        }
-        //private void toolStripBtnSnap_Click(object sender, EventArgs e)
-
-
-private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
+        private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
         {
             var form = new FormYouTurn(this);
             form.ShowDialog();
@@ -2736,12 +2732,11 @@ private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
         {
             JobNewOpenResume();
         }
-
-        //batman to maximize GPS mapping - hide tab control
-        private void btnHideTabs_Click(object sender, EventArgs e)
+        private void toolStripBtnHideTabs_Click(object sender, EventArgs e)
         {
             HideTabControl();
-        }        
+        }
+
         
         //Sim controls
         private void timerSim_Tick(object sender, EventArgs e)
@@ -3014,6 +3009,7 @@ private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
                     lblRoll.Text = RollInDegrees;
                     lblYawHeading.Text = GyroInDegrees;
                     lblGPSHeading.Text = GPSHeading;
+                    lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
 
                     txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
@@ -3113,7 +3109,7 @@ private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
                 }
 
                 //not Metric/Standard units sensitive
-                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime)+ "\r\n" + Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
+                stripHz.Text = NMEAHz + "Hz " + (int)(frameTime);
                 lblHeading.Text = Heading;
                 lblHeading2.Text = lblHeading.Text;
                 btnABLine.Text = PassNumber;

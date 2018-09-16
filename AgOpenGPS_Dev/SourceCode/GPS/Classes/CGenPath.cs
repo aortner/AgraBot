@@ -577,7 +577,8 @@ namespace AgOpenGPS
             double distSoFar;
 
             //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-            double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+            //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+            double goalPointDistance = mf.vehicle.goalPointLookAhead;
 
             //minimum of 4.0 meters look ahead
             if (goalPointDistance < 4.0) goalPointDistance = 4.0;

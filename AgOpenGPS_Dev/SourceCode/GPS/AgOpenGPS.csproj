@@ -824,6 +824,8 @@
     <None Include="btnImages\MakeBoundary.png" />
     <None Include="btnImages\ABSmooth.png" />
     <None Include="btnImages\SpecialFunctions.png" />
+    <None Include="btnImages\ContourPriorityLeft.png" />
+    <None Include="btnImages\ContourPriorityRight.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

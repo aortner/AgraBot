@@ -12,6 +12,7 @@
 * Pixhawk compatible
 * Added Kalman to AVR PArse for dual antenna
 * New autosteer form for settings and chart - separate now.
+* Change everything to lookahead distance from time
 
 v2.7 June 2
 * Contour mod to remove backwards movement

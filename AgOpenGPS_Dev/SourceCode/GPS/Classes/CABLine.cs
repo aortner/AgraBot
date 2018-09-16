@@ -225,8 +225,9 @@ namespace AgOpenGPS
             rNorthAB = currentABLineP1.northing + (U * dy);
 
             //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-            double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
-            if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
+            //double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
+            //if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
+            double goalPointDistance = mf.vehicle.goalPointLookAhead;
 
             if (abFixHeadingDelta >= glm.PIBy2)
             {

@@ -849,13 +849,14 @@ namespace AgOpenGPS
             //reset the buttons
             btnABLine.Enabled = false;
             btnContour.Enabled = false;
+            btnContourPriority.Enabled = false;
             btnAutoSteer.Enabled = false;
             isAutoSteerBtnOn = false;
 
             btnCurve.Enabled = false;
             curve.isCurveSet = false;
 
-            ct.isContourBtnOn = false;
+            ct.isContourBtnOn = false; 
             ct.isContourOn = false;
 
             //curve line

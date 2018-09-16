@@ -216,7 +216,7 @@ namespace AgOpenGPS
                 }
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "Angle: " + yt.boundaryAngleOffPerpendicular.ToString());
+                gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "LookA: " + vehicle.goalPointLookAhead.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + yt.turnDistance.ToString());
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());

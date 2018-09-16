@@ -54,8 +54,8 @@ namespace AgOpenGPS
             lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
 
             mf.vehicle.goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
-            hsbarLookAhead.Value = (Int16)mf.vehicle.goalPointLookAhead;
-            lblLookAhead.Text = hsbarLookAhead.Value.ToString();
+            hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAhead*10);
+            lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
 
             mf.vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             hsbarMaxAngularVelocity.Value = (Int16)mf.vehicle.maxAngularVelocity;
@@ -190,7 +190,7 @@ namespace AgOpenGPS
 
         private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
         {
-            mf.vehicle.goalPointLookAhead = (byte)hsbarLookAhead.Value;
+            mf.vehicle.goalPointLookAhead = (byte)hsbarLookAhead.Value*0.1;
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
             Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
             Properties.Vehicle.Default.Save();

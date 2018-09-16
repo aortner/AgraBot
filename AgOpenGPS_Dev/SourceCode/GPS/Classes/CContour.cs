@@ -11,7 +11,7 @@ namespace AgOpenGPS
 
         private readonly OpenGL gl;
 
-        public bool isContourOn, isContourBtnOn;
+        public bool isContourOn, isContourBtnOn, isRightPriority = true;
 
         //used to determine if section was off and now is on or vice versa
         public bool wasSectionOn;
@@ -177,40 +177,74 @@ namespace AgOpenGPS
             if (stripCount == 0) return;
 
             cvec pointC = new cvec();
-
-            //determine if points are in right side frustum box
-            for (int s = 0; s < stripCount; s++)
+            if (isRightPriority)
             {
-                ptCount = stripList[s].Count;
-                for (int p = 0; p < ptCount; p++)
+                //determine if points are in right side frustum box
+                for (int s = 0; s < stripCount; s++)
                 {
-                    if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
-                            - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
-
-                    if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
-                            - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
-
-                    if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
-                            - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
-
-                    //in the box so is it parallelish or perpedicularish to current heading
-                    ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
-                    if (ref2 < 1.2 || ref2 > 1.9)
+                    ptCount = stripList[s].Count;
+                    for (int p = 0; p < ptCount; p++)
                     {
-                        //it's in the box and parallelish so add to list
-                        pointC.x = stripList[s][p].easting;
-                        pointC.z = stripList[s][p].northing;
-                        pointC.h = stripList[s][p].heading;
-                        pointC.strip = s;
-                        pointC.pt = p;
-                        conList.Add(pointC);
+                        if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
+                                - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
+
+                        if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
+                                - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
+
+                        if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
+                                - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
+
+                        //in the box so is it parallelish or perpedicularish to current heading
+                        ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
+                        if (ref2 < 1.2 || ref2 > 1.9)
+                        {
+                            //it's in the box and parallelish so add to list
+                            pointC.x = stripList[s][p].easting;
+                            pointC.z = stripList[s][p].northing;
+                            pointC.h = stripList[s][p].heading;
+                            pointC.strip = s;
+                            pointC.pt = p;
+                            conList.Add(pointC);
+                        }
+                    }
+                }
+
+                if (conList.Count == 0)
+                {
+                    //determine if points are in frustum box
+                    for (int s = 0; s < stripCount; s++)
+                    {
+                        ptCount = stripList[s].Count;
+                        for (int p = 0; p < ptCount; p++)
+                        {
+                            if ((((boxE.easting - boxA.easting) * (stripList[s][p].northing - boxA.northing))
+                                    - ((boxE.northing - boxA.northing) * (stripList[s][p].easting - boxA.easting))) < 0) { continue; }
+
+                            if ((((boxD.easting - boxE.easting) * (stripList[s][p].northing - boxE.northing))
+                                    - ((boxD.northing - boxE.northing) * (stripList[s][p].easting - boxE.easting))) < 0) { continue; }
+
+                            if ((((boxA.easting - boxD.easting) * (stripList[s][p].northing - boxD.northing))
+                                    - ((boxA.northing - boxD.northing) * (stripList[s][p].easting - boxD.easting))) < 0) { continue; }
+
+                            //in the box so is it parallelish or perpedicularish to current heading
+                            ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
+                            if (ref2 < 1.2 || ref2 > 1.9)
+                            {
+                                //it's in the box and parallelish so add to list
+                                pointC.x = stripList[s][p].easting;
+                                pointC.z = stripList[s][p].northing;
+                                pointC.h = stripList[s][p].heading;
+                                pointC.strip = s;
+                                pointC.pt = p;
+                                conList.Add(pointC);
+                            }
+                        }
                     }
                 }
             }
 
-            if (conList.Count == 0)
+            else
             {
-                //determine if points are in frustum box
                 for (int s = 0; s < stripCount; s++)
                 {
                     ptCount = stripList[s].Count;
@@ -239,8 +273,40 @@ namespace AgOpenGPS
                         }
                     }
                 }
-            }
 
+                if (conList.Count == 0)
+                {
+                    //determine if points are in frustum box
+                    for (int s = 0; s < stripCount; s++)
+                    {
+                        ptCount = stripList[s].Count;
+                        for (int p = 0; p < ptCount; p++)
+                        {
+                            if ((((boxF.easting - boxC.easting) * (stripList[s][p].northing - boxC.northing))
+                                    - ((boxF.northing - boxC.northing) * (stripList[s][p].easting - boxC.easting))) < 0) { continue; }
+
+                            if ((((boxC.easting - boxB.easting) * (stripList[s][p].northing - boxB.northing))
+                                    - ((boxC.northing - boxB.northing) * (stripList[s][p].easting - boxB.easting))) < 0) { continue; }
+
+                            if ((((boxB.easting - boxF.easting) * (stripList[s][p].northing - boxF.northing))
+                                    - ((boxB.northing - boxF.northing) * (stripList[s][p].easting - boxF.easting))) < 0) { continue; }
+
+                            //in the box so is it parallelish or perpedicularish to current heading
+                            ref2 = Math.PI - Math.Abs(Math.Abs(mf.fixHeading - stripList[s][p].heading) - Math.PI);
+                            if (ref2 < 1.2 || ref2 > 1.9)
+                            {
+                                //it's in the box and parallelish so add to list
+                                pointC.x = stripList[s][p].easting;
+                                pointC.z = stripList[s][p].northing;
+                                pointC.h = stripList[s][p].heading;
+                                pointC.strip = s;
+                                pointC.pt = p;
+                                conList.Add(pointC);
+                            }
+                        }
+                    }
+                }
+            }
             //no points in the box, exit
             ptCount = conList.Count;
             if (ptCount == 0)
@@ -331,36 +397,36 @@ namespace AgOpenGPS
                 stop = pt + 35; if (stop > ptCount) stop = ptCount + 1;
             }
 
-            //double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
-            //bool fail = false;
+            double distSq = widthMinusOverlap * widthMinusOverlap * 0.98;
+            bool fail = false;
 
             for (int i = start; i < stop; i++)
             {
-                var point = new vec3(
-                    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
-                    stripList[strip][i].heading);
-                ctList.Add(point);
-
                 //var point = new vec3(
                 //    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                 //    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
                 //    stripList[strip][i].heading);
-                ////ctList.Add(point);
+                //ctList.Add(point);
 
-                ////make sure its not closer then 1 eq width
-                //for (int j = start; j < stop; j++)
-                //{
-                //    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
-                //    if (check < distSq)
-                //    {
-                //        fail = true;
-                //        break;
-                //    }
-                //}
+                var point = new vec3(
+                    stripList[strip][i].easting + (Math.Sin(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                    stripList[strip][i].northing + (Math.Cos(piSide + stripList[strip][i].heading) * widthMinusOverlap),
+                    stripList[strip][i].heading);
+                //ctList.Add(point);
 
-                //if (!fail) ctList.Add(point);
-                //fail = false;
+                //make sure its not closer then 1 eq width
+                for (int j = start; j < stop; j++)
+                {
+                    double check = glm.DistanceSquared(point.northing, point.easting, stripList[strip][j].northing, stripList[strip][j].easting);
+                    if (check < distSq)
+                    {
+                        fail = true;
+                        break;
+                    }
+                }
+
+                if (!fail) ctList.Add(point);
+                fail = false;
             }
         }
 
@@ -371,7 +437,7 @@ namespace AgOpenGPS
             double minDistA = 1000000, minDistB = 1000000;
             int ptCount = ctList.Count;
             //distanceFromCurrentLine = 9999;
-            if (ptCount > 0)
+            if (ptCount > 8)
             {
                 //find the closest 2 points to current fix
                 for (int t = 0; t < ptCount; t++)
@@ -450,10 +516,11 @@ namespace AgOpenGPS
                 double distSoFar;
 
                 //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+                //goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
                 //minimum of 4.0 meters look ahead
-                if (goalPointDistance < 4.0) goalPointDistance = 4.0;
+                //if (goalPointDistance < 2.0) goalPointDistance = 2.0;
+                double goalPointDistance = mf.vehicle.goalPointLookAhead;
 
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
