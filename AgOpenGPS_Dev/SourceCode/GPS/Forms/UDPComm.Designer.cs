@@ -149,7 +149,7 @@ namespace AgOpenGPS
                 //autoDrive
                 case 5566:
                     {
-                        mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
+                        //mc.recvUDPSentence = DateTime.Now.ToString() + "," + data[2].ToString();
                         break;
                     }
 
@@ -610,9 +610,27 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.A))
+            if (keyData == (Keys.A)) //autosteer button on off
             {
                 btnAutoSteer.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.S)) //open the steer chart
+            {
+                toolstripAutoSteerConfig.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.P)) //open the steer chart
+            {
+                toolStripBtnSnap.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.C)) //open the steer chart
+            {
+                toolStripAutoSteerChart.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

@@ -57,6 +57,7 @@
             this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
             this.fieldToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.shortcutKeysToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.resetALLToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -137,15 +138,13 @@
             this.lblFieldWidthEastWest = new System.Windows.Forms.Label();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.DataPage = new System.Windows.Forms.TabPage();
-            this.tboxRecvUDP = new System.Windows.Forms.TextBox();
+            this.lblLookAhead = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.lblMachineControl = new System.Windows.Forms.Label();
             this.lblLidarDistance = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnPauseDrivingPath = new System.Windows.Forms.Button();
-            this.lblFixOffset = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
             this.lblHeading2 = new System.Windows.Forms.Label();
             this.lblFixQuality = new System.Windows.Forms.Label();
             this.lblAltitude = new System.Windows.Forms.Label();
@@ -153,7 +152,6 @@
             this.btnZoomIn = new ProXoft.WinForms.RepeatButton();
             this.lblLongitude = new System.Windows.Forms.Label();
             this.lblLatitude = new System.Windows.Forms.Label();
-            this.lblHeadlandDistanceFromTool = new System.Windows.Forms.Label();
             this.lblHeadlandDistanceAway = new System.Windows.Forms.Label();
             this.lblBoundaryArea = new System.Windows.Forms.Label();
             this.lblRoll = new System.Windows.Forms.Label();
@@ -174,7 +172,6 @@
             this.label19 = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.label14 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -224,6 +221,7 @@
             this.btnLidarOnOff = new System.Windows.Forms.Button();
             this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
@@ -359,7 +357,8 @@
             this.saveVehicleToolStripMenuItem,
             this.toolStripSeparator8,
             this.fieldToolStripMenuItem,
-            this.aboutToolStripMenuItem});
+            this.aboutToolStripMenuItem,
+            this.shortcutKeysToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Padding = new System.Windows.Forms.Padding(2, 0, 2, 0);
             resources.ApplyResources(this.fileToolStripMenuItem, "fileToolStripMenuItem");
@@ -485,6 +484,12 @@
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             resources.ApplyResources(this.aboutToolStripMenuItem, "aboutToolStripMenuItem");
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            // 
+            // shortcutKeysToolStripMenuItem
+            // 
+            this.shortcutKeysToolStripMenuItem.Name = "shortcutKeysToolStripMenuItem";
+            resources.ApplyResources(this.shortcutKeysToolStripMenuItem, "shortcutKeysToolStripMenuItem");
+            this.shortcutKeysToolStripMenuItem.Click += new System.EventHandler(this.shortcutKeysToolStripMenuItem_Click);
             // 
             // settingsToolStripMenuItem
             // 
@@ -1105,15 +1110,13 @@
             // DataPage
             // 
             this.DataPage.BackColor = System.Drawing.SystemColors.ControlLight;
-            this.DataPage.Controls.Add(this.tboxRecvUDP);
+            this.DataPage.Controls.Add(this.lblLookAhead);
+            this.DataPage.Controls.Add(this.label12);
             this.DataPage.Controls.Add(this.lblMachineControl);
             this.DataPage.Controls.Add(this.lblLidarDistance);
             this.DataPage.Controls.Add(this.label3);
             this.DataPage.Controls.Add(this.label1);
-            this.DataPage.Controls.Add(this.btnManualAutoDrive);
             this.DataPage.Controls.Add(this.btnPauseDrivingPath);
-            this.DataPage.Controls.Add(this.lblFixOffset);
-            this.DataPage.Controls.Add(this.label2);
             this.DataPage.Controls.Add(this.lblHeading2);
             this.DataPage.Controls.Add(this.lblFixQuality);
             this.DataPage.Controls.Add(this.lblAltitude);
@@ -1121,14 +1124,11 @@
             this.DataPage.Controls.Add(this.btnZoomIn);
             this.DataPage.Controls.Add(this.lblLongitude);
             this.DataPage.Controls.Add(this.lblLatitude);
-            this.DataPage.Controls.Add(this.lblHeadlandDistanceFromTool);
             this.DataPage.Controls.Add(this.lblHeadlandDistanceAway);
             this.DataPage.Controls.Add(this.lblBoundaryArea);
             this.DataPage.Controls.Add(this.lblRoll);
             this.DataPage.Controls.Add(this.lblGPSHeading);
             this.DataPage.Controls.Add(this.lblYawHeading);
-            this.DataPage.Controls.Add(this.lblEasting);
-            this.DataPage.Controls.Add(this.lblNorthing);
             this.DataPage.Controls.Add(this.label25);
             this.DataPage.Controls.Add(this.label24);
             this.DataPage.Controls.Add(this.btnTiltUp);
@@ -1144,23 +1144,27 @@
             this.DataPage.Controls.Add(this.label19);
             this.DataPage.Controls.Add(this.label18);
             this.DataPage.Controls.Add(this.label15);
-            this.DataPage.Controls.Add(this.label14);
             this.DataPage.Controls.Add(this.label7);
             this.DataPage.Controls.Add(this.tboxSentence);
             this.DataPage.Controls.Add(this.label10);
             this.DataPage.Controls.Add(this.label9);
             this.DataPage.Controls.Add(this.label8);
             this.DataPage.Controls.Add(this.lblZone);
+            this.DataPage.Controls.Add(this.lblEasting);
+            this.DataPage.Controls.Add(this.lblNorthing);
             this.DataPage.Cursor = System.Windows.Forms.Cursors.Arrow;
             resources.ApplyResources(this.DataPage, "DataPage");
             this.DataPage.Name = "DataPage";
             // 
-            // tboxRecvUDP
+            // lblLookAhead
             // 
-            this.tboxRecvUDP.BackColor = System.Drawing.SystemColors.ControlLight;
-            resources.ApplyResources(this.tboxRecvUDP, "tboxRecvUDP");
-            this.tboxRecvUDP.Name = "tboxRecvUDP";
-            this.tboxRecvUDP.ReadOnly = true;
+            resources.ApplyResources(this.lblLookAhead, "lblLookAhead");
+            this.lblLookAhead.Name = "lblLookAhead";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
             // 
             // lblMachineControl
             // 
@@ -1182,14 +1186,6 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // btnManualAutoDrive
-            // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
-            // 
             // btnPauseDrivingPath
             // 
             this.btnPauseDrivingPath.BackColor = System.Drawing.Color.Lime;
@@ -1197,16 +1193,6 @@
             this.btnPauseDrivingPath.Name = "btnPauseDrivingPath";
             this.btnPauseDrivingPath.UseVisualStyleBackColor = false;
             this.btnPauseDrivingPath.Click += new System.EventHandler(this.btnPauseDrivingPath_Click);
-            // 
-            // lblFixOffset
-            // 
-            resources.ApplyResources(this.lblFixOffset, "lblFixOffset");
-            this.lblFixOffset.Name = "lblFixOffset";
-            // 
-            // label2
-            // 
-            resources.ApplyResources(this.label2, "label2");
-            this.label2.Name = "label2";
             // 
             // lblHeading2
             // 
@@ -1248,11 +1234,6 @@
             // 
             resources.ApplyResources(this.lblLatitude, "lblLatitude");
             this.lblLatitude.Name = "lblLatitude";
-            // 
-            // lblHeadlandDistanceFromTool
-            // 
-            resources.ApplyResources(this.lblHeadlandDistanceFromTool, "lblHeadlandDistanceFromTool");
-            this.lblHeadlandDistanceFromTool.Name = "lblHeadlandDistanceFromTool";
             // 
             // lblHeadlandDistanceAway
             // 
@@ -1363,11 +1344,6 @@
             // 
             resources.ApplyResources(this.label15, "label15");
             this.label15.Name = "label15";
-            // 
-            // label14
-            // 
-            resources.ApplyResources(this.label14, "label14");
-            this.label14.Name = "label14";
             // 
             // label7
             // 
@@ -1770,6 +1746,14 @@
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
             // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            // 
             // btnResetSim
             // 
             resources.ApplyResources(this.btnResetSim, "btnResetSim");
@@ -2076,6 +2060,7 @@
             this.Controls.Add(this.btnContourPriority);
             this.Controls.Add(this.btnCurve);
             this.Controls.Add(this.btnLeftYouTurn);
+            this.Controls.Add(this.btnManualAutoDrive);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnDrivePath);
             this.Controls.Add(this.lblHeading);
@@ -2260,7 +2245,6 @@
         private System.Windows.Forms.Label lblHeadlandDistanceAway;
         private System.Windows.Forms.Label lblBoundaryArea;
         private System.Windows.Forms.Label label15;
-        private System.Windows.Forms.Label lblHeadlandDistanceFromTool;
         private System.Windows.Forms.ToolStripMenuItem toolstripUDPConfig;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Label label18;
@@ -2277,7 +2261,6 @@
         private System.Windows.Forms.ToolStripMenuItem menustripLanguage;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageEnglish;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageDeutsch;
-        private System.Windows.Forms.Label label14;
         private System.Windows.Forms.ToolStripMenuItem setWorkingDirectoryToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageRussian;
         private System.Windows.Forms.ToolStripMenuItem menuLanguageDutch;
@@ -2337,8 +2320,6 @@
         private System.Windows.Forms.Button btnSelectSingleDualMeter;
         private System.Windows.Forms.ToolStripMenuItem enterSimCoordsToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.Label lblFixOffset;
-        private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnFixOffset;
         private System.Windows.Forms.Button btnSmoothAB;
         private System.Windows.Forms.ToolStripDropDownButton toolStripZoomOut;
@@ -2355,9 +2336,7 @@
         private System.Windows.Forms.Label lblLidarDistance;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnLidarOnOff;
-        private System.Windows.Forms.TextBox tboxRecvUDP;
         private System.Windows.Forms.ToolStripDropDownButton toolStripBtnDropDownSpecialFunctions;
-        private System.Windows.Forms.ToolStripMenuItem toolStripAutoSteerChart;
         private System.Windows.Forms.HScrollBar hsbarStepDistance;
         private System.Windows.Forms.HScrollBar hsbarSteerAngle;
         private System.Windows.Forms.ToolStripMenuItem toolStripBtnMakeBndContour;
@@ -2370,6 +2349,10 @@
         private System.Windows.Forms.Button btnSwapDirection;
         private System.Windows.Forms.Label lblMachineControl;
         private System.Windows.Forms.Label label3;
+        public System.Windows.Forms.ToolStripMenuItem toolStripAutoSteerChart;
+        private System.Windows.Forms.ToolStripMenuItem shortcutKeysToolStripMenuItem;
+        private System.Windows.Forms.Label lblLookAhead;
+        private System.Windows.Forms.Label label12;
     }
 }
 

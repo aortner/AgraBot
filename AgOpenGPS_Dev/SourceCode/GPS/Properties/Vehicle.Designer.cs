@@ -361,7 +361,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
         public double setVehicle_goalPointLookAhead {
             get {
                 return ((double)(this["setVehicle_goalPointLookAhead"]));
@@ -385,7 +385,7 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("45")]
+        [global::System.Configuration.DefaultSettingValueAttribute("35")]
         public double setVehicle_maxSteerAngle {
             get {
                 return ((double)(this["setVehicle_maxSteerAngle"]));
@@ -632,6 +632,30 @@ namespace AgOpenGPS.Properties {
             }
             set {
                 this["set_youTriggerDistance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double setVehicle_lookAheadDistanceFromLine {
+            get {
+                return ((double)(this["setVehicle_lookAheadDistanceFromLine"]));
+            }
+            set {
+                this["setVehicle_lookAheadDistanceFromLine"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("2")]
+        public double setVehicle_lookAheadMinimum {
+            get {
+                return ((double)(this["setVehicle_lookAheadMinimum"]));
+            }
+            set {
+                this["setVehicle_lookAheadMinimum"] = value;
             }
         }
     }

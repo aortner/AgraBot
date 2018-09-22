@@ -14,6 +14,8 @@ namespace AgOpenGPS
         double camDistanceFactor = -2;
         int mouseX = 0, mouseY = 0;
 
+        public double test1, test2;
+
         //data buffer for pixels read from off screen buffer
         byte[] grnPixels = new byte[125001];
 
@@ -216,8 +218,8 @@ namespace AgOpenGPS
                 }
 
                 //screen text for debug
-                gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "LookA: " + vehicle.goalPointLookAhead.ToString());
-                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + yt.turnDistance.ToString());
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "LookA: " + statusUpdateCounter.ToString());
+                //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + test2.ToString());
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "  GPS: " + Convert.ToString(Math.Round(glm.toDegrees(gpsHeading), 2)));
@@ -405,7 +407,7 @@ namespace AgOpenGPS
                 openGLControlBack.DoRender();
 
                 //draw the zoom window off screen buffer in the second tab
-                if (tabControl1.SelectedIndex == 1)
+                if (tabControl1.SelectedIndex == 1 && statusUpdateCounter > 6)
                 openGLControlZoom.DoRender();
             }
         }

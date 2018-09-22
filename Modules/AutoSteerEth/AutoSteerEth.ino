@@ -1,12 +1,8 @@
-#include "BNO055_AOG.h"
+
 #include <Wire.h>
 
 #include <EtherCard.h>
 #include <IPAddress.h> 
-
-#define A 0X28  //I2C address selection pin LOW
-#define B 0x29  //                        HIGH
-#define RAD2GRAD 57.2957795
 
 //timer 2 controls 9,10
   #define WORKSW_PIN 4  //PD4
@@ -19,15 +15,12 @@
   
   //ethercard 8,11,12,13   
 
-//instance of the imu
-BNO055 IMU(A);
-
 //loop time variables in microseconds
 const unsigned int LOOP_TIME = 100; //10hz
 unsigned int lastTime = LOOP_TIME;
 unsigned int currentTime = LOOP_TIME;
 unsigned int dT = 50000;
-unsigned int count = 0;
+byte count = 0;
 byte watchdogTimer = 0;
 
 //Kalman variables
@@ -35,12 +28,6 @@ float rollK = 0, Pc = 0.0, G = 0.0, P = 1.0, Xp = 0.0, Zp = 0.0;
 float XeRoll = 0;
 const float varRoll = 0.1; // variance,
 const float varProcess = 0.0001; //smaller is more filtering
-/*
-float setK = 0, setPc = 0.0, setG = 0.0, setP = 1.0, setXp = 0.0, setZp = 0.0;
-float setXe = 0;
-const float setVariance = 0.1; // variance,
-const float setProcess = 0.001; //smaller is more filtering
-*/
 
 byte relay = 0, speeed = 0, workSwitch = 0, steerSwitch = 1, switchByte = 0;
 float distanceFromLine = 0, corr = 0;
@@ -68,12 +55,7 @@ float Kp = 0.0f;  //proportional gain
 float Ki = 0.0f;//integral gain
 float Kd = 0.0f;  //derivative gain
 
-//integral values - **** change as required *****
-float   maxIntErr = 200; //anti windup max
 float maxIntegralValue = 20; //max PWM value for integral PID component
-
-//error values
-float lastError = 0, lastLastError = 0, integrated_error = 0, dError = 0;
 
 //Array to send data back to AgOpenGPS
 byte toSend[] = {0,0,0,0,0,0,0,0,0,0};
@@ -86,12 +68,12 @@ static byte gwip[] = { 192,168,1,1 };
 static byte myDNS[] = { 8,8,8,8 };
 //mask
 static byte mask[] = { 255,255,255,0 };
-//this is port of this module
+//this is port of this autosteer module
 unsigned int portMy = 5577; 
 
 //sending back to where and which port
 static byte ipDestination[] = {192, 168, 1, 255};
-unsigned int portDestination = 9999; 
+unsigned int portDestination = 9999; //AOG port that listens
 
 // ethernet mac address - must be unique on your network
 static byte mymac[] = { 0x70,0x69,0x69,0x2D,0x30,0x31 };
@@ -107,29 +89,7 @@ void setup()
 	pinMode(DIR_PIN, OUTPUT); //D11 PB3 direction pin of PWM Board
 
 	//set up communication
-	Wire.begin();
 	Serial.begin(38400);
-	IMU.init();
-
-	// Restore calibration data from zeroing
-	bno055_offsets_t calibrationData;
-
-	calibrationData.accel_offset_x = 65520;
-	calibrationData.accel_offset_y = 65421;
-	calibrationData.accel_offset_z = 65421;
-	calibrationData.gyro_offset_x = 65534;
-	calibrationData.gyro_offset_y = 65533;
-	calibrationData.gyro_offset_z = 1;
-	calibrationData.mag_offset_x = 65305;
-	calibrationData.mag_offset_y = 119;
-	calibrationData.mag_offset_z = 65418;
-	calibrationData.accel_radius = 1000;
-	calibrationData.mag_radius = 979;
-
-	IMU.setSensorOffsets(calibrationData);
-
-	//use external 32K crystal
-	IMU.setExtCrystalUse(true);
 
 	//PWM rate settings Adjust to desired PWM Rate
 	//TCCR1B = TCCR1B & B11111000 | B00000010;    // set timer 1 divisor to     8 for PWM frequency of  3921.16 Hz
@@ -144,7 +104,7 @@ void setup()
   ether.printIp("GW:  ", ether.gwip);
   ether.printIp("DNS: ", ether.dnsip);
 
-  //set up the pgn for returning data
+  //set up the pgn for returning data for autosteer
   toSend[0] = 0x7F;
   toSend[1] = 0xFD;
   
@@ -170,7 +130,7 @@ void loop()
 		dT = currentTime - lastTime;
 		lastTime = currentTime;
 
-		IMU.readIMU();
+		//IMU.readIMU();
 
 		//If connection lost to AgOpenGPS, the watchdog will count up and turn off steering
 		if (watchdogTimer++ > 250) watchdogTimer = 12;
@@ -179,9 +139,9 @@ void loop()
 		delay(1);
 		analogRead(A1); //discard
 		delay(1);
-		roll = analogRead(A1);   delay(2);
-		roll += analogRead(A1);   delay(2);
-		roll += analogRead(A1);   delay(2);
+		roll = analogRead(A1);   delay(1);
+		roll += analogRead(A1);   delay(1);
+		roll += analogRead(A1);   delay(1);
 		roll += analogRead(A1);
 		roll = roll >> 2; //divide by 4
 
@@ -207,15 +167,16 @@ void loop()
 
 		//steering position and steer angle
 		analogRead(A0); //discard initial reading
-		steeringPosition = analogRead(A0);    delay(2);
-		steeringPosition += analogRead(A0);    delay(2);
-		steeringPosition += analogRead(A0);    delay(2);
+		steeringPosition = analogRead(A0);    delay(1);
+		steeringPosition += analogRead(A0);    delay(1);
+		steeringPosition += analogRead(A0);    delay(1);
 		steeringPosition += analogRead(A0);
 		steeringPosition = steeringPosition >> 2; //divide by 4
 		steeringPosition = (steeringPosition - steeringPositionZero + (XeRoll * (Kd/24)) );   //read the steering position sensor
 		//steeringPosition = ( steeringPosition - steeringPositionZero);   //read the steering position sensor
 
-    //close enough to center, 4 cm, remove any correction
+    //close enough to center, 4 cm, remove any correction          
+    if (distanceFromLine < 40 && distanceFromLine > -40) steerAngleSetPoint = 0;
     if (distanceFromLine <= 40 && distanceFromLine >= -40) corr = 0;
     else
     {
@@ -240,39 +201,12 @@ void loop()
     //  ***** make sure that negative steer angle makes a left turn and positive value is a right turn *****
     // remove or add the minus for steerSensorCounts to do that.
     steerAngleActual = (float)(steeringPosition) / -steerSensorCounts;
-    
-    //Kalman filter for setpoint
-    /* setPc = setP + setProcess;
-    setG = setPc / (setPc + setVariance);
-    setP = (1 - setG) * setPc;
-    setXp = setXe;
-    setZp = setXp;
-    setXe = setG * (steerAngleSetPoint - setZp) + setXp;
-    */
-    
-    if (watchdogTimer < 10)
-    {
-    	steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
-    	calcSteeringPID();  //do the pid
-    	motorDrive();       //out to motors the pwm value
-    }
-    else
-    {
-    	//we've lost the comm to AgOpenGPS
-    	pwmDrive = 0; //turn off steering motor
-    	motorDrive(); //out to motors the pwm value
-    }
    
     int temp;
     //actual steer angle
     temp = (100 * steerAngleActual);
     toSend[2] = (byte)(temp >> 8);
     toSend[3] = (byte)(temp);
-      
-    //imu heading --- * 16 in degrees
-    temp = IMU.euler.head;
-    toSend[4] = (byte)(temp >> 8);
-    toSend[5] = (byte)(temp);
     
     //Vehicle roll --- * 16 in degrees
     temp = XeRoll;
@@ -287,9 +221,22 @@ void loop()
     
 	} //end of timed loop
 
-  delay(10);
+  delay(50);
   //this must be called for ethercard functions to work.
   ether.packetLoop(ether.packetReceive());  
+  
+      if (watchdogTimer < 10)
+    {
+      steerAngleError = steerAngleActual - steerAngleSetPoint;   //calculate the steering error
+      calcSteeringPID();  //do the pid
+      motorDrive();       //out to motors the pwm value
+    }
+    else
+    {
+      //we've lost the comm to AgOpenGPS
+      pwmDrive = 0; //turn off steering motor
+      motorDrive(); //out to motors the pwm value
+    }
 }
 
 //callback when received packets
@@ -325,8 +272,6 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
         watchdogTimer = 0;  //reset watchdog
       }
       /*    
-      Serial.print(IMU.euler.head);
-      Serial.print(",");    
       Serial.print(steerAngleActual);   //the pwm value to solenoids or motor
       Serial.print(",");
       Serial.println(XeRoll);
@@ -345,8 +290,8 @@ void udpSteerRecv(uint16_t dest_port, uint8_t src_ip[IP_LEN], uint16_t src_port,
       maxIntegralValue = data[8]*0.1; //
       steerSensorCounts = data[9]; //sent as 10 times the setting displayed in AOG
 
-  for (int i = 0; i < len; i++) {
-    Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println("<--");
+      for (int i = 0; i < len; i++) {
+        Serial.print(data[i],HEX); Serial.print("\t"); } Serial.println("<--");
     }
     
 }

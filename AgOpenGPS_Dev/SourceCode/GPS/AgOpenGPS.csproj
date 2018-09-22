@@ -123,6 +123,12 @@
     <Compile Include="Classes\CWaypoint.cs" />
     <Compile Include="Classes\CWorldGrid.cs" />
     <Compile Include="Classes\CSequence.cs" />
+    <Compile Include="Forms\FormShortcutKeys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\FormShortcutKeys.Designer.cs">
+      <DependentUpon>FormShortcutKeys.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\FormSteerGraph.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -360,6 +366,9 @@
       <AutoGen>True</AutoGen>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Forms\FormShortcutKeys.resx">
+      <DependentUpon>FormShortcutKeys.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\FormGenerate.resx">
       <DependentUpon>FormGenerate.cs</DependentUpon>
     </EmbeddedResource>

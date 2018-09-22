@@ -51,6 +51,7 @@ namespace AgOpenGPS
 
         //pure pursuit values
         public vec2 goalPointAB = new vec2(0, 0);
+
         public vec2 radiusPointAB = new vec2(0, 0);
         public double steerAngleAB;
         public double rEastAB, rNorthAB;
@@ -211,6 +212,24 @@ namespace AgOpenGPS
             //absolute the distance
             distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
+            //double goalPointDistance = mf.vehicle.goalPointLookAhead;
+            //if (distanceFromCurrentLine < mf.vehicle.goalPointDistanceFromLine )
+            //    goalPointDistance -= goalPointDistance * (mf.vehicle.goalPointDistanceFromLine - distanceFromCurrentLine);
+            //if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+
+
+            //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
+            double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+
+            if (distanceFromCurrentLine < 1.0)
+                goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
+            else
+                goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
+
+            if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+            
+            mf.test1 = goalPointDistance;
+
             //Subtract the two headings, if > 1.57 its going the opposite heading as refAB
             abFixHeadingDelta = (Math.Abs(mf.fixHeading - abHeading));
             if (abFixHeadingDelta >= Math.PI) abFixHeadingDelta = Math.Abs(abFixHeadingDelta - glm.twoPI);
@@ -227,7 +246,6 @@ namespace AgOpenGPS
             //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
             //double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
             //if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
-            double goalPointDistance = mf.vehicle.goalPointLookAhead;
 
             if (abFixHeadingDelta >= glm.PIBy2)
             {
@@ -250,6 +268,16 @@ namespace AgOpenGPS
             double localHeading = glm.twoPI - mf.fixHeading;
             ppRadiusAB = goalPointDistanceDSquared / (2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
                 + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))));
+
+            //make sure pp doesn't generate a radius smaller then turn radius
+            //if (ppRadiusAB > 0)
+            //{
+            //    if (ppRadiusAB < mf.vehicle.minTurningRadius * 0.95) ppRadiusAB = mf.vehicle.minTurningRadius * 0.95;
+            //}
+            //else if (ppRadiusAB > -mf.vehicle.minTurningRadius * 0.95)
+            //{
+            //    ppRadiusAB = -mf.vehicle.minTurningRadius * 0.95;
+            //}
 
             steerAngleAB = glm.toDegrees(Math.Atan(2 * (((goalPointAB.easting - pivot.easting) * Math.Cos(localHeading))
                 + ((goalPointAB.northing - pivot.northing) * Math.Sin(localHeading))) * mf.vehicle.wheelbase
@@ -427,9 +455,9 @@ namespace AgOpenGPS
                         gl.End();
                     }
                     //Draw lookahead Point
-                    gl.PointSize(4.0f);
+                    gl.PointSize(8.0f);
                     gl.Begin(OpenGL.GL_POINTS);
-                    gl.Color(1.0f, 0.5f, 0.95f);
+                    gl.Color(1.0f, 1.0f, 0.0f);
                     gl.Vertex(goalPointAB.easting, goalPointAB.northing, 0.0);
                     //gl.Color(0.6f, 0.95f, 0.95f);
                     //gl.Vertex(mf.at.rEastAT, mf.at.rNorthAT, 0.0);

@@ -2237,6 +2237,16 @@ namespace AgOpenGPS
             }
         }
 
+        //Shortcut keys
+        private void shortcutKeysToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (var form = new FormShortcutKeys())
+            {
+                var result = form.ShowDialog();
+                if (result == DialogResult.OK) { }
+            }
+        }
+
         //Options Drop down menu items
         private void resetALLToolStripMenuItem_Click_1(object sender, EventArgs e)
         {
@@ -2967,7 +2977,7 @@ namespace AgOpenGPS
             if (fiveSecondCounter++ > 100) { fiveSecondCounter = 0; }
 
             //every half of a second update all status
-            if (statusUpdateCounter > 3)
+            if (statusUpdateCounter > 7)
             {
                 //reset the counter
                 statusUpdateCounter = 0;
@@ -2980,13 +2990,11 @@ namespace AgOpenGPS
                     if (isMetric)
                     {
                         lblAltitude.Text = Altitude;
-                        ////boundary and headland
                         lblBoundaryArea.Text = bndArr[0].areaHectare;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(distPivot)) + " m";
                         else lblHeadlandDistanceAway.Text = "***";
-                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
-                        else lblHeadlandDistanceFromTool.Text = " * ";
-                        lblFixOffset.Text = FixOffset;
+                        //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotM;
+                        //else lblHeadlandDistanceFromTool.Text = " * ";
                     }
                     else //imperial
                     {
@@ -2995,9 +3003,8 @@ namespace AgOpenGPS
                         lblBoundaryArea.Text = bndArr[0].areaAcre;
                         if (distPivot > 0) lblHeadlandDistanceAway.Text = ((int)(glm.m2ft * distPivot)) + " ft";
                         else lblHeadlandDistanceAway.Text = "***";
-                        if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotFt;
-                        else lblHeadlandDistanceFromTool.Text = " * ";
-                        lblFixOffset.Text = FixOffsetInch;
+                        //if (distTool > -2220) lblHeadlandDistanceFromTool.Text = DistPivotFt;
+                        //else lblHeadlandDistanceFromTool.Text = " * ";
                     }
 
                     //both
@@ -3010,6 +3017,7 @@ namespace AgOpenGPS
                     lblYawHeading.Text = GyroInDegrees;
                     lblGPSHeading.Text = GPSHeading;
                     lblMachineControl.Text = Convert.ToString(mc.machineControlData[mc.cnPedalControl], 2).PadLeft(8, '0');
+                    lblLookAhead.Text = test1.ToString("N1") + " m";
 
                     txtBoxRecvAutoSteer.Text = mc.serialRecvAutoSteerStr;
                     txtBoxSendAutoSteer.Text = mc.autoSteerData[mc.sdRelayLo] + ", " + mc.autoSteerData[mc.sdSpeed]
@@ -3019,13 +3027,13 @@ namespace AgOpenGPS
                     //up in the menu a few pieces of info
                     if (isJobStarted)
                     {
-                        lblEasting.Text = "E: " + Math.Round(pn.fix.easting, 1).ToString();
-                        lblNorthing.Text = "N: " + Math.Round(pn.fix.northing, 1).ToString();
+                        lblEasting.Text = "E:" + Math.Round(pn.fix.easting, 1).ToString();
+                        lblNorthing.Text = "N:" + Math.Round(pn.fix.northing, 1).ToString();
                     }
                     else
                     {
-                        lblEasting.Text = "E: " + ((int)pn.actualEasting).ToString();
-                        lblNorthing.Text = "N: " + ((int)pn.actualNorthing).ToString();
+                        lblEasting.Text = "E:" + ((int)pn.actualEasting).ToString();
+                        lblNorthing.Text = "N:" + ((int)pn.actualNorthing).ToString();
                     }
 
                     lblZone.Text = pn.zone.ToString();
@@ -3115,7 +3123,7 @@ namespace AgOpenGPS
                 btnABLine.Text = PassNumber;
                 lblPureSteerAngle.Text = PureSteerAngle;
                 lblLidarDistance.Text = (mc.lidarDistance * 0.01).ToString();
-                tboxRecvUDP.Text = mc.recvUDPSentence;
+                //tboxRecvUDP.Text = mc.recvUDPSentence;
 
                 //statusbar flash red undefined headland
                 if (distPivot == -3333 && statusStrip1.BackColor == SystemColors.ScrollBar || distPivot != -3333 && statusStrip1.BackColor == Color.Tomato)

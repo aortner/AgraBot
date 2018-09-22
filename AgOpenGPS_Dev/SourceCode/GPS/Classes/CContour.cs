@@ -242,7 +242,6 @@ namespace AgOpenGPS
                     }
                 }
             }
-
             else
             {
                 for (int s = 0; s < stripCount; s++)
@@ -515,13 +514,17 @@ namespace AgOpenGPS
                 //used for accumulating distance to find goal point
                 double distSoFar;
 
-                //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
-                //goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+                //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
+                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-                //minimum of 4.0 meters look ahead
-                //if (goalPointDistance < 2.0) goalPointDistance = 2.0;
-                double goalPointDistance = mf.vehicle.goalPointLookAhead;
+                if (distanceFromCurrentLine < 1.0)
+                    goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier * 0.5;
+                else
+                    goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier * 0.5;
 
+                if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+
+                mf.test1 = goalPointDistance;
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
 

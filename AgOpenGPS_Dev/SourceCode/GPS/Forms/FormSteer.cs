@@ -54,8 +54,16 @@ namespace AgOpenGPS
             lblMaxSteerAngle.Text = hsbarMaxSteerAngle.Value.ToString();
 
             mf.vehicle.goalPointLookAhead = Properties.Vehicle.Default.setVehicle_goalPointLookAhead;
-            hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAhead*10);
+            hsbarLookAhead.Value = (Int16)(mf.vehicle.goalPointLookAhead * 10);
             lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
+
+            mf.vehicle.goalPointLookAheadMinimum = Properties.Vehicle.Default.setVehicle_lookAheadMinimum;
+            hsbarLookAheadMin.Value = (Int16)(mf.vehicle.goalPointLookAheadMinimum * 10);
+            lblLookAheadMinimum.Text = mf.vehicle.goalPointLookAheadMinimum.ToString();
+
+            mf.vehicle.goalPointDistanceMultiplier = Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine;
+            hsbarDistanceFromLine.Value = (Int16)(mf.vehicle.goalPointDistanceMultiplier * 10);
+            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier+1).ToString();
 
             mf.vehicle.maxAngularVelocity = Properties.Vehicle.Default.setVehicle_maxAngularVelocity;
             hsbarMaxAngularVelocity.Value = (Int16)mf.vehicle.maxAngularVelocity;
@@ -98,7 +106,33 @@ namespace AgOpenGPS
             }
         }
 
-        //Scrollbars
+        //Scrollbars    
+        private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
+        {
+            if (hsbarLookAheadMin.Value > hsbarLookAhead.Value) hsbarLookAheadMin.Value = hsbarLookAhead.Value;
+            mf.vehicle.goalPointLookAhead = hsbarLookAhead.Value * 0.1;
+            lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
+            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
+            Properties.Vehicle.Default.Save();
+            mf.AutoSteerSettingsOutToPort();
+        }
+
+        private void hsbarDistanceFromLine_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointDistanceMultiplier = hsbarDistanceFromLine.Value * 0.1;
+            lblDistanceFromLine.Text = (mf.vehicle.goalPointDistanceMultiplier+1).ToString();
+            Properties.Vehicle.Default.setVehicle_lookAheadDistanceFromLine = mf.vehicle.goalPointDistanceMultiplier;
+            Properties.Vehicle.Default.Save();
+        }
+
+        private void hsbarLookAheadMin_ValueChanged(object sender, EventArgs e)
+        {
+            mf.vehicle.goalPointLookAheadMinimum = hsbarLookAheadMin.Value * 0.1;
+            lblLookAheadMinimum.Text = mf.vehicle.goalPointLookAheadMinimum.ToString();
+            Properties.Vehicle.Default.setVehicle_lookAheadMinimum = mf.vehicle.goalPointLookAheadMinimum;
+            Properties.Vehicle.Default.Save();
+        }
+
         private void hsbarCountsPerDegree_ValueChanged(object sender, EventArgs e)
         {
             mf.mc.autoSteerSettings[mf.mc.ssCountsPerDegree] = (byte)hsbarCountsPerDegree.Value;
@@ -188,15 +222,6 @@ namespace AgOpenGPS
             mf.AutoSteerSettingsOutToPort();
         }
 
-        private void hsbarLookAhead_ValueChanged(object sender, EventArgs e)
-        {
-            mf.vehicle.goalPointLookAhead = (byte)hsbarLookAhead.Value*0.1;
-            lblLookAhead.Text = mf.vehicle.goalPointLookAhead.ToString();
-            Properties.Vehicle.Default.setVehicle_goalPointLookAhead = mf.vehicle.goalPointLookAhead;
-            Properties.Vehicle.Default.Save();
-            mf.AutoSteerSettingsOutToPort();
-        }
-
         //FREE DRIVE SECTION
         private void btnSteerWizard_Click(object sender, EventArgs e)
         {
@@ -280,6 +305,11 @@ namespace AgOpenGPS
         {
             if (Height < 600) Height = 650;
             else Height = 400;
+        }
+
+        private void btnChart_Click(object sender, EventArgs e)
+        {
+            mf.toolStripAutoSteerChart.PerformClick();
         }
     }
 }
