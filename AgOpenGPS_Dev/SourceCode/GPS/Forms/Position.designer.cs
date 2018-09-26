@@ -635,8 +635,8 @@ namespace AgOpenGPS
                     fixHeading = gpsHeading;
 
                     //determine fix positions and heading in degrees for glRotate opengl methods.
-                    int camStep = currentStepFix;
-                    //if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
+                    int camStep = currentStepFix*4;
+                    if (camStep > (totalFixSteps - 1)) camStep = (totalFixSteps - 1);
                     camHeading = Math.Atan2(pn.fix.easting - stepFixPts[camStep].easting, pn.fix.northing - stepFixPts[camStep].northing);
                     if (camHeading < 0) camHeading += glm.twoPI;
                     camHeading = glm.toDegrees(camHeading);

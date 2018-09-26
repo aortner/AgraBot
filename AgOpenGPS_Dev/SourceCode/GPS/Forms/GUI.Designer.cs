@@ -751,39 +751,8 @@ namespace AgOpenGPS
 
         private void btnMakeContourFromBoundary_Click(object sender, EventArgs e)
         {
-            if (!bndArr[0].isSet) return;
-
-            vec3 point = new vec3();
-
-            //count the points from the boundary
-            int ptCount = bndArr[0].bndLine.Count;
-
-            ////first find out which side is inside the boundary
-            //double oneSide = glm.PIBy2;
-            //point.easting = bnd.ptList[3].easting - (Math.Sin(oneSide + bnd.ptList[3].heading) * 2.0);
-            //point.northing = bnd.ptList[3].northing - (Math.Cos(oneSide + bnd.ptList[3].heading) * 2.0);
-
-            //if (bnd.IsPointInsideBoundary(point)) oneSide *= -1.0;
-
-            //determine how wide a headland space
-            double totalHeadWidth = vehicle.toolWidth * 0.46;
-
-            ct.ptList = new List<vec3>();
-            ct.stripList.Add(ct.ptList);
-
-            for (int i = ptCount - 1; i >= 0; i--)
-            {
-                //calculate the point inside the boundary
-                point.easting = bndArr[0].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = bndArr[0].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = bndArr[0].bndLine[i].heading - Math.PI;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-
-                //only add if inside actual field boundary
-                ct.ptList.Add(point);
-            }
-
-            TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
+            //build all the contour guidance lines from boundaries, all of them. 
+            ct.BuildBoundaryContours();
         }
 
         //rate control
@@ -2589,39 +2558,8 @@ namespace AgOpenGPS
         }
         private void toolStripBtnMakeBndContour_Click(object sender, EventArgs e)
         {
-            if (!bndArr[0].isSet) return;
-
-            vec3 point = new vec3();
-
-            //count the points from the boundary
-            int ptCount = bndArr[0].bndLine.Count;
-
-            ////first find out which side is inside the boundary
-            //double oneSide = glm.PIBy2;
-            //point.easting = bnd.ptList[3].easting - (Math.Sin(oneSide + bnd.ptList[3].heading) * 2.0);
-            //point.northing = bnd.ptList[3].northing - (Math.Cos(oneSide + bnd.ptList[3].heading) * 2.0);
-
-            //if (bnd.IsPointInsideBoundary(point)) oneSide *= -1.0;
-
-            //determine how wide a headland space
-            double totalHeadWidth = vehicle.toolWidth * 0.46;
-
-            ct.ptList = new List<vec3>();
-            ct.stripList.Add(ct.ptList);
-
-            for (int i = ptCount - 1; i >= 0; i--)
-            {
-                //calculate the point inside the boundary
-                point.easting = bndArr[0].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.northing = bndArr[0].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + bndArr[0].bndLine[i].heading) * totalHeadWidth);
-                point.heading = bndArr[0].bndLine[i].heading - Math.PI;
-                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
-
-                //only add if inside actual field boundary
-                ct.ptList.Add(point);
-            }
-
-            TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
+            //build all the contour guidance lines from boundaries, all of them. 
+            ct.BuildBoundaryContours();
         }
         private void toolStripBtnSnap_Click(object sender, EventArgs e)
         {
@@ -2633,8 +2571,7 @@ namespace AgOpenGPS
                 form.Show();
             }
         }
-
-
+        
         private void toolstripYouTurnConfig_Click(object sender, EventArgs e)
         {
             var form = new FormYouTurn(this);
@@ -2680,7 +2617,6 @@ namespace AgOpenGPS
                 if (result == DialogResult.OK) { }
             }
         }
-
         private void toolstripDisplayConfig_Click(object sender, EventArgs e)
         {
             using (var form = new FormDisplaySettings(this))
@@ -2689,17 +2625,14 @@ namespace AgOpenGPS
                 if (result == DialogResult.OK) { }
             }
         }
-
-
         private void toolstripUSBPortsConfig_Click(object sender, EventArgs e)
         {
             SettingsCommunications();
         }
-       private void toolstripUDPConfig_Click(object sender, EventArgs e)
+        private void toolstripUDPConfig_Click(object sender, EventArgs e)
         {
             SettingsUDP();
         }
-
         private void toolstripResetTrip_Click_1(object sender, EventArgs e)
         {
             userDistance = 0;
@@ -2747,7 +2680,24 @@ namespace AgOpenGPS
             HideTabControl();
         }
 
-        
+        //camera tool buttons
+        private void CameraFollowingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = true;
+            camera.camPitch = -70;
+        }
+
+        private void CameraNorthToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = false;
+        }
+
+        private void CameraTopToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            camera.camFollowing = true;
+            camera.camPitch = 0;
+        }
+
         //Sim controls
         private void timerSim_Tick(object sender, EventArgs e)
         {

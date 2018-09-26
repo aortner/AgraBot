@@ -45,10 +45,10 @@
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(281, 291);
+            this.textBox1.Size = new System.Drawing.Size(281, 434);
             this.textBox1.TabIndex = 2;
             this.textBox1.Text = "Auto Section On Off\r\n\r\nAuto Steer On Off\r\nAuto Steer Config\r\nAuto Steer Chart\r\n\r\n" +
-    "Field Open/Close\r\nSnap\r\n\r\n";
+    "Field Open/Close\r\nSnap\r\nFlag Mark\r\n\r\nUTurn Settings\r\nVehicle Settings";
             // 
             // textBox2
             // 
@@ -61,9 +61,9 @@
             this.textBox2.Multiline = true;
             this.textBox2.Name = "textBox2";
             this.textBox2.ReadOnly = true;
-            this.textBox2.Size = new System.Drawing.Size(37, 291);
+            this.textBox2.Size = new System.Drawing.Size(37, 434);
             this.textBox2.TabIndex = 1;
-            this.textBox2.Text = "D\r\n\r\nA\r\nS\r\nC\r\n\r\nF\r\nP\r\n";
+            this.textBox2.Text = "D\r\n\r\nA\r\nS\r\nC\r\n\r\nF\r\nP\r\nG\r\n\r\nU\r\nV";
             // 
             // btnExit
             // 
@@ -72,7 +72,7 @@
             this.btnExit.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnExit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(64)))), ((int)(((byte)(0)))));
             this.btnExit.Image = global::AgOpenGPS.Properties.Resources.Cancel64;
-            this.btnExit.Location = new System.Drawing.Point(240, 321);
+            this.btnExit.Location = new System.Drawing.Point(240, 464);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(97, 70);
             this.btnExit.TabIndex = 0;
@@ -83,7 +83,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 23F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(351, 403);
+            this.ClientSize = new System.Drawing.Size(351, 546);
             this.ControlBox = false;
             this.Controls.Add(this.btnExit);
             this.Controls.Add(this.textBox2);

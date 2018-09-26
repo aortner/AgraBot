@@ -22,6 +22,8 @@ namespace AgOpenGPS
         public double triangleResolution = 1.0;
         public double previousZoom = 25;
 
+        public bool camFollowing;
+
         //private double camDelta = 0;
 
         public CCamera()
@@ -29,6 +31,7 @@ namespace AgOpenGPS
             //get the pitch of camera from settings
             camPitch = Properties.Settings.Default.setCam_pitch;
             camPosZ = 0.0;
+            camFollowing = true;
         }
 
         public void SetWorldCam(OpenGL gl, double _fixPosX, double _fixPosY, double _fixHeading)
@@ -53,21 +56,30 @@ namespace AgOpenGPS
 
             //rotate the camera down to look at fix
             gl.Rotate(camPitch, 1, 0, 0);
-            gl.Rotate(camYaw, 0, 0, 1);
 
-            if (camPitch > -45)
+            //following game style or N fixed cam
+            if (camFollowing)
             {
-                offset = (45.0 + camPitch) / 45.0;
+                gl.Rotate(camYaw, 0, 0, 1);
 
-                offset = (offset * offset * offset * offset * 0.015) + 0.02;
+                if (camPitch > -45)
+                {
+                    offset = (45.0 + camPitch) / 45.0;
 
-                gl.Translate(-camPosX + (offset * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
-                    -camPosY + (offset * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+                    offset = (offset * offset * offset * offset * 0.015) + 0.02;
+
+                    gl.Translate(-camPosX + (offset * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
+                        -camPosY + (offset * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+                }
+                else
+                {
+                    gl.Translate(-camPosX + (0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
+                             -camPosY + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+                }
             }
             else
             {
-                gl.Translate(-camPosX + (0.02 * camSetDistance * Math.Sin(glm.toRadians(fixHeading))),
-                         -camPosY + (0.02 * camSetDistance * Math.Cos(glm.toRadians(fixHeading))), -camPosZ);
+                gl.Translate(-camPosX,-camPosY,-camPosZ);
             }
         }
     }

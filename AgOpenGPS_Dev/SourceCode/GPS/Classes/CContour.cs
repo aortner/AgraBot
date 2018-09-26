@@ -134,8 +134,66 @@ namespace AgOpenGPS
             isContourOn = false;
         }
 
-        //determine closest point on left side
-        public void BuildContourGuidanceLine(vec3 pivot)
+        //build contours for boundaries
+        public void BuildBoundaryContours()
+        {
+            if (!mf.bndArr[0].isSet)
+            {
+                mf.TimedMessageBox(1500, "Boundary Contour Error", "No Boundaries Made");
+                return;
+            }
+
+            vec3 point = new vec3();
+            //determine how wide a headland space
+            double totalHeadWidth = mf.vehicle.toolWidth * 0.46;
+
+            //outside boundary
+
+            //count the points from the boundary
+            int ptCount = mf.bndArr[0].bndLine.Count;
+
+            ptList = new List<vec3>();
+            stripList.Add(ptList);
+
+            for (int i = ptCount - 1; i >= 0; i--)
+            {
+                //calculate the point inside the boundary
+                point.easting = mf.bndArr[0].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + mf.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.northing = mf.bndArr[0].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + mf.bndArr[0].bndLine[i].heading) * totalHeadWidth);
+                point.heading = mf.bndArr[0].bndLine[i].heading - Math.PI;
+                if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+
+                //only add if inside actual field boundary
+                ptList.Add(point);
+            }
+
+            for (int j = 1; j < FormGPS.MAXBOUNDARIES; j++)
+            {
+                if (!mf.bndArr[j].isSet) continue;
+
+                //count the points from the boundary
+                ptCount = mf.bndArr[j].bndLine.Count;
+
+                ptList = new List<vec3>();
+                stripList.Add(ptList);
+
+                for (int i = ptCount - 1; i >= 0; i--)
+                {
+                    //calculate the point inside the boundary
+                    point.easting = mf.bndArr[j].bndLine[i].easting - (-Math.Sin(glm.PIBy2 + mf.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.northing = mf.bndArr[j].bndLine[i].northing - (-Math.Cos(glm.PIBy2 + mf.bndArr[j].bndLine[i].heading) * totalHeadWidth);
+                    point.heading = mf.bndArr[j].bndLine[i].heading - Math.PI;
+                    if (point.heading < -glm.twoPI) point.heading += glm.twoPI;
+
+                    //only add if inside actual field boundary
+                    ptList.Add(point);
+                }
+            }
+
+            mf.TimedMessageBox(1500, "Boundary Contour", "Contour Path Created");
+        }
+    //determine closest point on left side
+    public void BuildContourGuidanceLine(vec3 pivot)
         {
             //2 triangles EAD and CBF
             double sinH = Math.Sin(pivot.heading) * 1.5 * mf.vehicle.toolWidth;

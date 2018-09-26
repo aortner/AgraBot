@@ -634,9 +634,27 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.D))
+            if (keyData == (Keys.V)) //open the vehicle Settings
+            {
+                toolstripVehicleConfig.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.U)) //open the UTurn Settings
+            {
+                toolstripYouTurnConfig.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.D)) //auto section on off
             {
                 btnSectionOffAutoOn.PerformClick();
+                return true;    // indicate that you handled this keystroke
+            }
+
+            if (keyData == (Keys.G)) // Flag click
+            {
+                btnFlag.PerformClick();
                 return true;    // indicate that you handled this keystroke
             }
 

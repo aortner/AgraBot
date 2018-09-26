@@ -188,14 +188,14 @@ namespace AgOpenGPS
             gl.Vertex(closestBoundaryPt.easting, closestBoundaryPt.northing, 0);
             gl.End();
 
-            gl.LineWidth(2);
-            gl.Color(0.92f, 0.62f, 0.42f);
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            gl.Vertex(boxD.easting, boxD.northing, 0);
-            gl.Vertex(boxA.easting, boxA.northing, 0);
-            gl.Vertex(boxB.easting, boxB.northing, 0);
-            gl.Vertex(boxC.easting, boxC.northing, 0);
-            gl.End();
+            //gl.LineWidth(2);
+            //gl.Color(0.92f, 0.62f, 0.42f);
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            //gl.Vertex(boxD.easting, boxD.northing, 0);
+            //gl.Vertex(boxA.easting, boxA.northing, 0);
+            //gl.Vertex(boxB.easting, boxB.northing, 0);
+            //gl.Vertex(boxC.easting, boxC.northing, 0);
+            //gl.End();
         }
     }
 }

@@ -153,7 +153,7 @@ namespace AgOpenGPS
                 recPath.DrawDubins();
 
                 //draw generated path
-                genPath.DrawGeneratedPath();
+                //genPath.DrawGeneratedPath();
 
                 //draw the flags if there are some
                 int flagCnt = flagPts.Count;
@@ -213,12 +213,12 @@ namespace AgOpenGPS
                 //Draw closest headland point if youturn on
                 if (yt.isYouTurnBtnOn)
                 {
-                    hl.DrawClosestPoint();
+                    //hl.DrawClosestPoint();
                     bnd.DrawClosestPoint();
                 }
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "LookA: " + statusUpdateCounter.ToString());
+                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "LookA: " + currentStepFix.ToString());
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + test2.ToString());
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());

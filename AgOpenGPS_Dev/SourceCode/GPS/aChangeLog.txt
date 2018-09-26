@@ -15,6 +15,8 @@
 * Change everything to lookahead distance from time
 * Dynamic look ahead sliders
 * Shortcut KEys form
+* Contours created for all boundaries
+* Camera Control 2D, 3D, North
 
 v2.7 June 2
 * Contour mod to remove backwards movement

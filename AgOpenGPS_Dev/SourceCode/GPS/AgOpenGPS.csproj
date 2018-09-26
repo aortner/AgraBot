@@ -835,6 +835,10 @@
     <None Include="btnImages\SpecialFunctions.png" />
     <None Include="btnImages\ContourPriorityLeft.png" />
     <None Include="btnImages\ContourPriorityRight.png" />
+    <None Include="btnImages\Camera54.png" />
+    <None Include="btnImages\Camera2D64.png" />
+    <None Include="btnImages\Camera3D64.png" />
+    <None Include="btnImages\CameraNorth64.png" />
     <Content Include="Dependencies\Floor.png" />
     <Content Include="Dependencies\Landscape.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

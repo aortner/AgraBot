@@ -82,6 +82,13 @@
             this.tmrWatchdog = new System.Windows.Forms.Timer(this.components);
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.stripHz = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripZoomIn = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripBtnCamera = new System.Windows.Forms.ToolStripDropDownButton();
+            this.CameraNorthToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CameraFollowingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.CameraTopToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripZoomOut = new System.Windows.Forms.ToolStripDropDownButton();
+            this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripBtnDropDownSpecialFunctions = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolStripDeleteApplied = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripAreYouSure = new System.Windows.Forms.ToolStripMenuItem();
@@ -89,16 +96,7 @@
             this.toolStripBtnSmoothABCurve = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnHideTabs = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripBtnSnap = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripEqWidth = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripZoomIn = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolStripZoomOut = new System.Windows.Forms.ToolStripDropDownButton();
             this.stripAreaRate = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
-            this.toolstripField = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
-            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripDropDownButton2 = new System.Windows.Forms.ToolStripDropDownButton();
             this.toolstripUDPConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripUSBPortsConfig = new System.Windows.Forms.ToolStripMenuItem();
@@ -107,12 +105,14 @@
             this.toolstripAutoSteerConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripVehicleConfig = new System.Windows.Forms.ToolStripMenuItem();
             this.toolstripYouTurnConfig = new System.Windows.Forms.ToolStripMenuItem();
+            this.stripDistance = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripDropDownBtnFuncs = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolstripField = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripBoundary = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripHeadland = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolstripResetTrip = new System.Windows.Forms.ToolStripMenuItem();
             this.stripPortGPS = new System.Windows.Forms.ToolStripStatusLabel();
             this.stripOnlineGPS = new System.Windows.Forms.ToolStripProgressBar();
-            this.stripPortArduino = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripOnlineArduino = new System.Windows.Forms.ToolStripProgressBar();
-            this.stripPortAutoSteer = new System.Windows.Forms.ToolStripStatusLabel();
-            this.stripOnlineAutoSteer = new System.Windows.Forms.ToolStripProgressBar();
             this.lblNorthing = new System.Windows.Forms.Label();
             this.lblEasting = new System.Windows.Forms.Label();
             this.lblSpeed = new System.Windows.Forms.Label();
@@ -221,7 +221,6 @@
             this.btnLidarOnOff = new System.Windows.Forms.Button();
             this.btnGeneratePath = new System.Windows.Forms.Button();
             this.btnDriveGenPath = new System.Windows.Forms.Button();
-            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnResetSim = new System.Windows.Forms.Button();
             this.btnResetSteerAngle = new System.Windows.Forms.Button();
             this.lblPureSteerAngle = new System.Windows.Forms.Label();
@@ -247,6 +246,7 @@
             this.btnContourPriority = new System.Windows.Forms.Button();
             this.btnCurve = new System.Windows.Forms.Button();
             this.btnLeftYouTurn = new System.Windows.Forms.Button();
+            this.btnManualAutoDrive = new System.Windows.Forms.Button();
             this.btnDrivePath = new System.Windows.Forms.Button();
             this.btnEnableAutoYouTurn = new System.Windows.Forms.Button();
             this.btnSectionOffAutoOn = new System.Windows.Forms.Button();
@@ -660,23 +660,20 @@
             // statusStrip1
             // 
             resources.ApplyResources(this.statusStrip1, "statusStrip1");
-            this.statusStrip1.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.statusStrip1.BackColor = System.Drawing.SystemColors.ControlLight;
             this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.stripHz,
-            this.toolStripBtnDropDownSpecialFunctions,
-            this.stripEqWidth,
             this.toolStripZoomIn,
+            this.toolStripBtnCamera,
             this.toolStripZoomOut,
+            this.stripEqWidth,
+            this.toolStripBtnDropDownSpecialFunctions,
             this.stripAreaRate,
-            this.toolStripDropDownBtnFuncs,
-            this.stripDistance,
             this.toolStripDropDownButton2,
+            this.stripDistance,
+            this.toolStripDropDownBtnFuncs,
             this.stripPortGPS,
-            this.stripOnlineGPS,
-            this.stripPortArduino,
-            this.stripOnlineArduino,
-            this.stripPortAutoSteer,
-            this.stripOnlineAutoSteer});
+            this.stripOnlineGPS});
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.RenderMode = System.Windows.Forms.ToolStripRenderMode.Professional;
             // 
@@ -685,6 +682,63 @@
             resources.ApplyResources(this.stripHz, "stripHz");
             this.stripHz.Margin = new System.Windows.Forms.Padding(0);
             this.stripHz.Name = "stripHz";
+            // 
+            // toolStripZoomIn
+            // 
+            resources.ApplyResources(this.toolStripZoomIn, "toolStripZoomIn");
+            this.toolStripZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripZoomIn.Name = "toolStripZoomIn";
+            this.toolStripZoomIn.ShowDropDownArrow = false;
+            this.toolStripZoomIn.Click += new System.EventHandler(this.toolStripZoomIn_Click);
+            // 
+            // toolStripBtnCamera
+            // 
+            resources.ApplyResources(this.toolStripBtnCamera, "toolStripBtnCamera");
+            this.toolStripBtnCamera.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripBtnCamera.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.CameraNorthToolStripMenuItem,
+            this.CameraFollowingToolStripMenuItem,
+            this.CameraTopToolStripMenuItem});
+            this.toolStripBtnCamera.Image = global::AgOpenGPS.Properties.Resources.Camera54;
+            this.toolStripBtnCamera.Name = "toolStripBtnCamera";
+            this.toolStripBtnCamera.ShowDropDownArrow = false;
+            // 
+            // CameraNorthToolStripMenuItem
+            // 
+            resources.ApplyResources(this.CameraNorthToolStripMenuItem, "CameraNorthToolStripMenuItem");
+            this.CameraNorthToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.CameraNorth64;
+            this.CameraNorthToolStripMenuItem.Name = "CameraNorthToolStripMenuItem";
+            this.CameraNorthToolStripMenuItem.Click += new System.EventHandler(this.CameraNorthToolStripMenuItem_Click);
+            // 
+            // CameraFollowingToolStripMenuItem
+            // 
+            resources.ApplyResources(this.CameraFollowingToolStripMenuItem, "CameraFollowingToolStripMenuItem");
+            this.CameraFollowingToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera3D64;
+            this.CameraFollowingToolStripMenuItem.Name = "CameraFollowingToolStripMenuItem";
+            this.CameraFollowingToolStripMenuItem.Click += new System.EventHandler(this.CameraFollowingToolStripMenuItem_Click);
+            // 
+            // CameraTopToolStripMenuItem
+            // 
+            resources.ApplyResources(this.CameraTopToolStripMenuItem, "CameraTopToolStripMenuItem");
+            this.CameraTopToolStripMenuItem.Image = global::AgOpenGPS.Properties.Resources.Camera2D64;
+            this.CameraTopToolStripMenuItem.Name = "CameraTopToolStripMenuItem";
+            this.CameraTopToolStripMenuItem.Click += new System.EventHandler(this.CameraTopToolStripMenuItem_Click);
+            // 
+            // toolStripZoomOut
+            // 
+            resources.ApplyResources(this.toolStripZoomOut, "toolStripZoomOut");
+            this.toolStripZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripZoomOut.Name = "toolStripZoomOut";
+            this.toolStripZoomOut.ShowDropDownArrow = false;
+            this.toolStripZoomOut.Click += new System.EventHandler(this.toolStripZoomOut_Click);
+            // 
+            // stripEqWidth
+            // 
+            this.stripEqWidth.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            resources.ApplyResources(this.stripEqWidth, "stripEqWidth");
+            this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
+            this.stripEqWidth.Name = "stripEqWidth";
+            this.stripEqWidth.Spring = true;
             // 
             // toolStripBtnDropDownSpecialFunctions
             // 
@@ -742,81 +796,11 @@
             this.toolStripBtnSnap.Name = "toolStripBtnSnap";
             this.toolStripBtnSnap.Click += new System.EventHandler(this.toolStripBtnSnap_Click);
             // 
-            // stripEqWidth
-            // 
-            this.stripEqWidth.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            resources.ApplyResources(this.stripEqWidth, "stripEqWidth");
-            this.stripEqWidth.Margin = new System.Windows.Forms.Padding(0);
-            this.stripEqWidth.Name = "stripEqWidth";
-            this.stripEqWidth.Spring = true;
-            // 
-            // toolStripZoomIn
-            // 
-            resources.ApplyResources(this.toolStripZoomIn, "toolStripZoomIn");
-            this.toolStripZoomIn.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripZoomIn.Name = "toolStripZoomIn";
-            this.toolStripZoomIn.ShowDropDownArrow = false;
-            this.toolStripZoomIn.Click += new System.EventHandler(this.toolStripZoomIn_Click);
-            // 
-            // toolStripZoomOut
-            // 
-            resources.ApplyResources(this.toolStripZoomOut, "toolStripZoomOut");
-            this.toolStripZoomOut.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripZoomOut.Name = "toolStripZoomOut";
-            this.toolStripZoomOut.ShowDropDownArrow = false;
-            this.toolStripZoomOut.Click += new System.EventHandler(this.toolStripZoomOut_Click);
-            // 
             // stripAreaRate
             // 
             resources.ApplyResources(this.stripAreaRate, "stripAreaRate");
             this.stripAreaRate.Margin = new System.Windows.Forms.Padding(0);
             this.stripAreaRate.Name = "stripAreaRate";
-            // 
-            // toolStripDropDownBtnFuncs
-            // 
-            resources.ApplyResources(this.toolStripDropDownBtnFuncs, "toolStripDropDownBtnFuncs");
-            this.toolStripDropDownBtnFuncs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolstripField,
-            this.toolstripBoundary,
-            this.toolstripHeadland,
-            this.toolstripResetTrip});
-            this.toolStripDropDownBtnFuncs.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
-            this.toolStripDropDownBtnFuncs.Name = "toolStripDropDownBtnFuncs";
-            this.toolStripDropDownBtnFuncs.ShowDropDownArrow = false;
-            // 
-            // toolstripField
-            // 
-            this.toolstripField.BackColor = System.Drawing.SystemColors.ButtonFace;
-            resources.ApplyResources(this.toolstripField, "toolstripField");
-            this.toolstripField.Name = "toolstripField";
-            this.toolstripField.Click += new System.EventHandler(this.toolstripField_Click);
-            // 
-            // toolstripBoundary
-            // 
-            this.toolstripBoundary.BackColor = System.Drawing.SystemColors.ButtonFace;
-            resources.ApplyResources(this.toolstripBoundary, "toolstripBoundary");
-            this.toolstripBoundary.Name = "toolstripBoundary";
-            this.toolstripBoundary.Click += new System.EventHandler(this.toolstripBoundary_Click);
-            // 
-            // toolstripHeadland
-            // 
-            this.toolstripHeadland.BackColor = System.Drawing.SystemColors.ButtonFace;
-            resources.ApplyResources(this.toolstripHeadland, "toolstripHeadland");
-            this.toolstripHeadland.Name = "toolstripHeadland";
-            this.toolstripHeadland.Click += new System.EventHandler(this.toolstripHeadland_Click);
-            // 
-            // toolstripResetTrip
-            // 
-            this.toolstripResetTrip.BackColor = System.Drawing.SystemColors.ButtonFace;
-            resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
-            this.toolstripResetTrip.Name = "toolstripResetTrip";
-            this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
-            // 
-            // stripDistance
-            // 
-            resources.ApplyResources(this.stripDistance, "stripDistance");
-            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
-            this.stripDistance.Name = "stripDistance";
             // 
             // toolStripDropDownButton2
             // 
@@ -829,6 +813,7 @@
             this.toolstripAutoSteerConfig,
             this.toolstripVehicleConfig,
             this.toolstripYouTurnConfig});
+            this.toolStripDropDownButton2.Image = global::AgOpenGPS.Properties.Resources.Settings48;
             this.toolStripDropDownButton2.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
             this.toolStripDropDownButton2.Name = "toolStripDropDownButton2";
             this.toolStripDropDownButton2.ShowDropDownArrow = false;
@@ -881,6 +866,53 @@
             this.toolstripYouTurnConfig.Name = "toolstripYouTurnConfig";
             this.toolstripYouTurnConfig.Click += new System.EventHandler(this.toolstripYouTurnConfig_Click);
             // 
+            // stripDistance
+            // 
+            resources.ApplyResources(this.stripDistance, "stripDistance");
+            this.stripDistance.Margin = new System.Windows.Forms.Padding(-4, 0, 0, 0);
+            this.stripDistance.Name = "stripDistance";
+            // 
+            // toolStripDropDownBtnFuncs
+            // 
+            resources.ApplyResources(this.toolStripDropDownBtnFuncs, "toolStripDropDownBtnFuncs");
+            this.toolStripDropDownBtnFuncs.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolstripField,
+            this.toolstripBoundary,
+            this.toolstripHeadland,
+            this.toolstripResetTrip});
+            this.toolStripDropDownBtnFuncs.Image = global::AgOpenGPS.Properties.Resources.start;
+            this.toolStripDropDownBtnFuncs.Margin = new System.Windows.Forms.Padding(0, 1, 0, 0);
+            this.toolStripDropDownBtnFuncs.Name = "toolStripDropDownBtnFuncs";
+            this.toolStripDropDownBtnFuncs.ShowDropDownArrow = false;
+            // 
+            // toolstripField
+            // 
+            this.toolstripField.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripField, "toolstripField");
+            this.toolstripField.Name = "toolstripField";
+            this.toolstripField.Click += new System.EventHandler(this.toolstripField_Click);
+            // 
+            // toolstripBoundary
+            // 
+            this.toolstripBoundary.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripBoundary, "toolstripBoundary");
+            this.toolstripBoundary.Name = "toolstripBoundary";
+            this.toolstripBoundary.Click += new System.EventHandler(this.toolstripBoundary_Click);
+            // 
+            // toolstripHeadland
+            // 
+            this.toolstripHeadland.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripHeadland, "toolstripHeadland");
+            this.toolstripHeadland.Name = "toolstripHeadland";
+            this.toolstripHeadland.Click += new System.EventHandler(this.toolstripHeadland_Click);
+            // 
+            // toolstripResetTrip
+            // 
+            this.toolstripResetTrip.BackColor = System.Drawing.SystemColors.ButtonFace;
+            resources.ApplyResources(this.toolstripResetTrip, "toolstripResetTrip");
+            this.toolstripResetTrip.Name = "toolstripResetTrip";
+            this.toolstripResetTrip.Click += new System.EventHandler(this.toolstripResetTrip_Click_1);
+            // 
             // stripPortGPS
             // 
             this.stripPortGPS.BorderStyle = System.Windows.Forms.Border3DStyle.Etched;
@@ -894,34 +926,6 @@
             this.stripOnlineGPS.ForeColor = System.Drawing.Color.DarkTurquoise;
             this.stripOnlineGPS.Name = "stripOnlineGPS";
             this.stripOnlineGPS.Value = 1;
-            // 
-            // stripPortArduino
-            // 
-            resources.ApplyResources(this.stripPortArduino, "stripPortArduino");
-            this.stripPortArduino.ForeColor = System.Drawing.Color.Red;
-            this.stripPortArduino.Name = "stripPortArduino";
-            // 
-            // stripOnlineArduino
-            // 
-            this.stripOnlineArduino.AutoToolTip = true;
-            this.stripOnlineArduino.ForeColor = System.Drawing.Color.Chartreuse;
-            this.stripOnlineArduino.Name = "stripOnlineArduino";
-            resources.ApplyResources(this.stripOnlineArduino, "stripOnlineArduino");
-            this.stripOnlineArduino.Value = 1;
-            // 
-            // stripPortAutoSteer
-            // 
-            resources.ApplyResources(this.stripPortAutoSteer, "stripPortAutoSteer");
-            this.stripPortAutoSteer.ForeColor = System.Drawing.Color.Red;
-            this.stripPortAutoSteer.Name = "stripPortAutoSteer";
-            // 
-            // stripOnlineAutoSteer
-            // 
-            this.stripOnlineAutoSteer.AutoToolTip = true;
-            this.stripOnlineAutoSteer.ForeColor = System.Drawing.Color.Chartreuse;
-            this.stripOnlineAutoSteer.Name = "stripOnlineAutoSteer";
-            resources.ApplyResources(this.stripOnlineAutoSteer, "stripOnlineAutoSteer");
-            this.stripOnlineAutoSteer.Value = 1;
             // 
             // lblNorthing
             // 
@@ -1610,6 +1614,7 @@
             this.btnMakeContourFromBoundary.BackColor = System.Drawing.Color.AliceBlue;
             this.btnMakeContourFromBoundary.ContextMenuStrip = this.contextMenuStripFlag;
             resources.ApplyResources(this.btnMakeContourFromBoundary, "btnMakeContourFromBoundary");
+            this.btnMakeContourFromBoundary.Image = global::AgOpenGPS.Properties.Resources.MakeBoundary;
             this.btnMakeContourFromBoundary.Name = "btnMakeContourFromBoundary";
             this.btnMakeContourFromBoundary.UseVisualStyleBackColor = false;
             this.btnMakeContourFromBoundary.Click += new System.EventHandler(this.btnMakeContourFromBoundary_Click);
@@ -1619,6 +1624,7 @@
             this.btnSmoothAB.BackColor = System.Drawing.Color.AliceBlue;
             this.btnSmoothAB.ContextMenuStrip = this.contextMenuStripFlag;
             resources.ApplyResources(this.btnSmoothAB, "btnSmoothAB");
+            this.btnSmoothAB.Image = global::AgOpenGPS.Properties.Resources.ABSmooth;
             this.btnSmoothAB.Name = "btnSmoothAB";
             this.btnSmoothAB.UseVisualStyleBackColor = false;
             this.btnSmoothAB.Click += new System.EventHandler(this.btnSmoothAB_Click);
@@ -1697,6 +1703,7 @@
             // 
             // autoPage4
             // 
+            this.autoPage4.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.autoPage4.Controls.Add(this.btnDeleteRecPath);
             this.autoPage4.Controls.Add(this.btnRecPathPauseRecord);
             this.autoPage4.Controls.Add(this.btnLidarOnOff);
@@ -1704,7 +1711,6 @@
             this.autoPage4.Controls.Add(this.btnDriveGenPath);
             resources.ApplyResources(this.autoPage4, "autoPage4");
             this.autoPage4.Name = "autoPage4";
-            this.autoPage4.UseVisualStyleBackColor = true;
             // 
             // btnDeleteRecPath
             // 
@@ -1745,14 +1751,6 @@
             this.btnDriveGenPath.Name = "btnDriveGenPath";
             this.btnDriveGenPath.UseVisualStyleBackColor = false;
             this.btnDriveGenPath.Click += new System.EventHandler(this.btnDriveGenPath_Click);
-            // 
-            // btnManualAutoDrive
-            // 
-            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
-            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
-            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
-            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
-            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
             // 
             // btnResetSim
             // 
@@ -1975,6 +1973,14 @@
             this.btnLeftYouTurn.UseVisualStyleBackColor = false;
             this.btnLeftYouTurn.Click += new System.EventHandler(this.btnLeftYouTurn_Click);
             // 
+            // btnManualAutoDrive
+            // 
+            this.btnManualAutoDrive.BackColor = System.Drawing.Color.AliceBlue;
+            resources.ApplyResources(this.btnManualAutoDrive, "btnManualAutoDrive");
+            this.btnManualAutoDrive.Name = "btnManualAutoDrive";
+            this.btnManualAutoDrive.UseVisualStyleBackColor = false;
+            this.btnManualAutoDrive.Click += new System.EventHandler(this.btnManualAutoDrive_Click);
+            // 
             // btnDrivePath
             // 
             this.btnDrivePath.BackColor = System.Drawing.Color.AliceBlue;
@@ -2138,7 +2144,6 @@
         private System.Windows.Forms.ToolStripStatusLabel stripDistance;
         private System.Windows.Forms.ToolStripStatusLabel stripPortGPS;
         private System.Windows.Forms.ToolStripStatusLabel stripAreaRate;
-        private System.Windows.Forms.ToolStripStatusLabel stripPortArduino;
         private System.Windows.Forms.ToolStripMenuItem resetALLToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem loadVehicleToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem saveVehicleToolStripMenuItem;
@@ -2180,15 +2185,12 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem fieldToolStripMenuItem;
         private System.Windows.Forms.ToolStripProgressBar stripOnlineGPS;
-        private System.Windows.Forms.ToolStripProgressBar stripOnlineArduino;
         private System.Windows.Forms.ToolStripMenuItem colorsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sectionToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem fieldToolStripMenuItem1;
         private System.Windows.Forms.Button btnSection8Man;
         private System.Windows.Forms.Button btnSection7Man;
         private System.Windows.Forms.Button btnSection6Man;
-        private System.Windows.Forms.ToolStripStatusLabel stripPortAutoSteer;
-        private System.Windows.Forms.ToolStripProgressBar stripOnlineAutoSteer;
         private System.Windows.Forms.ToolStripMenuItem logNMEAMenuItem;
         private System.Windows.Forms.ToolStripMenuItem toolStripUnitsMenu;
         private System.Windows.Forms.ToolStripMenuItem metricToolStrip;
@@ -2353,6 +2355,10 @@
         private System.Windows.Forms.ToolStripMenuItem shortcutKeysToolStripMenuItem;
         private System.Windows.Forms.Label lblLookAhead;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripBtnCamera;
+        private System.Windows.Forms.ToolStripMenuItem CameraFollowingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CameraNorthToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem CameraTopToolStripMenuItem;
     }
 }
 

@@ -254,15 +254,15 @@ namespace AgOpenGPS
             //gl.Vertex(1.8, 0, -antennaPivot);
             gl.End();
 
-            gl.LineWidth(1);
-            gl.Color(0.9, 0.95, 0.10);
-            gl.Begin(OpenGL.GL_LINE_STRIP);
-            {
-                gl.Vertex(1.2, -antennaPivot + wheelbase + 8, 0.0);
-                gl.Vertex(0, -antennaPivot + wheelbase + 10, 0.0);
-                gl.Vertex(-1.2, -antennaPivot + wheelbase + 8, 0.0);
-            }
-            gl.End();
+            //gl.LineWidth(1);
+            //gl.Color(0.9, 0.95, 0.10);
+            //gl.Begin(OpenGL.GL_LINE_STRIP);
+            //{
+            //    gl.Vertex(1.2, -antennaPivot + wheelbase + 8, 0.0);
+            //    gl.Vertex(0, -antennaPivot + wheelbase + 10, 0.0);
+            //    gl.Vertex(-1.2, -antennaPivot + wheelbase + 8, 0.0);
+            //}
+            //gl.End();
 
             //draw the rigid hitch
             gl.Color(0.37f, 0.37f, 0.97f);

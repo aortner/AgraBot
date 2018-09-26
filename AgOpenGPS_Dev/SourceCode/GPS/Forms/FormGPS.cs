@@ -546,7 +546,6 @@ namespace AgOpenGPS
             return texture[0];
         }// Load Bitmaps And Convert To Textures
 
-
         //start the UDP server
         private void StartUDPServer()
         {
