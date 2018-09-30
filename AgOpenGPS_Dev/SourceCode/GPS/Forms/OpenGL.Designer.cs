@@ -218,7 +218,65 @@ namespace AgOpenGPS
                 }
 
                 //screen text for debug
-                //gl.DrawText(120, 10, 1, 1, 1, "Courier Bold", 18, "LookA: " + currentStepFix.ToString());
+                //screen text for debug
+                if (ABLine.iscabortner)
+                {
+                    gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Ortner - should be in settings 10-20 ");
+                   
+
+                    
+                }
+
+                if (ABLine.iscabschelter) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Schelter");
+                if (ABLine.iscabfix) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead fixed ");
+                if (ABLine.iscabspeed) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Speedlookahed");
+
+                if (ABLine.iscabsaving) gl.DrawText(120, 80, 1, 1, 1, "Courier Bold", 18, "Saving to c:temp - please create");
+
+
+                //if (btnABLine.Enabled) gl.DrawText(120, 180, 1, 1, 1, "Courier Bold", 18, "GoalPoint AB : " + ABLine.goalPointDistance.ToString()); //ortner
+                //else gl.DrawText(120, 200, 1, 1, 1, "Courier Bold", 18, "GoalPoint ABC : " + curve.goalPointDistance.ToString()); //ortner
+                if (btnABLine.Enabled)
+
+                {
+                    gl.DrawText(120, 180, 1, 1, 1, "Courier Bold", 18, "GoalPoint AB    : " + Convert.ToString(Math.Round(ABLine.goalPointDistance, 2)));
+                    gl.DrawText(120, 140, 1, 1, 1, "Courier Bold", 18, "PID Steerangel  : " + Convert.ToString(Math.Round(ABLine.steerangelpid, 2)));
+                    gl.DrawText(120, 160, 1, 1, 1, "Courier Bold", 18, "I Error         : " + Convert.ToString(Math.Round(ABLine.i_error, 2)));
+
+                    if (ABLine.isfilter)
+                    {
+                        gl.DrawText(120, 240, 1, 1, 1, "Courier Bold", 18, "ohne Filter   : " + guidanceLineDistanceOff.ToString());
+                        gl.DrawText(120, 220, 1, 1, 1, "Courier Bold", 18, "Filter   : " + Convert.ToString(Math.Round(ABLine.distancefilter, 2)));
+                    }
+                    gl.DrawText(120, 120, 1, 1, 1, "Courier Bold", 18, "PurePursuitAngle: " + Convert.ToString(Math.Round(ABLine.steerAngleAB, 2)));
+
+                }
+                else
+                {
+
+                    gl.DrawText(120, 200, 1, 1, 1, "Courier Bold", 18, "GoalPoint ABC    : " + Convert.ToString(Math.Round(curve.goalPointDistance, 2)));
+                    gl.DrawText(120, 140, 1, 1, 1, "Courier Bold", 18, "PID Steerangel  : " + Convert.ToString(Math.Round(curve.steerangelpid, 2)));
+                    gl.DrawText(120, 160, 1, 1, 1, "Courier Bold", 18, "I Error         : " + Convert.ToString(Math.Round(curve.i_error, 2)));
+
+                    gl.DrawText(120, 120, 1, 1, 1, "Courier Bold", 18, "PurePursuitAngle: " + Convert.ToString(Math.Round(curve.steerAngleCu, 2)));
+
+                    if (ABLine.isfilter)
+                    {
+                        gl.DrawText(120, 240, 1, 1, 1, "Courier Bold", 18, "ohne Filter   : " + guidanceLineDistanceOff.ToString());
+                        gl.DrawText(120, 220, 1, 1, 1, "Courier Bold", 18, "Filter   : " + Convert.ToString(Math.Round(curve.distancefilter, 2)));
+                    }
+
+                  
+                }
+
+
+                gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Press e to save ");
+
+
+
+                
+
+
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + test2.ToString());
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
                 //gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Seq: " + yt.isSequenceTriggered.ToString());

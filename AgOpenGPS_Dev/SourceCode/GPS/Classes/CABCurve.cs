@@ -6,6 +6,22 @@ namespace AgOpenGPS
 {
     public class CABCurve
     {
+
+        //pid  steering
+        public double kp = Properties.Settings.Default.pid_kp;
+        public double ki = Properties.Settings.Default.pid_ki;
+        public double kd = Properties.Settings.Default.pid_kd;
+
+
+        public double distancefilter;
+
+        public double p_error, i_error, d_error;
+        public double cte;
+        public double steerangelpid;
+        double pre_cte;
+
+        public double goalPointDistance;
+
         //pointers to mainform controls
         private readonly FormGPS mf;
 
@@ -296,24 +312,110 @@ namespace AgOpenGPS
                     return;
                 }
 
-                //used for accumulating distance to find goal point
-                double distSoFar;
 
-                //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
-                double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+                if (mf.ABLine.isfilter)
+                {
+                    distancefilter = ((9 * distancefilter) + distanceFromCurrentLine) / 10;
+                    distanceFromCurrentLine = distancefilter;
+                }
+                //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
+                //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-                if (distanceFromCurrentLine < 1.0)
-                    goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
+                if (mf.ABLine.iscabortner)
+                {
+
+                    goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * mf.vehicle.goalPointLookAhead) * mf.ABLine.speedmaxlahead; // goalPointLookAhead should be 10-20
+
+                    if (distanceFromCurrentLine > 0.4)
+                    {
+                        goalPointDistance = (mf.pn.speed - 0.4 * mf.vehicle.goalPointLookAhead);
+                        goalPointDistance += (distanceFromCurrentLine - 0.4) * mf.vehicle.goalPointLookAhead * mf.ABLine.speedmaxlahead;
+
+                        if (goalPointDistance > mf.pn.speed * mf.ABLine.speedmaxlahead) goalPointDistance = mf.pn.speed * mf.ABLine.speedmaxlahead;
+                    }
+
+                    if (goalPointDistance < mf.ABLine.speedminlahead) goalPointDistance = mf.ABLine.speedminlahead;
+                }
+                else if (mf.ABLine.iscabfix)
+                {
+                    goalPointDistance = mf.vehicle.goalPointLookAhead;
+                }
+                else if (mf.ABLine.iscabspeed)
+                {
+                    goalPointDistance = mf.pn.speed * mf.ABLine.speedmaxlahead;
+                    if (goalPointDistance < mf.ABLine.speedminlahead) goalPointDistance = mf.ABLine.speedminlahead;
+                }
+                else if (mf.ABLine.iscabschelter)
+                {
+                    //!!!!!how far should goal point be away
+                    //!!!!!double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
+                    //!!!!!if (goalPointDistance < mf.vehicle.minLookAheadDistance) goalPointDistance = mf.vehicle.minLookAheadDistance;
+
+
+                    //!!!!!Versuch: how far should goal point be away
+
+                    if (distanceFromCurrentLine < 0.3)
+                    {
+                        goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777) - (distanceFromCurrentLine * 12.5 * (mf.pn.speed / 10));
+                    }
+
+                    if (distanceFromCurrentLine >= 0.3 & distanceFromCurrentLine < 0.6)
+                    {
+                        goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777) - (((0.3 - (distanceFromCurrentLine - 0.3)) * 12.5 * (mf.pn.speed / 10)));
+                    }
+
+                    if (distanceFromCurrentLine >= 0.6 & distanceFromCurrentLine < 1)
+                    {
+                        goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);
+                    }
+
+                    if (distanceFromCurrentLine > 1 & distanceFromCurrentLine < 2.5)
+                    {
+                        goalPointDistance = ((mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777) * (((distanceFromCurrentLine - 1) / 10) + 1));
+                    }
+
+                    if (distanceFromCurrentLine >= 2.5)
+                    {
+                        goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777) * 1.15;
+                    }
+
+
+
+                    //minimum of 3.0 meters look ahead
+                    if (goalPointDistance < mf.ABLine.speedminlahead) goalPointDistance = mf.ABLine.speedminlahead;
+
+
+
+
+
+                }
                 else
-                    goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
+                {
 
-                if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+                    //how far should goal point be away  - speed * seconds * kmph -> m/s then limit min value
+                    goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
+                    //used for accumulating distance to find goal point
+
+
+
+                    if (distanceFromCurrentLine < 1.0)
+                        goalPointDistance += distanceFromCurrentLine * goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
+                    else
+                        goalPointDistance += goalPointDistance * mf.vehicle.goalPointDistanceMultiplier;
+
+                    if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
+
+                }
 
                 mf.test1 = goalPointDistance;
 
+
+
+
+
                 // used for calculating the length squared of next segment.
                 double tempDist = 0.0;
-
+                double distSoFar;
                 if (!isSameWay)
                 {
                     //counting down
@@ -443,8 +545,47 @@ namespace AgOpenGPS
                     if (isOnRightSideCurrentLine) distanceFromCurrentLine *= -1.0;
                 }
 
+
+
+
+                //pid steering
+                cte = distanceFromCurrentLine / 1000;
+                pre_cte = p_error;
+
+                p_error = cte;
+                i_error += cte;
+                d_error = cte - pre_cte;
+
+                if (i_error > Properties.Settings.Default.pid_maxi_error) i_error = Properties.Settings.Default.pid_maxi_error;
+                if (i_error < (Properties.Settings.Default.pid_maxi_error * -1.0)) i_error = Properties.Settings.Default.pid_maxi_error * -1.0;
+
+                steerangelpid = -kp * p_error - ki * i_error - kd * d_error;
+                //  steerangelpid *= 10;
+                if (steerangelpid < -mf.vehicle.maxSteerAngle) steerangelpid = -mf.vehicle.maxSteerAngle;
+                if (steerangelpid > mf.vehicle.maxSteerAngle) steerangelpid = mf.vehicle.maxSteerAngle;
+
+                if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)  //also for pid
+                {
+                    steerangelpid = glm.toDegrees(steerangelpid > 0 ? (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity)
+                        / (glm.twoPI * mf.pn.speed * 0.277777)))
+                        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
+                }
+
+               
+
+
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
-                mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
+
+                if (Properties.Settings.Default.is_pidcontroller) mf.guidanceLineSteerAngle = (Int16)(steerangelpid * 100);
+                else mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
+
+
+
+
+
+
+
+              
 
                 if (mf.yt.isYouTurnShapeDisplayed)
                 {

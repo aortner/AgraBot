@@ -280,7 +280,7 @@
             // 
             this.hsbarLookAhead.LargeChange = 1;
             this.hsbarLookAhead.Location = new System.Drawing.Point(17, 45);
-            this.hsbarLookAhead.Maximum = 60;
+            this.hsbarLookAhead.Maximum = 260;
             this.hsbarLookAhead.Minimum = 5;
             this.hsbarLookAhead.Name = "hsbarLookAhead";
             this.hsbarLookAhead.Size = new System.Drawing.Size(287, 23);

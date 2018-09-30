@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnCancel = new System.Windows.Forms.Button();
             this.bntOK = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -70,6 +71,29 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tboxTinkerUID = new System.Windows.Forms.TextBox();
             this.tabGuidance = new System.Windows.Forms.TabPage();
+            this.label14 = new System.Windows.Forms.Label();
+            this.numericUpDown_max1 = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_PID = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.numericUpDown_D = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_I = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown_P = new System.Windows.Forms.NumericUpDown();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.radioButtonspeedlookahed = new System.Windows.Forms.RadioButton();
+            this.radioButton1 = new System.Windows.Forms.RadioButton();
+            this.radioButtonFixed = new System.Windows.Forms.RadioButton();
+            this.radioButtonSchelter = new System.Windows.Forms.RadioButton();
+            this.radioButtonOrtner = new System.Windows.Forms.RadioButton();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.maxlookahedtext = new System.Windows.Forms.NumericUpDown();
+            this.minlookahedtext = new System.Windows.Forms.NumericUpDown();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip2 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip3 = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTip4 = new System.Windows.Forms.ToolTip(this.components);
             this.tabControl1.SuspendLayout();
             this.tabDisplay.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -85,6 +109,14 @@
             this.btnRollZero.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
+            this.tabGuidance.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_D)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_I)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_P)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxlookahedtext)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minlookahedtext)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -390,6 +422,7 @@
             this.headingGroupBox.TabIndex = 84;
             this.headingGroupBox.TabStop = false;
             this.headingGroupBox.Text = "Heading By...";
+            this.headingGroupBox.Enter += new System.EventHandler(this.headingGroupBox_Enter);
             // 
             // rbtnHeadingHDT
             // 
@@ -659,15 +692,339 @@
             this.tboxTinkerUID.Name = "tboxTinkerUID";
             this.tboxTinkerUID.Size = new System.Drawing.Size(169, 33);
             this.tboxTinkerUID.TabIndex = 78;
+            this.tboxTinkerUID.TextChanged += new System.EventHandler(this.tboxTinkerUID_TextChanged);
             // 
             // tabGuidance
             // 
+            this.tabGuidance.Controls.Add(this.label14);
+            this.tabGuidance.Controls.Add(this.numericUpDown_max1);
+            this.tabGuidance.Controls.Add(this.checkBox_PID);
+            this.tabGuidance.Controls.Add(this.label13);
+            this.tabGuidance.Controls.Add(this.label12);
+            this.tabGuidance.Controls.Add(this.label11);
+            this.tabGuidance.Controls.Add(this.numericUpDown_D);
+            this.tabGuidance.Controls.Add(this.numericUpDown_I);
+            this.tabGuidance.Controls.Add(this.numericUpDown_P);
+            this.tabGuidance.Controls.Add(this.groupBox1);
+            this.tabGuidance.Controls.Add(this.label8);
+            this.tabGuidance.Controls.Add(this.label5);
+            this.tabGuidance.Controls.Add(this.maxlookahedtext);
+            this.tabGuidance.Controls.Add(this.minlookahedtext);
             this.tabGuidance.Location = new System.Drawing.Point(4, 54);
             this.tabGuidance.Name = "tabGuidance";
             this.tabGuidance.Size = new System.Drawing.Size(948, 470);
             this.tabGuidance.TabIndex = 11;
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(814, 310);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(102, 39);
+            this.label14.TabIndex = 103;
+            this.label14.Text = "MAX I";
+            // 
+            // numericUpDown_max1
+            // 
+            this.numericUpDown_max1.DecimalPlaces = 2;
+            this.numericUpDown_max1.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown_max1.Location = new System.Drawing.Point(739, 368);
+            this.numericUpDown_max1.Name = "numericUpDown_max1";
+            this.numericUpDown_max1.Size = new System.Drawing.Size(163, 85);
+            this.numericUpDown_max1.TabIndex = 102;
+            this.numericUpDown_max1.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDown_max1.Click += new System.EventHandler(this.numericUpDown_max1_Click);
+            // 
+            // checkBox_PID
+            // 
+            this.checkBox_PID.AutoSize = true;
+            this.checkBox_PID.Location = new System.Drawing.Point(30, 296);
+            this.checkBox_PID.Name = "checkBox_PID";
+            this.checkBox_PID.Size = new System.Drawing.Size(425, 43);
+            this.checkBox_PID.TabIndex = 101;
+            this.checkBox_PID.Text = "Use PID Steering Controller";
+            this.checkBox_PID.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(480, 388);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(39, 39);
+            this.label13.TabIndex = 99;
+            this.label13.Text = "D";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(182, 388);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(29, 39);
+            this.label12.TabIndex = 98;
+            this.label12.Text = "I";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(-7, 388);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(35, 39);
+            this.label11.TabIndex = 97;
+            this.label11.Text = "P";
+            // 
+            // numericUpDown_D
+            // 
+            this.numericUpDown_D.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown_D.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_D.Location = new System.Drawing.Point(525, 368);
+            this.numericUpDown_D.Maximum = new decimal(new int[] {
+            500,
+            0,
+            0,
+            0});
+            this.numericUpDown_D.Name = "numericUpDown_D";
+            this.numericUpDown_D.Size = new System.Drawing.Size(163, 85);
+            this.numericUpDown_D.TabIndex = 96;
+            this.numericUpDown_D.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDown_D.Click += new System.EventHandler(this.numericUpDown_D_Click);
+            // 
+            // numericUpDown_I
+            // 
+            this.numericUpDown_I.DecimalPlaces = 4;
+            this.numericUpDown_I.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown_I.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            262144});
+            this.numericUpDown_I.Location = new System.Drawing.Point(217, 368);
+            this.numericUpDown_I.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            327680});
+            this.numericUpDown_I.Name = "numericUpDown_I";
+            this.numericUpDown_I.Size = new System.Drawing.Size(257, 85);
+            this.numericUpDown_I.TabIndex = 95;
+            this.numericUpDown_I.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDown_I.Click += new System.EventHandler(this.numericUpDown_I_Click);
+            // 
+            // numericUpDown_P
+            // 
+            this.numericUpDown_P.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown_P.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.numericUpDown_P.Location = new System.Drawing.Point(30, 368);
+            this.numericUpDown_P.Maximum = new decimal(new int[] {
+            300,
+            0,
+            0,
+            0});
+            this.numericUpDown_P.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown_P.Name = "numericUpDown_P";
+            this.numericUpDown_P.Size = new System.Drawing.Size(125, 85);
+            this.numericUpDown_P.TabIndex = 94;
+            this.numericUpDown_P.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            this.numericUpDown_P.Click += new System.EventHandler(this.numericUpDown_P_Click);
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.radioButtonspeedlookahed);
+            this.groupBox1.Controls.Add(this.radioButton1);
+            this.groupBox1.Controls.Add(this.radioButtonFixed);
+            this.groupBox1.Controls.Add(this.radioButtonSchelter);
+            this.groupBox1.Controls.Add(this.radioButtonOrtner);
+            this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
+            this.groupBox1.Location = new System.Drawing.Point(487, 20);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(321, 325);
+            this.groupBox1.TabIndex = 93;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Alternative LookAhead";
+            // 
+            // radioButtonspeedlookahed
+            // 
+            this.radioButtonspeedlookahed.AutoSize = true;
+            this.radioButtonspeedlookahed.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonspeedlookahed.Location = new System.Drawing.Point(53, 290);
+            this.radioButtonspeedlookahed.Name = "radioButtonspeedlookahed";
+            this.radioButtonspeedlookahed.Size = new System.Drawing.Size(246, 29);
+            this.radioButtonspeedlookahed.TabIndex = 4;
+            this.radioButtonspeedlookahed.Text = "speed*maxlookahed";
+            this.toolTip4.SetToolTip(this.radioButtonspeedlookahed, "Verwendet Geschwindkeit mal max Lookahed. Gute Werte zw 0,7 und 1. Min lookahed w" +
+        "ird als begrenzung nach unten verwendet in meter 3-4");
+            this.radioButtonspeedlookahed.UseVisualStyleBackColor = true;
+            this.radioButtonspeedlookahed.CheckedChanged += new System.EventHandler(this.radioButtonspeedlookahed_CheckedChanged);
+            // 
+            // radioButton1
+            // 
+            this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
+            this.radioButton1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButton1.Location = new System.Drawing.Point(53, 231);
+            this.radioButton1.Name = "radioButton1";
+            this.radioButton1.Size = new System.Drawing.Size(122, 29);
+            this.radioButton1.TabIndex = 3;
+            this.radioButton1.TabStop = true;
+            this.radioButton1.Text = "Standart";
+            this.radioButton1.UseVisualStyleBackColor = true;
+            this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
+            // 
+            // radioButtonFixed
+            // 
+            this.radioButtonFixed.AutoSize = true;
+            this.radioButtonFixed.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonFixed.Location = new System.Drawing.Point(53, 171);
+            this.radioButtonFixed.Name = "radioButtonFixed";
+            this.radioButtonFixed.Size = new System.Drawing.Size(138, 29);
+            this.radioButtonFixed.TabIndex = 2;
+            this.radioButtonFixed.Text = "Brian New";
+            this.toolTip3.SetToolTip(this.radioButtonFixed, "Fixer Look Ahead, muss je nach Geschwindkeit neu eingestellt werden.");
+            this.radioButtonFixed.UseVisualStyleBackColor = true;
+            this.radioButtonFixed.CheckedChanged += new System.EventHandler(this.radioButtonFixed_CheckedChanged);
+            // 
+            // radioButtonSchelter
+            // 
+            this.radioButtonSchelter.AutoSize = true;
+            this.radioButtonSchelter.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonSchelter.Location = new System.Drawing.Point(53, 113);
+            this.radioButtonSchelter.Name = "radioButtonSchelter";
+            this.radioButtonSchelter.Size = new System.Drawing.Size(115, 29);
+            this.radioButtonSchelter.TabIndex = 1;
+            this.radioButtonSchelter.Text = "Schelter";
+            this.toolTip2.SetToolTip(this.radioButtonSchelter, "Änlich wie Ortner nur mit Fixen Werten. Min LookAhead ist aktiv");
+            this.radioButtonSchelter.UseVisualStyleBackColor = true;
+            this.radioButtonSchelter.CheckedChanged += new System.EventHandler(this.radioButtonSchelter_CheckedChanged);
+            // 
+            // radioButtonOrtner
+            // 
+            this.radioButtonOrtner.AutoSize = true;
+            this.radioButtonOrtner.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.radioButtonOrtner.Location = new System.Drawing.Point(53, 55);
+            this.radioButtonOrtner.Name = "radioButtonOrtner";
+            this.radioButtonOrtner.Size = new System.Drawing.Size(98, 29);
+            this.radioButtonOrtner.TabIndex = 0;
+            this.radioButtonOrtner.Text = "Ortner";
+            this.toolTip1.SetToolTip(this.radioButtonOrtner, "Verwendet Min und Maxlookahed. Verringert den Abstand je weiter man von der Linie" +
+        " wegkommt. Als Faktor wird hier LookAhead genommen welcher auf 10 - 20 eingestel" +
+        "lt werden soll. Min lookahead in Meter");
+            this.radioButtonOrtner.UseVisualStyleBackColor = true;
+            this.radioButtonOrtner.CheckedChanged += new System.EventHandler(this.radioButton3_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label8.Location = new System.Drawing.Point(26, 159);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(300, 23);
+            this.label8.TabIndex = 92;
+            this.label8.Text = "MaxlookAhead als Faktor zu Speed";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Tahoma", 14.25F);
+            this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.label5.Location = new System.Drawing.Point(26, 20);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(206, 23);
+            this.label5.TabIndex = 91;
+            this.label5.Text = "MinLookAhead in Meter";
+            // 
+            // maxlookahedtext
+            // 
+            this.maxlookahedtext.DecimalPlaces = 2;
+            this.maxlookahedtext.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.maxlookahedtext.Increment = new decimal(new int[] {
+            5,
+            0,
+            0,
+            131072});
+            this.maxlookahedtext.Location = new System.Drawing.Point(30, 190);
+            this.maxlookahedtext.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            65536});
+            this.maxlookahedtext.Minimum = new decimal(new int[] {
+            4,
+            0,
+            0,
+            65536});
+            this.maxlookahedtext.Name = "maxlookahedtext";
+            this.maxlookahedtext.Size = new System.Drawing.Size(163, 85);
+            this.maxlookahedtext.TabIndex = 90;
+            this.maxlookahedtext.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            // 
+            // minlookahedtext
+            // 
+            this.minlookahedtext.DecimalPlaces = 1;
+            this.minlookahedtext.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.minlookahedtext.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            65536});
+            this.minlookahedtext.Location = new System.Drawing.Point(30, 55);
+            this.minlookahedtext.Maximum = new decimal(new int[] {
+            40,
+            0,
+            0,
+            65536});
+            this.minlookahedtext.Minimum = new decimal(new int[] {
+            2,
+            0,
+            0,
+            65536});
+            this.minlookahedtext.Name = "minlookahedtext";
+            this.minlookahedtext.Size = new System.Drawing.Size(163, 85);
+            this.minlookahedtext.TabIndex = 89;
+            this.minlookahedtext.Value = new decimal(new int[] {
+            10,
+            0,
+            0,
+            65536});
+            // 
+            // toolTip1
+            // 
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ShowAlways = true;
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.Test);
             // 
             // FormDisplaySettings
             // 
@@ -703,6 +1060,16 @@
             this.groupBox7.PerformLayout();
             this.groupBox6.ResumeLayout(false);
             this.groupBox6.PerformLayout();
+            this.tabGuidance.ResumeLayout(false);
+            this.tabGuidance.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_D)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_I)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_P)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.maxlookahedtext)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.minlookahedtext)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -751,5 +1118,28 @@
         private System.Windows.Forms.RadioButton rbtnHeadingHDT;
         private System.Windows.Forms.RadioButton rbtnHeadingGPS;
         private System.Windows.Forms.RadioButton rbtnHeadingFix;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.NumericUpDown maxlookahedtext;
+        private System.Windows.Forms.NumericUpDown minlookahedtext;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton radioButtonFixed;
+        private System.Windows.Forms.RadioButton radioButtonSchelter;
+        private System.Windows.Forms.RadioButton radioButtonOrtner;
+        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton radioButtonspeedlookahed;
+        private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.ToolTip toolTip3;
+        private System.Windows.Forms.ToolTip toolTip2;
+        private System.Windows.Forms.ToolTip toolTip4;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.NumericUpDown numericUpDown_D;
+        private System.Windows.Forms.NumericUpDown numericUpDown_I;
+        private System.Windows.Forms.NumericUpDown numericUpDown_P;
+        private System.Windows.Forms.CheckBox checkBox_PID;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.NumericUpDown numericUpDown_max1;
     }
 }

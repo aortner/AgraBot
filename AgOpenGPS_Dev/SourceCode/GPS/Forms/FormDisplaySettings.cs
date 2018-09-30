@@ -10,8 +10,9 @@ namespace AgOpenGPS
 
         private decimal triResolution, minFixStepDistance, boundaryDistance;
         private int lightbarCmPerPixie;
-        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
+        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI, ispid;
         private string headingFromWhichSource;
+
 
         public FormDisplaySettings(Form callingForm)
         {
@@ -38,13 +39,31 @@ namespace AgOpenGPS
             nudLightbarCmPerPixel.Value = (Properties.Settings.Default.setDisplay_lightbarCmPerPixel);
 
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
+            maxlookahedtext.Value = (decimal)Properties.Settings.Default.speedmaxlookahead;
+            minlookahedtext.Value = (decimal)Properties.Settings.Default.speedminlookahead;
+            numericUpDown_P.Value = (decimal)mf.ABLine.kp;
+            numericUpDown_I.Value = (decimal)mf.ABLine.ki;
+            numericUpDown_D.Value = (decimal)mf.ABLine.kd;
+            numericUpDown_max1.Value = (decimal)Properties.Settings.Default.pid_maxi_error;
+
+
+
+            checkBox_PID.Checked = Properties.Settings.Default.is_pidcontroller;
 
             cboxHeadingBNO.Checked = Properties.Settings.Default.setIMU_isHeadingFromBNO;
             cboxHeadingBrick.Checked = Properties.Settings.Default.setIMU_isHeadingFromBrick;
             cboxRollDogs.Checked = Properties.Settings.Default.setIMU_isRollFromDogs;
             cboxHeadingPAOGI.Checked = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
             cboxRollPAOGI.Checked = Properties.Settings.Default.setIMU_isRollFromPAOGI;
+            radioButtonOrtner.Checked = mf.ABLine.iscabortner;
+            radioButtonSchelter.Checked = mf.ABLine.iscabschelter;
+            radioButtonFixed.Checked = mf.ABLine.iscabfix;
+            radioButtonspeedlookahed.Checked = mf.ABLine.iscabspeed;
 
+
+
+
+            ispid = Properties.Settings.Default.is_pidcontroller;
             isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
             isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
             isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
@@ -58,6 +77,7 @@ namespace AgOpenGPS
             if (headingFromWhichSource == "Fix") rbtnHeadingFix.Checked = true;
             else if (headingFromWhichSource == "GPS") rbtnHeadingGPS.Checked = true;
             else if (headingFromWhichSource == "HDT") rbtnHeadingHDT.Checked = true;
+
         }
 
         private void bntOK_Click(object sender, EventArgs e)
@@ -87,6 +107,24 @@ namespace AgOpenGPS
             mf.ahrs.isRollBrick = isRollBrick;
             Properties.Settings.Default.setIMU_isRollFromPAOGI = isRollPAOGI;
             Properties.Settings.Default.setIMU_isHeadingFromPAOGI = isHeadingPAOGI;
+            mf.ABLine.speedmaxlahead = (double)maxlookahedtext.Value;
+            mf.ABLine.speedminlahead = (double)minlookahedtext.Value;
+            Properties.Settings.Default.speedmaxlookahead = (double)maxlookahedtext.Value;
+
+            Properties.Settings.Default.speedminlookahead = (double)minlookahedtext.Value;
+            mf.ABLine.kp = (double)numericUpDown_P.Value;
+            mf.ABLine.ki = (double)numericUpDown_I.Value;
+            mf.ABLine.kd = (double)numericUpDown_D.Value;
+
+            Properties.Settings.Default.pid_kp = mf.ABLine.kp;
+
+            Properties.Settings.Default.pid_ki = mf.ABLine.ki;
+            Properties.Settings.Default.pid_kd = mf.ABLine.kd;
+
+            Properties.Settings.Default.is_pidcontroller = checkBox_PID.Checked;
+
+
+
 
             Properties.Settings.Default.setDisplay_lightbarCmPerPixel = lightbarCmPerPixie;
             mf.lightbarCmPerPixel = lightbarCmPerPixie;
@@ -157,6 +195,129 @@ namespace AgOpenGPS
                 isRollDogs = false;
                 isRollBrick = false;
             }
+        }
+
+        private void tboxTinkerUID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void minlookahedtext_ValueChanged(object sender, EventArgs e)
+        {
+        }
+
+        private void maxlookahedtext_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Brian_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void headingGroupBox_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Brian_ItemCheck(object sender, ItemCheckEventArgs e)
+        {
+
+        }
+
+        private void Brian_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.iscabortner = true;
+            mf.ABLine.iscabschelter = false;
+            mf.ABLine.iscabfix = false;
+            mf.ABLine.iscabspeed = false;
+
+        }
+
+        private void radioButtonSchelter_CheckedChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.iscabortner = false;
+            mf.ABLine.iscabschelter = true;
+            mf.ABLine.iscabfix = false;
+            mf.ABLine.iscabspeed = false;
+
+        }
+
+        private void radioButtonFixed_CheckedChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.iscabortner = false;
+            mf.ABLine.iscabschelter = false;
+            mf.ABLine.iscabfix = true;
+            mf.ABLine.iscabspeed = false;
+
+        }
+
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+        {
+            mf.ABLine.iscabortner = false;
+            mf.ABLine.iscabschelter = false;
+            mf.ABLine.iscabfix = false;
+            mf.ABLine.iscabspeed = false;
+        }
+
+        private void radioButtonspeedlookahed_CheckedChanged(object sender, EventArgs e)
+        {
+            mf.ABLine.iscabortner = false;
+            mf.ABLine.iscabschelter = false;
+            mf.ABLine.iscabfix = false;
+            mf.ABLine.iscabspeed = true;
+        }
+
+        private void Test(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void toolTip2_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void numericUpDown_P_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.kp = (double)numericUpDown_P.Value;
+            mf.ABLine.ki = (double)numericUpDown_I.Value;
+            mf.ABLine.kd = (double)numericUpDown_D.Value;
+        }
+
+        private void numericUpDown_I_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.kp = (double)numericUpDown_P.Value;
+            mf.ABLine.ki = (double)numericUpDown_I.Value;
+            mf.ABLine.kd = (double)numericUpDown_D.Value;
+        }
+
+        private void radioButton_ispid_CheckedChanged(object sender, EventArgs e)
+        {
+            ispid = !ispid;
+        }
+
+        private void numericUpDown_max1_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.pid_maxi_error = (double)numericUpDown_max1.Value;
+        }
+
+        private void numericUpDown_D_Click(object sender, EventArgs e)
+        {
+            mf.ABLine.kp = (double)numericUpDown_P.Value;
+            mf.ABLine.ki = (double)numericUpDown_I.Value;
+            mf.ABLine.kd = (double)numericUpDown_D.Value;
         }
 
         private void cboxHeadingBNO_CheckedChanged(object sender, EventArgs e)
