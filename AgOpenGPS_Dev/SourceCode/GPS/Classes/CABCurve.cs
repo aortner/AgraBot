@@ -6,19 +6,8 @@ namespace AgOpenGPS
 {
     public class CABCurve
     {
-
-        //pid  steering
-        public double kp = Properties.Settings.Default.pid_kp;
-        public double ki = Properties.Settings.Default.pid_ki;
-        public double kd = Properties.Settings.Default.pid_kd;
-
-
+        
         public double distancefilter;
-
-        public double p_error, i_error, d_error;
-        public double cte;
-        public double steerangelpid;
-        double pre_cte;
 
         public double goalPointDistance;
 
@@ -283,6 +272,12 @@ namespace AgOpenGPS
                 //are we on the right side or not
                 isOnRightSideCurrentLine = distanceFromCurrentLine > 0;
 
+                if (Properties.Settings.Default.is_xte)
+                {
+                    distancefilter = ((Properties.Settings.Default.xtefilter * distancefilter) + distanceFromCurrentLine) / (Properties.Settings.Default.xtefilter + 1);
+                    distanceFromCurrentLine = distancefilter;
+                }
+
                 //absolute the distance
                 distanceFromCurrentLine = Math.Abs(distanceFromCurrentLine);
 
@@ -313,11 +308,9 @@ namespace AgOpenGPS
                 }
 
 
-                if (mf.ABLine.isfilter)
-                {
-                    distancefilter = ((9 * distancefilter) + distanceFromCurrentLine) / 10;
-                    distanceFromCurrentLine = distancefilter;
-                }
+                
+
+
                 //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
                 //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
@@ -547,45 +540,9 @@ namespace AgOpenGPS
 
 
 
-
-                //pid steering
-                cte = distanceFromCurrentLine / 1000;
-                pre_cte = p_error;
-
-                p_error = cte;
-                i_error += cte;
-                d_error = cte - pre_cte;
-
-                if (i_error > Properties.Settings.Default.pid_maxi_error) i_error = Properties.Settings.Default.pid_maxi_error;
-                if (i_error < (Properties.Settings.Default.pid_maxi_error * -1.0)) i_error = Properties.Settings.Default.pid_maxi_error * -1.0;
-
-                steerangelpid = -kp * p_error - ki * i_error - kd * d_error;
-                //  steerangelpid *= 10;
-                if (steerangelpid < -mf.vehicle.maxSteerAngle) steerangelpid = -mf.vehicle.maxSteerAngle;
-                if (steerangelpid > mf.vehicle.maxSteerAngle) steerangelpid = mf.vehicle.maxSteerAngle;
-
-                if (Math.Abs(angVel) > mf.vehicle.maxAngularVelocity)  //also for pid
-                {
-                    steerangelpid = glm.toDegrees(steerangelpid > 0 ? (Math.Atan((mf.vehicle.wheelbase * mf.vehicle.maxAngularVelocity)
-                        / (glm.twoPI * mf.pn.speed * 0.277777)))
-                        : (Math.Atan((mf.vehicle.wheelbase * -mf.vehicle.maxAngularVelocity) / (glm.twoPI * mf.pn.speed * 0.277777))));
-                }
-
-               
-
-
                 mf.guidanceLineDistanceOff = (Int16)distanceFromCurrentLine;
+ mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
 
-                if (Properties.Settings.Default.is_pidcontroller) mf.guidanceLineSteerAngle = (Int16)(steerangelpid * 100);
-                else mf.guidanceLineSteerAngle = (Int16)(steerAngleCu * 100);
-
-
-
-
-
-
-
-              
 
                 if (mf.yt.isYouTurnShapeDisplayed)
                 {

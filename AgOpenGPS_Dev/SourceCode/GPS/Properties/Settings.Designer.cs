@@ -925,61 +925,25 @@ namespace AgOpenGPS.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("9")]
+        public int xtefilter {
+            get {
+                return ((int)(this["xtefilter"]));
+            }
+            set {
+                this["xtefilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool is_pidcontroller {
+        public bool is_xte {
             get {
-                return ((bool)(this["is_pidcontroller"]));
+                return ((bool)(this["is_xte"]));
             }
             set {
-                this["is_pidcontroller"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("10")]
-        public double pid_kp {
-            get {
-                return ((double)(this["pid_kp"]));
-            }
-            set {
-                this["pid_kp"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("0.005")]
-        public double pid_ki {
-            get {
-                return ((double)(this["pid_ki"]));
-            }
-            set {
-                this["pid_ki"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("100")]
-        public double pid_kd {
-            get {
-                return ((double)(this["pid_kd"]));
-            }
-            set {
-                this["pid_kd"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("2")]
-        public double pid_maxi_error {
-            get {
-                return ((double)(this["pid_maxi_error"]));
-            }
-            set {
-                this["pid_maxi_error"] = value;
+                this["is_xte"] = value;
             }
         }
     }

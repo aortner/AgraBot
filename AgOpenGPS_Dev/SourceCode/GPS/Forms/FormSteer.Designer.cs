@@ -365,7 +365,6 @@
             // 
             // hsbarIntegralMax
             // 
-            this.hsbarIntegralMax.Enabled = false;
             this.hsbarIntegralMax.LargeChange = 2;
             this.hsbarIntegralMax.Location = new System.Drawing.Point(16, 351);
             this.hsbarIntegralMax.Maximum = 50;
@@ -377,7 +376,6 @@
             // 
             // hsbarIntegralGain
             // 
-            this.hsbarIntegralGain.Enabled = false;
             this.hsbarIntegralGain.LargeChange = 1;
             this.hsbarIntegralGain.Location = new System.Drawing.Point(16, 274);
             this.hsbarIntegralGain.Maximum = 255;

@@ -10,7 +10,7 @@ namespace AgOpenGPS
 
         private decimal triResolution, minFixStepDistance, boundaryDistance;
         private int lightbarCmPerPixie;
-        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI, ispid;
+        private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
         private string headingFromWhichSource;
 
 
@@ -41,14 +41,10 @@ namespace AgOpenGPS
             tboxTinkerUID.Text = Properties.Settings.Default.setIMU_UID;
             maxlookahedtext.Value = (decimal)Properties.Settings.Default.speedmaxlookahead;
             minlookahedtext.Value = (decimal)Properties.Settings.Default.speedminlookahead;
-            numericUpDown_P.Value = (decimal)mf.ABLine.kp;
-            numericUpDown_I.Value = (decimal)mf.ABLine.ki;
-            numericUpDown_D.Value = (decimal)mf.ABLine.kd;
-            numericUpDown_max1.Value = (decimal)Properties.Settings.Default.pid_maxi_error;
-
-
-
-            checkBox_PID.Checked = Properties.Settings.Default.is_pidcontroller;
+            numericUpDown_xtefilterfactor.Value = (int)Properties.Settings.Default.xtefilter;
+            
+                    
+            checkBox_XTEFilter.Checked = Properties.Settings.Default.is_xte;
 
             cboxHeadingBNO.Checked = Properties.Settings.Default.setIMU_isHeadingFromBNO;
             cboxHeadingBrick.Checked = Properties.Settings.Default.setIMU_isHeadingFromBrick;
@@ -63,7 +59,7 @@ namespace AgOpenGPS
 
 
 
-            ispid = Properties.Settings.Default.is_pidcontroller;
+    
             isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
             isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
             isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
@@ -112,16 +108,11 @@ namespace AgOpenGPS
             Properties.Settings.Default.speedmaxlookahead = (double)maxlookahedtext.Value;
 
             Properties.Settings.Default.speedminlookahead = (double)minlookahedtext.Value;
-            mf.ABLine.kp = (double)numericUpDown_P.Value;
-            mf.ABLine.ki = (double)numericUpDown_I.Value;
-            mf.ABLine.kd = (double)numericUpDown_D.Value;
+            Properties.Settings.Default.xtefilter = (int)numericUpDown_xtefilterfactor.Value;
+           
 
-            Properties.Settings.Default.pid_kp = mf.ABLine.kp;
-
-            Properties.Settings.Default.pid_ki = mf.ABLine.ki;
-            Properties.Settings.Default.pid_kd = mf.ABLine.kd;
-
-            Properties.Settings.Default.is_pidcontroller = checkBox_PID.Checked;
+          
+            Properties.Settings.Default.is_xte = checkBox_XTEFilter.Checked;
 
 
 
@@ -289,35 +280,16 @@ namespace AgOpenGPS
 
         }
 
-        private void numericUpDown_P_Click(object sender, EventArgs e)
+               
+
+        private void checkBox_XTEFilter_CheckedChanged(object sender, EventArgs e)
         {
-            mf.ABLine.kp = (double)numericUpDown_P.Value;
-            mf.ABLine.ki = (double)numericUpDown_I.Value;
-            mf.ABLine.kd = (double)numericUpDown_D.Value;
+            Properties.Settings.Default.is_xte = checkBox_XTEFilter.Checked;
         }
 
-        private void numericUpDown_I_Click(object sender, EventArgs e)
+        private void numericUpDown_XTE_Click(object sender, EventArgs e)
         {
-            mf.ABLine.kp = (double)numericUpDown_P.Value;
-            mf.ABLine.ki = (double)numericUpDown_I.Value;
-            mf.ABLine.kd = (double)numericUpDown_D.Value;
-        }
-
-        private void radioButton_ispid_CheckedChanged(object sender, EventArgs e)
-        {
-            ispid = !ispid;
-        }
-
-        private void numericUpDown_max1_Click(object sender, EventArgs e)
-        {
-            Properties.Settings.Default.pid_maxi_error = (double)numericUpDown_max1.Value;
-        }
-
-        private void numericUpDown_D_Click(object sender, EventArgs e)
-        {
-            mf.ABLine.kp = (double)numericUpDown_P.Value;
-            mf.ABLine.ki = (double)numericUpDown_I.Value;
-            mf.ABLine.kd = (double)numericUpDown_D.Value;
+            Properties.Settings.Default.xtefilter = (int)numericUpDown_xtefilterfactor.Value;
         }
 
         private void cboxHeadingBNO_CheckedChanged(object sender, EventArgs e)

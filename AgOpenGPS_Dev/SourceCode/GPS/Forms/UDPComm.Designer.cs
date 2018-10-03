@@ -658,11 +658,7 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-            if (keyData == (Keys.Q)) // Flag click
-            {
-                               ABLine.isfilter = !ABLine.isfilter;
-                return true;    // indicate that you handled this keystroke
-            }
+           
 
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);

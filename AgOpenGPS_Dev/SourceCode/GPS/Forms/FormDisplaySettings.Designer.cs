@@ -71,15 +71,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.tboxTinkerUID = new System.Windows.Forms.TextBox();
             this.tabGuidance = new System.Windows.Forms.TabPage();
-            this.label14 = new System.Windows.Forms.Label();
-            this.numericUpDown_max1 = new System.Windows.Forms.NumericUpDown();
-            this.checkBox_PID = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.label12 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
-            this.numericUpDown_D = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_I = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown_P = new System.Windows.Forms.NumericUpDown();
+            this.checkBox_XTEFilter = new System.Windows.Forms.CheckBox();
+            this.numericUpDown_xtefilterfactor = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.radioButtonspeedlookahed = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
@@ -110,10 +103,7 @@
             this.groupBox7.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.tabGuidance.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_D)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_I)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_P)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_xtefilterfactor)).BeginInit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxlookahedtext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minlookahedtext)).BeginInit();
@@ -696,15 +686,8 @@
             // 
             // tabGuidance
             // 
-            this.tabGuidance.Controls.Add(this.label14);
-            this.tabGuidance.Controls.Add(this.numericUpDown_max1);
-            this.tabGuidance.Controls.Add(this.checkBox_PID);
-            this.tabGuidance.Controls.Add(this.label13);
-            this.tabGuidance.Controls.Add(this.label12);
-            this.tabGuidance.Controls.Add(this.label11);
-            this.tabGuidance.Controls.Add(this.numericUpDown_D);
-            this.tabGuidance.Controls.Add(this.numericUpDown_I);
-            this.tabGuidance.Controls.Add(this.numericUpDown_P);
+            this.tabGuidance.Controls.Add(this.checkBox_XTEFilter);
+            this.tabGuidance.Controls.Add(this.numericUpDown_xtefilterfactor);
             this.tabGuidance.Controls.Add(this.groupBox1);
             this.tabGuidance.Controls.Add(this.label8);
             this.tabGuidance.Controls.Add(this.label5);
@@ -717,144 +700,40 @@
             this.tabGuidance.Text = "Guidance";
             this.tabGuidance.UseVisualStyleBackColor = true;
             // 
-            // label14
+            // checkBox_XTEFilter
             // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(814, 310);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(102, 39);
-            this.label14.TabIndex = 103;
-            this.label14.Text = "MAX I";
+            this.checkBox_XTEFilter.AutoSize = true;
+            this.checkBox_XTEFilter.Location = new System.Drawing.Point(30, 296);
+            this.checkBox_XTEFilter.Name = "checkBox_XTEFilter";
+            this.checkBox_XTEFilter.Size = new System.Drawing.Size(240, 43);
+            this.checkBox_XTEFilter.TabIndex = 101;
+            this.checkBox_XTEFilter.Text = "USE XTE Filter";
+            this.checkBox_XTEFilter.UseVisualStyleBackColor = true;
+            this.checkBox_XTEFilter.CheckedChanged += new System.EventHandler(this.checkBox_XTEFilter_CheckedChanged);
             // 
-            // numericUpDown_max1
+            // numericUpDown_xtefilterfactor
             // 
-            this.numericUpDown_max1.DecimalPlaces = 2;
-            this.numericUpDown_max1.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_max1.Location = new System.Drawing.Point(739, 368);
-            this.numericUpDown_max1.Name = "numericUpDown_max1";
-            this.numericUpDown_max1.Size = new System.Drawing.Size(163, 85);
-            this.numericUpDown_max1.TabIndex = 102;
-            this.numericUpDown_max1.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.numericUpDown_max1.Click += new System.EventHandler(this.numericUpDown_max1_Click);
-            // 
-            // checkBox_PID
-            // 
-            this.checkBox_PID.AutoSize = true;
-            this.checkBox_PID.Location = new System.Drawing.Point(30, 296);
-            this.checkBox_PID.Name = "checkBox_PID";
-            this.checkBox_PID.Size = new System.Drawing.Size(425, 43);
-            this.checkBox_PID.TabIndex = 101;
-            this.checkBox_PID.Text = "Use PID Steering Controller";
-            this.checkBox_PID.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(480, 388);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(39, 39);
-            this.label13.TabIndex = 99;
-            this.label13.Text = "D";
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(182, 388);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(29, 39);
-            this.label12.TabIndex = 98;
-            this.label12.Text = "I";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(-7, 388);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(35, 39);
-            this.label11.TabIndex = 97;
-            this.label11.Text = "P";
-            // 
-            // numericUpDown_D
-            // 
-            this.numericUpDown_D.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_D.Increment = new decimal(new int[] {
-            5,
+            this.numericUpDown_xtefilterfactor.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.numericUpDown_xtefilterfactor.Location = new System.Drawing.Point(30, 368);
+            this.numericUpDown_xtefilterfactor.Maximum = new decimal(new int[] {
+            30,
             0,
             0,
             0});
-            this.numericUpDown_D.Location = new System.Drawing.Point(525, 368);
-            this.numericUpDown_D.Maximum = new decimal(new int[] {
-            500,
-            0,
-            0,
-            0});
-            this.numericUpDown_D.Name = "numericUpDown_D";
-            this.numericUpDown_D.Size = new System.Drawing.Size(163, 85);
-            this.numericUpDown_D.TabIndex = 96;
-            this.numericUpDown_D.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.numericUpDown_D.Click += new System.EventHandler(this.numericUpDown_D_Click);
-            // 
-            // numericUpDown_I
-            // 
-            this.numericUpDown_I.DecimalPlaces = 4;
-            this.numericUpDown_I.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_I.Increment = new decimal(new int[] {
-            1,
-            0,
-            0,
-            262144});
-            this.numericUpDown_I.Location = new System.Drawing.Point(217, 368);
-            this.numericUpDown_I.Minimum = new decimal(new int[] {
-            5,
-            0,
-            0,
-            327680});
-            this.numericUpDown_I.Name = "numericUpDown_I";
-            this.numericUpDown_I.Size = new System.Drawing.Size(257, 85);
-            this.numericUpDown_I.TabIndex = 95;
-            this.numericUpDown_I.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            65536});
-            this.numericUpDown_I.Click += new System.EventHandler(this.numericUpDown_I_Click);
-            // 
-            // numericUpDown_P
-            // 
-            this.numericUpDown_P.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.numericUpDown_P.Increment = new decimal(new int[] {
-            5,
-            0,
-            0,
-            0});
-            this.numericUpDown_P.Location = new System.Drawing.Point(30, 368);
-            this.numericUpDown_P.Maximum = new decimal(new int[] {
-            300,
-            0,
-            0,
-            0});
-            this.numericUpDown_P.Minimum = new decimal(new int[] {
+            this.numericUpDown_xtefilterfactor.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.numericUpDown_P.Name = "numericUpDown_P";
-            this.numericUpDown_P.Size = new System.Drawing.Size(125, 85);
-            this.numericUpDown_P.TabIndex = 94;
-            this.numericUpDown_P.Value = new decimal(new int[] {
-            10,
+            this.numericUpDown_xtefilterfactor.Name = "numericUpDown_xtefilterfactor";
+            this.numericUpDown_xtefilterfactor.Size = new System.Drawing.Size(125, 85);
+            this.numericUpDown_xtefilterfactor.TabIndex = 94;
+            this.numericUpDown_xtefilterfactor.Value = new decimal(new int[] {
+            1,
             0,
             0,
-            65536});
-            this.numericUpDown_P.Click += new System.EventHandler(this.numericUpDown_P_Click);
+            0});
+            this.numericUpDown_xtefilterfactor.Click += new System.EventHandler(this.numericUpDown_XTE_Click);
             // 
             // groupBox1
             // 
@@ -892,10 +771,10 @@
             this.radioButton1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButton1.Location = new System.Drawing.Point(53, 231);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(122, 29);
+            this.radioButton1.Size = new System.Drawing.Size(138, 29);
             this.radioButton1.TabIndex = 3;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "Standart";
+            this.radioButton1.Text = "Brian New";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
             // 
@@ -905,9 +784,9 @@
             this.radioButtonFixed.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.radioButtonFixed.Location = new System.Drawing.Point(53, 171);
             this.radioButtonFixed.Name = "radioButtonFixed";
-            this.radioButtonFixed.Size = new System.Drawing.Size(138, 29);
+            this.radioButtonFixed.Size = new System.Drawing.Size(123, 29);
             this.radioButtonFixed.TabIndex = 2;
-            this.radioButtonFixed.Text = "Brian New";
+            this.radioButtonFixed.Text = "Brian old";
             this.toolTip3.SetToolTip(this.radioButtonFixed, "Fixer Look Ahead, muss je nach Geschwindkeit neu eingestellt werden.");
             this.radioButtonFixed.UseVisualStyleBackColor = true;
             this.radioButtonFixed.CheckedChanged += new System.EventHandler(this.radioButtonFixed_CheckedChanged);
@@ -1062,10 +941,7 @@
             this.groupBox6.PerformLayout();
             this.tabGuidance.ResumeLayout(false);
             this.tabGuidance.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_max1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_D)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_I)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_P)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_xtefilterfactor)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.maxlookahedtext)).EndInit();
@@ -1132,14 +1008,7 @@
         private System.Windows.Forms.ToolTip toolTip3;
         private System.Windows.Forms.ToolTip toolTip2;
         private System.Windows.Forms.ToolTip toolTip4;
-        private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.NumericUpDown numericUpDown_D;
-        private System.Windows.Forms.NumericUpDown numericUpDown_I;
-        private System.Windows.Forms.NumericUpDown numericUpDown_P;
-        private System.Windows.Forms.CheckBox checkBox_PID;
-        private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.NumericUpDown numericUpDown_max1;
+        private System.Windows.Forms.NumericUpDown numericUpDown_xtefilterfactor;
+        private System.Windows.Forms.CheckBox checkBox_XTEFilter;
     }
 }
