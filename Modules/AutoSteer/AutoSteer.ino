@@ -178,7 +178,7 @@ void loop()
 		switchByte = steerSwitch << 1; //put steerswitch status in bit 1 position
 		switchByte = workSwitch | switchByte;
 
-		SetRelays(); //turn on off sections
+	SetRelays(); //turn on off sections
 
 		//steering position and steer angle
 		analogRead(A0); //discard initial reading

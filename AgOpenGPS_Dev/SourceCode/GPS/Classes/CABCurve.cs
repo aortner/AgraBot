@@ -314,7 +314,7 @@ namespace AgOpenGPS
                 //how far should goal point be away  - speed * seconds * kmph -> m/s + min value
                 //double goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
 
-                if (mf.ABLine.iscabortner)
+                if (Properties.Settings.Default.isortner)
                 {
 
                     goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * Properties.Settings.Default.minuslookahedortner) * mf.ABLine.speedmaxlahead; // goalPointLookAhead should be 10-20
@@ -330,12 +330,12 @@ namespace AgOpenGPS
                     if (goalPointDistance < mf.pn.speed * mf.ABLine.speedminlahead) goalPointDistance = mf.pn.speed * mf.ABLine.speedminlahead;
                 }
                 
-                else if (mf.ABLine.iscabspeed)
+                else if (Properties.Settings.Default.isspeed)
                 {
                     goalPointDistance = mf.pn.speed * mf.ABLine.speedmaxlahead;
                     if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
                 }
-                else if (mf.ABLine.iscabschelter)
+                else if (Properties.Settings.Default.isschelter)
                 {
                     //!!!!!how far should goal point be away
                     //!!!!!double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);

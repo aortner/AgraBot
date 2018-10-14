@@ -11,9 +11,7 @@ namespace AgOpenGPS
         public double speedminlahead = Properties.Settings.Default.speedminlookahead;
         public double speedmaxlahead = Properties.Settings.Default.speedmaxlookahead;
 
-        public bool iscabortner, iscabschelter, iscabspeed;
-
-      
+             
         public double goalPointDistance;
 
 
@@ -243,7 +241,7 @@ namespace AgOpenGPS
            
 
 
-            if (iscabortner)
+            if (Properties.Settings.Default.isortner)
             {
 
                 goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * Properties.Settings.Default.minuslookahedortner) * speedmaxlahead; // goalPointLookAhead should be 10-20
@@ -259,13 +257,13 @@ namespace AgOpenGPS
                 if (goalPointDistance < mf.pn.speed * speedminlahead) goalPointDistance = mf.pn.speed * speedminlahead;
             }
            
-            else if (iscabspeed)
+            else if (Properties.Settings.Default.isspeed)
             {
                 goalPointDistance = mf.pn.speed * speedmaxlahead;
                 if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
             }
 
-            else if (iscabschelter)
+            else if (Properties.Settings.Default.isschelter)
             {
                 //!!!!!how far should goal point be away
                 //!!!!!double goalPointDistance = (mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.2777777777);

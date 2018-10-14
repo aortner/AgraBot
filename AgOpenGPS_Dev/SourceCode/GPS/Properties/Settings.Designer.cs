@@ -970,5 +970,41 @@ namespace AgOpenGPS.Properties {
                 this["minuslookahedortner"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isortner {
+            get {
+                return ((bool)(this["isortner"]));
+            }
+            set {
+                this["isortner"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isschelter {
+            get {
+                return ((bool)(this["isschelter"]));
+            }
+            set {
+                this["isschelter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool isspeed {
+            get {
+                return ((bool)(this["isspeed"]));
+            }
+            set {
+                this["isspeed"] = value;
+            }
+        }
     }
 }

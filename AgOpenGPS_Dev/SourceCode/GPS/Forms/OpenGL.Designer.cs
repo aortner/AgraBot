@@ -218,15 +218,15 @@ namespace AgOpenGPS
                 }
 
                     //screen text for debug
-                if (ABLine.iscabortner)
+                if (Properties.Settings.Default.isortner)
                 {
                     gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Ortner - should be in settings 10-20 ");
                     
                 }
 
-                if (ABLine.iscabschelter) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Schelter");
+                if (Properties.Settings.Default.isschelter) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Schelter");
                
-                if (ABLine.iscabspeed) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Speedlookahed");
+                if (Properties.Settings.Default.isspeed) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Speedlookahed");
 
                 //if (btnABLine.Enabled) gl.DrawText(120, 180, 1, 1, 1, "Courier Bold", 18, "GoalPoint AB : " + ABLine.goalPointDistance.ToString()); //ortner
                 //else gl.DrawText(120, 200, 1, 1, 1, "Courier Bold", 18, "GoalPoint ABC : " + curve.goalPointDistance.ToString()); //ortner

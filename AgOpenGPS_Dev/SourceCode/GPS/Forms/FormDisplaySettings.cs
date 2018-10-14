@@ -44,7 +44,12 @@ namespace AgOpenGPS
             numericUpDown_xtefilterfactor.Value = (int)Properties.Settings.Default.xtefilter;
             lookaheadortner.Value = (int)Properties.Settings.Default.minuslookahedortner;
 
-          
+          radioButtonOrtner.Checked = Properties.Settings.Default.isortner;
+            radioButtonSchelter.Checked = Properties.Settings.Default.isschelter;
+            radioButtonspeedlookahed.Checked = Properties.Settings.Default.isspeed;
+
+
+
             checkBox_XTEFilter.Checked = Properties.Settings.Default.is_xte;
 
             cboxHeadingBNO.Checked = Properties.Settings.Default.setIMU_isHeadingFromBNO;
@@ -52,9 +57,7 @@ namespace AgOpenGPS
             cboxRollDogs.Checked = Properties.Settings.Default.setIMU_isRollFromDogs;
             cboxHeadingPAOGI.Checked = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
             cboxRollPAOGI.Checked = Properties.Settings.Default.setIMU_isRollFromPAOGI;
-            radioButtonOrtner.Checked = mf.ABLine.iscabortner;
-            radioButtonSchelter.Checked = mf.ABLine.iscabschelter;
-            radioButtonspeedlookahed.Checked = mf.ABLine.iscabspeed;
+            
 
     
             isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
@@ -226,38 +229,38 @@ namespace AgOpenGPS
 
         private void radioButton3_CheckedChanged(object sender, EventArgs e)
         {
-            mf.ABLine.iscabortner = true;
-            mf.ABLine.iscabschelter = false;
-            
-            mf.ABLine.iscabspeed = false;
+            Properties.Settings.Default.isortner = true;
+            Properties.Settings.Default.isschelter = false;
+            Properties.Settings.Default.isspeed = false;
+
 
         }
 
         private void radioButtonSchelter_CheckedChanged(object sender, EventArgs e)
         {
-            mf.ABLine.iscabortner = false;
-            mf.ABLine.iscabschelter = true;
-           ;
-            mf.ABLine.iscabspeed = false;
+            Properties.Settings.Default.isortner = false;
+            Properties.Settings.Default.isschelter = true;         
+            Properties.Settings.Default.isspeed = false;
+
 
         }
 
-        
 
-        private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
+
+        private void radioButton1_CheckedChanged_1(object sender, EventArgs e) //brian standart
         {
-            mf.ABLine.iscabortner = false;
-            mf.ABLine.iscabschelter = false;
-         
-            mf.ABLine.iscabspeed = false;
+            
+            Properties.Settings.Default.isschelter = false;           
+            Properties.Settings.Default.isspeed = false;
+            Properties.Settings.Default.isortner = false;
         }
 
         private void radioButtonspeedlookahed_CheckedChanged(object sender, EventArgs e)
         {
-            mf.ABLine.iscabortner = false;
-            mf.ABLine.iscabschelter = false;
-          
-            mf.ABLine.iscabspeed = true;
+           
+            Properties.Settings.Default.isschelter = false;
+            Properties.Settings.Default.isspeed = true;      
+            Properties.Settings.Default.isortner = false;
         }
 
         private void Test(object sender, PopupEventArgs e)
