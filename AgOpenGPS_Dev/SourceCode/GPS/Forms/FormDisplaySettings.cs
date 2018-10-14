@@ -42,8 +42,9 @@ namespace AgOpenGPS
             maxlookahedtext.Value = (decimal)Properties.Settings.Default.speedmaxlookahead;
             minlookahedtext.Value = (decimal)Properties.Settings.Default.speedminlookahead;
             numericUpDown_xtefilterfactor.Value = (int)Properties.Settings.Default.xtefilter;
-            
-                    
+            lookaheadortner.Value = (int)Properties.Settings.Default.minuslookahedortner;
+
+          
             checkBox_XTEFilter.Checked = Properties.Settings.Default.is_xte;
 
             cboxHeadingBNO.Checked = Properties.Settings.Default.setIMU_isHeadingFromBNO;
@@ -53,11 +54,7 @@ namespace AgOpenGPS
             cboxRollPAOGI.Checked = Properties.Settings.Default.setIMU_isRollFromPAOGI;
             radioButtonOrtner.Checked = mf.ABLine.iscabortner;
             radioButtonSchelter.Checked = mf.ABLine.iscabschelter;
-            radioButtonFixed.Checked = mf.ABLine.iscabfix;
             radioButtonspeedlookahed.Checked = mf.ABLine.iscabspeed;
-
-
-
 
     
             isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
@@ -231,7 +228,7 @@ namespace AgOpenGPS
         {
             mf.ABLine.iscabortner = true;
             mf.ABLine.iscabschelter = false;
-            mf.ABLine.iscabfix = false;
+            
             mf.ABLine.iscabspeed = false;
 
         }
@@ -240,25 +237,18 @@ namespace AgOpenGPS
         {
             mf.ABLine.iscabortner = false;
             mf.ABLine.iscabschelter = true;
-            mf.ABLine.iscabfix = false;
+           ;
             mf.ABLine.iscabspeed = false;
 
         }
 
-        private void radioButtonFixed_CheckedChanged(object sender, EventArgs e)
-        {
-            mf.ABLine.iscabortner = false;
-            mf.ABLine.iscabschelter = false;
-            mf.ABLine.iscabfix = true;
-            mf.ABLine.iscabspeed = false;
-
-        }
+        
 
         private void radioButton1_CheckedChanged_1(object sender, EventArgs e)
         {
             mf.ABLine.iscabortner = false;
             mf.ABLine.iscabschelter = false;
-            mf.ABLine.iscabfix = false;
+         
             mf.ABLine.iscabspeed = false;
         }
 
@@ -266,7 +256,7 @@ namespace AgOpenGPS
         {
             mf.ABLine.iscabortner = false;
             mf.ABLine.iscabschelter = false;
-            mf.ABLine.iscabfix = false;
+          
             mf.ABLine.iscabspeed = true;
         }
 
@@ -290,6 +280,21 @@ namespace AgOpenGPS
         private void numericUpDown_XTE_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.xtefilter = (int)numericUpDown_xtefilterfactor.Value;
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip4_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+        private void lookaheadortner_Click(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.minuslookahedortner = (int)lookaheadortner.Value;
         }
 
         private void cboxHeadingBNO_CheckedChanged(object sender, EventArgs e)

@@ -74,9 +74,9 @@
             this.checkBox_XTEFilter = new System.Windows.Forms.CheckBox();
             this.numericUpDown_xtefilterfactor = new System.Windows.Forms.NumericUpDown();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lookaheadortner = new System.Windows.Forms.NumericUpDown();
             this.radioButtonspeedlookahed = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButtonFixed = new System.Windows.Forms.RadioButton();
             this.radioButtonSchelter = new System.Windows.Forms.RadioButton();
             this.radioButtonOrtner = new System.Windows.Forms.RadioButton();
             this.label8 = new System.Windows.Forms.Label();
@@ -105,6 +105,7 @@
             this.tabGuidance.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_xtefilterfactor)).BeginInit();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookaheadortner)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxlookahedtext)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.minlookahedtext)).BeginInit();
             this.SuspendLayout();
@@ -703,7 +704,7 @@
             // checkBox_XTEFilter
             // 
             this.checkBox_XTEFilter.AutoSize = true;
-            this.checkBox_XTEFilter.Location = new System.Drawing.Point(30, 296);
+            this.checkBox_XTEFilter.Location = new System.Drawing.Point(30, 319);
             this.checkBox_XTEFilter.Name = "checkBox_XTEFilter";
             this.checkBox_XTEFilter.Size = new System.Drawing.Size(240, 43);
             this.checkBox_XTEFilter.TabIndex = 101;
@@ -737,24 +738,48 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.lookaheadortner);
             this.groupBox1.Controls.Add(this.radioButtonspeedlookahed);
             this.groupBox1.Controls.Add(this.radioButton1);
-            this.groupBox1.Controls.Add(this.radioButtonFixed);
             this.groupBox1.Controls.Add(this.radioButtonSchelter);
             this.groupBox1.Controls.Add(this.radioButtonOrtner);
             this.groupBox1.Font = new System.Drawing.Font("Tahoma", 15.75F);
-            this.groupBox1.Location = new System.Drawing.Point(487, 20);
+            this.groupBox1.Location = new System.Drawing.Point(374, 20);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(321, 325);
+            this.groupBox1.Size = new System.Drawing.Size(321, 269);
             this.groupBox1.TabIndex = 93;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Alternative LookAhead";
+            // 
+            // lookaheadortner
+            // 
+            this.lookaheadortner.Font = new System.Drawing.Font("Tahoma", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lookaheadortner.Location = new System.Drawing.Point(190, 23);
+            this.lookaheadortner.Maximum = new decimal(new int[] {
+            20,
+            0,
+            0,
+            0});
+            this.lookaheadortner.Minimum = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.lookaheadortner.Name = "lookaheadortner";
+            this.lookaheadortner.Size = new System.Drawing.Size(125, 85);
+            this.lookaheadortner.TabIndex = 102;
+            this.lookaheadortner.Value = new decimal(new int[] {
+            5,
+            0,
+            0,
+            0});
+            this.lookaheadortner.Click += new System.EventHandler(this.lookaheadortner_Click);
             // 
             // radioButtonspeedlookahed
             // 
             this.radioButtonspeedlookahed.AutoSize = true;
             this.radioButtonspeedlookahed.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonspeedlookahed.Location = new System.Drawing.Point(53, 290);
+            this.radioButtonspeedlookahed.Location = new System.Drawing.Point(53, 226);
             this.radioButtonspeedlookahed.Name = "radioButtonspeedlookahed";
             this.radioButtonspeedlookahed.Size = new System.Drawing.Size(246, 29);
             this.radioButtonspeedlookahed.TabIndex = 4;
@@ -769,7 +794,7 @@
             this.radioButton1.AutoSize = true;
             this.radioButton1.Checked = true;
             this.radioButton1.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButton1.Location = new System.Drawing.Point(53, 231);
+            this.radioButton1.Location = new System.Drawing.Point(53, 170);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(138, 29);
             this.radioButton1.TabIndex = 3;
@@ -777,19 +802,6 @@
             this.radioButton1.Text = "Brian New";
             this.radioButton1.UseVisualStyleBackColor = true;
             this.radioButton1.CheckedChanged += new System.EventHandler(this.radioButton1_CheckedChanged_1);
-            // 
-            // radioButtonFixed
-            // 
-            this.radioButtonFixed.AutoSize = true;
-            this.radioButtonFixed.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.radioButtonFixed.Location = new System.Drawing.Point(53, 171);
-            this.radioButtonFixed.Name = "radioButtonFixed";
-            this.radioButtonFixed.Size = new System.Drawing.Size(123, 29);
-            this.radioButtonFixed.TabIndex = 2;
-            this.radioButtonFixed.Text = "Brian old";
-            this.toolTip3.SetToolTip(this.radioButtonFixed, "Fixer Look Ahead, muss je nach Geschwindkeit neu eingestellt werden.");
-            this.radioButtonFixed.UseVisualStyleBackColor = true;
-            this.radioButtonFixed.CheckedChanged += new System.EventHandler(this.radioButtonFixed_CheckedChanged);
             // 
             // radioButtonSchelter
             // 
@@ -837,9 +849,10 @@
             this.label5.ImeMode = System.Windows.Forms.ImeMode.NoControl;
             this.label5.Location = new System.Drawing.Point(26, 20);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(206, 23);
+            this.label5.Size = new System.Drawing.Size(294, 23);
             this.label5.TabIndex = 91;
-            this.label5.Text = "MinLookAhead in Meter";
+            this.label5.Text = "MinLookAhead als faktor zu speed";
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // maxlookahedtext
             // 
@@ -857,7 +870,7 @@
             0,
             65536});
             this.maxlookahedtext.Minimum = new decimal(new int[] {
-            4,
+            1,
             0,
             0,
             65536});
@@ -886,7 +899,7 @@
             0,
             65536});
             this.minlookahedtext.Minimum = new decimal(new int[] {
-            2,
+            1,
             0,
             0,
             65536});
@@ -901,9 +914,14 @@
             // 
             // toolTip1
             // 
+            this.toolTip1.BackColor = System.Drawing.Color.LavenderBlush;
             this.toolTip1.IsBalloon = true;
             this.toolTip1.ShowAlways = true;
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.Test);
+            // 
+            // toolTip4
+            // 
+            this.toolTip4.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip4_Popup);
             // 
             // FormDisplaySettings
             // 
@@ -944,6 +962,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDown_xtefilterfactor)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.lookaheadortner)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.maxlookahedtext)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.minlookahedtext)).EndInit();
             this.ResumeLayout(false);
@@ -999,7 +1018,6 @@
         private System.Windows.Forms.NumericUpDown maxlookahedtext;
         private System.Windows.Forms.NumericUpDown minlookahedtext;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton radioButtonFixed;
         private System.Windows.Forms.RadioButton radioButtonSchelter;
         private System.Windows.Forms.RadioButton radioButtonOrtner;
         private System.Windows.Forms.RadioButton radioButton1;
@@ -1010,5 +1028,6 @@
         private System.Windows.Forms.ToolTip toolTip4;
         private System.Windows.Forms.NumericUpDown numericUpDown_xtefilterfactor;
         private System.Windows.Forms.CheckBox checkBox_XTEFilter;
+        private System.Windows.Forms.NumericUpDown lookaheadortner;
     }
 }

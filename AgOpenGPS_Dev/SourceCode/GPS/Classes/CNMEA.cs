@@ -230,6 +230,10 @@ Field	Meaning
         private double P = 1.0;
         private readonly double varRoll = 0.1; // variance, smaller, more faster filtering
         private readonly double varProcess = 0.0003;
+		
+		private double q = 0.0075;
+		public bool iskalman2;
+		private double kalman_gain, err_estimate=0.5, err_measure=0.5, current_estimate,last_estimate,mea;
 
         private void ParseAVR()
         {
@@ -240,7 +244,20 @@ Field	Meaning
                 if (mf.ahrs.isRollPAOGI)
                 //input to the kalman filter
                 {
-                    //added by Andreas Ortner
+					if(Properties.Settings.Default.is_rollfilter)
+                    {
+                        mea = nRoll+20;
+						kalman_gain = err_estimate/(err_estimate + err_measure);
+						current_estimate = last_estimate + kalman_gain * (mea - last_estimate);
+						err_estimate =  (1.0 - kalman_gain)*err_estimate + Math.Abs(last_estimate-current_estimate)*q;
+						last_estimate=current_estimate;
+
+                        mf.mc.rollRaw = (int)((kalman_gain-20) * 16);
+
+                    }
+					else
+                    {
+//added by Andreas Ortner
                     rollK = nRoll;
 
                     //Kalman filter
@@ -252,6 +269,8 @@ Field	Meaning
                     XeRoll = (G * (rollK - Zp)) + Xp;
 
                     mf.mc.rollRaw = (int)(XeRoll * 16);
+                    }
+                    
                 }
             }
         }

@@ -11,7 +11,7 @@ namespace AgOpenGPS
         public double speedminlahead = Properties.Settings.Default.speedminlookahead;
         public double speedmaxlahead = Properties.Settings.Default.speedmaxlookahead;
 
-        public bool iscabortner, iscabschelter, iscabsaving, iscabfix, iscabspeed;
+        public bool iscabortner, iscabschelter, iscabspeed;
 
       
         public double goalPointDistance;
@@ -225,7 +225,9 @@ namespace AgOpenGPS
             // filter for distance
             if (Properties.Settings.Default.is_xte)
             {
+               
                 distancefilter = ((Properties.Settings.Default.xtefilter * distancefilter) + distanceFromCurrentLine) / (Properties.Settings.Default.xtefilter + 1);
+                
                 distanceFromCurrentLine = distancefilter;
             }
 
@@ -244,38 +246,23 @@ namespace AgOpenGPS
             if (iscabortner)
             {
 
-                goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * mf.vehicle.goalPointLookAhead) * speedmaxlahead; // goalPointLookAhead should be 10-20
+                goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * Properties.Settings.Default.minuslookahedortner) * speedmaxlahead; // goalPointLookAhead should be 10-20
 
                 if (distanceFromCurrentLine > 0.4)
                 {
-                    goalPointDistance = (mf.pn.speed - 0.4 * mf.vehicle.goalPointLookAhead);
-                    goalPointDistance += (distanceFromCurrentLine - 0.4) * mf.vehicle.goalPointLookAhead * speedmaxlahead;
+                    goalPointDistance = (mf.pn.speed - 0.4 * Properties.Settings.Default.minuslookahedortner);
+                    goalPointDistance += (distanceFromCurrentLine - 0.4) * Properties.Settings.Default.minuslookahedortner * speedmaxlahead;
 
                     if (goalPointDistance > mf.pn.speed * speedmaxlahead) goalPointDistance = mf.pn.speed * speedmaxlahead;
                 }
 
-                if (goalPointDistance < speedminlahead) goalPointDistance = speedminlahead;
+                if (goalPointDistance < mf.pn.speed * speedminlahead) goalPointDistance = mf.pn.speed * speedminlahead;
             }
-            else if (iscabfix)
-            {
-                goalPointDistance = mf.pn.speed * mf.vehicle.goalPointLookAhead * 0.27777777;
-
-                if (distanceFromCurrentLine < 1.0)
-                    goalPointDistance += distanceFromCurrentLine * goalPointDistance * speedmaxlahead;
-                else
-                    goalPointDistance += goalPointDistance * speedmaxlahead;
-
-                if (goalPointDistance < speedminlahead) goalPointDistance = speedminlahead;
-
-
-
-
-
-            }
+           
             else if (iscabspeed)
             {
                 goalPointDistance = mf.pn.speed * speedmaxlahead;
-                if (goalPointDistance < speedminlahead) goalPointDistance = speedminlahead;
+                if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
             }
 
             else if (iscabschelter)

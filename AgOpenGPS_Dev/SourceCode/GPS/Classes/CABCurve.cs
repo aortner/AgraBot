@@ -317,26 +317,23 @@ namespace AgOpenGPS
                 if (mf.ABLine.iscabortner)
                 {
 
-                    goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * mf.vehicle.goalPointLookAhead) * mf.ABLine.speedmaxlahead; // goalPointLookAhead should be 10-20
+                    goalPointDistance = (mf.pn.speed - distanceFromCurrentLine * Properties.Settings.Default.minuslookahedortner) * mf.ABLine.speedmaxlahead; // goalPointLookAhead should be 10-20
 
                     if (distanceFromCurrentLine > 0.4)
                     {
-                        goalPointDistance = (mf.pn.speed - 0.4 * mf.vehicle.goalPointLookAhead);
-                        goalPointDistance += (distanceFromCurrentLine - 0.4) * mf.vehicle.goalPointLookAhead * mf.ABLine.speedmaxlahead;
+                        goalPointDistance = (mf.pn.speed - 0.4 * Properties.Settings.Default.minuslookahedortner);
+                        goalPointDistance += (distanceFromCurrentLine - 0.4) * Properties.Settings.Default.minuslookahedortner * mf.ABLine.speedmaxlahead;
 
                         if (goalPointDistance > mf.pn.speed * mf.ABLine.speedmaxlahead) goalPointDistance = mf.pn.speed * mf.ABLine.speedmaxlahead;
                     }
 
-                    if (goalPointDistance < mf.ABLine.speedminlahead) goalPointDistance = mf.ABLine.speedminlahead;
+                    if (goalPointDistance < mf.pn.speed * mf.ABLine.speedminlahead) goalPointDistance = mf.pn.speed * mf.ABLine.speedminlahead;
                 }
-                else if (mf.ABLine.iscabfix)
-                {
-                    goalPointDistance = mf.vehicle.goalPointLookAhead;
-                }
+                
                 else if (mf.ABLine.iscabspeed)
                 {
                     goalPointDistance = mf.pn.speed * mf.ABLine.speedmaxlahead;
-                    if (goalPointDistance < mf.ABLine.speedminlahead) goalPointDistance = mf.ABLine.speedminlahead;
+                    if (goalPointDistance < mf.vehicle.goalPointLookAheadMinimum) goalPointDistance = mf.vehicle.goalPointLookAheadMinimum;
                 }
                 else if (mf.ABLine.iscabschelter)
                 {

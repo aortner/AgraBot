@@ -658,7 +658,12 @@ namespace AgOpenGPS
                 return true;    // indicate that you handled this keystroke
             }
 
-           
+            if (keyData == (Keys.Q)) // Flag click
+            {
+                Properties.Settings.Default.is_rollfilter =! Properties.Settings.Default.is_rollfilter;
+
+                return true;    // indicate that you handled this keystroke
+            }
 
             // Call the base class
             return base.ProcessCmdKey(ref msg, keyData);

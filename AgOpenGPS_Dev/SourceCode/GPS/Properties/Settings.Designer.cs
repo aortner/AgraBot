@@ -946,5 +946,29 @@ namespace AgOpenGPS.Properties {
                 this["is_xte"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool is_rollfilter {
+            get {
+                return ((bool)(this["is_rollfilter"]));
+            }
+            set {
+                this["is_rollfilter"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("10")]
+        public int minuslookahedortner {
+            get {
+                return ((int)(this["minuslookahedortner"]));
+            }
+            set {
+                this["minuslookahedortner"] = value;
+            }
+        }
     }
 }

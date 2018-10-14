@@ -221,57 +221,17 @@ namespace AgOpenGPS
                 if (ABLine.iscabortner)
                 {
                     gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Ortner - should be in settings 10-20 ");
-                   
-
                     
                 }
 
                 if (ABLine.iscabschelter) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead Schelter");
-                if (ABLine.iscabfix) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Look ahead fixed ");
+               
                 if (ABLine.iscabspeed) gl.DrawText(120, 60, 1, 1, 1, "Courier Bold", 18, "Speedlookahed");
-
-                if (ABLine.iscabsaving) gl.DrawText(120, 80, 1, 1, 1, "Courier Bold", 18, "Saving to c:temp - please create");
-
 
                 //if (btnABLine.Enabled) gl.DrawText(120, 180, 1, 1, 1, "Courier Bold", 18, "GoalPoint AB : " + ABLine.goalPointDistance.ToString()); //ortner
                 //else gl.DrawText(120, 200, 1, 1, 1, "Courier Bold", 18, "GoalPoint ABC : " + curve.goalPointDistance.ToString()); //ortner
-                if (btnABLine.Enabled)
-
-                {
-                    gl.DrawText(120, 180, 1, 1, 1, "Courier Bold", 18, "GoalPoint AB    : " + Convert.ToString(Math.Round(ABLine.goalPointDistance, 2)));
-                               
-
-                    if (Properties.Settings.Default.is_xte)
-                    {
-                        gl.DrawText(120, 240, 1, 1, 1, "Courier Bold", 18, "ohne Filter   : " + (guidanceLineDistanceOff * 0.001).ToString());
-                        gl.DrawText(120, 220, 1, 1, 1, "Courier Bold", 18, "Filter   : " + Convert.ToString(Math.Round(ABLine.distancefilter, 2)));
-                    }
-                   
-
-                }
-                else
-                {
-
-                    gl.DrawText(120, 200, 1, 1, 1, "Courier Bold", 18, "GoalPoint ABC    : " + Convert.ToString(Math.Round(curve.goalPointDistance, 2)));
                 
-
-                  
-                    if (Properties.Settings.Default.is_xte)
-                    {
-                        gl.DrawText(120, 240, 1, 1, 1, "Courier Bold", 18, "ohne Filter   : " + (guidanceLineDistanceOff*0.001).ToString());
-                        gl.DrawText(120, 220, 1, 1, 1, "Courier Bold", 18, "Filter   : " + Convert.ToString(Math.Round(curve.distancefilter, 2)));
-                    }
-
-                  
-                }
-
-
-                gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "Press e to save ");
-
-
-
-                
-
+                if (Properties.Settings.Default.is_rollfilter) gl.DrawText(120, 100, 1, 1, 1, "Courier Bold", 18, "rollfilter2 ");
 
                 //gl.DrawText(120, 40, 1, 1, 1, "Courier Bold", 18, "TurnD: " + test2.ToString());
                 //gl.DrawText(120, 70, 1, 1, 1, "Courier Bold", 18, "Where: " + yt.whereAmI.ToString());
