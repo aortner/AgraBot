@@ -449,14 +449,19 @@
             // 
             // Centermeridian
             // 
-            this.Centermeridian.Location = new System.Drawing.Point(460, 263);
+            this.Centermeridian.Location = new System.Drawing.Point(443, 263);
+            this.Centermeridian.Maximum = new decimal(new int[] {
+            180,
+            0,
+            0,
+            0});
             this.Centermeridian.Minimum = new decimal(new int[] {
-            100,
+            180,
             0,
             0,
             -2147483648});
             this.Centermeridian.Name = "Centermeridian";
-            this.Centermeridian.Size = new System.Drawing.Size(59, 46);
+            this.Centermeridian.Size = new System.Drawing.Size(99, 46);
             this.Centermeridian.TabIndex = 87;
             this.Centermeridian.ValueChanged += new System.EventHandler(this.Centermeridian_ValueChanged);
             // 
