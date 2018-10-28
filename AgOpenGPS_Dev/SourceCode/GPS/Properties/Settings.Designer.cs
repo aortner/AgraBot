@@ -1006,5 +1006,29 @@ namespace AgOpenGPS.Properties {
                 this["isspeed"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public double gridconvergence {
+            get {
+                return ((double)(this["gridconvergence"]));
+            }
+            set {
+                this["gridconvergence"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int centermeridian {
+            get {
+                return ((int)(this["centermeridian"]));
+            }
+            set {
+                this["centermeridian"] = value;
+            }
+        }
     }
 }

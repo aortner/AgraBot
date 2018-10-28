@@ -1233,6 +1233,7 @@
             // 
             resources.ApplyResources(this.lblLongitude, "lblLongitude");
             this.lblLongitude.Name = "lblLongitude";
+            this.lblLongitude.Click += new System.EventHandler(this.lblLongitude_Click);
             // 
             // lblLatitude
             // 

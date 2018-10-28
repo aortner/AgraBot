@@ -99,7 +99,7 @@ namespace AgOpenGPS
         public static double toDegrees(double radians)
         {
             return radians * 57.295779513082325225835265587528;
-        }
+        }                  
 
         public static double toRadians(double degrees)
         {

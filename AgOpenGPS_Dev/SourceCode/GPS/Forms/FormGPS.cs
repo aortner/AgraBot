@@ -546,6 +546,11 @@ namespace AgOpenGPS
             return texture[0];
         }// Load Bitmaps And Convert To Textures
 
+        private void lblLongitude_Click(object sender, EventArgs e)
+        {
+
+        }
+
         //start the UDP server
         private void StartUDPServer()
         {

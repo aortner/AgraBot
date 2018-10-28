@@ -12,7 +12,7 @@ namespace AgOpenGPS
         private int lightbarCmPerPixie;
         private bool isHeadingBNO, isHeadingBrick, isHeadingPAOGI, isRollDogs, isRollBrick, isRollPAOGI;
         private string headingFromWhichSource;
-
+        private double gridconv;
 
         public FormDisplaySettings(Form callingForm)
         {
@@ -57,9 +57,9 @@ namespace AgOpenGPS
             cboxRollDogs.Checked = Properties.Settings.Default.setIMU_isRollFromDogs;
             cboxHeadingPAOGI.Checked = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
             cboxRollPAOGI.Checked = Properties.Settings.Default.setIMU_isRollFromPAOGI;
-            
+            gridconvergence.Value = (Decimal)Properties.Settings.Default.gridconvergence;
+            Centermeridian.Value = (int)Properties.Settings.Default.centermeridian;
 
-    
             isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
             isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
             isRollDogs = Properties.Settings.Default.setIMU_isRollFromDogs;
@@ -298,6 +298,25 @@ namespace AgOpenGPS
         private void lookaheadortner_Click(object sender, EventArgs e)
         {
             Properties.Settings.Default.minuslookahedortner = (int)lookaheadortner.Value;
+        }
+
+        private void calc_button_Click(object sender, EventArgs e)
+        {
+            gridconv = (mf.pn.longitude - (int)Centermeridian.Value) * Math.Sin(glm.toRadians(mf.pn.latitude));
+            gridconvergence.Value = (decimal)gridconv;
+            Properties.Settings.Default.gridconvergence = gridconv;
+
+                }
+
+        private void Centermeridian_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.centermeridian = (int)Centermeridian.Value;
+        }
+
+        private void gridconvergence_ValueChanged(object sender, EventArgs e)
+        {
+            Properties.Settings.Default.gridconvergence = (double)gridconvergence.Value;
+            
         }
 
         private void cboxHeadingBNO_CheckedChanged(object sender, EventArgs e)

@@ -544,3 +544,9 @@ Opening Steer PortSystem.IO.IOException: Der Anschluss COM9 ist nicht vorhanden.
    bei System.IO.Ports.SerialPort.Open()
    bei AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\aortner\source\repos\AgraBot\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 181. - 14.10.2018 21:40:20
 
+Opening Steer PortSystem.IO.IOException: Der Anschluss COM9 ist nicht vorhanden.
+   bei System.IO.Ports.InternalResources.WinIOError(Int32 errorCode, String str)
+   bei System.IO.Ports.SerialStream..ctor(String portName, Int32 baudRate, Parity parity, Int32 dataBits, StopBits stopBits, Int32 readTimeout, Int32 writeTimeout, Handshake handshake, Boolean dtrEnable, Boolean rtsEnable, Boolean discardNull, Byte parityReplace)
+   bei System.IO.Ports.SerialPort.Open()
+   bei AgOpenGPS.FormGPS.SerialPortAutoSteerOpen() in C:\Users\aortner\source\repos\AgraBot\AgOpenGPS_Dev\SourceCode\GPS\Forms\SerialComm.Designer.cs:Zeile 181. - 27.10.2018 16:22:45
+

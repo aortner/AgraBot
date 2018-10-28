@@ -47,6 +47,11 @@
             this.label20 = new System.Windows.Forms.Label();
             this.nudMinFixStepDistance = new System.Windows.Forms.NumericUpDown();
             this.tabIMU = new System.Windows.Forms.TabPage();
+            this.calc_button = new System.Windows.Forms.Button();
+            this.gridconvergence = new System.Windows.Forms.NumericUpDown();
+            this.Centermeridian = new System.Windows.Forms.NumericUpDown();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
             this.headingGroupBox = new System.Windows.Forms.GroupBox();
             this.rbtnHeadingHDT = new System.Windows.Forms.RadioButton();
             this.rbtnHeadingGPS = new System.Windows.Forms.RadioButton();
@@ -98,6 +103,8 @@
             this.groupBox4.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).BeginInit();
             this.tabIMU.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridconvergence)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Centermeridian)).BeginInit();
             this.headingGroupBox.SuspendLayout();
             this.btnRollZero.SuspendLayout();
             this.groupBox7.SuspendLayout();
@@ -387,6 +394,11 @@
             // 
             // tabIMU
             // 
+            this.tabIMU.Controls.Add(this.calc_button);
+            this.tabIMU.Controls.Add(this.gridconvergence);
+            this.tabIMU.Controls.Add(this.Centermeridian);
+            this.tabIMU.Controls.Add(this.label12);
+            this.tabIMU.Controls.Add(this.label11);
             this.tabIMU.Controls.Add(this.headingGroupBox);
             this.tabIMU.Controls.Add(this.btnRollZero);
             this.tabIMU.Controls.Add(this.label10);
@@ -400,6 +412,71 @@
             this.tabIMU.TabIndex = 13;
             this.tabIMU.Text = "IMU - GPS";
             this.tabIMU.UseVisualStyleBackColor = true;
+            // 
+            // calc_button
+            // 
+            this.calc_button.Location = new System.Drawing.Point(548, 262);
+            this.calc_button.Name = "calc_button";
+            this.calc_button.Size = new System.Drawing.Size(140, 46);
+            this.calc_button.TabIndex = 89;
+            this.calc_button.Text = "CALC";
+            this.calc_button.UseVisualStyleBackColor = true;
+            this.calc_button.Click += new System.EventHandler(this.calc_button_Click);
+            // 
+            // gridconvergence
+            // 
+            this.gridconvergence.DecimalPlaces = 6;
+            this.gridconvergence.Increment = new decimal(new int[] {
+            1,
+            0,
+            0,
+            131072});
+            this.gridconvergence.Location = new System.Drawing.Point(460, 376);
+            this.gridconvergence.Maximum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            0});
+            this.gridconvergence.Minimum = new decimal(new int[] {
+            10000,
+            0,
+            0,
+            -2147483648});
+            this.gridconvergence.Name = "gridconvergence";
+            this.gridconvergence.Size = new System.Drawing.Size(246, 46);
+            this.gridconvergence.TabIndex = 88;
+            this.gridconvergence.ValueChanged += new System.EventHandler(this.gridconvergence_ValueChanged);
+            // 
+            // Centermeridian
+            // 
+            this.Centermeridian.Location = new System.Drawing.Point(460, 263);
+            this.Centermeridian.Minimum = new decimal(new int[] {
+            100,
+            0,
+            0,
+            -2147483648});
+            this.Centermeridian.Name = "Centermeridian";
+            this.Centermeridian.Size = new System.Drawing.Size(59, 46);
+            this.Centermeridian.TabIndex = 87;
+            this.Centermeridian.ValueChanged += new System.EventHandler(this.Centermeridian_ValueChanged);
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(453, 325);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(269, 39);
+            this.label12.TabIndex = 86;
+            this.label12.Text = "Grid Convergence";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(405, 220);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(317, 39);
+            this.label11.TabIndex = 85;
+            this.label11.Text = "Center Meridian UTM";
             // 
             // headingGroupBox
             // 
@@ -949,6 +1026,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.nudMinFixStepDistance)).EndInit();
             this.tabIMU.ResumeLayout(false);
             this.tabIMU.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridconvergence)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Centermeridian)).EndInit();
             this.headingGroupBox.ResumeLayout(false);
             this.headingGroupBox.PerformLayout();
             this.btnRollZero.ResumeLayout(false);
@@ -1029,5 +1108,10 @@
         private System.Windows.Forms.NumericUpDown numericUpDown_xtefilterfactor;
         private System.Windows.Forms.CheckBox checkBox_XTEFilter;
         private System.Windows.Forms.NumericUpDown lookaheadortner;
+        private System.Windows.Forms.Button calc_button;
+        private System.Windows.Forms.NumericUpDown gridconvergence;
+        private System.Windows.Forms.NumericUpDown Centermeridian;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label11;
     }
 }
