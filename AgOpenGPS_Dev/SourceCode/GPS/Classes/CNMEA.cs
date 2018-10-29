@@ -138,6 +138,7 @@ Field	Meaning
         private string[] words;
         private string nextNMEASentence = "";
         public string fixFrom;
+        public double centralMeridian;
 
         //UTM coordinates
         //public double northing, easting;

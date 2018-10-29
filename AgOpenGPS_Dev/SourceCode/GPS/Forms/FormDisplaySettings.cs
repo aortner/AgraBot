@@ -57,8 +57,11 @@ namespace AgOpenGPS
             cboxRollDogs.Checked = Properties.Settings.Default.setIMU_isRollFromDogs;
             cboxHeadingPAOGI.Checked = Properties.Settings.Default.setIMU_isHeadingFromPAOGI;
             cboxRollPAOGI.Checked = Properties.Settings.Default.setIMU_isRollFromPAOGI;
+
             gridconvergence.Value = (Decimal)Properties.Settings.Default.gridconvergence;
-            Centermeridian.Value = (int)Properties.Settings.Default.centermeridian;
+            mf.pn.centralMeridian = -180 + ((mf.pn.zone - 1) * 6) + 3;
+            Centermeridian.Value = (int)mf.pn.centralMeridian;
+           // Centermeridian.Value = (int)Properties.Settings.Default.centermeridian;
 
             isHeadingBNO = Properties.Settings.Default.setIMU_isHeadingFromBNO;
             isHeadingBrick = Properties.Settings.Default.setIMU_isHeadingFromBrick;
@@ -302,6 +305,9 @@ namespace AgOpenGPS
 
         private void calc_button_Click(object sender, EventArgs e)
         {
+            
+           
+
             gridconv = (mf.pn.longitude - (int)Centermeridian.Value) * Math.Sin(glm.toRadians(mf.pn.latitude));
             gridconvergence.Value = (decimal)gridconv;
             Properties.Settings.Default.gridconvergence = gridconv;

@@ -248,8 +248,9 @@ namespace AgOpenGPS
 
                 if (distanceFromCurrentLine > 0.4)
                 {
-                    goalPointDistance = (mf.pn.speed - 0.4 * Properties.Settings.Default.minuslookahedortner);
-                    goalPointDistance += (distanceFromCurrentLine - 0.4) * Properties.Settings.Default.minuslookahedortner * speedmaxlahead;
+
+                     goalPointDistance = (mf.pn.speed - 0.4 * Properties.Settings.Default.minuslookahedortner)* speedmaxlahead;;
+                     goalPointDistance += ((distanceFromCurrentLine - 0.4) * Properties.Settings.Default.minuslookahedortner) * speedmaxlahead;
 
                     if (goalPointDistance > mf.pn.speed * speedmaxlahead) goalPointDistance = mf.pn.speed * speedmaxlahead;
                 }
