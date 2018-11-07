@@ -486,7 +486,7 @@ Field	Meaning
             {
                 //True heading
                 double.TryParse(words[1], NumberStyles.Float, CultureInfo.InvariantCulture, out headingHDT);
-                headingHDT += Properties.Settings.Default.gridconvergence;
+                headingHDT =headingHDT+ -Properties.Settings.Default.gridconvergence;
 
                 if (headingHDT > 360) headingHDT -= 360;
                 if (headingHDT < 0) headingHDT += 360;
